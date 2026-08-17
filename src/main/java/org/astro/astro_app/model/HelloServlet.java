@@ -1,4 +1,4 @@
-package org.astro.astro_app;
+package org.astro.astro_app.model;
 
 import java.io.*;
 
