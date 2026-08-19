@@ -11,7 +11,7 @@ public class NrDescricao {
     private int tempoReciclagem;
     private String titulo;
 
-    //Método construtor da classe
+    //Metodo construtor da classe
     public NrDescricao(int idNrDescricao, String descricao, int tempoReciclagem, String titulo) {
         this.idNrDescricao = idNrDescricao;
         this.descricao = descricao;
