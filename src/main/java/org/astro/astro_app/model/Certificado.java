@@ -3,8 +3,11 @@ package org.astro.astro_app.model;
 // Bibliotecas:
 import java.time.LocalDate;
 
+// Classe da Model Certificado
 public class Certificado {
+    // Declaração de Variaveis:
 
+    // Atributos da Classe:
     private int idCertificado;
     private int idFuncionario;
     private int idNrFuncionario;
@@ -12,6 +15,7 @@ public class Certificado {
     private LocalDate dtEmissao;
     private LocalDate dtValidade;
 
+    // Metodo Construtor da classe:
     public Certificado(int idCertificado, int idFuncionario, int idNrFuncionario, LocalDate dtEmissao, LocalDate dtValidade) {
         this.idCertificado = idCertificado;
         this.idFuncionario = idFuncionario;
@@ -20,6 +24,7 @@ public class Certificado {
         this.dtValidade = dtValidade;
     }
 
+    // Metodo Getters:
     public int getIdCertificado() {
         return idCertificado;
     }

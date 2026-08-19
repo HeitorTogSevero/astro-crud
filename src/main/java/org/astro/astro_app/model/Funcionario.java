@@ -1,6 +1,10 @@
 package org.astro.astro_app.model;
 
+// Classe Model Funcionario:
 public class Funcionario {
+    //Declaração de Variaveis:
+
+    // Atributos da Classe:
     private String nome;
     private String cargo;
 
@@ -8,6 +12,7 @@ public class Funcionario {
     private int idCronograna;
     private long cpf;
 
+    // Método Construtor da classe
     public Funcionario(String nome, int idFuncionario, int idCronograna, String cargo, long cpf) {
         this.nome = nome;
         this.idFuncionario = idFuncionario;
@@ -16,6 +21,7 @@ public class Funcionario {
         this.cpf = cpf;
     }
 
+    // Metodos Getters:
     public String getNome() {
         return nome;
     }

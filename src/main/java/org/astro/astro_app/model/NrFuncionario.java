@@ -4,7 +4,6 @@ import java.time.LocalDate;
 
 // Classe Model NrFuncionario
 public class NrFuncionario {
-
     //Declaração de Variavéis:
 
     //Atributos da classe:
