@@ -2,14 +2,14 @@ package org.astro.astro_app.model;
 
 public class Departamento {
     private int idDepartamento;
-    private int cnpj;
+    private long cnpj;
     private String nome;
     private int grauRisco;
     private String atividade;
     private int qtdFuncionario;
     private String descricao;
 
-    public Departamento(int idDepartamento, int cnpj, String nome, int grauRisco, String atividade, int qtdFuncionario, String descricao) {
+    public Departamento(int idDepartamento, long cnpj, String nome, int grauRisco, String atividade, int qtdFuncionario, String descricao) {
         this.idDepartamento = idDepartamento;
         this.cnpj = cnpj;
         this.nome = nome;
@@ -23,7 +23,7 @@ public class Departamento {
         return idDepartamento;
     }
 
-    public int getCnpj() {
+    public long getCnpj() {
         return cnpj;
     }
 

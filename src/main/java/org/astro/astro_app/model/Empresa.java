@@ -9,9 +9,9 @@ public class Empresa {
     private String cidade;
     private String bairro;
     private String estado;
-    private int cnpj;
+    private long cnpj;
 
-    public Empresa(int idEmpresa, int cnae, int qtdFuncionario, String rua, int cep, String cidade, String bairro, String estado, int cnpj) {
+    public Empresa(int idEmpresa, int cnae, int qtdFuncionario, String rua, int cep, String cidade, String bairro, String estado, long cnpj) {
         this.idEmpresa = idEmpresa;
         this.cnae = cnae;
         this.qtdFuncionario = qtdFuncionario;
@@ -55,7 +55,7 @@ public class Empresa {
         return estado;
     }
 
-    public int getCnpj() {
+    public long getCnpj() {
         return cnpj;
     }
 }

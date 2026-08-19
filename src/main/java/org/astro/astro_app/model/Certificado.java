@@ -1,6 +1,6 @@
 package org.astro.astro_app.model;
 
-
+// Bibliotecas:
 import java.time.LocalDate;
 
 public class Certificado {

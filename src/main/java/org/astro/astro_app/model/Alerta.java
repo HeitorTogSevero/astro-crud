@@ -1,11 +1,14 @@
 package org.astro.astro_app.model;
+
+import java.time.LocalDate;
+
 public class Alerta {
     private int codigo;
-    private int dtLimite;
+    private LocalDate dtLimite;
     private String descricao;
     private int idEmpresa;
 
-    public Alerta(int codigo, int dtLimite, String descricao, int idEmpresa) {
+    public Alerta(int codigo, LocalDate dtLimite, String descricao, int idEmpresa) {
         this.codigo = codigo;
         this.dtLimite = dtLimite;
         this.descricao = descricao;
@@ -16,7 +19,7 @@ public class Alerta {
         return codigo;
     }
 
-    public int getDtLimite() {
+    public LocalDate getDtLimite() {
         return dtLimite;
     }
 

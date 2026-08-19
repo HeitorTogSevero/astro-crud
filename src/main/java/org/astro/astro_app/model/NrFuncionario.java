@@ -2,10 +2,12 @@ package org.astro.astro_app.model;
 
 import java.time.LocalDate;
 
-// Classe Model NR_Funcionario
+// Classe Model NrFuncionario
 public class NrFuncionario {
 
-//    Declaração de Variavéis:
+    //Declaração de Variavéis:
+
+    //Atributos da classe:
     private int idNrFunc;
     private int idNrDescricao;
     private int tempoReciclagem;
@@ -15,7 +17,7 @@ public class NrFuncionario {
 
     private LocalDate dtRealizacao;
 
-//    Metodo Construtor da Classe Nr_Funcionario:
+    //Metodo Construtor da Classe Nr_Funcionario:
     public NrFuncionario(int idNrFunc, int idNrDescricao, int tempoReciclagem, String titulo, LocalDate dtRealizacao, String status) {
 
         this.idNrFunc = idNrFunc;
@@ -27,7 +29,7 @@ public class NrFuncionario {
 
     }
 
-//    Getters da Classe:
+    //Metodos Getters:
     public int getIdNrFunc() {
         return idNrFunc;
     }

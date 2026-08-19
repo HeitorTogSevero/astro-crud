@@ -1,12 +1,14 @@
 package org.astro.astro_app.model;
 
+import java.time.LocalDate;
+
 public class Cronograma {
     private int idFuncionario;
-    private String agendamentos;
+    private LocalDate agendamentos;
     private int idEmpresa;
     private int idDivisao;
 
-    public Cronograma(int idFuncionario, String agendamentos, int idEmpresa, int idDivisao) {
+    public Cronograma(int idFuncionario, LocalDate agendamentos, int idEmpresa, int idDivisao) {
         this.idFuncionario = idFuncionario;
         this.agendamentos = agendamentos;
         this.idEmpresa = idEmpresa;
@@ -17,7 +19,7 @@ public class Cronograma {
         return idFuncionario;
     }
 
-    public String getAgendamentos() {
+    public LocalDate getAgendamentos() {
         return agendamentos;
     }
 
