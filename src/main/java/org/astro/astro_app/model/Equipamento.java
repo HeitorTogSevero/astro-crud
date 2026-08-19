@@ -2,8 +2,11 @@ package org.astro.astro_app.model;
 
 import java.time.LocalDate;
 
+// Classe Model Equipamento
 public class Equipamento {
+    // Declaração de Variaveis:
 
+    // Atributos da Classe:
     private int idEquipamento;
     private long cnpj;
 
@@ -12,6 +15,7 @@ public class Equipamento {
     private String nome;
     private String clasificacaoGov;
 
+    // Metodo do Construtor da classe:
     public Equipamento(int idEquipamento, long cnpj, LocalDate dtValidade, String nome, String clasificacaoGov) {
         this.idEquipamento = idEquipamento;
         this.cnpj = cnpj;
@@ -19,6 +23,8 @@ public class Equipamento {
         this.nome = nome;
         this.clasificacaoGov = clasificacaoGov;
     }
+
+    //Métodos Getters:
 
     public int getIdEquipamento() {
         return idEquipamento;
