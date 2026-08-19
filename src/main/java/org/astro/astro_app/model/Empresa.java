@@ -1,6 +1,10 @@
 package org.astro.astro_app.model;
 
+//Classe model Empresa
 public class Empresa {
+    //Declaração de variáveis
+
+    //Atributos da classe
     private int idEmpresa;
     private int cnae;
     private int qtdFuncionario;
@@ -9,9 +13,10 @@ public class Empresa {
     private String cidade;
     private String bairro;
     private String estado;
-    private long cnpj;
+    private int cnpj;
 
-    public Empresa(int idEmpresa, int cnae, int qtdFuncionario, String rua, int cep, String cidade, String bairro, String estado, long cnpj) {
+    //Método construtor da classe
+    public Empresa(int idEmpresa, int cnae, int qtdFuncionario, String rua, int cep, String cidade, String bairro, String estado, int cnpj) {
         this.idEmpresa = idEmpresa;
         this.cnae = cnae;
         this.qtdFuncionario = qtdFuncionario;
@@ -23,6 +28,7 @@ public class Empresa {
         this.cnpj = cnpj;
     }
 
+    //Métodos Getters
     public int getIdEmpresa() {
         return idEmpresa;
     }
@@ -55,7 +61,7 @@ public class Empresa {
         return estado;
     }
 
-    public long getCnpj() {
+    public int getCnpj() {
         return cnpj;
     }
 }

@@ -1,7 +1,7 @@
 package org.astro.astro_app.model;
 
 public class Estrutura {
-
+    //
     private int idEstrutura;
     private long cnpj;
 

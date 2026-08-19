@@ -49,8 +49,4 @@ public class NrFuncionario {
     public LocalDate getDtRealizacao() {
         return dtRealizacao;
     }
-
-    public String getStatus() {
-        return status;
-    }
 }
