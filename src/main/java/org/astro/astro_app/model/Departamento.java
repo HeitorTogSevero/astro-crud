@@ -1,6 +1,10 @@
 package org.astro.astro_app.model;
 
+//Classe model Departamento
 public class Departamento {
+    //Declaração de variáveis
+
+   //Atributos da classe
     private int idDepartamento;
     private int cnpj;
     private String nome;
@@ -9,6 +13,8 @@ public class Departamento {
     private int qtdFuncionario;
     private String descricao;
 
+
+    //Método contrutor da classe
     public Departamento(int idDepartamento, int cnpj, String nome, int grauRisco, String atividade, int qtdFuncionario, String descricao) {
         this.idDepartamento = idDepartamento;
         this.cnpj = cnpj;
@@ -19,6 +25,7 @@ public class Departamento {
         this.descricao = descricao;
     }
 
+    //Metodos Getters
     public int getIdDepartamento() {
         return idDepartamento;
     }

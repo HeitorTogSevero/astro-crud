@@ -1,12 +1,17 @@
 package org.astro.astro_app.model;
 
+//Classe model DivisaoTreinamento
 public class DivisaoTreinamento {
+    //Declaração de variáveis
+
+    //Atributos da classe
     private int idDivisao;
     private int idCronograma;
     private int cnpj;
     private String nome;
     private int qtdFuncionario;
 
+    //Método construtor da classe
     public DivisaoTreinamento(int idDivisao, int idCronograma, int cnpj, String nome, int qtdFuncionario) {
         this.idDivisao = idDivisao;
         this.idCronograma = idCronograma;
@@ -15,6 +20,7 @@ public class DivisaoTreinamento {
         this.qtdFuncionario = qtdFuncionario;
     }
 
+    //Métodos Getters
     public int getIdDivisao() {
         return idDivisao;
     }
