@@ -15,7 +15,7 @@ public class Empresa {
     private String estado;
     private int cnpj;
 
-    //Método construtor da classe
+    //Metodo construtor da classe
     public Empresa(int idEmpresa, int cnae, int qtdFuncionario, String rua, int cep, String cidade, String bairro, String estado, int cnpj) {
         this.idEmpresa = idEmpresa;
         this.cnae = cnae;

@@ -14,7 +14,7 @@ public class Departamento {
     private String descricao;
 
 
-    //Método contrutor da classe
+    //Metodo contrutor da classe
     public Departamento(int idDepartamento, int cnpj, String nome, int grauRisco, String atividade, int qtdFuncionario, String descricao) {
         this.idDepartamento = idDepartamento;
         this.cnpj = cnpj;

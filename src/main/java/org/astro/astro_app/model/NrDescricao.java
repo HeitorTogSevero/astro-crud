@@ -3,7 +3,7 @@ package org.astro.astro_app.model;
 //Classe model NrDescricao
 public class NrDescricao {
 
-    //Declaração de variáveis
+    //Declaração de variaveis
 
     //Atributos da classe
     private int idNrDescricao;
@@ -19,7 +19,7 @@ public class NrDescricao {
         this.titulo = titulo;
     }
 
-    //Métodos Getters
+    //Metodos Getters
     public int getIdNrDescricao() {
         return idNrDescricao;
     }
