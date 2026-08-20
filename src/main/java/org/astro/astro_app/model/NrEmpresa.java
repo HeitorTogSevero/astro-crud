@@ -10,7 +10,7 @@ public class NrEmpresa {
     private String titulo;
     private String status;
 
-    //Método construtor da classe
+    //Metodo construtor da classe
     public NrEmpresa(int idNremp, int idNrDescricao, String titulo, String status) {
         this.idNremp = idNremp;
         this.idNrDescricao = idNrDescricao;
@@ -18,7 +18,7 @@ public class NrEmpresa {
         this.status = status;
     }
 
-    //Métodos Getters
+    //Metodos Getters
     public int getIdNremp() {
         return idNremp;
     }

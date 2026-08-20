@@ -12,7 +12,7 @@ public class Funcionario {
     private int idCronograna;
     private long cpf;
 
-    // Método Construtor da classe
+    // Metodo Construtor da classe
     public Funcionario(String nome, int idFuncionario, int idCronograna, String cargo, long cpf) {
         this.nome = nome;
         this.idFuncionario = idFuncionario;
