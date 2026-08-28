@@ -1,7 +1,7 @@
 package org.astro.astro_app.model;
 
 // Bibliotecas:
-import java.time.LocalDate;
+import java.sql.Date;
 
 // Classe da Model Certificado
 public class Certificado {
@@ -12,17 +12,26 @@ public class Certificado {
     private int idFuncionario;
     private int idNrFuncionario;
 
-    private LocalDate dtEmissao;
-    private LocalDate dtValidade;
+    private Date dtEmissao;
+    private Date dtValidade;
 
     // Metodo Construtor da classe:
-    public Certificado(int idCertificado, int idFuncionario, int idNrFuncionario, LocalDate dtEmissao, LocalDate dtValidade) {
+    public Certificado(int idCertificado, int idFuncionario, int idNrFuncionario, Date dtEmissao, Date dtValidade) {
         this.idCertificado = idCertificado;
         this.idFuncionario = idFuncionario;
         this.idNrFuncionario = idNrFuncionario;
         this.dtEmissao = dtEmissao;
         this.dtValidade = dtValidade;
     }
+
+    public Certificado(int idFuncionario, int idNrFuncionario, Date dtEmissao, Date dtValidade) {
+        this.idFuncionario = idFuncionario;
+        this.idNrFuncionario = idNrFuncionario;
+        this.dtEmissao = dtEmissao;
+        this.dtValidade = dtValidade;
+    }
+
+    public Certificado(){}
 
     // Metodo Getters:
     public int getIdCertificado() {
@@ -37,11 +46,11 @@ public class Certificado {
         return idNrFuncionario;
     }
 
-    public LocalDate getDtEmissao() {
+    public Date getDtEmissao() {
         return dtEmissao;
     }
 
-    public LocalDate getDtValidade() {
+    public Date getDtValidade() {
         return dtValidade;
     }
 

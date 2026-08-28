@@ -40,7 +40,7 @@ public class Conexao{
         return conn;
 
     }
-    // Metodo para Desconetar o Vanco:
+    // Metodo para Desconetar o Banco:
     public void desconectar(Connection conn){
         try{
             if (conn != null && !conn.isClosed()) {

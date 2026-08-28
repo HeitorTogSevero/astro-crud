@@ -10,7 +10,7 @@ public class Alerta {
     private String descricao;
     private int idEmpresa;
 
-    //Mètodo construtor da classe
+    //Metodo construtor da classe
     public Alerta(int codigo, int dtLimite, String descricao, int idEmpresa) {
         this.codigo = codigo;
         this.dtLimite = dtLimite;
