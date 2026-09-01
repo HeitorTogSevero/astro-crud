@@ -1,6 +1,6 @@
 package org.astro.astro_app.model;
 
-import java.time.LocalDate;
+import java.sql.Date;
 
 // Classe Model Equipamento
 public class Equipamento {
@@ -10,13 +10,13 @@ public class Equipamento {
     private int idEquipamento;
     private long cnpj;
 
-    private LocalDate dtValidade;
+    private Date dtValidade;
 
     private String nome;
     private String clasificacaoGov;
 
     // Metodo do Construtor da classe:
-    public Equipamento(int idEquipamento, long cnpj, LocalDate dtValidade, String nome, String clasificacaoGov) {
+    public Equipamento(int idEquipamento, long cnpj, Date dtValidade, String nome, String clasificacaoGov) {
         this.idEquipamento = idEquipamento;
         this.cnpj = cnpj;
         this.dtValidade = dtValidade;
@@ -34,7 +34,7 @@ public class Equipamento {
         return cnpj;
     }
 
-    public LocalDate getDtValidade() {
+    public Date getDtValidade() {
         return dtValidade;
     }
 

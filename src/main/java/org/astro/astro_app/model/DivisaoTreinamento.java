@@ -8,10 +8,12 @@ public class DivisaoTreinamento {
     private int idDivisao;
     private int idCronograma;
     private int cnpj;
-    private String nome;
     private int qtdFuncionario;
 
-    //Método construtor da classe
+    private String nome;
+
+
+    //Metodo construtor da classe
     public DivisaoTreinamento(int idDivisao, int idCronograma, int cnpj, String nome, int qtdFuncionario) {
         this.idDivisao = idDivisao;
         this.idCronograma = idCronograma;

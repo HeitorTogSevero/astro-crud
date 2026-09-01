@@ -1,5 +1,6 @@
 package org.astro.astro_app.model;
 
+import java.sql.Date;
 import java.time.LocalDate;
 
 // Classe Model NrFuncionario
@@ -11,13 +12,14 @@ public class NrFuncionario {
     private int idNrDescricao;
     private int tempoReciclagem;
 
+    private Date dtRealizacao;
+
     private String titulo;
     private String status;
 
-    private LocalDate dtRealizacao;
 
     //Metodo Construtor da Classe Nr_Funcionario:
-    public NrFuncionario(int idNrFunc, int idNrDescricao, int tempoReciclagem, String titulo, LocalDate dtRealizacao, String status) {
+    public NrFuncionario(int idNrFunc, int idNrDescricao, int tempoReciclagem, String titulo, Date dtRealizacao, String status) {
 
         this.idNrFunc = idNrFunc;
         this.idNrDescricao = idNrDescricao;
@@ -45,7 +47,7 @@ public class NrFuncionario {
         return titulo;
     }
 
-    public LocalDate getDtRealizacao() {
+    public Date getDtRealizacao() {
         return dtRealizacao;
     }
 }

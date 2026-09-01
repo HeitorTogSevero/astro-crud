@@ -45,6 +45,8 @@ public class Conexao{
         try{
             if (conn != null && !conn.isClosed()) {
                 conn.close(); // Fechando a Conexão
+
+                System.out.println("Desconectou");
             }
         } catch (SQLException sqle) {
             sqle.printStackTrace();

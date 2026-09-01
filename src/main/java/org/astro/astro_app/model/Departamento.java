@@ -7,11 +7,12 @@ public class Departamento {
    //Atributos da classe
     private int idDepartamento;
     private int cnpj;
-    private String nome;
     private int grauRisco;
-    private String atividade;
     private int qtdFuncionario;
+
+    private String nome;
     private String descricao;
+    private String atividade;
 
 
     //Metodo contrutor da classe

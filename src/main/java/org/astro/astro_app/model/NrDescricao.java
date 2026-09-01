@@ -7,8 +7,9 @@ public class NrDescricao {
 
     //Atributos da classe
     private int idNrDescricao;
-    private String descricao;
     private int tempoReciclagem;
+
+    private String descricao;
     private String titulo;
 
     //Metodo construtor da classe
