@@ -7,6 +7,7 @@ public class NrEmpresa {
     //Atributos da classe
     private int idNremp;
     private int idNrDescricao;
+
     private String titulo;
     private String status;
 

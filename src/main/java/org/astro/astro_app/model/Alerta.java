@@ -7,8 +7,10 @@ public class Alerta {
     //Atributos da classe
     private int codigo;
     private int dtLimite;
-    private String descricao;
     private int idEmpresa;
+
+    private String descricao;
+
 
     //Metodo construtor da classe
     public Alerta(int codigo, int dtLimite, String descricao, int idEmpresa) {

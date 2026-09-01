@@ -6,11 +6,13 @@ public class Cronograma {
 
     //Atributos da classe
     private int idFuncionario;
-    private String agendamentos;
     private int idEmpresa;
     private int idDivisao;
 
-    //Método construtor da classe
+    private String agendamentos;
+
+
+    //Metodo construtor da classe
     public Cronograma(int idFuncionario, String agendamentos, int idEmpresa, int idDivisao) {
         this.idFuncionario = idFuncionario;
         this.agendamentos = agendamentos;

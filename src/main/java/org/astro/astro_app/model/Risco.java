@@ -10,7 +10,7 @@ public class Risco {
 
     private int idEstrutura;
 
-    // Método do COnstrutor da classe:
+    // Metodo do COnstrutor da classe:
     public Risco(String risco, int idEstrutura, String descricao) {
         this.risco = risco;
         this.idEstrutura = idEstrutura;

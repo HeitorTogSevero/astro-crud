@@ -8,12 +8,14 @@ public class Empresa {
     private int idEmpresa;
     private int cnae;
     private int qtdFuncionario;
-    private String rua;
     private int cep;
-    private String cidade;
-    private String bairro;
-    private String estado;
     private int cnpj;
+
+    private String rua;
+    private String estado;
+    private String bairro;
+    private String cidade;
+
 
     //Metodo construtor da classe
     public Empresa(int idEmpresa, int cnae, int qtdFuncionario, String rua, int cep, String cidade, String bairro, String estado, int cnpj) {

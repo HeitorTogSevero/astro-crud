@@ -10,7 +10,7 @@ public class Estrutura {
 
     private String descricao;
 
-    // Método Construtor da classe:|
+    // Metodo Construtor da classe:|
     public Estrutura(int idEstrutura, long cnpj, String descricao) {
         this.idEstrutura = idEstrutura;
         this.cnpj = cnpj;
