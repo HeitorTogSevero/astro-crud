@@ -81,6 +81,7 @@ public class AlertaDAO {
     // Metodo Read | Select - CRUD
     public Alerta buscarPorId(int codigo) {
 
+        // Criando conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
         Alerta alertaEncontrado = null;
