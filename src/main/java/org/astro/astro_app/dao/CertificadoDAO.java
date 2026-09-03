@@ -127,5 +127,39 @@ public class CertificadoDAO {
         }
 
     }
+
+//    Metodo Update - CRUD
+    public int alterarCertificado(Certificado c){
+
+        // Criando a conexão com o Banco de Dados
+        Conexao conexao = new Conexao();
+        Connection conn = null;
+
+        try {
+            conn = conexao.conectar();
+
+            // Interface para realizar comandos SQL's
+            PreparedStatement pstmt = conn.prepareStatement("UPDATE Certificado set id_funcionario = ?, id_nrfunc = ?, dt_emissao = ?,  validade = ? WHERE id_certificado = ?");
+
+            pstmt.setInt(1, c.getIdFuncionario());
+            pstmt.setInt(2, c.getIdNrFuncionario());
+            pstmt.setDate(3, c.getDtEmissao());
+            pstmt.setDate(4, c.getDtValidade());
+            pstmt.setInt(5, c.getIdCertificado());
+
+            if (pstmt.executeUpdate() > 0){
+                return 0;
+            }
+
+            return 1;
+
+        }catch (SQLException sqlE){
+            System.out.println(sqlE.getMessage());
+            return -1;
+        }finally {
+            conexao.desconectar(conn);
+        }
+
+    }
 }
 

@@ -14,8 +14,7 @@ class Main {
         Scanner input = new Scanner(System.in);
 
         CertificadoDAO dao = new CertificadoDAO();
-//
-//
+
 ////        Teste Insert
 //        System.out.print("Me fale seu Id: ");
 //        int idFuncionario = input.nextInt();
@@ -35,9 +34,7 @@ class Main {
 //        } else {
 //            System.out.println("Os dados não foram inseridos no banco");
 //      }
-//
-//
-//
+
 //        Teste buscar:
         ArrayList<Certificado> rs = dao.buscar();
         for (int i = 0; i < rs.size(); i++) {
@@ -45,11 +42,7 @@ class Main {
         }
         System.out.println();
         System.out.println();
-//
-//
-//
-//
-//
+
 ////        Teste Buscar por ID:
 //        ResultSet rsa = dao.buscarPorId(1);
 //        try {
@@ -63,5 +56,6 @@ class Main {
 //        } catch (SQLException sql) {
 //            System.out.println("Erro ao mostrar o select");
 //        }
+
     }
 }
