@@ -6,14 +6,13 @@ import org.astro.astro_app.model.Certificado;
 import java.sql.*;
 import java.util.ArrayList;
 
-
 // Classe DAO Certificado - CRUD:
 public class CertificadoDAO {
 
 //    Metodo Create | Insert - CRUD
         public boolean inserir(Certificado c){
 
-        // Criando a conexão com o Banco de Dados
+        // Criando a conexão com o banco de dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
@@ -28,7 +27,7 @@ public class CertificadoDAO {
             pstmt.setDate(3, c.getDtEmissao());
             pstmt.setDate(4, c.getDtValidade());
 
-//            Verificação para saber se o INSERT funcionou:
+//            Verificacao para saber se o INSERT funcionou:
             if (pstmt.executeUpdate() > 0){
                 return true;
             }
