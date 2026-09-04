@@ -6,14 +6,18 @@ public class Estrutura {
 
     // Atributos da Classe:
     private int idEstrutura;
-    private long cnpj;
+    private int idEmpresa;
 
+    private String risco;
     private String descricao;
 
     // Metodo Construtor da classe:|
-    public Estrutura(int idEstrutura, long cnpj, String descricao) {
+
+
+    public Estrutura(int idEstrutura, int idEmpresa, String risco, String descricao) {
         this.idEstrutura = idEstrutura;
-        this.cnpj = cnpj;
+        this.idEmpresa = idEmpresa;
+        this.risco = risco;
         this.descricao = descricao;
     }
 
@@ -23,12 +27,15 @@ public class Estrutura {
         return idEstrutura;
     }
 
-    public long getCnpj() {
-        return cnpj;
+    public int getIdEmpresa() {
+        return idEmpresa;
+    }
+
+    public String getRisco() {
+        return risco;
     }
 
     public String getDescricao() {
         return descricao;
     }
-
 }

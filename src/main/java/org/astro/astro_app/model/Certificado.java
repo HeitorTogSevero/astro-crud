@@ -11,15 +11,17 @@ public class Certificado {
     private int idCertificado;
     private int idFuncionario;
     private int idNrFuncionario;
+    private int idNrEmpresa;
 
     private Date dtEmissao;
     private Date dtValidade;
 
     // Metodo Construtor da classe:
-    public Certificado(int idCertificado, int idFuncionario, int idNrFuncionario, Date dtEmissao, Date dtValidade) {
+    public Certificado(int idCertificado, int idFuncionario, int idNrFuncionario, int idNrEmpresa, Date dtEmissao, Date dtValidade) {
         this.idCertificado = idCertificado;
         this.idFuncionario = idFuncionario;
         this.idNrFuncionario = idNrFuncionario;
+        this.idNrEmpresa = idNrEmpresa;
         this.dtEmissao = dtEmissao;
         this.dtValidade = dtValidade;
     }
@@ -31,9 +33,8 @@ public class Certificado {
         this.dtValidade = dtValidade;
     }
 
-    public Certificado(){}
-
     // Metodo Getters:
+
     public int getIdCertificado() {
         return idCertificado;
     }
@@ -46,6 +47,10 @@ public class Certificado {
         return idNrFuncionario;
     }
 
+    public int getIdNrEmpresa() {
+        return idNrEmpresa;
+    }
+
     public Date getDtEmissao() {
         return dtEmissao;
     }
@@ -53,5 +58,4 @@ public class Certificado {
     public Date getDtValidade() {
         return dtValidade;
     }
-
 }

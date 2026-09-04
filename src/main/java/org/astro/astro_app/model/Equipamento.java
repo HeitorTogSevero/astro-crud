@@ -8,7 +8,6 @@ public class Equipamento {
 
     // Atributos da Classe:
     private int idEquipamento;
-    private long cnpj;
 
     private Date dtValidade;
 
@@ -16,22 +15,18 @@ public class Equipamento {
     private String clasificacaoGov;
 
     // Metodo do Construtor da classe:
-    public Equipamento(int idEquipamento, long cnpj, Date dtValidade, String nome, String clasificacaoGov) {
+    public Equipamento(int idEquipamento, Date dtValidade, String nome, String clasificacaoGov) {
         this.idEquipamento = idEquipamento;
-        this.cnpj = cnpj;
         this.dtValidade = dtValidade;
         this.nome = nome;
         this.clasificacaoGov = clasificacaoGov;
     }
 
+
     //Métodos Getters:
 
     public int getIdEquipamento() {
         return idEquipamento;
-    }
-
-    public long getCnpj() {
-        return cnpj;
     }
 
     public Date getDtValidade() {
@@ -45,5 +40,4 @@ public class Equipamento {
     public String getClasificacaoGov() {
         return clasificacaoGov;
     }
-
 }

@@ -7,39 +7,48 @@ public class Funcionario {
     // Atributos da Classe:
     private String nome;
     private String cargo;
+    private String cpf;
 
+    private int idEmpresa;
     private int idFuncionario;
-    private int idCronograna;
-    private long cpf;
+    private int idDepartamento;
+
 
     // Metodo Construtor da classe
-    public Funcionario(String nome, int idFuncionario, int idCronograna, String cargo, long cpf) {
+
+
+    public Funcionario(String nome, String cargo, String cpf, int idEmpresa, int idFuncionario, int idDepartamento) {
         this.nome = nome;
-        this.idFuncionario = idFuncionario;
-        this.idCronograna = idCronograna;
         this.cargo = cargo;
         this.cpf = cpf;
+        this.idEmpresa = idEmpresa;
+        this.idFuncionario = idFuncionario;
+        this.idDepartamento = idDepartamento;
     }
 
     // Metodos Getters:
+
     public String getNome() {
         return nome;
-    }
-
-    public int getIdFuncionario() {
-        return idFuncionario;
-    }
-
-    public int getIdCronograna() {
-        return idCronograna;
     }
 
     public String getCargo() {
         return cargo;
     }
 
-    public long getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
+    public int getIdEmpresa() {
+        return idEmpresa;
+    }
+
+    public int getIdFuncionario() {
+        return idFuncionario;
+    }
+
+    public int getIdDepartamento() {
+        return idDepartamento;
+    }
 }
