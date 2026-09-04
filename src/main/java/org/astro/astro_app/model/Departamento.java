@@ -6,7 +6,7 @@ public class Departamento {
 
    //Atributos da classe
     private int idDepartamento;
-    private int cnpj;
+    private int idEmpresa;
     private int grauRisco;
     private int qtdFuncionario;
 
@@ -16,42 +16,43 @@ public class Departamento {
 
 
     //Metodo contrutor da classe
-    public Departamento(int idDepartamento, int cnpj, String nome, int grauRisco, String atividade, int qtdFuncionario, String descricao) {
+    public Departamento(int idDepartamento, int idEmpresa, int grauRisco, int qtdFuncionario, String nome, String descricao, String atividade) {
         this.idDepartamento = idDepartamento;
-        this.cnpj = cnpj;
-        this.nome = nome;
+        this.idEmpresa = idEmpresa;
         this.grauRisco = grauRisco;
-        this.atividade = atividade;
         this.qtdFuncionario = qtdFuncionario;
+        this.nome = nome;
         this.descricao = descricao;
+        this.atividade = atividade;
     }
 
     //Metodos Getters
+
     public int getIdDepartamento() {
         return idDepartamento;
     }
 
-    public int getCnpj() {
-        return cnpj;
-    }
-
-    public String getNome() {
-        return nome;
+    public int getIdEmpresa() {
+        return idEmpresa;
     }
 
     public int getGrauRisco() {
         return grauRisco;
     }
 
-    public String getAtividade() {
-        return atividade;
-    }
-
     public int getQtdFuncionario() {
         return qtdFuncionario;
     }
 
+    public String getNome() {
+        return nome;
+    }
+
     public String getDescricao() {
         return descricao;
+    }
+
+    public String getAtividade() {
+        return atividade;
     }
 }

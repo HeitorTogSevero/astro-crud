@@ -2,15 +2,16 @@ package org.astro.astro_app.dao;
 
 import org.astro.astro_app.Conexão.Conexao;
 import org.astro.astro_app.model.Certificado;
+import org.astro.astro_app.model.Funcionario;
 
 import java.sql.*;
 import java.util.ArrayList;
 
-// Classe DAO Certificado - CRUD:
-public class CertificadoDAO {
+// Classe DAO Certificado - CRUD
+public class FuncionarioDAO {
 
 //    Metodo Create | Insert - CRUD
-        public boolean inserir(Certificado c){
+    public boolean inserir(Funcionario f){
 
         // Criando a conexão com o banco de dados
         Conexao conexao = new Conexao();
@@ -20,13 +21,15 @@ public class CertificadoDAO {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's:
-            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO Certificado (id_funcionario, id_nrfunc, id_empresa, dt_emissao, validade) VALUES (?, ?, ?, ?, ? )");
+            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO Funcionario (nome, cargo, cpf, id_emrpesa, id_funcionario, id_departamento) VALUES (?, ?, ?, ?, ?, ? )");
 
-            pstmt.setInt(1, c.getIdFuncionario());
-            pstmt.setInt(2, c.getIdNrFuncionario());
-            pstmt.setInt(3, c.getIdNrEmpresa());
-            pstmt.setDate(4, c.getDtEmissao());
-            pstmt.setDate(5, c.getDtValidade());
+            pstmt.setString(1, f.getNome());
+            pstmt.setString(2, f.getCargo());
+            pstmt.setString(3, f.getCpf());
+            pstmt.setInt(4, f.getIdEmpresa());
+            pstmt.setInt(5, f.getIdFuncionario());
+            pstmt.setInt(6, f.getIdDepartamento());
+
 
 //            Verificacao para saber se o INSERT funcionou:
             if (pstmt.executeUpdate() > 0){
@@ -43,13 +46,13 @@ public class CertificadoDAO {
     }
 
 //    Metodo Read | Select - CRUD
-    public ArrayList<Certificado> buscar() {
+    public ArrayList<Funcionario> buscar() {
 
         // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-        ArrayList<Certificado> vet = new ArrayList<>();
+        ArrayList<Funcionario> vet = new ArrayList<>();
 
         try {
             conn = conexao.conectar();
@@ -57,10 +60,10 @@ public class CertificadoDAO {
             // Interface para realizar comandos SQL's:
             Statement pstmt = conn.createStatement();
 
-            ResultSet rs = pstmt.executeQuery("SELECT * FROM CERTIFICADO ORDER BY 1");
+            ResultSet rs = pstmt.executeQuery("SELECT * FROM FUNCIONARIO ORDER BY 1");
 
             while (rs.next()) {
-                vet.add(new Certificado(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4),rs.getDate(5), rs.getDate(6)));
+                vet.add(new Funcionario(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4),rs.getInt(5), rs.getInt(6)));
             }
 
             pstmt.close();
@@ -74,8 +77,8 @@ public class CertificadoDAO {
         return vet;
     }
 
-    
-//    Metodo Read | Select - CRUD, mas baseado no ID
+
+    //    Metodo Read | Select - CRUD, mas baseado no ID
     public ResultSet buscarPorId(int id) {
 
         Conexao conexao = new Conexao();
@@ -86,7 +89,7 @@ public class CertificadoDAO {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's
-            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Certificado WHERE id_certificado = ?");
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Funcionario WHERE id_certificado = ?");
 
             pstmt.setInt(1, id);
             resultSet = pstmt.executeQuery();
@@ -101,7 +104,7 @@ public class CertificadoDAO {
 
     }
 
-//    Metodo Delete | Remove - CRUD
+    //    Metodo Delete | Remove - CRUD
     public int remover(int id){
 
         // Criando a conexão com o Banco de Dados
@@ -112,7 +115,7 @@ public class CertificadoDAO {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's:
-            PreparedStatement pstmt = conn.prepareStatement("DELETE FROM Certificado where id_certificado = ?");
+            PreparedStatement pstmt = conn.prepareStatement("DELETE FROM Funcionario where id_certificado = ?");
 
             pstmt.setInt(1, id);
 
@@ -129,8 +132,8 @@ public class CertificadoDAO {
 
     }
 
-//    Metodo Update - CRUD
-    public int alterarCertificado(Certificado c){
+    //    Metodo Update - CRUD
+    public int alterarFuncionario(Funcionario f){
 
         // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
@@ -140,14 +143,15 @@ public class CertificadoDAO {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's
-            PreparedStatement pstmt = conn.prepareStatement("UPDATE Certificado set id_funcionario = ?, id_nrfunc = ?, id_empresa = ?, dt_emissao = ?,  validade = ? WHERE id_certificado = ?");
+            PreparedStatement pstmt = conn.prepareStatement("UPDATE Funcionario set nome = ?, cargo = ?, cpf = ?, id_empresa = ?,  id_departamento = ? WHERE id_funcionario = ?");
 
-            pstmt.setInt(1, c.getIdFuncionario());
-            pstmt.setInt(2, c.getIdNrFuncionario());
-            pstmt.setInt(3, c.getIdNrEmpresa());
-            pstmt.setDate(4, c.getDtEmissao());
-            pstmt.setDate(5, c.getDtValidade());
-            pstmt.setInt(6, c.getIdCertificado());
+            pstmt.setString(1, f.getNome());
+            pstmt.setString(2, f.getCargo());
+            pstmt.setString(3, f.getCpf());
+            pstmt.setInt(4, f.getIdEmpresa());
+            pstmt.setInt(5, f.getIdDepartamento());
+            pstmt.setInt(6, f.getIdFuncionario());
+
 
             if (pstmt.executeUpdate() > 0){
                 return 0;
@@ -164,4 +168,3 @@ public class CertificadoDAO {
 
     }
 }
-

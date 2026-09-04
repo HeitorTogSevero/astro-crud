@@ -8,29 +8,30 @@ public class Empresa {
     private int idEmpresa;
     private int cnae;
     private int qtdFuncionario;
-    private int cep;
-    private int cnpj;
 
+    private String nome;
+    private String cep;
+    private String cnpj;
     private String rua;
     private String estado;
     private String bairro;
     private String cidade;
 
-
-    //Metodo construtor da classe
-    public Empresa(int idEmpresa, int cnae, int qtdFuncionario, String rua, int cep, String cidade, String bairro, String estado, int cnpj) {
+    // Metodo Construtor da classe:
+    public Empresa(int idEmpresa, int cnae, int qtdFuncionario, String nome, String cep, String cnpj, String rua, String estado, String bairro, String cidade) {
         this.idEmpresa = idEmpresa;
         this.cnae = cnae;
         this.qtdFuncionario = qtdFuncionario;
-        this.rua = rua;
+        this.nome = nome;
         this.cep = cep;
-        this.cidade = cidade;
-        this.bairro = bairro;
-        this.estado = estado;
         this.cnpj = cnpj;
+        this.rua = rua;
+        this.estado = estado;
+        this.bairro = bairro;
+        this.cidade = cidade;
     }
 
-    //Métodos Getters
+    // Metodos Getters:
     public int getIdEmpresa() {
         return idEmpresa;
     }
@@ -43,27 +44,31 @@ public class Empresa {
         return qtdFuncionario;
     }
 
-    public String getRua() {
-        return rua;
+    public String getNome() {
+        return nome;
     }
 
-    public int getCep() {
+    public String getCep() {
         return cep;
     }
 
-    public String getCidade() {
-        return cidade;
+    public String getCnpj() {
+        return cnpj;
     }
 
-    public String getBairro() {
-        return bairro;
+    public String getRua() {
+        return rua;
     }
 
     public String getEstado() {
         return estado;
     }
 
-    public int getCnpj() {
-        return cnpj;
+    public String getBairro() {
+        return bairro;
+    }
+
+    public String getCidade() {
+        return cidade;
     }
 }

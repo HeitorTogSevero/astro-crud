@@ -2,6 +2,7 @@ package org.astro.astro_app.dao;
 
 import org.astro.astro_app.Conexão.Conexao;
 import org.astro.astro_app.model.Alerta;
+import org.astro.astro_app.model.Certificado;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -20,12 +21,13 @@ public class AlertaDAO {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's:
-            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO alerta (dt_limite, descricao, id_empresa) VALUES (?, ?, ?)");
+            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO alerta (codigo, dt_limite, descricao, id_empresa) VALUES (?, ?, ?, ?)");
 
 
-            pstmt.setInt(1, a.getDtLimite());
-            pstmt.setString(2, a.getDescricao());
-            pstmt.setInt(3, a.getIdEmpresa());
+            pstmt.setInt(1, a.getCodigo());
+            pstmt.setDate(2, a.getDtLimite());
+            pstmt.setString(3, a.getDescricao());
+            pstmt.setInt(4, a.getIdEmpresa());
 
             // Verificacao para saber se o INSERT funcionou:
             if (pstmt.executeUpdate() > 0) {
@@ -58,13 +60,7 @@ public class AlertaDAO {
             ResultSet rs = stmt.executeQuery("SELECT * FROM alerta ORDER BY codigo");
 
             while (rs.next()) {
-                // Pegando os dados do banco e instanciando um novo Alerta
-                vet.add(new Alerta(
-                        rs.getInt("codigo"),
-                        rs.getInt("dt_limite"),
-                        rs.getString("descricao"),
-                        rs.getInt("id_empresa")
-                ));
+                vet.add(new Alerta(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getDate(5)));
             }
 
             stmt.close();
@@ -79,30 +75,22 @@ public class AlertaDAO {
     }
 
     // Metodo Read | Select - CRUD
-    public Alerta buscarPorId(int codigo) {
+    public ResultSet buscarPorId(int codigo) {
 
         // Criando conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
-        Alerta alertaEncontrado = null;
+        ResultSet resultSet = null;
 
         try {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM alerta WHERE codigo = ?");
+
             pstmt.setInt(1, codigo);
+            resultSet = pstmt.executeQuery();
 
-            ResultSet rs = pstmt.executeQuery();
-
-            if (rs.next()) {
-                alertaEncontrado = new Alerta(
-                        rs.getInt("codigo"),
-                        rs.getInt("dt_limite"),
-                        rs.getString("descricao"),
-                        rs.getInt("id_empresa")
-                );
-            }
 
         } catch (SQLException sqlE) {
             System.out.println("Erro ao buscar Alerta por ID: " + sqlE.getMessage());
@@ -111,7 +99,7 @@ public class AlertaDAO {
             conexao.desconectar(conn); // desconectando do Banco
         }
 
-        return alertaEncontrado;
+        return resultSet;
     }
 
     // Metodo Delete | Remove - CRUD
@@ -142,7 +130,39 @@ public class AlertaDAO {
         }
     }
 
+//    Metodo Update - CRUD
+    public int alterarCertificado(Alerta a){
+
+        // Criando a conexão com o Banco de Dados
+        Conexao conexao = new Conexao();
+        Connection conn = null;
+
+        try {
+            conn = conexao.conectar();
+
+            // Interface para realizar comandos SQL's
+            PreparedStatement pstmt = conn.prepareStatement("UPDATE Certificado set codigo = ?, id_empresa = ?, descricao = ?, dt_limete = ? WHERE id_alerta = ?");
+
+            pstmt.setInt(1, a.getCodigo());
+            pstmt.setInt(2, a.getIdEmpresa());
+            pstmt.setString(3, a.getDescricao());
+            pstmt.setDate(4, a.getDtLimite());
+            pstmt.setInt(5, a.getIdAlerta());
 
 
+            if (pstmt.executeUpdate() > 0){
+                return 0;
+            }
+
+            return 1;
+
+        }catch (SQLException sqlE){
+            System.out.println(sqlE.getMessage());
+            return -1;
+        }finally {
+            conexao.desconectar(conn);
+        }
+
+    }
 
 }

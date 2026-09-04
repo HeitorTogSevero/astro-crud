@@ -7,17 +7,19 @@ public class Cronograma {
     //Atributos da classe
     private int idFuncionario;
     private int idEmpresa;
-    private int idDivisao;
+    private int idCronograma;
 
     private String agendamentos;
 
 
     //Metodo construtor da classe
-    public Cronograma(int idFuncionario, String agendamentos, int idEmpresa, int idDivisao) {
+
+
+    public Cronograma(int idFuncionario, int idEmpresa, int idCronograma, String agendamentos) {
         this.idFuncionario = idFuncionario;
-        this.agendamentos = agendamentos;
         this.idEmpresa = idEmpresa;
-        this.idDivisao = idDivisao;
+        this.idCronograma = idCronograma;
+        this.agendamentos = agendamentos;
     }
 
     //Métodos Getters
@@ -33,7 +35,7 @@ public class Cronograma {
         return idEmpresa;
     }
 
-    public int getIdDivisao() {
-        return idDivisao;
+    public int getIdCronograma() {
+        return idCronograma;
     }
 }

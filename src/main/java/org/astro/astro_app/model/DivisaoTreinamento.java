@@ -7,19 +7,19 @@ public class DivisaoTreinamento {
     //Atributos da classe
     private int idDivisao;
     private int idCronograma;
-    private int cnpj;
+    private int codigo;
     private int qtdFuncionario;
 
     private String nome;
 
 
     //Metodo construtor da classe
-    public DivisaoTreinamento(int idDivisao, int idCronograma, int cnpj, String nome, int qtdFuncionario) {
+    public DivisaoTreinamento(int idDivisao, int idCronograma, int codigo, int qtdFuncionario, String nome) {
         this.idDivisao = idDivisao;
         this.idCronograma = idCronograma;
-        this.cnpj = cnpj;
-        this.nome = nome;
+        this.codigo = codigo;
         this.qtdFuncionario = qtdFuncionario;
+        this.nome = nome;
     }
 
     //Métodos Getters
@@ -31,8 +31,8 @@ public class DivisaoTreinamento {
         return idCronograma;
     }
 
-    public int getCnpj() {
-        return cnpj;
+    public int getCodigo() {
+        return codigo;
     }
 
     public String getNome() {
