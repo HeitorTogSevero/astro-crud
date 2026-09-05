@@ -1,14 +1,15 @@
 package org.astro.astro_app.dao;
 
 import org.astro.astro_app.Conexão.Conexao;
+import org.astro.astro_app.model.DivisaoTreinamento;
 import org.astro.astro_app.model.Empresa;
 
 import java.sql.*;
 import java.util.ArrayList;
 
-public class EmpresaDAO {
-    //metodo inssert
-    public boolean inserir(Empresa empresa){
+public class DivisaoTreinamentoDAO {
+    //metodo insert
+    public boolean inserir(DivisaoTreinamento divisaoTreinamento){
 
         Conexao conexao = new Conexao();
         Connection conn = null;
@@ -16,17 +17,14 @@ public class EmpresaDAO {
         try{
             conn = conexao.conectar();
 
-            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO empresa (nome, cnae, qt_funcionario, rua, cep, cidade, bairro, estado, cnpj) values (?,?,?,?,?,?,?,?,?)");
+            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO divisao_treinamento (nome, codigo, qtd_funcionario, id_empresa, id_cronograma) values (?,?,?,?,?)");
 
-            pstmt.setString(1, empresa.getNome());
-            pstmt.setInt(2, empresa.getCnae());
-            pstmt.setInt(3, empresa.getQtdFuncionario());
-            pstmt.setString(4, empresa.getRua());
-            pstmt.setString(5, empresa.getCep());
-            pstmt.setString(6, empresa.getCidade());
-            pstmt.setString(7, empresa.getBairro());
-            pstmt.setString(8, empresa.getEstado());
-            pstmt.setString(9, empresa.getCnpj());
+            pstmt.setString(1, divisaoTreinamento.getNome());
+            pstmt.setInt(2, divisaoTreinamento.getCodigo());
+            pstmt.setInt(3, divisaoTreinamento.getQtdFuncionario());
+            pstmt.setInt(4, divisaoTreinamento.getIdEmpresa());
+            pstmt.setInt(5, divisaoTreinamento.getIdCronograma());
+
 
             if (pstmt.executeUpdate() > 0){
                 return true;
@@ -44,21 +42,21 @@ public class EmpresaDAO {
     }
 
     //metodo read
-    public ArrayList<Empresa> buscar(){
+    public ArrayList<DivisaoTreinamento> buscar(){
 
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-        ArrayList <Empresa> vet = new ArrayList<>();
+        ArrayList <DivisaoTreinamento> vet = new ArrayList<>();
 
         try{
             conn = conexao.conectar();
 
             Statement statement = conn.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM empresa ORDER BY 1");
+            ResultSet rs = statement.executeQuery("SELECT * FROM divisao_treinamento ORDER BY 1");
 
             while(rs.next()){
-                vet.add(new Empresa(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getString(5),  rs.getString(6),  rs.getString(7),  rs.getString(8),  rs.getString(9),  rs.getString(10)));
+                vet.add(new DivisaoTreinamento(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getInt(5), rs.getString(6)));
             }
 
             statement.close();
@@ -72,6 +70,7 @@ public class EmpresaDAO {
 
     //metodo read por id
     public ResultSet buscarPorId(int id){
+
         Conexao conexao = new Conexao();
         Connection conn = null;
         ResultSet rs = null;
@@ -79,7 +78,7 @@ public class EmpresaDAO {
         try{
             conn = conexao.conectar();
 
-            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM empresa WHERE id_empresa = ?");
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM divisao_treinamento WHERE id_divisao = ?");
 
             pstmt.setInt(1, id);
             rs = pstmt.executeQuery();
@@ -95,25 +94,20 @@ public class EmpresaDAO {
     }
 
     //metodo update
-    public int alterarEmpresa(Empresa empresa){
+    public int alterarEmpresa(DivisaoTreinamento divisaoTreinamento){
         Conexao conexao = new Conexao();
         Connection conn = null;
 
         try{
             conn = conexao.conectar();
 
-            PreparedStatement pstmt = conn.prepareStatement("UPDATE empresa set cnpj = ? , nome = ? , qtd_funcionario = ? , cnae = ? , bairro = ? , cep = ? , rua = ? , estado = ? , cidade = ?");
+            PreparedStatement pstmt = conn.prepareStatement("UPDATE divisao_treinamento set nome = ? , codigo = ? , qtd_funcionario = ? , id_empresa = ? , id_cronograma = ? ");
 
-            pstmt.setString(1, empresa.getCnpj());
-            pstmt.setString(2, empresa.getNome());
-            pstmt.setInt(3, empresa.getQtdFuncionario());
-            pstmt.setInt(4, empresa.getCnae());
-            pstmt.setString(5, empresa.getBairro());
-            pstmt.setString(6, empresa.getCep());
-            pstmt.setString(7, empresa.getRua());
-            pstmt.setString(8, empresa.getEstado());
-            pstmt.setString(9, empresa.getCidade());
-
+            pstmt.setString(1, divisaoTreinamento.getNome());
+            pstmt.setInt(2, divisaoTreinamento.getCodigo());
+            pstmt.setInt(3, divisaoTreinamento.getQtdFuncionario());
+            pstmt.setInt(4, divisaoTreinamento.getIdEmpresa());
+            pstmt.setInt(5, divisaoTreinamento.getIdCronograma());
 
             if (pstmt.executeUpdate() > 0){
                 return 0;
@@ -138,7 +132,7 @@ public class EmpresaDAO {
         try{
             conn = conexao.conectar();
 
-            PreparedStatement pstmt = conn.prepareStatement("DELETE FROM empresa WHERE id_empresa = ?");
+            PreparedStatement pstmt = conn.prepareStatement("DELETE FROM divisao_treinamento WHERE id_divisao = ?");
 
             pstmt.setInt(1, id);
 

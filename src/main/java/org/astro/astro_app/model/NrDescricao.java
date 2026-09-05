@@ -7,13 +7,13 @@ public class NrDescricao {
 
     //Atributos da classe
     private int idNrDescricao;
-    private int tempoReciclagem;
+    private String tempoReciclagem;
 
     private String descricao;
     private String titulo;
 
     //Metodo construtor da classe
-    public NrDescricao(int idNrDescricao, String descricao, int tempoReciclagem, String titulo) {
+    public NrDescricao(int idNrDescricao, String descricao, String tempoReciclagem, String titulo) {
         this.idNrDescricao = idNrDescricao;
         this.descricao = descricao;
         this.tempoReciclagem = tempoReciclagem;
@@ -29,7 +29,7 @@ public class NrDescricao {
         return descricao;
     }
 
-    public int getTempoReciclagem() {
+    public String getTempoReciclagem() {
         return tempoReciclagem;
     }
 

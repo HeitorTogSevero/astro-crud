@@ -1,14 +1,16 @@
 package org.astro.astro_app.dao;
 
 import org.astro.astro_app.Conexão.Conexao;
+import org.astro.astro_app.model.Cronograma;
 import org.astro.astro_app.model.Empresa;
 
 import java.sql.*;
 import java.util.ArrayList;
 
-public class EmpresaDAO {
+public class CronogramaDAO {
+
     //metodo inssert
-    public boolean inserir(Empresa empresa){
+    public boolean inserir(Cronograma cronograma){
 
         Conexao conexao = new Conexao();
         Connection conn = null;
@@ -16,17 +18,11 @@ public class EmpresaDAO {
         try{
             conn = conexao.conectar();
 
-            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO empresa (nome, cnae, qt_funcionario, rua, cep, cidade, bairro, estado, cnpj) values (?,?,?,?,?,?,?,?,?)");
+            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO cronograma (agendamento, id_empresa, id_funcionario) values (?,?,?)");
 
-            pstmt.setString(1, empresa.getNome());
-            pstmt.setInt(2, empresa.getCnae());
-            pstmt.setInt(3, empresa.getQtdFuncionario());
-            pstmt.setString(4, empresa.getRua());
-            pstmt.setString(5, empresa.getCep());
-            pstmt.setString(6, empresa.getCidade());
-            pstmt.setString(7, empresa.getBairro());
-            pstmt.setString(8, empresa.getEstado());
-            pstmt.setString(9, empresa.getCnpj());
+            pstmt.setDate(1, cronograma.getAgendamento());
+            pstmt.setInt(2, cronograma.getIdEmpresa());
+            pstmt.setInt(3, cronograma.getIdFuncionario());
 
             if (pstmt.executeUpdate() > 0){
                 return true;
@@ -44,21 +40,21 @@ public class EmpresaDAO {
     }
 
     //metodo read
-    public ArrayList<Empresa> buscar(){
+    public ArrayList<Cronograma> buscar(){
 
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-        ArrayList <Empresa> vet = new ArrayList<>();
+        ArrayList <Cronograma> vet = new ArrayList<>();
 
         try{
             conn = conexao.conectar();
 
             Statement statement = conn.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM empresa ORDER BY 1");
+            ResultSet rs = statement.executeQuery("SELECT * FROM cronograma ORDER BY 1");
 
             while(rs.next()){
-                vet.add(new Empresa(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getString(5),  rs.getString(6),  rs.getString(7),  rs.getString(8),  rs.getString(9),  rs.getString(10)));
+                vet.add(new Cronograma(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getDate(4)));
             }
 
             statement.close();
@@ -79,7 +75,7 @@ public class EmpresaDAO {
         try{
             conn = conexao.conectar();
 
-            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM empresa WHERE id_empresa = ?");
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM cronograma WHERE id_cronograma = ?");
 
             pstmt.setInt(1, id);
             rs = pstmt.executeQuery();
@@ -95,24 +91,18 @@ public class EmpresaDAO {
     }
 
     //metodo update
-    public int alterarEmpresa(Empresa empresa){
+    public int alterarEmpresa(Cronograma cronograma){
         Conexao conexao = new Conexao();
         Connection conn = null;
 
         try{
             conn = conexao.conectar();
 
-            PreparedStatement pstmt = conn.prepareStatement("UPDATE empresa set cnpj = ? , nome = ? , qtd_funcionario = ? , cnae = ? , bairro = ? , cep = ? , rua = ? , estado = ? , cidade = ?");
+            PreparedStatement pstmt = conn.prepareStatement("UPDATE cronograma set agendamento = ? , id_empresa = ? , id_funcionario = ? ");
 
-            pstmt.setString(1, empresa.getCnpj());
-            pstmt.setString(2, empresa.getNome());
-            pstmt.setInt(3, empresa.getQtdFuncionario());
-            pstmt.setInt(4, empresa.getCnae());
-            pstmt.setString(5, empresa.getBairro());
-            pstmt.setString(6, empresa.getCep());
-            pstmt.setString(7, empresa.getRua());
-            pstmt.setString(8, empresa.getEstado());
-            pstmt.setString(9, empresa.getCidade());
+            pstmt.setDate(1, cronograma.getAgendamento());
+            pstmt.setInt(2, cronograma.getIdEmpresa());
+            pstmt.setInt(3, cronograma.getIdFuncionario());
 
 
             if (pstmt.executeUpdate() > 0){
@@ -138,7 +128,7 @@ public class EmpresaDAO {
         try{
             conn = conexao.conectar();
 
-            PreparedStatement pstmt = conn.prepareStatement("DELETE FROM empresa WHERE id_empresa = ?");
+            PreparedStatement pstmt = conn.prepareStatement("DELETE FROM cronograma WHERE id_cronograma = ?");
 
             pstmt.setInt(1, id);
 
@@ -154,4 +144,6 @@ public class EmpresaDAO {
         }
 
     }
+
+
 }

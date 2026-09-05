@@ -1,14 +1,14 @@
 package org.astro.astro_app.dao;
 
 import org.astro.astro_app.Conexão.Conexao;
-import org.astro.astro_app.model.Empresa;
+import org.astro.astro_app.model.NrEmpresa;
 
 import java.sql.*;
 import java.util.ArrayList;
 
-public class EmpresaDAO {
+public class NrEmpresaDAO {
     //metodo inssert
-    public boolean inserir(Empresa empresa){
+    public boolean inserir(NrEmpresa nrEmpresa){
 
         Conexao conexao = new Conexao();
         Connection conn = null;
@@ -16,17 +16,15 @@ public class EmpresaDAO {
         try{
             conn = conexao.conectar();
 
-            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO empresa (nome, cnae, qt_funcionario, rua, cep, cidade, bairro, estado, cnpj) values (?,?,?,?,?,?,?,?,?)");
+            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO nr_empresa (numero, status, titulo, dt_realizacao, id_nrdescricao) values (?,?,?,?,?)");
 
-            pstmt.setString(1, empresa.getNome());
-            pstmt.setInt(2, empresa.getCnae());
-            pstmt.setInt(3, empresa.getQtdFuncionario());
-            pstmt.setString(4, empresa.getRua());
-            pstmt.setString(5, empresa.getCep());
-            pstmt.setString(6, empresa.getCidade());
-            pstmt.setString(7, empresa.getBairro());
-            pstmt.setString(8, empresa.getEstado());
-            pstmt.setString(9, empresa.getCnpj());
+            pstmt.setInt(1, nrEmpresa.getNumero());
+            pstmt.setString(2, nrEmpresa.getStatus());
+            pstmt.setString(3, nrEmpresa.getTitulo());
+            pstmt.setDate(4, nrEmpresa.getDtRealização());
+            pstmt.setInt(5, nrEmpresa.getIdNrDescricao());
+
+
 
             if (pstmt.executeUpdate() > 0){
                 return true;
@@ -44,21 +42,21 @@ public class EmpresaDAO {
     }
 
     //metodo read
-    public ArrayList<Empresa> buscar(){
+    public ArrayList<NrEmpresa> buscar(){
 
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-        ArrayList <Empresa> vet = new ArrayList<>();
+        ArrayList <NrEmpresa> vet = new ArrayList<>();
 
         try{
             conn = conexao.conectar();
 
             Statement statement = conn.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM empresa ORDER BY 1");
+            ResultSet rs = statement.executeQuery("SELECT * FROM nr_empresa ORDER BY 1");
 
             while(rs.next()){
-                vet.add(new Empresa(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getString(5),  rs.getString(6),  rs.getString(7),  rs.getString(8),  rs.getString(9),  rs.getString(10)));
+                vet.add(new NrEmpresa(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getString(5), rs.getDate(6)));
             }
 
             statement.close();
@@ -79,7 +77,7 @@ public class EmpresaDAO {
         try{
             conn = conexao.conectar();
 
-            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM empresa WHERE id_empresa = ?");
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM nr_empresa WHERE id_nrempresa = ?");
 
             pstmt.setInt(1, id);
             rs = pstmt.executeQuery();
@@ -95,24 +93,20 @@ public class EmpresaDAO {
     }
 
     //metodo update
-    public int alterarEmpresa(Empresa empresa){
+    public int alterarEmpresa(NrEmpresa nrEmpresa){
         Conexao conexao = new Conexao();
         Connection conn = null;
 
         try{
             conn = conexao.conectar();
 
-            PreparedStatement pstmt = conn.prepareStatement("UPDATE empresa set cnpj = ? , nome = ? , qtd_funcionario = ? , cnae = ? , bairro = ? , cep = ? , rua = ? , estado = ? , cidade = ?");
+            PreparedStatement pstmt = conn.prepareStatement("UPDATE nr_empresa set numero = ? , status = ? , titulo = ? , dt_realizacao = ? , id_nrdescricao = ?");
 
-            pstmt.setString(1, empresa.getCnpj());
-            pstmt.setString(2, empresa.getNome());
-            pstmt.setInt(3, empresa.getQtdFuncionario());
-            pstmt.setInt(4, empresa.getCnae());
-            pstmt.setString(5, empresa.getBairro());
-            pstmt.setString(6, empresa.getCep());
-            pstmt.setString(7, empresa.getRua());
-            pstmt.setString(8, empresa.getEstado());
-            pstmt.setString(9, empresa.getCidade());
+            pstmt.setInt(1, nrEmpresa.getNumero());
+            pstmt.setString(2, nrEmpresa.getStatus());
+            pstmt.setString(3, nrEmpresa.getTitulo());
+            pstmt.setDate(4, nrEmpresa.getDtRealização());
+            pstmt.setInt(5, nrEmpresa.getIdNrDescricao());
 
 
             if (pstmt.executeUpdate() > 0){
@@ -138,7 +132,7 @@ public class EmpresaDAO {
         try{
             conn = conexao.conectar();
 
-            PreparedStatement pstmt = conn.prepareStatement("DELETE FROM empresa WHERE id_empresa = ?");
+            PreparedStatement pstmt = conn.prepareStatement("DELETE FROM nr_empresa WHERE id_nrempresa = ?");
 
             pstmt.setInt(1, id);
 
