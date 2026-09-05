@@ -2,32 +2,40 @@ package org.astro.astro_app.model;
 
 import java.sql.Date;
 
-//Classe model Alerta
 public class Alerta {
-    //Declaração de variáveis
-
-    //Atributos da classe
+    private int idAlerta;
     private int codigo;
+    private int idEmpresa;
 
     private String descricao;
 
     private Date dtLimite;
 
-
-    //Metodo construtor da classe
-
+    public Alerta(int idAlerta, int codigo, int idEmpresa, String descricao, Date dtLimite) {
+        this.idAlerta = idAlerta;
+        this.codigo = codigo;
+        this.idEmpresa = idEmpresa;
+        this.descricao = descricao;
+        this.dtLimite = dtLimite;
     }
 
-    //Métodos Getters
+    public int getIdAlerta() {
+        return idAlerta;
+    }
+
     public int getCodigo() {
         return codigo;
     }
 
-
+    public int getIdEmpresa() {
+        return idEmpresa;
     }
 
     public String getDescricao() {
         return descricao;
     }
 
+    public Date getDtLimite() {
+        return dtLimite;
+    }
 }
