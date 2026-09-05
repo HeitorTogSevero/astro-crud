@@ -10,7 +10,7 @@ public class NrFuncionario {
     //Atributos da classe:
     private int idNrFunc;
     private int idNrDescricao;
-    private int tempoReciclagem;
+    private int numero;
 
     private Date dtRealizacao;
 
@@ -19,15 +19,13 @@ public class NrFuncionario {
 
 
     //Metodo Construtor da Classe Nr_Funcionario:
-    public NrFuncionario(int idNrFunc, int idNrDescricao, int tempoReciclagem, String titulo, Date dtRealizacao, String status) {
-
+    public NrFuncionario(int idNrFunc, int idNrDescricao, int numero, Date dtRealizacao, String titulo, String status) {
         this.idNrFunc = idNrFunc;
         this.idNrDescricao = idNrDescricao;
-        this.tempoReciclagem = tempoReciclagem;
-        this.titulo = titulo;
+        this.numero = numero;
         this.dtRealizacao = dtRealizacao;
+        this.titulo = titulo;
         this.status = status;
-
     }
 
     //Metodos Getters:
@@ -39,10 +37,6 @@ public class NrFuncionario {
         return idNrDescricao;
     }
 
-    public int getTempoReciclagem() {
-        return tempoReciclagem;
-    }
-
     public String getTitulo() {
         return titulo;
     }
@@ -50,4 +44,8 @@ public class NrFuncionario {
     public Date getDtRealizacao() {
         return dtRealizacao;
     }
+
+    public int getNumero(){return numero;}
+
+    public String getStatus(){return  status;}
 }

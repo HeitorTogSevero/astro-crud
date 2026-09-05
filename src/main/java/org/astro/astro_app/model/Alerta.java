@@ -8,23 +8,22 @@ public class Alerta {
 
     //Atributos da classe
     private int codigo;
-    private Date dtLimite;
+
     private String descricao;
+
+    private Date dtLimite;
 
 
     //Metodo construtor da classe
-    public Alerta(int codigo, Date dtLimite, String descricao) {
-        this.codigo = codigo;
-        this.dtLimite = dtLimite;
-        this.descricao = descricao;
+
     }
+
     //Métodos Getters
     public int getCodigo() {
         return codigo;
     }
 
-    public Date getDtLimite() {
-        return dtLimite;
+
     }
 
     public String getDescricao() {
