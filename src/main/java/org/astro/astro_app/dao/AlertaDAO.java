@@ -21,13 +21,7 @@ public class AlertaDAO {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's:
-            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO alerta (codigo, dt_limite, descricao, id_empresa) VALUES (?, ?, ?, ?)");
 
-
-            pstmt.setInt(1, a.getCodigo());
-            pstmt.setDate(2, a.getDtLimite());
-            pstmt.setString(3, a.getDescricao());
-            pstmt.setInt(4, a.getIdEmpresa());
 
             // Verificacao para saber se o INSERT funcionou:
             if (pstmt.executeUpdate() > 0) {
@@ -60,10 +54,9 @@ public class AlertaDAO {
             ResultSet rs = stmt.executeQuery("SELECT * FROM alerta ORDER BY codigo");
 
             while (rs.next()) {
-                vet.add(new Alerta(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getDate(5)));
+
             }
 
-            stmt.close();
 
         } catch (SQLException sqlE) {
             System.out.println("Erro ao buscar alertas: " + sqlE.getMessage());
@@ -90,6 +83,7 @@ public class AlertaDAO {
 
             pstmt.setInt(1, codigo);
             resultSet = pstmt.executeQuery();
+
 
 
         } catch (SQLException sqlE) {
