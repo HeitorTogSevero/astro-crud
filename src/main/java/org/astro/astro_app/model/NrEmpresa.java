@@ -7,7 +7,7 @@ public class NrEmpresa {
     //Declaração de variáveis
 
     //Atributos da classe
-    private int idNremp;
+    private int idNrEmpresa;
     private int idNrDescricao;
     private int numero;
 
@@ -17,8 +17,8 @@ public class NrEmpresa {
     private Date dtRealização;
 
     //Metodo construtor da classe
-    public NrEmpresa(int idNremp, int idNrDescricao, int numero, String titulo, String status, Date dtRealização) {
-        this.idNremp = idNremp;
+    public NrEmpresa(int idNrEmpresa, int idNrDescricao, int numero, String titulo, String status, Date dtRealização) {
+        this.idNrEmpresa = idNrEmpresa;
         this.idNrDescricao = idNrDescricao;
         this.numero = numero;
         this.titulo = titulo;
@@ -28,7 +28,7 @@ public class NrEmpresa {
 
     //Metodos Getters
     public int getIdNremp() {
-        return idNremp;
+        return idNrEmpresa;
     }
 
     public int getIdNrDescricao() {

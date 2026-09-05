@@ -1,5 +1,7 @@
 package org.astro.astro_app.model;
 
+import java.sql.Date;
+
 //Classe model Cronograma
 public class Cronograma {
     //Declaração de variáveis
@@ -9,17 +11,17 @@ public class Cronograma {
     private int idEmpresa;
     private int idCronograma;
 
-    private String agendamentos;
+    private Date agendamento;
 
 
     //Metodo construtor da classe
 
 
-    public Cronograma(int idFuncionario, int idEmpresa, int idCronograma, String agendamentos) {
+    public Cronograma(int idFuncionario, int idEmpresa, int idCronograma, Date agendamento) {
         this.idFuncionario = idFuncionario;
         this.idEmpresa = idEmpresa;
         this.idCronograma = idCronograma;
-        this.agendamentos = agendamentos;
+        this.agendamento = agendamento;
     }
 
     //Métodos Getters
@@ -27,8 +29,8 @@ public class Cronograma {
         return idFuncionario;
     }
 
-    public String getAgendamentos() {
-        return agendamentos;
+    public Date getAgendamento() {
+        return agendamento;
     }
 
     public int getIdEmpresa() {
