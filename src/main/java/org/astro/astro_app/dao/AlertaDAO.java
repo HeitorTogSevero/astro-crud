@@ -21,7 +21,12 @@ public class AlertaDAO {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's:
+            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO alerta (descricao, codigo, dt_limite, id_empresa) VALUES (?, ?, ?, ?)");
 
+            pstmt.setString(1, a.getDescricao());
+            pstmt.setInt(2, a.getCodigo());
+            pstmt.setDate(3, a.getDtLimite());
+            pstmt.setInt(4, a.getIdEmpresa());
 
             // Verificacao para saber se o INSERT funcionou:
             if (pstmt.executeUpdate() > 0) {
@@ -51,12 +56,13 @@ public class AlertaDAO {
 
             // Interface para realizar comandos SQL's:
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM alerta ORDER BY codigo");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM alerta ORDER BY 1");
 
             while (rs.next()) {
-
+                vet.add(new Alerta(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getDate(5)));
             }
 
+            stmt.close();
 
         } catch (SQLException sqlE) {
             System.out.println("Erro ao buscar alertas: " + sqlE.getMessage());
@@ -67,7 +73,7 @@ public class AlertaDAO {
         return vet;
     }
 
-    // Metodo Read | Select - CRUD
+    // Metodo Read | Select - CRUD, mas baseado no Id
     public ResultSet buscarPorId(int codigo) {
 
         // Criando conexão com o Banco de Dados
@@ -82,18 +88,15 @@ public class AlertaDAO {
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM alerta WHERE codigo = ?");
 
             pstmt.setInt(1, codigo);
+
             resultSet = pstmt.executeQuery();
-
-
 
         } catch (SQLException sqlE) {
             System.out.println("Erro ao buscar Alerta por ID: " + sqlE.getMessage());
-
         } finally {
             conexao.desconectar(conn); // desconectando do Banco
+            return resultSet;
         }
-
-        return resultSet;
     }
 
     // Metodo Delete | Remove - CRUD
@@ -110,6 +113,7 @@ public class AlertaDAO {
             PreparedStatement pstmt = conn.prepareStatement("DELETE FROM alerta WHERE codigo = ?");
 
             pstmt.setInt(1, codigo);
+
 
             if (pstmt.executeUpdate() == 0) {
                 return 0;
