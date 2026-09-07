@@ -78,7 +78,7 @@ public class FuncionarioDAO {
     }
 
 
-    //    Metodo Read | Select - CRUD, mas baseado no ID
+//    Metodo Read | Select - CRUD, mas baseado no ID
     public ResultSet buscarPorId(int id) {
 
         Conexao conexao = new Conexao();
@@ -104,35 +104,7 @@ public class FuncionarioDAO {
 
     }
 
-    //    Metodo Delete | Remove - CRUD
-    public int remover(int id){
-
-        // Criando a conexão com o Banco de Dados
-        Conexao conexao = new Conexao();
-        Connection conn = null;
-
-        try{
-            conn = conexao.conectar();
-
-            // Interface para realizar comandos SQL's:
-            PreparedStatement pstmt = conn.prepareStatement("DELETE FROM Funcionario where id_funcionario = ?");
-
-            pstmt.setInt(1, id);
-
-            if (pstmt.executeUpdate() == 0) {
-                return 0;
-            }
-            return 1;
-        } catch (SQLException sqle) {
-            System.out.println("Erro no comando sql");
-            return -1;
-        } finally {
-            conexao.desconectar(conn); // desconectando do Banco
-        }
-
-    }
-
-    //    Metodo Update - CRUD
+//    Metodo Update - CRUD
     public int alterarFuncionario(Funcionario f){
 
         // Criando a conexão com o Banco de Dados
@@ -164,6 +136,34 @@ public class FuncionarioDAO {
             return -1;
         }finally {
             conexao.desconectar(conn);
+        }
+
+    }
+
+//    Metodo Delete | Remove - CRUD
+    public int remover(int id){
+
+        // Criando a conexão com o Banco de Dados
+        Conexao conexao = new Conexao();
+        Connection conn = null;
+
+        try{
+            conn = conexao.conectar();
+
+            // Interface para realizar comandos SQL's:
+            PreparedStatement pstmt = conn.prepareStatement("DELETE FROM Funcionario where id_funcionario = ?");
+
+            pstmt.setInt(1, id);
+
+            if (pstmt.executeUpdate() == 0) {
+                return 0;
+            }
+            return 1;
+        } catch (SQLException sqle) {
+            System.out.println("Erro no comando sql");
+            return -1;
+        } finally {
+            conexao.desconectar(conn); // desconectando do Banco
         }
 
     }

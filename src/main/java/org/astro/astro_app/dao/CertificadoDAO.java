@@ -100,33 +100,6 @@ public class CertificadoDAO {
 
     }
 
-//    Metodo Delete | Remove - CRUD
-    public int remover(int id){
-
-        // Criando a conexão com o Banco de Dados
-        Conexao conexao = new Conexao();
-        Connection conn = null;
-
-        try{
-            conn = conexao.conectar();
-
-            // Interface para realizar comandos SQL's:
-            PreparedStatement pstmt = conn.prepareStatement("DELETE FROM Certificado where id_certificado = ?");
-
-            pstmt.setInt(1, id);
-
-            if (pstmt.executeUpdate() == 0) {
-                return 0;
-            }
-            return 1;
-        } catch (SQLException sqle) {
-            System.out.println("Erro no comando sql");
-            return -1;
-        } finally {
-            conexao.desconectar(conn); // desconectando do Banco
-        }
-
-    }
 
 //    Metodo Update - CRUD
     public int alterarCertificado(Certificado c){
@@ -159,6 +132,33 @@ public class CertificadoDAO {
             return -1;
         }finally {
             conexao.desconectar(conn);
+        }
+    }
+
+//    Metodo Delete | Remove - CRUD
+    public int remover(int id){
+
+        // Criando a conexão com o Banco de Dados
+        Conexao conexao = new Conexao();
+        Connection conn = null;
+
+        try{
+            conn = conexao.conectar();
+
+            // Interface para realizar comandos SQL's:
+            PreparedStatement pstmt = conn.prepareStatement("DELETE FROM Certificado where id_certificado = ?");
+
+            pstmt.setInt(1, id);
+
+            if (pstmt.executeUpdate() == 0) {
+                return 0;
+            }
+            return 1;
+        } catch (SQLException sqle) {
+            System.out.println("Erro no comando sql");
+            return -1;
+        } finally {
+            conexao.desconectar(conn); // desconectando do Banco
         }
 
     }
