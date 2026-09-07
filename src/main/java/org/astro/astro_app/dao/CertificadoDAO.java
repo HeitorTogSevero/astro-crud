@@ -74,7 +74,6 @@ public class CertificadoDAO {
         return vet;
     }
 
-    
 //    Metodo Read | Select - CRUD, mas baseado no ID
     public ResultSet buscarPorId(int id) {
 
