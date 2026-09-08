@@ -1,31 +1,33 @@
 package org.astro.astro_app.dao;
 
 import org.astro.astro_app.Conexão.Conexao;
-import org.astro.astro_app.model.Departamento_Equipamento;
+import org.astro.astro_app.model.Email;
+import org.astro.astro_app.model.NrFuncionario;
 
-import javax.management.remote.JMXConnectorServer;
 import java.sql.*;
 import java.util.ArrayList;
 
-// Classe DAO Departamento_Equipamento - CRUD
-public class Departamento_EquipamentoDAO {
+public class NrFuncionarioDAO {
+//    Metodo CREATE | Insert - CRUD
+    public boolean inserir(NrFuncionario nrF){
 
-//    Metodo Create | Insert - CRUD:
-    public boolean inserir(Departamento_Equipamento dpE){
-
-        // Criando a Conexão com o Banco de Dados:
+        // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
         try{
-            conn = conexao.conectar();
+            conn =conexao.conectar();
 
-            // Interface para relizar comandos SQL's
-            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO Depart_Equipamento");
+            // Interface para realizar comandos SQL's
+            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO Nr_funcionario (id_nrdescricao, numero, dt_realizacao, titulo, status) VALUES (?, ?, ?, ?, ?)");
 
-            pstmt.setInt(1, dpE.getIdDepartamento());
-            pstmt.setInt(2, dpE.getIdEquipamento());
+            pstmt.setInt(1, nrF.getIdNrDescricao());
+            pstmt.setInt(2, nrF.getIdNrDescricao());
+            pstmt.setDate(3, nrF.getDtRealizacao());
+            pstmt.setString(4, nrF.getTitulo());
+            pstmt.setString(5, nrF.getStatus());
 
+            // Verificando se o Insert deu certo:
             if(pstmt.executeUpdate() > 0){
                 return true;
             }
@@ -38,36 +40,35 @@ public class Departamento_EquipamentoDAO {
         }
     }
 
-//    Metodo READ | Select - CRUD
-    public ArrayList<Departamento_Equipamento> buscar(){
+    //    Metofo READ | Select - CRUD
+    public ArrayList<NrFuncionario> buscar(){
 
-        // Criando a Conexão com o Banco de Dados:
+        // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
-
-        ArrayList<Departamento_Equipamento> vet = new ArrayList<>();
+        ArrayList<NrFuncionario> vet = new ArrayList<>();
 
         try{
             conn = conexao.conectar();
 
-            // Interface para realizar comandos SQL's
+            // Interface para realizar comandos SQL's:
             Statement pstmt = conn.createStatement();
 
-            ResultSet rs = pstmt.executeQuery("SELECT * FROM Depart_equipamento ORDER BY 1");
+            ResultSet rs = pstmt.executeQuery("SELECT * FROM Nr_funcionario ORDER BY 1");
 
             while(rs.next()){
-                vet.add(new Departamento_Equipamento(rs.getInt(1), rs.getInt(2)));
+                vet.add(new NrFuncionario(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getDate(4), rs.getString(5), rs.getString(6)));
             }
 
-        }catch (SQLException sqlE){
+        }catch(SQLException sqlE){
             System.out.println(sqlE.getMessage());
-        }finally {
-            conexao.desconectar(conn); // desconectando do Banco
+        }finally{
+            conexao.desconectar(conn);// desconectando do Banco
         }
         return vet;
     }
 
-//    Metodo READ | Select - CRUD, mas baseado no Id
+    //    Metodo READ | Select - CRUD, mas baseado no ID
     public ResultSet buscarPorId(int id){
 
         // Criando a Conexão com o Banco de Dados
@@ -80,7 +81,7 @@ public class Departamento_EquipamentoDAO {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's
-            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Depart_Equipamento WHERE id_departamento = ?");
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Nr_Funcionario WHERE id_nrfuncionario = ?");
 
             pstmt.setInt(1, id);
             rs = pstmt.executeQuery();
@@ -93,8 +94,8 @@ public class Departamento_EquipamentoDAO {
         return rs;
     }
 
-//    Metodo Upadate - CRUD
-    public int alterarDepartementoEquipamento(Departamento_Equipamento dpE) {
+    //    Metodo Upadate - CRUD
+    public int alterarEmail(NrFuncionario nrf) {
 
         // Criando a conexão com o Banco de Dados:
         Conexao conexao = new Conexao();
@@ -104,11 +105,15 @@ public class Departamento_EquipamentoDAO {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's:
-            PreparedStatement pstmt = conn.prepareStatement("UPDATE Depart_equipamento SET id_departamento = ?, id_equipamento = ? WHERE id_departamento = ?");
+            PreparedStatement pstmt = conn.prepareStatement("UPDATE Nr_funcionario SET id_nrfuncionario = ?, id_nrdescricao, numero, dt_realizacao, titulo, status WHERE id_nrfuncionario = ?");
 
-            pstmt.setInt(1, dpE.getIdDepartamento());
-            pstmt.setInt(2, dpE.getIdEquipamento());
-            pstmt.setInt(3, dpE.getIdDepartamento());
+            pstmt.setInt(1, nrf.getIdNrFunc());
+            pstmt.setInt(2, nrf.getIdNrDescricao());
+            pstmt.setInt(3, nrf.getNumero());
+            pstmt.setDate(4, nrf.getDtRealizacao());
+            pstmt.setString(5, nrf.getTitulo());
+            pstmt.setString(4, nrf.getStatus());
+
 
             if(pstmt.executeUpdate() > 0){
                 return 0;
@@ -123,7 +128,7 @@ public class Departamento_EquipamentoDAO {
         }
     }
 
-//    Metodo DELETE - CRUD
+    //    Metodo DELETE - CRUD
     public int remover(int id){
 
         // Criando a conexão com o Banco de Dados
@@ -134,7 +139,7 @@ public class Departamento_EquipamentoDAO {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's
-            PreparedStatement pstmt = conn.prepareStatement("DELETE FROM Depart_equipamento WHERE id_Departamento = ?");
+            PreparedStatement pstmt = conn.prepareStatement("DELETE FROM Nr_funcionario WHERE  id_nrfuncionario = ?");
 
             pstmt.setInt(1, id);
 
@@ -150,6 +155,3 @@ public class Departamento_EquipamentoDAO {
         }
     }
 }
-
-
-

@@ -1,31 +1,31 @@
 package org.astro.astro_app.dao;
 
 import org.astro.astro_app.Conexão.Conexao;
-import org.astro.astro_app.model.Departamento_Equipamento;
+import org.astro.astro_app.model.Equipamento;
 
-import javax.management.remote.JMXConnectorServer;
 import java.sql.*;
 import java.util.ArrayList;
 
-// Classe DAO Departamento_Equipamento - CRUD
-public class Departamento_EquipamentoDAO {
+public class EquipamentoDAO {
 
-//    Metodo Create | Insert - CRUD:
-    public boolean inserir(Departamento_Equipamento dpE){
+//    Metodo CREATE | Insert - CRUD
+    public boolean inserir(Equipamento equip){
 
-        // Criando a Conexão com o Banco de Dados:
+        // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
         try{
-            conn = conexao.conectar();
+            conn =conexao.conectar();
 
-            // Interface para relizar comandos SQL's
-            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO Depart_Equipamento");
+            // Interface para realizar comandos SQL's
+            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO Equipamento (dt_validade, nome, classificacao_gov) VALUES (?, ?, ?)");
 
-            pstmt.setInt(1, dpE.getIdDepartamento());
-            pstmt.setInt(2, dpE.getIdEquipamento());
+            pstmt.setDate(1, equip.getDtValidade());
+            pstmt.setString(2, equip.getNome());
+            pstmt.setString(3, equip.getClasificacaoGov());
 
+            // Verificando se o Insert deu certo:
             if(pstmt.executeUpdate() > 0){
                 return true;
             }
@@ -38,36 +38,35 @@ public class Departamento_EquipamentoDAO {
         }
     }
 
-//    Metodo READ | Select - CRUD
-    public ArrayList<Departamento_Equipamento> buscar(){
+    //    Metofo READ | Select - CRUD
+    public ArrayList<Equipamento> buscar(){
 
-        // Criando a Conexão com o Banco de Dados:
+        // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
-
-        ArrayList<Departamento_Equipamento> vet = new ArrayList<>();
+        ArrayList<Equipamento> vet = new ArrayList<>();
 
         try{
             conn = conexao.conectar();
 
-            // Interface para realizar comandos SQL's
+            // Interface para realizar comandos SQL's:
             Statement pstmt = conn.createStatement();
 
-            ResultSet rs = pstmt.executeQuery("SELECT * FROM Depart_equipamento ORDER BY 1");
+            ResultSet rs = pstmt.executeQuery("SELECT * FROM Equipamento ORDER BY 1");
 
             while(rs.next()){
-                vet.add(new Departamento_Equipamento(rs.getInt(1), rs.getInt(2)));
+                vet.add(new Equipamento(rs.getInt(1), rs.getDate(2), rs.getString(3), rs.getString(4)));
             }
 
-        }catch (SQLException sqlE){
+        }catch(SQLException sqlE){
             System.out.println(sqlE.getMessage());
-        }finally {
-            conexao.desconectar(conn); // desconectando do Banco
+        }finally{
+            conexao.desconectar(conn);// desconectando do Banco
         }
         return vet;
     }
 
-//    Metodo READ | Select - CRUD, mas baseado no Id
+    //    Metodo READ | Select - CRUD, mas baseado no ID
     public ResultSet buscarPorId(int id){
 
         // Criando a Conexão com o Banco de Dados
@@ -80,7 +79,7 @@ public class Departamento_EquipamentoDAO {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's
-            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Depart_Equipamento WHERE id_departamento = ?");
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Equipamento WHERE id_equipamento = ?");
 
             pstmt.setInt(1, id);
             rs = pstmt.executeQuery();
@@ -93,8 +92,8 @@ public class Departamento_EquipamentoDAO {
         return rs;
     }
 
-//    Metodo Upadate - CRUD
-    public int alterarDepartementoEquipamento(Departamento_Equipamento dpE) {
+    //    Metodo Upadate - CRUD
+    public int alterarEmail(Equipamento equip) {
 
         // Criando a conexão com o Banco de Dados:
         Conexao conexao = new Conexao();
@@ -104,11 +103,14 @@ public class Departamento_EquipamentoDAO {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's:
-            PreparedStatement pstmt = conn.prepareStatement("UPDATE Depart_equipamento SET id_departamento = ?, id_equipamento = ? WHERE id_departamento = ?");
+            PreparedStatement pstmt = conn.prepareStatement("UPDATE Equipamento SET id_equipamento = ?, dt_valiadde = ?, nome = ?, classificacao_gov = ? WHERE id_equipamento = ?");
 
-            pstmt.setInt(1, dpE.getIdDepartamento());
-            pstmt.setInt(2, dpE.getIdEquipamento());
-            pstmt.setInt(3, dpE.getIdDepartamento());
+            pstmt.setInt(1, equip.getIdEquipamento());
+            pstmt.setDate(2, equip.getDtValidade());
+            pstmt.setString(3, equip.getNome());
+            pstmt.setString(4, equip.getClasificacaoGov());
+            pstmt.setInt(5, equip.getIdEquipamento());
+
 
             if(pstmt.executeUpdate() > 0){
                 return 0;
@@ -123,7 +125,7 @@ public class Departamento_EquipamentoDAO {
         }
     }
 
-//    Metodo DELETE - CRUD
+    //    Metodo DELETE - CRUD
     public int remover(int id){
 
         // Criando a conexão com o Banco de Dados
@@ -134,7 +136,7 @@ public class Departamento_EquipamentoDAO {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's
-            PreparedStatement pstmt = conn.prepareStatement("DELETE FROM Depart_equipamento WHERE id_Departamento = ?");
+            PreparedStatement pstmt = conn.prepareStatement("DELETE FROM Equipamento WHERE  id_equipamento = ?");
 
             pstmt.setInt(1, id);
 
@@ -150,6 +152,3 @@ public class Departamento_EquipamentoDAO {
         }
     }
 }
-
-
-
