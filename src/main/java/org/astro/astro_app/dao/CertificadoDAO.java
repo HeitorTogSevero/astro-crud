@@ -66,7 +66,7 @@ public class CertificadoDAO {
             pstmt.close();
 
         } catch (SQLException sqlE) {
-            System.out.println("Erro ao inserir um Certificado: "+ sqlE.getMessage());
+            System.out.println(sqlE.getMessage());
         } finally {
             conexao.desconectar(conn); // desconectando do Banco
         }
@@ -75,7 +75,7 @@ public class CertificadoDAO {
     }
 
 //    Metodo Read | Select - CRUD, mas baseado no ID
-    public ResultSet buscarPorId(int id) {
+    public ResultSet buscarPorIdCertificado(int IdCertificado) {
 
         Conexao conexao = new Conexao();
         Connection conn = null;
@@ -87,7 +87,85 @@ public class CertificadoDAO {
             // Interface para realizar comandos SQL's
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Certificado WHERE id_certificado = ?");
 
-            pstmt.setInt(1, id);
+            pstmt.setInt(1, IdCertificado);
+            resultSet = pstmt.executeQuery();
+
+        } catch (SQLException sqlE) {
+            System.out.println(sqlE.getMessage());
+
+        } finally {
+            conexao.desconectar(conn); // desconectando do Banco
+            return resultSet;
+        }
+
+    }
+
+//    Metodo Read | Select - CRUD, mas baseado no ID
+    public ResultSet buscarPorIdFuncionario(int IdFuncionario) {
+
+        Conexao conexao = new Conexao();
+        Connection conn = null;
+        ResultSet resultSet = null;
+
+        try {
+            conn = conexao.conectar();
+
+            // Interface para realizar comandos SQL's
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Certificado WHERE id_funcionario = ?");
+
+            pstmt.setInt(1, IdFuncionario);
+            resultSet = pstmt.executeQuery();
+
+        } catch (SQLException sqlE) {
+            System.out.println(sqlE.getMessage());
+
+        } finally {
+            conexao.desconectar(conn); // desconectando do Banco
+            return resultSet;
+        }
+
+    }
+
+//    Metodo Read | Select - CRUD, mas baseado no ID
+    public ResultSet buscarPorIdNrFunc(int IdNrFunc) {
+
+        Conexao conexao = new Conexao();
+        Connection conn = null;
+        ResultSet resultSet = null;
+
+        try {
+            conn = conexao.conectar();
+
+            // Interface para realizar comandos SQL's
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Certificado WHERE id_nrfuncionario = ?");
+
+            pstmt.setInt(1, IdNrFunc);
+            resultSet = pstmt.executeQuery();
+
+        } catch (SQLException sqlE) {
+            System.out.println(sqlE.getMessage());
+
+        } finally {
+            conexao.desconectar(conn); // desconectando do Banco
+            return resultSet;
+        }
+
+    }
+
+//    Metodo Read | Select - CRUD, mas baseado no ID
+    public ResultSet buscarPorIdEmpresa(int IdEmpresa) {
+
+        Conexao conexao = new Conexao();
+        Connection conn = null;
+        ResultSet resultSet = null;
+
+        try {
+            conn = conexao.conectar();
+
+            // Interface para realizar comandos SQL's
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Certificado WHERE id_empresa = ?");
+
+            pstmt.setInt(1, IdEmpresa);
             resultSet = pstmt.executeQuery();
 
         } catch (SQLException sqlE) {
@@ -101,7 +179,7 @@ public class CertificadoDAO {
     }
 
 
-//    Metodo Update - CRUD
+    //    Metodo Update - CRUD
     public int alterarCertificado(Certificado c){
 
         // Criando a conexão com o Banco de Dados
@@ -155,7 +233,7 @@ public class CertificadoDAO {
             }
             return 1;
         } catch (SQLException sqle) {
-            System.out.println("Erro no comando sql");
+            System.out.println(sqle.getMessage());
             return -1;
         } finally {
             conexao.desconectar(conn); // desconectando do Banco

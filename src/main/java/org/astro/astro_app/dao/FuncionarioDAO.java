@@ -69,7 +69,7 @@ public class FuncionarioDAO {
             pstmt.close();
 
         } catch (SQLException sqlE) {
-            System.out.println("Erro ao inserir um Certificado: "+ sqlE.getMessage());
+            System.out.println(sqlE.getMessage());
         } finally {
             conexao.desconectar(conn); // desconectando do Banco
         }
@@ -77,9 +77,8 @@ public class FuncionarioDAO {
         return vet;
     }
 
-
 //    Metodo Read | Select - CRUD, mas baseado no ID
-    public ResultSet buscarPorId(int id) {
+    public ResultSet buscarPorIdFunc(int IdFunc) {
 
         Conexao conexao = new Conexao();
         Connection conn = null;
@@ -91,7 +90,7 @@ public class FuncionarioDAO {
             // Interface para realizar comandos SQL's
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Funcionario WHERE id_funcionario = ?");
 
-            pstmt.setInt(1, id);
+            pstmt.setInt(1, IdFunc);
             resultSet = pstmt.executeQuery();
 
         } catch (SQLException sqlE) {
@@ -101,7 +100,56 @@ public class FuncionarioDAO {
             conexao.desconectar(conn); // desconectando do Banco
             return resultSet;
         }
+    }
 
+//    Metodo Read | Select - CRUD, mas baseado no ID
+    public ResultSet buscarPorIdEmpresa(int IdEmpresa) {
+
+        Conexao conexao = new Conexao();
+        Connection conn = null;
+        ResultSet resultSet = null;
+
+        try {
+            conn = conexao.conectar();
+
+            // Interface para realizar comandos SQL's
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Funcionario WHERE id_empresa = ?");
+
+            pstmt.setInt(1, IdEmpresa);
+            resultSet = pstmt.executeQuery();
+
+        } catch (SQLException sqlE) {
+            System.out.println(sqlE.getMessage());
+
+        } finally {
+            conexao.desconectar(conn); // desconectando do Banco
+            return resultSet;
+        }
+    }
+
+//    Metodo Read | Select - CRUD, mas baseado no ID
+    public ResultSet buscarPorIdDepart(int IdDepart) {
+
+        Conexao conexao = new Conexao();
+        Connection conn = null;
+        ResultSet resultSet = null;
+
+        try {
+            conn = conexao.conectar();
+
+            // Interface para realizar comandos SQL's
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Funcionario WHERE id_departamento = ?");
+
+            pstmt.setInt(1, IdDepart);
+            resultSet = pstmt.executeQuery();
+
+        } catch (SQLException sqlE) {
+            System.out.println(sqlE.getMessage());
+
+        } finally {
+            conexao.desconectar(conn); // desconectando do Banco
+            return resultSet;
+        }
     }
 
 //    Metodo Update - CRUD
@@ -160,7 +208,7 @@ public class FuncionarioDAO {
             }
             return 1;
         } catch (SQLException sqle) {
-            System.out.println("Erro no comando sql");
+            System.out.println(sqle.getMessage());
             return -1;
         } finally {
             conexao.desconectar(conn); // desconectando do Banco

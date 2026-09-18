@@ -67,7 +67,7 @@ public class EquipamentoDAO {
     }
 
     //    Metodo READ | Select - CRUD, mas baseado no ID
-    public ResultSet buscarPorId(int id){
+    public ResultSet buscarPorIdEquipamento(int IdEquip){
 
         // Criando a Conexão com o Banco de Dados
         Conexao conexao = new Conexao();
@@ -81,7 +81,7 @@ public class EquipamentoDAO {
             // Interface para realizar comandos SQL's
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Equipamento WHERE id_equipamento = ?");
 
-            pstmt.setInt(1, id);
+            pstmt.setInt(1, IdEquip);
             rs = pstmt.executeQuery();
 
         }catch(SQLException sqlE){

@@ -68,7 +68,7 @@ public class Departamento_EquipamentoDAO {
     }
 
 //    Metodo READ | Select - CRUD, mas baseado no Id
-    public ResultSet buscarPorId(int id){
+    public ResultSet buscarPorIdDepart(int IdDepart){
 
         // Criando a Conexão com o Banco de Dados
         Conexao conexao = new Conexao();
@@ -82,7 +82,33 @@ public class Departamento_EquipamentoDAO {
             // Interface para realizar comandos SQL's
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Depart_Equipamento WHERE id_departamento = ?");
 
-            pstmt.setInt(1, id);
+            pstmt.setInt(1, IdDepart);
+            rs = pstmt.executeQuery();
+
+        }catch(SQLException sqlE){
+            System.out.println(sqlE.getMessage());
+        }finally {
+            conexao.desconectar(conn); // desconectando do Banco
+        }
+        return rs;
+    }
+
+//    Metodo READ | Select - CRUD, mas baseado no Id
+    public ResultSet buscarPorIdEquipamento(int IdEquipamento){
+
+        // Criando a Conexão com o Banco de Dados
+        Conexao conexao = new Conexao();
+        Connection conn = null;
+
+        ResultSet rs = null;
+
+        try{
+            conn = conexao.conectar();
+
+            // Interface para realizar comandos SQL's
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Depart_Equipamento WHERE id_equipamento = ?");
+
+            pstmt.setInt(1, IdEquipamento);
             rs = pstmt.executeQuery();
 
         }catch(SQLException sqlE){

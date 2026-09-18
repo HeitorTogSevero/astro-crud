@@ -68,7 +68,7 @@ public class EmailDAO {
     }
 
 //    Metodo READ | Select - CRUD, mas baseado no ID
-public ResultSet buscarPorId(int id){
+public ResultSet buscarPorIdEmail(int IdEmail){
 
     // Criando a Conexão com o Banco de Dados
     Conexao conexao = new Conexao();
@@ -82,7 +82,7 @@ public ResultSet buscarPorId(int id){
         // Interface para realizar comandos SQL's
         PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM email WHERE id_email = ?");
 
-        pstmt.setInt(1, id);
+        pstmt.setInt(1, IdEmail);
         rs = pstmt.executeQuery();
 
     }catch(SQLException sqlE){
@@ -92,6 +92,32 @@ public ResultSet buscarPorId(int id){
     }
     return rs;
 }
+
+//    Metodo READ | Select - CRUD, mas baseado no ID
+    public ResultSet buscarPorIdFunc(int IdFunc){
+
+        // Criando a Conexão com o Banco de Dados
+        Conexao conexao = new Conexao();
+        Connection conn = null;
+
+        ResultSet rs = null;
+
+        try{
+            conn = conexao.conectar();
+
+            // Interface para realizar comandos SQL's
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM email WHERE id_funcionario = ?");
+
+            pstmt.setInt(1, IdFunc);
+            rs = pstmt.executeQuery();
+
+        }catch(SQLException sqlE){
+            System.out.println(sqlE.getMessage());
+        }finally {
+            conexao.desconectar(conn); // desconectando do Banco
+        }
+        return rs;
+    }
 
     //    Metodo Upadate - CRUD
     public int alterarEmail(Email email) {
