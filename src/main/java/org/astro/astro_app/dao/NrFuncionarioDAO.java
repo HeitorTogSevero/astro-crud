@@ -69,7 +69,7 @@ public class NrFuncionarioDAO {
     }
 
     //    Metodo READ | Select - CRUD, mas baseado no ID
-    public ResultSet buscarPorId(int id){
+    public ResultSet buscarPorIdNrFunc(int IdNrFunc){
 
         // Criando a Conexão com o Banco de Dados
         Conexao conexao = new Conexao();
@@ -83,7 +83,33 @@ public class NrFuncionarioDAO {
             // Interface para realizar comandos SQL's
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Nr_Funcionario WHERE id_nrfuncionario = ?");
 
-            pstmt.setInt(1, id);
+            pstmt.setInt(1, IdNrFunc);
+            rs = pstmt.executeQuery();
+
+        }catch(SQLException sqlE){
+            System.out.println(sqlE.getMessage());
+        }finally {
+            conexao.desconectar(conn); // desconectando do Banco
+        }
+        return rs;
+    }
+
+//    Metodo READ | Select - CRUD, mas baseado no ID
+    public ResultSet buscarPorIdNrDescricao(int IdNrDescricao){
+
+        // Criando a Conexão com o Banco de Dados
+        Conexao conexao = new Conexao();
+        Connection conn = null;
+
+        ResultSet rs = null;
+
+        try{
+            conn = conexao.conectar();
+
+            // Interface para realizar comandos SQL's
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Nr_Funcionario WHERE id_nrdescricao = ?");
+
+            pstmt.setInt(1, IdNrDescricao);
             rs = pstmt.executeQuery();
 
         }catch(SQLException sqlE){

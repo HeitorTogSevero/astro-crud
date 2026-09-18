@@ -30,7 +30,7 @@ public class DepartamentoDAO {
             }
             return false;
         }catch (SQLException sqle){
-            System.out.println("O erro foi: " + sqle.getMessage());
+            System.out.println(sqle.getMessage());
             return false;
         }finally {
             conexao.desconectar(conn);
@@ -66,7 +66,7 @@ public class DepartamentoDAO {
     }
 
     //metodo read - por id
-    public ResultSet buscarPorId(int id){
+    public ResultSet buscarPorIdDepart(int IdDepart){
 
         Conexao conexao = new Conexao();
         Connection conn = null;
@@ -76,17 +76,35 @@ public class DepartamentoDAO {
             conn = conexao.conectar();
 
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM departamento WHERE id_departamento = ?");
-            pstmt.setInt(1, id);
+            pstmt.setInt(1, IdDepart);
             rs = pstmt.executeQuery();
         } catch (SQLException sqle) {
-            System.out.println("O erro foi: " + sqle.getMessage());
+            System.out.println(sqle.getMessage());
         }finally {
             conexao.desconectar(conn);
             return rs;
         }
+    }
 
+//metodo read - por id
+    public ResultSet buscarPorIdEmpresa(int IdEmpresa){
 
+        Conexao conexao = new Conexao();
+        Connection conn = null;
+        ResultSet rs = null;
 
+        try{
+            conn = conexao.conectar();
+
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM departamento WHERE id_empresa = ?");
+            pstmt.setInt(1, IdEmpresa);
+            rs = pstmt.executeQuery();
+        } catch (SQLException sqle) {
+            System.out.println(sqle.getMessage());
+        }finally {
+            conexao.desconectar(conn);
+            return rs;
+        }
     }
 
     //metodo update
@@ -112,7 +130,7 @@ public class DepartamentoDAO {
             }
             return 1;
         }catch (SQLException sqle){
-            System.out.println("O erro foi: " + sqle.getMessage());
+            System.out.println(sqle.getMessage());
             return -1;
         }finally {
             conexao.desconectar(conn);
@@ -136,7 +154,7 @@ public class DepartamentoDAO {
             }
             return 1;
         }catch (SQLException sqle){
-            System.out.println("O erro foi: " + sqle.getMessage());
+            System.out.println(sqle.getMessage());
             return -1;
         }finally {
             conexao.desconectar(conn);

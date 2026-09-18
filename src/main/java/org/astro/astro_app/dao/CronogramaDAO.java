@@ -30,7 +30,7 @@ public class CronogramaDAO {
             return false;
 
         }catch(SQLException sqle){
-            System.out.println("Erro no comando sql foi: " + sqle.getMessage());
+            System.out.println(sqle.getMessage());
             return false;
         }finally {
             conexao.desconectar(conn);
@@ -59,7 +59,7 @@ public class CronogramaDAO {
 
             statement.close();
         }catch (SQLException sqle){
-            System.out.println("O erro foi: " + sqle.getMessage());
+            System.out.println(sqle.getMessage());
         }finally {
             conexao.desconectar(conn);
         }
@@ -67,7 +67,7 @@ public class CronogramaDAO {
     }
 
     //metodo read por id
-    public ResultSet buscarPorId(int id){
+    public ResultSet buscarPorIdCronograma(int IdCronograma){
         Conexao conexao = new Conexao();
         Connection conn = null;
         ResultSet rs = null;
@@ -77,17 +77,56 @@ public class CronogramaDAO {
 
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM cronograma WHERE id_cronograma = ?");
 
-            pstmt.setInt(1, id);
+            pstmt.setInt(1, IdCronograma);
             rs = pstmt.executeQuery();
         } catch (SQLException sqle){
-            System.out.println("O erro foi: " + sqle.getMessage());
+            System.out.println(sqle.getMessage());
         } finally {
             conexao.desconectar(conn);
             return rs;
         }
+    }
 
+//metodo read por id
+    public ResultSet buscarPorIdEmpresa(int IdEmpresa){
+        Conexao conexao = new Conexao();
+        Connection conn = null;
+        ResultSet rs = null;
 
+        try{
+            conn = conexao.conectar();
 
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM cronograma WHERE id_empresa = ?");
+
+            pstmt.setInt(1, IdEmpresa);
+            rs = pstmt.executeQuery();
+        } catch (SQLException sqle){
+            System.out.println(sqle.getMessage());
+        } finally {
+            conexao.desconectar(conn);
+            return rs;
+        }
+    }
+
+//metodo read por id
+    public ResultSet buscarPorIdFuncionario(int IdFuncionario){
+        Conexao conexao = new Conexao();
+        Connection conn = null;
+        ResultSet rs = null;
+
+        try{
+            conn = conexao.conectar();
+
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM cronograma WHERE id_funcionario = ?");
+
+            pstmt.setInt(1, IdFuncionario);
+            rs = pstmt.executeQuery();
+        } catch (SQLException sqle){
+            System.out.println(sqle.getMessage());
+        } finally {
+            conexao.desconectar(conn);
+            return rs;
+        }
     }
 
     //metodo update
@@ -111,7 +150,7 @@ public class CronogramaDAO {
             return 1;
 
         }catch (SQLException sqle){
-            System.out.println("O erro foi: " + sqle.getMessage());
+            System.out.println(sqle.getMessage());
             return -1;
         }finally {
             conexao.desconectar(conn);
@@ -137,7 +176,7 @@ public class CronogramaDAO {
             }
             return 1;
         }catch (SQLException sqle){
-            System.out.println("O erro foi: " + sqle.getMessage());
+            System.out.println(sqle.getMessage());
             return  -1;
         }finally {
             conexao.desconectar(conn);

@@ -2,8 +2,10 @@ package org.astro.astro_app;
 
 import org.astro.astro_app.dao.AlertaDAO;
 import org.astro.astro_app.dao.CertificadoDAO;
+import org.astro.astro_app.dao.FuncionarioDAO;
 import org.astro.astro_app.model.Alerta;
 import org.astro.astro_app.model.Certificado;
+import org.astro.astro_app.model.Funcionario;
 
 import java.sql.Date;
 import java.sql.ResultSet;
@@ -24,7 +26,13 @@ class Main {
             System.out.printf("codigo: %d \t | dataLimite: %s \t | descricao: %s \t \n",vet.get(i).getCodigo(), vet.get(i).getDtLimite(), vet.get(i).getDescricao());
         }
 
+        FuncionarioDAO func = new FuncionarioDAO();
+        ArrayList<Funcionario> veg = new ArrayList<>();
+        veg = func.buscar();
 
+        for (int i = 0; i < veg.size(); i++) {
+            System.out.println("AAAAAAAAAAA");
+        }
 
     }
 }

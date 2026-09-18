@@ -32,7 +32,7 @@ public class DivisaoTreinamentoDAO {
             return false;
 
         }catch(SQLException sqle){
-            System.out.println("Erro no comando sql foi: " + sqle.getMessage());
+            System.out.println(sqle.getMessage());
             return false;
         }finally {
             conexao.desconectar(conn);
@@ -61,15 +61,15 @@ public class DivisaoTreinamentoDAO {
 
             statement.close();
         }catch (SQLException sqle){
-            System.out.println("O erro foi: " + sqle.getMessage());
+            System.out.println(sqle.getMessage());
         }finally {
             conexao.desconectar(conn);
         }
         return vet;
     }
 
-    //metodo read por id
-    public ResultSet buscarPorId(int id){
+//metodo read por id
+    public ResultSet buscarPorIdDiv(int IdDivisao){
 
         Conexao conexao = new Conexao();
         Connection conn = null;
@@ -80,17 +80,58 @@ public class DivisaoTreinamentoDAO {
 
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM divisao_treinamento WHERE id_divisao = ?");
 
-            pstmt.setInt(1, id);
+            pstmt.setInt(1, IdDivisao);
             rs = pstmt.executeQuery();
         } catch (SQLException sqle){
-            System.out.println("O erro foi: " + sqle.getMessage());
+            System.out.println(sqle.getMessage());
         } finally {
             conexao.desconectar(conn);
             return rs;
         }
+    }
 
+    //metodo read por id
+    public ResultSet buscarPorIdEmpresa(int IdEmpresa){
 
+        Conexao conexao = new Conexao();
+        Connection conn = null;
+        ResultSet rs = null;
 
+        try{
+            conn = conexao.conectar();
+
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM divisao_treinamento WHERE id_empresa = ?");
+
+            pstmt.setInt(1, IdEmpresa);
+            rs = pstmt.executeQuery();
+        } catch (SQLException sqle){
+            System.out.println(sqle.getMessage());
+        } finally {
+            conexao.desconectar(conn);
+            return rs;
+        }
+    }
+
+//metodo read por id
+    public ResultSet buscarPorIdCronograma(int IdCronogrma){
+
+        Conexao conexao = new Conexao();
+        Connection conn = null;
+        ResultSet rs = null;
+
+        try{
+            conn = conexao.conectar();
+
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM divisao_treinamento WHERE id_cronograma = ?");
+
+            pstmt.setInt(1, IdCronogrma);
+            rs = pstmt.executeQuery();
+        } catch (SQLException sqle){
+            System.out.println(sqle.getMessage());
+        } finally {
+            conexao.desconectar(conn);
+            return rs;
+        }
     }
 
     //metodo update
@@ -115,7 +156,7 @@ public class DivisaoTreinamentoDAO {
             return 1;
 
         }catch (SQLException sqle){
-            System.out.println("O erro foi: " + sqle.getMessage());
+            System.out.println(sqle.getMessage());
             return -1;
         }finally {
             conexao.desconectar(conn);
@@ -141,7 +182,7 @@ public class DivisaoTreinamentoDAO {
             }
             return 1;
         }catch (SQLException sqle){
-            System.out.println("O erro foi: " + sqle.getMessage());
+            System.out.println(sqle.getMessage());
             return  -1;
         }finally {
             conexao.desconectar(conn);

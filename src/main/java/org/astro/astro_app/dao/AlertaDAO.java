@@ -65,7 +65,7 @@ public class AlertaDAO {
             stmt.close();
 
         } catch (SQLException sqlE) {
-            System.out.println("Erro ao buscar alertas: " + sqlE.getMessage());
+            System.out.println(sqlE.getMessage());
         } finally {
             conexao.desconectar(conn); // desconectando do Banco
         }
@@ -74,7 +74,7 @@ public class AlertaDAO {
     }
 
     // Metodo Read | Select - CRUD, mas baseado no Id
-    public ResultSet buscarPorId(int codigo) {
+    public ResultSet buscarPorIdAlerta(int IdAlerta) {
 
         // Criando conexão com o Banco de Dados
         Conexao conexao = new Conexao();
@@ -85,14 +85,40 @@ public class AlertaDAO {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's
-            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM alerta WHERE codigo = ?");
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM alerta WHERE id_alerta = ?");
 
-            pstmt.setInt(1, codigo);
+            pstmt.setInt(1, IdAlerta);
 
             resultSet = pstmt.executeQuery();
 
         } catch (SQLException sqlE) {
-            System.out.println("Erro ao buscar Alerta por ID: " + sqlE.getMessage());
+            System.out.println(sqlE.getMessage());
+        } finally {
+            conexao.desconectar(conn); // desconectando do Banco
+            return resultSet;
+        }
+    }
+
+    // Metodo Read | Select - CRUD, mas baseado no Id
+    public ResultSet buscarPorIdEmpresa(int idEmpresa) {
+
+        // Criando conexão com o Banco de Dados
+        Conexao conexao = new Conexao();
+        Connection conn = null;
+        ResultSet resultSet = null;
+
+        try {
+            conn = conexao.conectar();
+
+            // Interface para realizar comandos SQL's
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM alerta WHERE id_empresa = ?");
+
+            pstmt.setInt(1, idEmpresa);
+
+            resultSet = pstmt.executeQuery();
+
+        } catch (SQLException sqlE) {
+            System.out.println(sqlE.getMessage());
         } finally {
             conexao.desconectar(conn); // desconectando do Banco
             return resultSet;
@@ -121,7 +147,7 @@ public class AlertaDAO {
             return 1; 
 
         } catch (SQLException sqle) {
-            System.out.println("Erro no comando sql de exclusão: " + sqle.getMessage());
+            System.out.println(sqle.getMessage());
             return -1;
         } finally {
             conexao.desconectar(conn); // desconectando do Banco

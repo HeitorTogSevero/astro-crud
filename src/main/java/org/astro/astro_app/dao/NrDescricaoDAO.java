@@ -29,7 +29,7 @@ public class NrDescricaoDAO {
             return false;
 
         }catch(SQLException sqle){
-            System.out.println("Erro no comando sql foi: " + sqle.getMessage());
+            System.out.println(sqle.getMessage());
             return false;
         }finally {
             conexao.desconectar(conn);
@@ -58,7 +58,7 @@ public class NrDescricaoDAO {
 
             statement.close();
         }catch (SQLException sqle){
-            System.out.println("O erro foi: " + sqle.getMessage());
+            System.out.println(sqle.getMessage());
         }finally {
             conexao.desconectar(conn);
         }
@@ -67,7 +67,7 @@ public class NrDescricaoDAO {
 
 
     //metodo read - com id
-    public ResultSet buscarPorId(int id){
+    public ResultSet buscarPorIdNrDescricao(int IdNrDescricao){
         Conexao conexao = new Conexao();
         Connection conn = null;
         ResultSet rs = null;
@@ -77,11 +77,11 @@ public class NrDescricaoDAO {
 
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM nr_descricao WHERE id_nrdescricao = ?");
 
-            pstmt.setInt(1, id);
+            pstmt.setInt(1, IdNrDescricao);
             rs = pstmt.executeQuery();
 
         } catch (SQLException sqle){
-            System.out.println("O erro foi: " + sqle.getMessage());
+            System.out.println(sqle.getMessage());
         } finally {
             conexao.desconectar(conn);
             return rs;
@@ -113,7 +113,7 @@ public class NrDescricaoDAO {
             return 1;
 
         }catch (SQLException sqle){
-            System.out.println("O erro foi: " + sqle.getMessage());
+            System.out.println(sqle.getMessage());
             return -1;
         }finally {
             conexao.desconectar(conn);
@@ -140,7 +140,7 @@ public class NrDescricaoDAO {
             }
             return 1;
         }catch (SQLException sqle){
-            System.out.println("O erro foi: " + sqle.getMessage());
+            System.out.println(sqle.getMessage());
             return  -1;
         }finally {
             conexao.desconectar(conn);
