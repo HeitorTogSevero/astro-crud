@@ -7,7 +7,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class NrEmpresaDAO {
-    //metodo inssert
+    //metodo insert
     public boolean inserir(NrEmpresa nrEmpresa){
 
         Conexao conexao = new Conexao();
@@ -89,7 +89,7 @@ public class NrEmpresaDAO {
         }
     }
 
-//metodo read por id
+    //metodo read por id
     public ResultSet buscarPorIdNrDescricao(int IdNrDescricao){
         Conexao conexao = new Conexao();
         Connection conn = null;
@@ -109,6 +109,7 @@ public class NrEmpresaDAO {
             return rs;
         }
     }
+
     //metodo update
     public int alterarEmpresa(NrEmpresa nrEmpresa){
         Conexao conexao = new Conexao();

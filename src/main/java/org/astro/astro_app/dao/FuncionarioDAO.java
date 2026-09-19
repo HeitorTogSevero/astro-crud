@@ -21,7 +21,7 @@ public class FuncionarioDAO {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's:
-            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO Funcionario (nome, cargo, cpf, id_emrpesa, id_funcionario, id_departamento) VALUES (?, ?, ?, ?, ?, ? )");
+            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO Funcionario (nome, cargo, cpf, id_empresa, id_funcionario, id_departamento) VALUES (?, ?, ?, ?, ?, ? )");
 
             pstmt.setString(1, f.getNome());
             pstmt.setString(2, f.getCargo());

@@ -22,7 +22,6 @@ public class Conexao{
             Class.forName("org.postgresql.Driver"); // Driver do JDBC
 
 //          Recebendo os valores do arquivo .env:
-
             String usuario = dotenv.get("DB_USER");
             String senha = dotenv.get("DB_PASSWORD");
             String url = dotenv.get("DB_URL");

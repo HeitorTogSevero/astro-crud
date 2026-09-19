@@ -103,7 +103,7 @@ public class EquipamentoDAO {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's:
-            PreparedStatement pstmt = conn.prepareStatement("UPDATE Equipamento SET id_equipamento = ?, dt_valiadde = ?, nome = ?, classificacao_gov = ? WHERE id_equipamento = ?");
+            PreparedStatement pstmt = conn.prepareStatement("UPDATE Equipamento SET id_equipamento = ?, dt_validade = ?, nome = ?, classificacao_gov = ? WHERE id_equipamento = ?");
 
             pstmt.setInt(1, equip.getIdEquipamento());
             pstmt.setDate(2, equip.getDtValidade());
