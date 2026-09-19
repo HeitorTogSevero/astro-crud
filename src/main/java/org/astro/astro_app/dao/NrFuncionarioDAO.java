@@ -120,7 +120,7 @@ public class NrFuncionarioDAO {
         return rs;
     }
 
-    //    Metodo Upadate - CRUD
+    //    Metodo Update - CRUD
     public int alterarEmail(NrFuncionario nrf) {
 
         // Criando a conexão com o Banco de Dados:
@@ -131,7 +131,7 @@ public class NrFuncionarioDAO {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's:
-            PreparedStatement pstmt = conn.prepareStatement("UPDATE Nr_funcionario SET id_nrfuncionario = ?, id_nrdescricao, numero, dt_realizacao, titulo, status WHERE id_nrfuncionario = ?");
+            PreparedStatement pstmt = conn.prepareStatement("UPDATE Nr_funcionario SET id_nrfuncionario = ?, id_nrdescricao = ?, numero = ?, dt_realizacao = ?, titulo = ?, status = ? WHERE id_nrfuncionario = ?");
 
             pstmt.setInt(1, nrf.getIdNrFunc());
             pstmt.setInt(2, nrf.getIdNrDescricao());

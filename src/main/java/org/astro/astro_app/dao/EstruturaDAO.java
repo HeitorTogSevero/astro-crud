@@ -91,7 +91,7 @@ public class EstruturaDAO {
         return rs;
     }
 
-    //    Metodo READ | Select - CRUD, mas baseado no ID
+    //    Metodo READ | Select - CRUD, mas baseado no ID da empresa
     public ResultSet buscarPorIdEmpresa(int IdEmpresa){
 
         // Criando a Conexão com o Banco de Dados

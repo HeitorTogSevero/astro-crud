@@ -21,7 +21,7 @@ public class Departamento_EquipamentoDAO {
             conn = conexao.conectar();
 
             // Interface para relizar comandos SQL's
-            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO Depart_Equipamento");
+            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO Depart_Equipamento (id_departamento, id_equipamento) VALUES (?, ?)");
 
             pstmt.setInt(1, dpE.getIdDepartamento());
             pstmt.setInt(2, dpE.getIdEquipamento());
