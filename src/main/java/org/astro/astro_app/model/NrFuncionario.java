@@ -28,6 +28,8 @@ public class NrFuncionario {
         this.status = status;
     }
 
+    public NrFuncionario(){}
+
     //Metodos Getters:
     public int getIdNrFunc() {
         return idNrFunc;

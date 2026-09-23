@@ -19,6 +19,10 @@ public class Alerta {
         this.dtLimite = dtLimite;
     }
 
+    public Alerta(){
+
+    }
+
     public int getIdAlerta() {
         return idAlerta;
     }

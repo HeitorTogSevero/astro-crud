@@ -26,6 +26,10 @@ public class NrEmpresa {
         this.dtRealização = dtRealização;
     }
 
+    public NrEmpresa(){
+
+    }
+
     //Metodos Getters
     public int getIdNremp() {
         return idNrEmpresa;

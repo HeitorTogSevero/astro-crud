@@ -21,7 +21,7 @@ public class AlertaDAO {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's:
-            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO alerta (descricao, codigo, dt_limite, id_empresa) VALUES (?, ?, ?, ?)");
+            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO Alerta (descricao, codigo, dt_limite, id_empresa) VALUES (?, ?, ?, ?)");
 
             pstmt.setString(1, a.getDescricao());
             pstmt.setInt(2, a.getCodigo());
@@ -35,7 +35,7 @@ public class AlertaDAO {
             return false;
 
         } catch (SQLException sqlE) {
-            System.out.println("Erro ao inserir Alerta: " + sqlE.getMessage());
+            System.out.println(sqlE.getMessage());
             return false;
         } finally {
             conexao.desconectar(conn); // desconectando do Banco
@@ -105,7 +105,7 @@ public class AlertaDAO {
         // Criando conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
-        ResultSet resultSet = null;
+        ResultSet rs = null;
 
         try {
             conn = conexao.conectar();
@@ -115,13 +115,13 @@ public class AlertaDAO {
 
             pstmt.setInt(1, idEmpresa);
 
-            resultSet = pstmt.executeQuery();
+            rs = pstmt.executeQuery();
 
         } catch (SQLException sqlE) {
             System.out.println(sqlE.getMessage());
         } finally {
             conexao.desconectar(conn); // desconectando do Banco
-            return resultSet;
+            return rs;
         }
     }
 
@@ -165,7 +165,7 @@ public class AlertaDAO {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's
-            PreparedStatement pstmt = conn.prepareStatement("UPDATE Certificado set codigo = ?, id_empresa = ?, descricao = ?, dt_limete = ? WHERE id_alerta = ?");
+            PreparedStatement pstmt = conn.prepareStatement("UPDATE Alerta set codigo = ?, id_empresa = ?, descricao = ?, dt_limete = ? WHERE id_alerta = ?");
 
             pstmt.setInt(1, a.getCodigo());
             pstmt.setInt(2, a.getIdEmpresa());
