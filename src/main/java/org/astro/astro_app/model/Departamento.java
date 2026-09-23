@@ -26,6 +26,10 @@ public class Departamento {
         this.atividade = atividade;
     }
 
+    public Departamento(){
+
+    }
+
     //Metodos Getters
 
     public int getIdDepartamento() {

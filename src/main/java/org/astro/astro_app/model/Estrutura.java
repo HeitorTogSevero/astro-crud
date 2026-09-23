@@ -21,6 +21,9 @@ public class Estrutura {
         this.descricao = descricao;
     }
 
+    public Estrutura(){
+
+    }
     // Métodos Getters:
 
     public int getIdEstrutura() {

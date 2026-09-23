@@ -13,6 +13,8 @@ public class Departamento_Equipamento {
         this.idEquipamento = idEquipamento;
     }
 
+    public Departamento_Equipamento(){}
+
     //Metodos Getters:
     public int getIdDepartamento() {
         return idDepartamento;

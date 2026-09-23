@@ -16,6 +16,8 @@ public class Email {
         this.email = email;
     }
 
+    public Email(){}
+
     // Metodos Getters:
     public int getIdEmail() {
         return idEmail;

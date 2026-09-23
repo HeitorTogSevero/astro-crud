@@ -25,6 +25,10 @@ public class DivisaoTreinamento {
         this.nome = nome;
     }
 
+    public DivisaoTreinamento(){
+
+    }
+
     //Métodos Getters
 
     public int getIdDivisao() {

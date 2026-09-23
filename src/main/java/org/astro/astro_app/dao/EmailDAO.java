@@ -130,12 +130,12 @@ public ResultSet buscarPorIdEmail(int IdEmail){
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's:
-            PreparedStatement pstmt = conn.prepareStatement("UPDATE Email SET id_email = ?, id_Funcionario = ?, email = ? WHERE id_email = ?");
+            PreparedStatement pstmt = conn.prepareStatement("UPDATE Email SET id_Funcionario = ?, email = ? WHERE id_email = ?");
 
-            pstmt.setInt(1, email.getIdEmail());
-            pstmt.setInt(2, email.getIdFuncionario());
-            pstmt.setString(3, email.getEmail());
-            pstmt.setInt(4, email.getIdEmail());
+
+            pstmt.setInt(1, email.getIdFuncionario());
+            pstmt.setString(2, email.getEmail());
+            pstmt.setInt(3, email.getIdEmail());
 
 
             if(pstmt.executeUpdate() > 0){

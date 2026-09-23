@@ -92,7 +92,7 @@ public class EquipamentoDAO {
         return rs;
     }
 
-    //    Metodo Upadate - CRUD
+//    Metodo Upadate - CRUD
     public int alterarEmail(Equipamento equip) {
 
         // Criando a conexão com o Banco de Dados:
@@ -103,13 +103,12 @@ public class EquipamentoDAO {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's:
-            PreparedStatement pstmt = conn.prepareStatement("UPDATE Equipamento SET id_equipamento = ?, dt_validade = ?, nome = ?, classificacao_gov = ? WHERE id_equipamento = ?");
+            PreparedStatement pstmt = conn.prepareStatement("UPDATE Equipamento SET  dt_validade = ?, nome = ?, classificacao_gov = ? WHERE id_equipamento = ?");
 
-            pstmt.setInt(1, equip.getIdEquipamento());
-            pstmt.setDate(2, equip.getDtValidade());
-            pstmt.setString(3, equip.getNome());
-            pstmt.setString(4, equip.getClasificacaoGov());
-            pstmt.setInt(5, equip.getIdEquipamento());
+            pstmt.setDate(1, equip.getDtValidade());
+            pstmt.setString(2, equip.getNome());
+            pstmt.setString(3, equip.getClasificacaoGov());
+            pstmt.setInt(4, equip.getIdEquipamento());
 
 
             if(pstmt.executeUpdate() > 0){

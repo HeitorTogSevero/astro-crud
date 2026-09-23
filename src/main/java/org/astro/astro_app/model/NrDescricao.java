@@ -20,6 +20,10 @@ public class NrDescricao {
         this.titulo = titulo;
     }
 
+    public NrDescricao(){
+
+    }
+
     //Metodos Getters
     public int getIdNrDescricao() {
         return idNrDescricao;

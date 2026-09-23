@@ -129,13 +129,12 @@ public class EstruturaDAO {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's:
-            PreparedStatement pstmt = conn.prepareStatement("UPDATE Estrutura SET id_estrutura = ?, id_empresa = ?, risco = ?, descricao = ? WHERE id_estrutura = ?");
+            PreparedStatement pstmt = conn.prepareStatement("UPDATE Estrutura SET id_empresa = ?, risco = ?, descricao = ? WHERE id_estrutura = ?");
 
-            pstmt.setInt(1, est.getIdEstrutura());
-            pstmt.setInt(2, est.getIdEmpresa());
-            pstmt.setString(3, est.getRisco());
-            pstmt.setString(4, est.getDescricao());
-            pstmt.setInt(5, est.getIdEstrutura());
+            pstmt.setInt(1, est.getIdEmpresa());
+            pstmt.setString(2, est.getRisco());
+            pstmt.setString(3, est.getDescricao());
+            pstmt.setInt(4, est.getIdEstrutura());
 
 
             if(pstmt.executeUpdate() > 0){

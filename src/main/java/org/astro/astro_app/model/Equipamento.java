@@ -22,7 +22,9 @@ public class Equipamento {
         this.clasificacaoGov = clasificacaoGov;
     }
 
+    public Equipamento(){
 
+    }
     //Métodos Getters:
 
     public int getIdEquipamento() {

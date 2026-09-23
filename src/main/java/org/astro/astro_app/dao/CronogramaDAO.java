@@ -18,7 +18,7 @@ public class CronogramaDAO {
         try{
             conn = conexao.conectar();
 
-            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO cronograma (agendamento, id_empresa, id_funcionario) values (?,?,?)");
+            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO Cronograma (agendamento, id_empresa, id_funcionario) values (?,?,?)");
 
             pstmt.setDate(1, cronograma.getAgendamento());
             pstmt.setInt(2, cronograma.getIdEmpresa());
@@ -51,7 +51,7 @@ public class CronogramaDAO {
             conn = conexao.conectar();
 
             Statement statement = conn.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM cronograma ORDER BY 1");
+            ResultSet rs = statement.executeQuery("SELECT * FROM Cronograma ORDER BY 1");
 
             while(rs.next()){
                 vet.add(new Cronograma(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getDate(4)));
@@ -75,7 +75,7 @@ public class CronogramaDAO {
         try{
             conn = conexao.conectar();
 
-            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM cronograma WHERE id_cronograma = ?");
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Cronograma WHERE id_cronograma = ?");
 
             pstmt.setInt(1, IdCronograma);
             rs = pstmt.executeQuery();

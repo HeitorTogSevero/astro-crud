@@ -33,6 +33,10 @@ public class Certificado {
         this.dtValidade = dtValidade;
     }
 
+    public Certificado(){
+
+    }
+
     // Metodo Getters:
 
     public int getIdCertificado() {

@@ -24,6 +24,10 @@ public class Cronograma {
         this.agendamento = agendamento;
     }
 
+    public Cronograma(){
+
+    }
+
     //Métodos Getters
     public int getIdFuncionario() {
         return idFuncionario;

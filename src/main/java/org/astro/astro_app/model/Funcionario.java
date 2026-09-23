@@ -26,6 +26,10 @@ public class Funcionario {
         this.idDepartamento = idDepartamento;
     }
 
+    public Funcionario(){
+
+    }
+
     // Metodos Getters:
 
     public String getNome() {

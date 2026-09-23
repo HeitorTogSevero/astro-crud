@@ -31,6 +31,10 @@ public class Empresa {
         this.cidade = cidade;
     }
 
+    public Empresa(){
+
+    }
+
     // Metodos Getters:
     public int getIdEmpresa() {
         return idEmpresa;
