@@ -110,7 +110,7 @@ public class AlertaDAO {
         try {
             conn = conexao.conectar();
 
-            // Interface para realizar comandos SQL's
+            // Interface para realizar comandos SQL's:
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM alerta WHERE id_empresa = ?");
 
             pstmt.setInt(1, idEmpresa);
