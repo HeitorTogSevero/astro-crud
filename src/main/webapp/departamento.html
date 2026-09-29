@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astro - Painel de Administração</title>
+    <link rel="stylesheet" href="crud.css">
+    <link rel="stylesheet" href="tabelas.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="logo">
+            <img src="imagens/logotipo.png" alt="Logotipo" class="img-logo">
+        </div>
+
+        <nav class="nav-menu">
+            <a href="crud.html" class="nav-item">
+                <i class="fa-solid fa-house"></i>Início
+            </a>
+            <a href="empresa.html" class="nav-item">
+                <i class="fa-regular fa-building"></i>empresa
+            </a>
+            <a href="funcionario.html" class="nav-item">
+                <i class="fa-solid fa-users"></i>funcionario
+            </a>
+            <a href="departamento.html" class="nav-item active">
+                <i class="fa-solid fa-layer-group"></i>departamento
+            </a>
+            <a href="divisao_treinamento.html" class="nav-item">
+                <i class="fa-regular fa-file-lines"></i>divisao_treinamento 
+            </a>
+            <a href="alerta.html" class="nav-item">
+                <i class="fa-regular fa-calendar-check"></i>alerta
+            </a>
+            <a href="certificado.html" class="nav-item">
+                <i class="fa-solid fa-award"></i>certificado
+            </a>
+            <div class="sidebar-bottom">
+                <a href="#" class="nav-item">
+                    <i class="fa-solid fa-right-from-bracket"></i>Sair
+                </a>
+            </div>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        
+        <header class="header cabecalho-pagina">
+            <div class="titulo-container">
+                <h1><strong>departamento - </strong> <span id="periodo-titulo">Setembro 2026</span></h1>
+            </div>
+
+        </header>
+
+        <section class="barra-controles">
+
+            <div class="controle-esquerda">
+                <div class="search-bar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <!-- back-end -->
+                    <input type="text" id="busca-departamento" name="busca-departamento" placeholder="Pesquisar departamento...">
+                </div>
+            </div>
+
+            <div class="controle-direita">
+                <!-- back-end: ainda não definimos as regras de filtro.
+                     Por enquanto é só um botão -->
+                <button class="btn-filtrar" id="btn-filtrar-departamento" type="button">
+                    <i class="fa-solid fa-filter"></i> Filtrar
+                </button>
+
+                <!-- back-end -->
+                <button class="btn-adicionar" id="btn-adicionar-registro" type="button" data-acao="adicionar-dep">
+                    <i class="fa-solid fa-plus"></i> Adicionar registro
+                </button>
+            </div>
+        </section>
+
+        <section class="panel painel-tabela">
+            <div class="tabela-rolavel">
+                <table class="data-table" id="tabela-departamentos">
+                    <thead class="data-cabecalho">
+                        <tr>
+                            <th class="ordenavel" data-coluna="id_departamento"><strong>id_departamento</strong> <i class="fa-solid fa-sort"></i></th>
+                            <th class="ordenavel" data-coluna="nome">nome <i class="fa-solid fa-sort"></i></th>
+                            <th class="ordenavel" data-coluna="descricao">descricao <i class="fa-solid fa-sort"></i></th>
+                            <th class="ordenavel" data-coluna="grau_risco">grau_risco <i class="fa-solid fa-sort"></i></th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="corpo-tabela-departamentos">
+                        <tr id_departamento="" nome="" descricao="" grau_risco="" atividade="" qtd_funcionario="" id_empresa="">
+                            <td>1</td>
+                            <td>Elos</td>
+                            <td>62.248.660/0001-43</td>
+                            <td>SP</td>
+                            <td>
+                                <div class="celula-acoes">
+                                    <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
+                                    <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr id_departamento="" nome="" descricao="" grau_risco="" atividade="" qtd_funcionario="" id_empresa="">
+                            <td>2</td>
+                            <td>Inventra</td>
+                            <td>30.325.076/0001-58</td>
+                            <td>SP</td>
+                            <td>
+                                <div class="celula-acoes">
+                                    <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
+                                    <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr id_departamento="" nome="" descricao="" grau_risco="" atividade="" qtd_funcionario="" id_empresa="">
+                            <td>2</td>
+                            <td>Argos</td>
+                            <td>35.100.242/0001-31</td>
+                            <td>MG</td>
+                            <td>
+                                <div class="celula-acoes">
+                                    <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
+                                    <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr id_departamento="" nome="" descricao="" grau_risco="" atividade="" qtd_funcionario="" id_empresa="">
+                            <td>3</td>
+                            <td>Olius</td>
+                            <td>21.364.388/0001-80</td>
+                            <td>SP</td>
+                            <td>
+                                <div class="celula-acoes">
+                                    <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
+                                    <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr id_departamento="" nome="" descricao="" grau_risco="" atividade="" qtd_funcionario="" id_empresa="">
+                            <td>4</td>
+                            <td>Apollo</td>
+                            <td>55.987.920/0001-37</td>
+                            <td>SP</td>
+                            <td>
+                                <div class="celula-acoes">
+                                    <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
+                                    <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr id_departamento="" nome="" descricao="" grau_risco="" atividade="" qtd_funcionario="" id_empresa="">
+                            <td>5</td>
+                            <td>Cometa</td>
+                            <td>54.342.635/0001-04</td>
+                            <td>RJ</td>
+                            <td>
+                                <div class="celula-acoes">
+                                    <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
+                                    <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
+                                </div>
+                            </td>
+                        </tr>
+                        
+                        <tr id_departamento="" nome="" descricao="" grau_risco="" atividade="" qtd_funcionario="" id_empresa="">
+                            <td>6</td>
+                            <td>Inventra</td>
+                            <td>30.325.076/0001-58</td>
+                            <td>SP</td>
+                            <td>
+                                <div class="celula-acoes">
+                                    <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
+                                    <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr id_departamento="" nome="" descricao="" grau_risco="" atividade="" qtd_funcionario="" id_empresa="">
+                            <td>7</td>
+                            <td>Inventra</td>
+                            <td>30.325.076/0001-58</td>
+                            <td>SP</td>
+                            <td>
+                                <div class="celula-acoes">
+                                    <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
+                                    <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr id_departamento="" nome="" descricao="" grau_risco="" atividade="" qtd_funcionario="" id_empresa="">
+                            <td>8</td>
+                            <td>Inventra</td>
+                            <td>30.325.076/0001-58</td>
+                            <td>SP</td>
+                            <td>
+                                <div class="celula-acoes">
+                                    <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
+                                    <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p class="rodape-tabela" id="contagem-empresas">Mostrando 9 de 84 departamentos</p>
+        </section>
+
+    </main>
+
+</body>
+</html>

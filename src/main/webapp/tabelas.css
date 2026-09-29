@@ -1,0 +1,193 @@
+* {
+    font-family: 'Inter', sans-serif;
+}
+
+.cabecalho-pagina {
+    justify-content: space-between;
+}
+
+.cabecalho-pagina .titulo-container p {
+    color: var(--text-muted);
+    font-size: 14px;
+    margin-top: 4px;
+}
+
+.cabecalho-acoes {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.btn-adicionar {
+    background-color: #AF13E8;
+    color: white;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+    white-space: nowrap;
+}
+
+.btn-adicionar:hover {
+    background-color: #9011BE;
+}
+
+.barra-controles {
+    background-color: var(--bg-panel);
+    border-radius: 12px;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.controle-mostrar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+}
+
+.controle-mostrar select {
+    background-color: var(--bg-button);
+    color: var(--text-main);
+    border: none;
+    border-radius: 8px;
+    padding: 6px 10px;
+    font-size: 14px;
+}
+
+.controle-direita {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.btn-filtrar,
+.controle-periodo {
+    background-color: var(--bg-button);
+    color: var(--text-main);
+    border: none;
+    border-radius: 20px;
+    padding: 10px 18px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-filtrar:hover {
+    background-color: #4a4499;
+}
+
+.controle-periodo select {
+    background: transparent;
+    color: var(--text-main);
+    border: none;
+    outline: none;
+    font-size: 14px;
+}
+
+.controle-periodo select option {
+    color: #000;
+}
+
+.painel-tabela {
+    padding: 0;
+    overflow: hidden;
+}
+
+.tabela-rolavel {
+    max-height: 460px;
+    max-width: 1050px;
+    width: 1020px;
+    overflow-y: auto;
+}
+
+.tabela-rolavel table {
+    margin-top: 0;
+    overflow: visible;
+}
+
+.tabela-rolavel thead th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.data-table td {
+    padding: 15px;
+    font-size: 12px;
+    text-align: center;
+}
+
+.data-table tbody tr {
+    border-bottom: 2px solid #4a4499;
+}
+
+.data-table th {
+    padding: 19px;
+    font-size: 14px;
+}
+
+.celula-registro {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-align: left;
+    font-weight: 700;
+}
+
+.celula-acoes {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    transition: 0.15s;
+}
+
+.btn-editar,
+.btn-remover {
+    border: none;
+    border-radius: 16px;
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    color: white;
+    transition: 0.2s;
+}
+
+.btn-editar {
+    background-color: #AF13E8;
+}
+
+.btn-editar:hover {
+    background-color: #9011BE;
+}
+
+.btn-remover {
+    background-color: #e5484d;
+}
+
+.btn-remover:hover {
+    background-color: #c7373c;
+}
+
+.rodape-tabela {
+    padding: 16px 24px;
+    color: var(--text-muted);
+    font-size: 14px;
+}
