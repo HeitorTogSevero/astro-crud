@@ -100,7 +100,7 @@ public class NrDescricaoDAO {
         try{
             conn = conexao.conectar();
 
-            PreparedStatement pstmt = conn.prepareStatement("UPDATE nr_descricao set titulo = ? , descricao = ? , tempo_reciclagem = ?");
+            PreparedStatement pstmt = conn.prepareStatement("UPDATE nr_descricao set titulo = ? , descricao = ? , tempo_reciclagem = ? WHERE id_nrdescricao=?");
 
             pstmt.setString(1, nrDescricao.getTitulo());
             pstmt.setString(2, nrDescricao.getDescricao());

@@ -118,7 +118,7 @@ public class NrEmpresaDAO {
         try{
             conn = conexao.conectar();
 
-            PreparedStatement pstmt = conn.prepareStatement("UPDATE nr_empresa set numero = ? , status = ? , titulo = ? , dt_realizacao = ? , id_nrdescricao = ?");
+            PreparedStatement pstmt = conn.prepareStatement("UPDATE nr_empresa set numero = ? , status = ? , titulo = ? , dt_realizacao = ? , id_nrdescricao = ? WHERE id_nrempresa = ?");
 
             pstmt.setInt(1, nrEmpresa.getNumero());
             pstmt.setString(2, nrEmpresa.getStatus());

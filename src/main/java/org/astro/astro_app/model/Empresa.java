@@ -1,5 +1,7 @@
 package org.astro.astro_app.model;
 
+import java.util.Date;
+
 //Classe model Empresa
 public class Empresa {
     //Declaração de variáveis
@@ -17,8 +19,10 @@ public class Empresa {
     private String bairro;
     private String cidade;
 
+    private Date dtRegistro;
+
     // Metodo Construtor da classe:
-    public Empresa(int idEmpresa, int cnae, int qtdFuncionario, String nome, String cep, String cnpj, String rua, String estado, String bairro, String cidade) {
+    public Empresa(int idEmpresa, int cnae, int qtdFuncionario, String nome, String cep, String cnpj, String rua, String estado, String bairro, String cidade, Date dtRegistro) {
         this.idEmpresa = idEmpresa;
         this.cnae = cnae;
         this.qtdFuncionario = qtdFuncionario;
@@ -29,6 +33,7 @@ public class Empresa {
         this.estado = estado;
         this.bairro = bairro;
         this.cidade = cidade;
+        this.dtRegistro = dtRegistro;
     }
 
     public Empresa(){
@@ -36,6 +41,7 @@ public class Empresa {
     }
 
     // Metodos Getters:
+
     public int getIdEmpresa() {
         return idEmpresa;
     }
@@ -74,5 +80,9 @@ public class Empresa {
 
     public String getCidade() {
         return cidade;
+    }
+
+    public Date getDtRegistro() {
+        return dtRegistro;
     }
 }

@@ -137,7 +137,7 @@ public class CronogramaDAO {
         try{
             conn = conexao.conectar();
 
-            PreparedStatement pstmt = conn.prepareStatement("UPDATE cronograma set agendamento = ? , id_empresa = ? , id_funcionario = ? ");
+            PreparedStatement pstmt = conn.prepareStatement("UPDATE cronograma set agendamento = ? , id_empresa = ? , id_funcionario = ? where id_cronograma");
 
             pstmt.setDate(1, cronograma.getAgendamento());
             pstmt.setInt(2, cronograma.getIdEmpresa());

@@ -142,7 +142,7 @@ public class DivisaoTreinamentoDAO {
         try{
             conn = conexao.conectar();
 
-            PreparedStatement pstmt = conn.prepareStatement("UPDATE divisao_treinamento set nome = ? , codigo = ? , qtd_funcionario = ? , id_empresa = ? , id_cronograma = ? ");
+            PreparedStatement pstmt = conn.prepareStatement("UPDATE divisao_treinamento set nome = ? , codigo = ? , qtd_funcionario = ? , id_empresa = ? , id_cronograma = ? WHERE id_divisao = ?");
 
             pstmt.setString(1, divisaoTreinamento.getNome());
             pstmt.setInt(2, divisaoTreinamento.getCodigo());
