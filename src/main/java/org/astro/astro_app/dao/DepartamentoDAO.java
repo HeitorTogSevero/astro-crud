@@ -116,7 +116,7 @@ public class DepartamentoDAO {
         try{
             conn = conexao.conectar();
 
-            PreparedStatement pstmt = conn.prepareStatement("UPDATE departamento set nome = ?, descricao = ?, grau_risco=?, atividade=?, qtd_funcionario=?,id_empresa=?");
+            PreparedStatement pstmt = conn.prepareStatement("UPDATE departamento set nome = ?, descricao = ?, grau_risco=?, atividade=?, qtd_funcionario=?,id_empresa=? WHERE id_depto=?");
 
             pstmt.setString(1, depto.getNome());
             pstmt.setString(2, depto.getDescricao());

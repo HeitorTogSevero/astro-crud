@@ -16,7 +16,7 @@ public class EmpresaDAO {
         try{
             conn = conexao.conectar();
 
-            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO empresa (nome, cnae, qtd_funcionario, rua, cep, cidade, bairro, estado, cnpj) values (?,?,?,?,?,?,?,?,?)");
+            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO empresa (nome, cnae, qtd_funcionario, rua, cep, cidade, bairro, estado, cnpj, dt_registro) values (?,?,?,?,?,?,?,?,?,?)");
 
             pstmt.setString(1, empresa.getNome());
             pstmt.setInt(2, empresa.getCnae());
@@ -27,6 +27,7 @@ public class EmpresaDAO {
             pstmt.setString(7, empresa.getBairro());
             pstmt.setString(8, empresa.getEstado());
             pstmt.setString(9, empresa.getCnpj());
+            pstmt.setDate(10, (Date) empresa.getDtRegistro());
 
             if (pstmt.executeUpdate() > 0){
                 return true;
@@ -58,7 +59,7 @@ public class EmpresaDAO {
             ResultSet rs = statement.executeQuery("SELECT * FROM empresa ORDER BY 1");
 
             while(rs.next()){
-                vet.add(new Empresa(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getString(5),  rs.getString(6),  rs.getString(7),  rs.getString(8),  rs.getString(9),  rs.getString(10)));
+                vet.add(new Empresa(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getString(5),  rs.getString(6),  rs.getString(7),  rs.getString(8),  rs.getString(9),  rs.getString(10), rs.getDate(11)));
             }
 
             statement.close();
@@ -99,7 +100,7 @@ public class EmpresaDAO {
         try{
             conn = conexao.conectar();
 
-            PreparedStatement pstmt = conn.prepareStatement("UPDATE empresa set cnpj = ? , nome = ? , qtd_funcionario = ? , cnae = ? , bairro = ? , cep = ? , rua = ? , estado = ? , cidade = ?");
+            PreparedStatement pstmt = conn.prepareStatement("UPDATE empresa set cnpj = ? , nome = ? , qtd_funcionario = ? , cnae = ? , bairro = ? , cep = ? , rua = ? , estado = ? , cidade = ?, dt_registro=? where id_empresa=?");
 
             pstmt.setString(1, empresa.getCnpj());
             pstmt.setString(2, empresa.getNome());
@@ -110,6 +111,7 @@ public class EmpresaDAO {
             pstmt.setString(7, empresa.getRua());
             pstmt.setString(8, empresa.getEstado());
             pstmt.setString(9, empresa.getCidade());
+            pstmt.setDate(10, (Date) empresa.getDtRegistro());
 
 
             if (pstmt.executeUpdate() > 0){

@@ -118,7 +118,7 @@ public class EstruturaDAO {
     }
 
 
-    //    Metodo Upadate - CRUD
+    //    Metodo Update - CRUD
     public int alterarEmail(Estrutura est) {
 
         // Criando a conexão com o Banco de Dados:
