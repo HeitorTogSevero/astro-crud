@@ -16,7 +16,7 @@ public class DepartamentoDAO {
         try{
             conn = conexao.conectar();
 
-            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO departamento (nome, descricao, grau_risco, atividade, qtd_funcionario, id_empresa)");
+            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO departamento (nome, descricao, grau_risco, atividade, qtd_funcionario, id_empresa) VALUES (?,?,?,?,?,?)");
 
             pstmt.setString(1, depto.getNome());
             pstmt.setString(2, depto.getDescricao());
@@ -116,7 +116,7 @@ public class DepartamentoDAO {
         try{
             conn = conexao.conectar();
 
-            PreparedStatement pstmt = conn.prepareStatement("UPDATE departamento set nome = ?, descricao = ?, grau_risco=?, atividade=?, qtd_funcionario=?,id_empresa=? WHERE id_depto=?");
+            PreparedStatement pstmt = conn.prepareStatement("UPDATE departamento set nome = ?, descricao = ?, grau_risco=?, atividade=?, qtd_funcionario=?,id_empresa=? WHERE id_departamento=?");
 
             pstmt.setString(1, depto.getNome());
             pstmt.setString(2, depto.getDescricao());

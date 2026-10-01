@@ -19,7 +19,7 @@ public class EquipamentoDAO {
             conn =conexao.conectar();
 
             // Interface para realizar comandos SQL's
-            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO Equipamento (dt_validade, nome, classificacao_gov) VALUES (?, ?, ?)");
+            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO equipamento (dt_validade, nome, classificacao_gov) VALUES (?, ?, ?)");
 
             pstmt.setDate(1, equip.getDtValidade());
             pstmt.setString(2, equip.getNome());
@@ -52,7 +52,7 @@ public class EquipamentoDAO {
             // Interface para realizar comandos SQL's:
             Statement pstmt = conn.createStatement();
 
-            ResultSet rs = pstmt.executeQuery("SELECT * FROM Equipamento ORDER BY 1");
+            ResultSet rs = pstmt.executeQuery("SELECT * FROM equipamento ORDER BY 1");
 
             while(rs.next()){
                 vet.add(new Equipamento(rs.getInt(1), rs.getDate(2), rs.getString(3), rs.getString(4)));
@@ -79,7 +79,7 @@ public class EquipamentoDAO {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's
-            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Equipamento WHERE id_equipamento = ?");
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM equipamento WHERE id_equipamento = ?");
 
             pstmt.setInt(1, IdEquip);
             rs = pstmt.executeQuery();
@@ -92,7 +92,7 @@ public class EquipamentoDAO {
         return rs;
     }
 
-//    Metodo Upadate - CRUD
+//    Metodo Update - CRUD
     public int alterarEmail(Equipamento equip) {
 
         // Criando a conexão com o Banco de Dados:
@@ -103,7 +103,7 @@ public class EquipamentoDAO {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's:
-            PreparedStatement pstmt = conn.prepareStatement("UPDATE Equipamento SET  dt_validade = ?, nome = ?, classificacao_gov = ? WHERE id_equipamento = ?");
+            PreparedStatement pstmt = conn.prepareStatement("UPDATE equipamento SET  dt_validade = ?, nome = ?, classificacao_gov = ? WHERE id_equipamento = ?");
 
             pstmt.setDate(1, equip.getDtValidade());
             pstmt.setString(2, equip.getNome());
@@ -135,7 +135,7 @@ public class EquipamentoDAO {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's
-            PreparedStatement pstmt = conn.prepareStatement("DELETE FROM Equipamento WHERE  id_equipamento = ?");
+            PreparedStatement pstmt = conn.prepareStatement("DELETE FROM equipamento WHERE  id_equipamento = ?");
 
             pstmt.setInt(1, id);
 

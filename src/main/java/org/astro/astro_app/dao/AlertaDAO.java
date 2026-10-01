@@ -2,7 +2,6 @@ package org.astro.astro_app.dao;
 
 import org.astro.astro_app.Conexão.Conexao;
 import org.astro.astro_app.model.Alerta;
-import org.astro.astro_app.model.Certificado;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -21,7 +20,7 @@ public class AlertaDAO {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's:
-            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO Alerta (descricao, codigo, dt_limite, id_empresa) VALUES (?, ?, ?, ?)");
+            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO alerta (descricao, codigo, dt_limite, id_empresa) VALUES (?, ?, ?, ?)");
 
             pstmt.setString(1, a.getDescricao());
             pstmt.setInt(2, a.getCodigo());
@@ -125,6 +124,41 @@ public class AlertaDAO {
         }
     }
 
+    //Metodo Update - CRUD
+    public int alterarCertificado(Alerta a){
+
+        // Criando a conexão com o Banco de Dados
+        Conexao conexao = new Conexao();
+        Connection conn = null;
+
+        try {
+            conn = conexao.conectar();
+
+            // Interface para realizar comandos SQL's
+            PreparedStatement pstmt = conn.prepareStatement("UPDATE alerta set codigo = ?, id_empresa = ?, descricao = ?, dt_limete = ? WHERE id_alerta = ?");
+
+            pstmt.setInt(1, a.getCodigo());
+            pstmt.setInt(2, a.getIdEmpresa());
+            pstmt.setString(3, a.getDescricao());
+            pstmt.setDate(4, a.getDtLimite());
+            pstmt.setInt(5, a.getIdAlerta());
+
+
+            if (pstmt.executeUpdate() > 0){
+                return 0;
+            }
+
+            return 1;
+
+        }catch (SQLException sqlE){
+            System.out.println(sqlE.getMessage());
+            return -1;
+        }finally {
+            conexao.desconectar(conn);
+        }
+
+    }
+
     // Metodo Delete | Remove - CRUD
     public int remover(int codigo) {
 
@@ -154,39 +188,6 @@ public class AlertaDAO {
         }
     }
 
-//    Metodo Update - CRUD
-    public int alterarCertificado(Alerta a){
 
-        // Criando a conexão com o Banco de Dados
-        Conexao conexao = new Conexao();
-        Connection conn = null;
-
-        try {
-            conn = conexao.conectar();
-
-            // Interface para realizar comandos SQL's
-            PreparedStatement pstmt = conn.prepareStatement("UPDATE Alerta set codigo = ?, id_empresa = ?, descricao = ?, dt_limete = ? WHERE id_alerta = ?");
-
-            pstmt.setInt(1, a.getCodigo());
-            pstmt.setInt(2, a.getIdEmpresa());
-            pstmt.setString(3, a.getDescricao());
-            pstmt.setDate(4, a.getDtLimite());
-            pstmt.setInt(5, a.getIdAlerta());
-
-
-            if (pstmt.executeUpdate() > 0){
-                return 0;
-            }
-
-            return 1;
-
-        }catch (SQLException sqlE){
-            System.out.println(sqlE.getMessage());
-            return -1;
-        }finally {
-            conexao.desconectar(conn);
-        }
-
-    }
 
 }

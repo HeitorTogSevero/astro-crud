@@ -8,7 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class NrFuncionarioDAO {
-//    Metodo CREATE | Insert - CRUD
+    //    Metodo CREATE | Insert - CRUD
     public boolean inserir(NrFuncionario nrF){
 
         // Criando a conexão com o Banco de Dados
@@ -19,7 +19,7 @@ public class NrFuncionarioDAO {
             conn =conexao.conectar();
 
             // Interface para realizar comandos SQL's
-            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO Nr_funcionario (id_nrdescricao, numero, dt_realizacao, titulo, status) VALUES (?, ?, ?, ?, ?)");
+            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO nr_funcionario (id_nrdescricao, numero, dt_realizacao, titulo, status) VALUES (?, ?, ?, ?, ?)");
 
             pstmt.setInt(1, nrF.getIdNrDescricao());
             pstmt.setInt(2, nrF.getIdNrDescricao());
@@ -54,7 +54,7 @@ public class NrFuncionarioDAO {
             // Interface para realizar comandos SQL's:
             Statement pstmt = conn.createStatement();
 
-            ResultSet rs = pstmt.executeQuery("SELECT * FROM Nr_funcionario ORDER BY 1");
+            ResultSet rs = pstmt.executeQuery("SELECT * FROM nr_funcionario ORDER BY 1");
 
             while(rs.next()){
                 vet.add(new NrFuncionario(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getDate(4), rs.getString(5), rs.getString(6)));
@@ -81,7 +81,7 @@ public class NrFuncionarioDAO {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's
-            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Nr_Funcionario WHERE id_nrfuncionario = ?");
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM nr_funcionario WHERE id_nrfuncionario = ?");
 
             pstmt.setInt(1, IdNrFunc);
             rs = pstmt.executeQuery();
@@ -94,7 +94,7 @@ public class NrFuncionarioDAO {
         return rs;
     }
 
-//    Metodo READ | Select - CRUD, mas baseado no ID
+    //    Metodo READ | Select - CRUD, mas baseado no ID
     public ResultSet buscarPorIdNrDescricao(int IdNrDescricao){
 
         // Criando a Conexão com o Banco de Dados
@@ -107,7 +107,7 @@ public class NrFuncionarioDAO {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's
-            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Nr_Funcionario WHERE id_nrdescricao = ?");
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM nr_funcionario WHERE id_nrdescricao = ?");
 
             pstmt.setInt(1, IdNrDescricao);
             rs = pstmt.executeQuery();
@@ -131,7 +131,7 @@ public class NrFuncionarioDAO {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's:
-            PreparedStatement pstmt = conn.prepareStatement("UPDATE Nr_funcionario SET id_nrdescricao = ?, numero = ?, dt_realizacao = ?, titulo = ?, status = ? WHERE id_nrfuncionario = ?");
+            PreparedStatement pstmt = conn.prepareStatement("UPDATE nr_funcionario SET id_nrdescricao = ?, numero = ?, dt_realizacao = ?, titulo = ?, status = ? WHERE id_nrfuncionario = ?");
 
 
             pstmt.setInt(1, nrf.getIdNrDescricao());
@@ -165,7 +165,7 @@ public class NrFuncionarioDAO {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's
-            PreparedStatement pstmt = conn.prepareStatement("DELETE FROM Nr_funcionario WHERE  id_nrfuncionario = ?");
+            PreparedStatement pstmt = conn.prepareStatement("DELETE FROM nr_funcionario WHERE  id_nrfuncionario = ?");
 
             pstmt.setInt(1, id);
 
