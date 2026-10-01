@@ -21,7 +21,7 @@ public class FuncionarioDAO {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's:
-            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO Funcionario (nome, cargo, cpf, id_empresa, id_funcionario, id_departamento) VALUES (?, ?, ?, ?, ?, ? )");
+            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO funcionario (nome, cargo, cpf, id_empresa, id_funcionario, id_departamento) VALUES (?, ?, ?, ?, ?, ? )");
 
             pstmt.setString(1, f.getNome());
             pstmt.setString(2, f.getCargo());
@@ -60,7 +60,7 @@ public class FuncionarioDAO {
             // Interface para realizar comandos SQL's:
             Statement pstmt = conn.createStatement();
 
-            ResultSet rs = pstmt.executeQuery("SELECT * FROM FUNCIONARIO ORDER BY 1");
+            ResultSet rs = pstmt.executeQuery("SELECT * FROM funcionario ORDER BY 1");
 
             while (rs.next()) {
                 vet.add(new Funcionario(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4),rs.getInt(5), rs.getInt(6)));
@@ -88,7 +88,7 @@ public class FuncionarioDAO {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's
-            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Funcionario WHERE id_funcionario = ?");
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM funcionario WHERE id_funcionario = ?");
 
             pstmt.setInt(1, IdFunc);
             resultSet = pstmt.executeQuery();
@@ -113,7 +113,7 @@ public class FuncionarioDAO {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's
-            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Funcionario WHERE id_empresa = ?");
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM funcionario WHERE id_empresa = ?");
 
             pstmt.setInt(1, IdEmpresa);
             resultSet = pstmt.executeQuery();
@@ -138,7 +138,7 @@ public class FuncionarioDAO {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's
-            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Funcionario WHERE id_departamento = ?");
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM funcionario WHERE id_departamento = ?");
 
             pstmt.setInt(1, IdDepart);
             resultSet = pstmt.executeQuery();
@@ -163,7 +163,7 @@ public class FuncionarioDAO {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's
-            PreparedStatement pstmt = conn.prepareStatement("UPDATE Funcionario set nome = ?, cargo = ?, cpf = ?, id_empresa = ?,  id_departamento = ? WHERE id_funcionario = ?");
+            PreparedStatement pstmt = conn.prepareStatement("UPDATE funcionario set nome = ?, cargo = ?, cpf = ?, id_empresa = ?,  id_departamento = ? WHERE id_funcionario = ?");
 
             pstmt.setString(1, f.getNome());
             pstmt.setString(2, f.getCargo());
@@ -199,7 +199,7 @@ public class FuncionarioDAO {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's:
-            PreparedStatement pstmt = conn.prepareStatement("DELETE FROM Funcionario where id_funcionario = ?");
+            PreparedStatement pstmt = conn.prepareStatement("DELETE FROM funcionario where id_funcionario = ?");
 
             pstmt.setInt(1, id);
 

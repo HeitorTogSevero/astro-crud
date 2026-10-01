@@ -21,7 +21,7 @@ public class Departamento_EquipamentoDAO {
             conn = conexao.conectar();
 
             // Interface para relizar comandos SQL's
-            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO Depart_Equipamento (id_departamento, id_equipamento) VALUES (?, ?)");
+            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO depart_equipamento (id_departamento, id_equipamento) VALUES (?, ?)");
 
             pstmt.setInt(1, dpE.getIdDepartamento());
             pstmt.setInt(2, dpE.getIdEquipamento());
@@ -53,7 +53,7 @@ public class Departamento_EquipamentoDAO {
             // Interface para realizar comandos SQL's
             Statement pstmt = conn.createStatement();
 
-            ResultSet rs = pstmt.executeQuery("SELECT * FROM Depart_equipamento ORDER BY 1");
+            ResultSet rs = pstmt.executeQuery("SELECT * FROM depart_equipamento ORDER BY 1");
 
             while(rs.next()){
                 vet.add(new Departamento_Equipamento(rs.getInt(1), rs.getInt(2)));
@@ -80,7 +80,7 @@ public class Departamento_EquipamentoDAO {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's
-            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Depart_Equipamento WHERE id_departamento = ?");
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM depart_equipamento WHERE id_departamento = ?");
 
             pstmt.setInt(1, IdDepart);
             rs = pstmt.executeQuery();
@@ -106,7 +106,7 @@ public class Departamento_EquipamentoDAO {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's
-            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Depart_Equipamento WHERE id_equipamento = ?");
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM depart_equipamento WHERE id_equipamento = ?");
 
             pstmt.setInt(1, IdEquipamento);
             rs = pstmt.executeQuery();
@@ -119,7 +119,7 @@ public class Departamento_EquipamentoDAO {
         return rs;
     }
 
-//    Metodo Upadate - CRUD
+//    Metodo Update - CRUD
     public int alterarDepartementoEquipamento(Departamento_Equipamento dpE) {
 
         // Criando a conexão com o Banco de Dados:
@@ -130,7 +130,7 @@ public class Departamento_EquipamentoDAO {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's:
-            PreparedStatement pstmt = conn.prepareStatement("UPDATE Depart_equipamento SET id_departamento = ?, id_equipamento = ? WHERE id_departamento = ?");
+            PreparedStatement pstmt = conn.prepareStatement("UPDATE depart_equipamento SET id_departamento = ?, id_equipamento = ? WHERE id_departamento = ?");
 
             pstmt.setInt(1, dpE.getIdDepartamento());
             pstmt.setInt(2, dpE.getIdEquipamento());
@@ -160,7 +160,7 @@ public class Departamento_EquipamentoDAO {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's
-            PreparedStatement pstmt = conn.prepareStatement("DELETE FROM Depart_equipamento WHERE id_Departamento = ?");
+            PreparedStatement pstmt = conn.prepareStatement("DELETE FROM depart_equipamento WHERE id_departamento = ?");
 
             pstmt.setInt(1, id);
 

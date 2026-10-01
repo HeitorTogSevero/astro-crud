@@ -18,7 +18,7 @@ public class EstruturaDAO {
             conn =conexao.conectar();
 
             // Interface para realizar comandos SQL's
-            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO Estrutura (id_empresa, risco, descricao) VALUES (?, ?, ?)");
+            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO estrutura (id_empresa, risco, descricao) VALUES (?, ?, ?)");
 
             pstmt.setInt(1, est.getIdEmpresa());
             pstmt.setString(2, est.getRisco());
@@ -51,7 +51,7 @@ public class EstruturaDAO {
             // Interface para realizar comandos SQL's:
             Statement pstmt = conn.createStatement();
 
-            ResultSet rs = pstmt.executeQuery("SELECT * FROM Estrutura ORDER BY 1");
+            ResultSet rs = pstmt.executeQuery("SELECT * FROM estrutura ORDER BY 1");
 
             while(rs.next()){
                 vet.add(new Estrutura(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4)));
@@ -78,7 +78,7 @@ public class EstruturaDAO {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's
-            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Estrutura WHERE id_estrutura = ?");
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM estrutura WHERE id_estrutura = ?");
 
             pstmt.setInt(1, IdEstrutura);
             rs = pstmt.executeQuery();
@@ -104,7 +104,7 @@ public class EstruturaDAO {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's
-            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Estrutura WHERE id_empresa = ?");
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM estrutura WHERE id_empresa = ?");
 
             pstmt.setInt(1, IdEmpresa);
             rs = pstmt.executeQuery();
@@ -129,7 +129,7 @@ public class EstruturaDAO {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's:
-            PreparedStatement pstmt = conn.prepareStatement("UPDATE Estrutura SET id_empresa = ?, risco = ?, descricao = ? WHERE id_estrutura = ?");
+            PreparedStatement pstmt = conn.prepareStatement("UPDATE estrutura SET id_empresa = ?, risco = ?, descricao = ? WHERE id_estrutura = ?");
 
             pstmt.setInt(1, est.getIdEmpresa());
             pstmt.setString(2, est.getRisco());
@@ -161,7 +161,7 @@ public class EstruturaDAO {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's
-            PreparedStatement pstmt = conn.prepareStatement("DELETE FROM Estrutura WHERE  id_estrutura = ?");
+            PreparedStatement pstmt = conn.prepareStatement("DELETE FROM estrutura WHERE id_estrutura = ?");
 
             pstmt.setInt(1, id);
 

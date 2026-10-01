@@ -53,7 +53,7 @@ public class EmailDAO {
             // Interface para realizar comandos SQL's:
             Statement pstmt = conn.createStatement();
 
-            ResultSet rs = pstmt.executeQuery("SELECT * FROM Email ORDER BY 1");
+            ResultSet rs = pstmt.executeQuery("SELECT * FROM email ORDER BY 1");
 
             while(rs.next()){
                 vet.add(new Email(rs.getInt(1), rs.getInt(2), rs.getString(3)));
@@ -119,7 +119,7 @@ public ResultSet buscarPorIdEmail(int IdEmail){
         return rs;
     }
 
-    //    Metodo Upadate - CRUD
+    //    Metodo Update - CRUD
     public int alterarEmail(Email email) {
 
         // Criando a conexão com o Banco de Dados:
@@ -130,7 +130,7 @@ public ResultSet buscarPorIdEmail(int IdEmail){
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's:
-            PreparedStatement pstmt = conn.prepareStatement("UPDATE Email SET id_Funcionario = ?, email = ? WHERE id_email = ?");
+            PreparedStatement pstmt = conn.prepareStatement("UPDATE email SET id_funcionario = ?, email = ? WHERE id_email = ?");
 
 
             pstmt.setInt(1, email.getIdFuncionario());
@@ -162,7 +162,7 @@ public ResultSet buscarPorIdEmail(int IdEmail){
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's
-            PreparedStatement pstmt = conn.prepareStatement("DELETE FROM Email WHERE  id_email = ? OR email = ?");
+            PreparedStatement pstmt = conn.prepareStatement("DELETE FROM email WHERE  id_email = ? OR email = ?");
 
             pstmt.setInt(1, id);
             pstmt.setString(2, email);

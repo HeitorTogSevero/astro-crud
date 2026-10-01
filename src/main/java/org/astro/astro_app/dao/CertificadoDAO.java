@@ -20,7 +20,7 @@ public class CertificadoDAO {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's:
-            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO Certificado (id_funcionario, id_nrfuncionario, id_nrempresa, dt_emissao, validade) VALUES (?, ?, ?, ?, ? )");
+            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO certificado (id_funcionario, id_nrfuncionario, id_nrempresa, dt_emissao, validade) VALUES (?, ?, ?, ?, ? )");
 
             pstmt.setInt(1, c.getIdFuncionario());
             pstmt.setInt(2, c.getIdNrFuncionario());
@@ -57,7 +57,7 @@ public class CertificadoDAO {
             // Interface para realizar comandos SQL's:
             Statement pstmt = conn.createStatement();
 
-            ResultSet rs = pstmt.executeQuery("SELECT * FROM CERTIFICADO ORDER BY 1");
+            ResultSet rs = pstmt.executeQuery("SELECT * FROM certificado ORDER BY 1");
 
             while (rs.next()) {
                 vet.add(new Certificado(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4),rs.getDate(5), rs.getDate(6)));
@@ -111,7 +111,7 @@ public class CertificadoDAO {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's
-            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Certificado WHERE id_funcionario = ?");
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM certificado WHERE id_funcionario = ?");
 
             pstmt.setInt(1, IdFuncionario);
             resultSet = pstmt.executeQuery();
@@ -137,7 +137,7 @@ public class CertificadoDAO {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's
-            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Certificado WHERE id_nrfuncionario = ?");
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM certificado WHERE id_nrfuncionario = ?");
 
             pstmt.setInt(1, IdNrFunc);
             resultSet = pstmt.executeQuery();
@@ -163,7 +163,7 @@ public class CertificadoDAO {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's
-            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Certificado WHERE id_nrempresa = ?");
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM certificado WHERE id_nrempresa = ?");
 
             pstmt.setInt(1, IdEmpresa);
             resultSet = pstmt.executeQuery();
@@ -190,7 +190,7 @@ public class CertificadoDAO {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's
-            PreparedStatement pstmt = conn.prepareStatement("UPDATE Certificado set id_funcionario = ?, id_nrfuncionario = ?, id_nrempresa = ?, dt_emissao = ?,  validade = ? WHERE id_certificado = ?");
+            PreparedStatement pstmt = conn.prepareStatement("UPDATE certificado set id_funcionario = ?, id_nrfuncionario = ?, id_nrempresa = ?, dt_emissao = ?,  validade = ? WHERE id_certificado = ?");
 
             pstmt.setInt(1, c.getIdFuncionario());
             pstmt.setInt(2, c.getIdNrFuncionario());
@@ -224,7 +224,7 @@ public class CertificadoDAO {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's:
-            PreparedStatement pstmt = conn.prepareStatement("DELETE FROM Certificado where id_certificado = ?");
+            PreparedStatement pstmt = conn.prepareStatement("DELETE FROM certificado where id_certificado = ?");
 
             pstmt.setInt(1, id);
 

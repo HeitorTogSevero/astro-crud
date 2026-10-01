@@ -3,4 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
          version="6.0">
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file> <!--isso faz com que a primeira pagina que vai aparecer vai ser o index.html quando eu rodar o servlet -->
+    </welcome-file-list>
 </web-app>
