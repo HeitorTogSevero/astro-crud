@@ -1,4 +1,6 @@
 package org.astro.astro_app.Controller.ServletAlerta;
 
-public class ServletAdicionarAlerta {
+import com.sun.net.httpserver.HttpServer;
+
+public class ServletAdicionarAlerta{
 }
