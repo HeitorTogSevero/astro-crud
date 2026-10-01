@@ -89,7 +89,7 @@ public class AdministradorDAO {
 // Metodo Update - CRUD
     public int alterarAdministrador(Administrador admin){
 
-        // Criando Conexão com o Banco de Dados
+        // Criando a onexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
