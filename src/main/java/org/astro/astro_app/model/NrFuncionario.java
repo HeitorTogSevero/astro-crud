@@ -30,6 +30,14 @@ public class NrFuncionario {
 
     public NrFuncionario(){}
 
+    public NrFuncionario(int idNrDescricao, int numero, Date dtRealizacao, String titulo, String status) {
+        this.idNrDescricao = idNrDescricao;
+        this.numero = numero;
+        this.dtRealizacao = dtRealizacao;
+        this.titulo = titulo;
+        this.status = status;
+    }
+
     //Metodos Getters:
     public int getIdNrFunc() {
         return idNrFunc;

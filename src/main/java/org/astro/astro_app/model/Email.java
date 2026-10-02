@@ -18,6 +18,11 @@ public class Email {
 
     public Email(){}
 
+    public Email( int idFuncionario, String email) {
+        this.idFuncionario = idFuncionario;
+        this.email = email;
+    }
+
     // Metodos Getters:
     public int getIdEmail() {
         return idEmail;

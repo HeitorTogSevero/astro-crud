@@ -23,6 +23,13 @@ public class Alerta {
 
     }
 
+    public Alerta(int codigo, int idEmpresa, String descricao, Date dtLimite) {
+        this.codigo = codigo;
+        this.idEmpresa = idEmpresa;
+        this.descricao = descricao;
+        this.dtLimite = dtLimite;
+    }
+
     public int getIdAlerta() {
         return idAlerta;
     }

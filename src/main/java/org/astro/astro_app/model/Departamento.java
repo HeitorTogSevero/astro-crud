@@ -26,8 +26,15 @@ public class Departamento {
         this.atividade = atividade;
     }
 
-    public Departamento(){
+    public Departamento(){}
 
+    public Departamento(int idEmpresa, String grauRisco, int qtdFuncionario, String nome, String descricao, String atividade) {
+        this.idEmpresa = idEmpresa;
+        this.grauRisco = grauRisco;
+        this.qtdFuncionario = qtdFuncionario;
+        this.nome = nome;
+        this.descricao = descricao;
+        this.atividade = atividade;
     }
 
     //Metodos Getters

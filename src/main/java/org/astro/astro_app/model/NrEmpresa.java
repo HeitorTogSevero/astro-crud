@@ -26,8 +26,14 @@ public class NrEmpresa {
         this.dtRealização = dtRealização;
     }
 
-    public NrEmpresa(){
+    public NrEmpresa(){}
 
+    public NrEmpresa(int idNrDescricao, int numero, String titulo, String status, Date dtRealização) {
+        this.idNrDescricao = idNrDescricao;
+        this.numero = numero;
+        this.titulo = titulo;
+        this.status = status;
+        this.dtRealização = dtRealização;
     }
 
     //Metodos Getters
