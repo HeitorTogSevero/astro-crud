@@ -13,7 +13,6 @@ public class Estrutura {
 
     // Metodo Construtor da classe:|
 
-
     public Estrutura(int idEstrutura, int idEmpresa, String risco, String descricao) {
         this.idEstrutura = idEstrutura;
         this.idEmpresa = idEmpresa;
@@ -21,9 +20,14 @@ public class Estrutura {
         this.descricao = descricao;
     }
 
-    public Estrutura(){
+    public Estrutura(){}
 
+    public Estrutura(int idEmpresa, String risco, String descricao) {
+        this.idEmpresa = idEmpresa;
+        this.risco = risco;
+        this.descricao = descricao;
     }
+
     // Métodos Getters:
 
     public int getIdEstrutura() {

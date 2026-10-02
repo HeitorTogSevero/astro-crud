@@ -22,9 +22,14 @@ public class Equipamento {
         this.clasificacaoGov = clasificacaoGov;
     }
 
-    public Equipamento(){
+    public Equipamento(){}
 
+    public Equipamento(Date dtValidade, String nome, String clasificacaoGov) {
+        this.dtValidade = dtValidade;
+        this.nome = nome;
+        this.clasificacaoGov = clasificacaoGov;
     }
+
     //Métodos Getters:
 
     public int getIdEquipamento() {

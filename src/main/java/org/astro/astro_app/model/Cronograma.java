@@ -15,8 +15,6 @@ public class Cronograma {
 
 
     //Metodo construtor da classe
-
-
     public Cronograma(int idFuncionario, int idEmpresa, int idCronograma, Date agendamento) {
         this.idFuncionario = idFuncionario;
         this.idEmpresa = idEmpresa;
@@ -24,8 +22,12 @@ public class Cronograma {
         this.agendamento = agendamento;
     }
 
-    public Cronograma(){
+    public Cronograma(){}
 
+    public Cronograma(int idFuncionario, int idEmpresa, Date agendamento) {
+        this.idFuncionario = idFuncionario;
+        this.idEmpresa = idEmpresa;
+        this.agendamento = agendamento;
     }
 
     //Métodos Getters

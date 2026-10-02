@@ -25,8 +25,14 @@ public class DivisaoTreinamento {
         this.nome = nome;
     }
 
-    public DivisaoTreinamento(){
+    public DivisaoTreinamento(){}
 
+    public DivisaoTreinamento( int idCronograma, int codigo, int qtdFuncionario, int idEmpresa, String nome) {
+        this.idCronograma = idCronograma;
+        this.codigo = codigo;
+        this.qtdFuncionario = qtdFuncionario;
+        this.idEmpresa = idEmpresa;
+        this.nome = nome;
     }
 
     //Métodos Getters

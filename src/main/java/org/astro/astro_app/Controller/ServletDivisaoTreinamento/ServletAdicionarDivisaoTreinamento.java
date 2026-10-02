@@ -1,4 +1,9 @@
 package org.astro.astro_app.Controller.ServletDivisaoTreinamento;
 
-public class ServletAdicionarDivisaoTreinamento {
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.*;
+
+public class ServletAdicionarDivisaoTreinamento extends HttpServlet{
 }

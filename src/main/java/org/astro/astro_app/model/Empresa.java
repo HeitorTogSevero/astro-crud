@@ -36,8 +36,19 @@ public class Empresa {
         this.dtRegistro = dtRegistro;
     }
 
-    public Empresa(){
+    public Empresa(){}
 
+    public Empresa(int cnae, int qtdFuncionario, String nome, String cep, String cnpj, String rua, String estado, String bairro, String cidade, Date dtRegistro) {
+        this.cnae = cnae;
+        this.qtdFuncionario = qtdFuncionario;
+        this.nome = nome;
+        this.cep = cep;
+        this.cnpj = cnpj;
+        this.rua = rua;
+        this.estado = estado;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.dtRegistro = dtRegistro;
     }
 
     // Metodos Getters:
