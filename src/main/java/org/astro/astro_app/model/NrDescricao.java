@@ -20,8 +20,12 @@ public class NrDescricao {
         this.titulo = titulo;
     }
 
-    public NrDescricao(){
+    public NrDescricao(){}
 
+    public NrDescricao(String tempoReciclagem, String descricao, String titulo) {
+        this.tempoReciclagem = tempoReciclagem;
+        this.descricao = descricao;
+        this.titulo = titulo;
     }
 
     //Metodos Getters

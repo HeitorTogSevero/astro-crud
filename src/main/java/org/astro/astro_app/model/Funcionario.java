@@ -15,8 +15,6 @@ public class Funcionario {
 
 
     // Metodo Construtor da classe
-
-
     public Funcionario(String nome, String cargo, String cpf, int idEmpresa, int idFuncionario, int idDepartamento) {
         this.nome = nome;
         this.cargo = cargo;
@@ -28,6 +26,14 @@ public class Funcionario {
 
     public Funcionario(){
 
+    }
+
+    public Funcionario(String nome, String cargo, String cpf, int idEmpresa, int idDepartamento) {
+        this.nome = nome;
+        this.cargo = cargo;
+        this.cpf = cpf;
+        this.idEmpresa = idEmpresa;
+        this.idDepartamento = idDepartamento;
     }
 
     // Metodos Getters:

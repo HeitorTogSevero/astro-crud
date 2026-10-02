@@ -26,16 +26,15 @@ public class Certificado {
         this.dtValidade = dtValidade;
     }
 
-    public Certificado(int idFuncionario, int idNrFuncionario, Date dtEmissao, Date dtValidade) {
+    public Certificado(int idFuncionario, int idNrFuncionario, Date dtEmissao, Date dtValidade, int idNrEmpresa) {
         this.idFuncionario = idFuncionario;
         this.idNrFuncionario = idNrFuncionario;
         this.dtEmissao = dtEmissao;
         this.dtValidade = dtValidade;
+        this.idNrEmpresa = idNrEmpresa;
     }
 
-    public Certificado(){
-
-    }
+    public Certificado(){}
 
     // Metodo Getters:
 
