@@ -8,9 +8,8 @@ public class Empresa {
 
     //Atributos da classe
     private int idEmpresa;
-    private int cnae;
-    private int qtdFuncionario;
 
+    private String cnae;
     private String nome;
     private String cep;
     private String cnpj;
@@ -22,10 +21,9 @@ public class Empresa {
     private Date dtRegistro;
 
     // Metodo Construtor da classe:
-    public Empresa(int idEmpresa, int cnae, int qtdFuncionario, String nome, String cep, String cnpj, String rua, String estado, String bairro, String cidade, Date dtRegistro) {
+    public Empresa(int idEmpresa, String cnae, String nome, String cep, String cnpj, String rua, String estado, String bairro, String cidade, Date dtRegistro) {
         this.idEmpresa = idEmpresa;
         this.cnae = cnae;
-        this.qtdFuncionario = qtdFuncionario;
         this.nome = nome;
         this.cep = cep;
         this.cnpj = cnpj;
@@ -38,9 +36,8 @@ public class Empresa {
 
     public Empresa(){}
 
-    public Empresa(int cnae, int qtdFuncionario, String nome, String cep, String cnpj, String rua, String estado, String bairro, String cidade, Date dtRegistro) {
+    public Empresa(String cnae, String nome, String cep, String cnpj, String rua, String estado, String bairro, String cidade, Date dtRegistro) {
         this.cnae = cnae;
-        this.qtdFuncionario = qtdFuncionario;
         this.nome = nome;
         this.cep = cep;
         this.cnpj = cnpj;
@@ -57,12 +54,8 @@ public class Empresa {
         return idEmpresa;
     }
 
-    public int getCnae() {
+    public String getCnae() {
         return cnae;
-    }
-
-    public int getQtdFuncionario() {
-        return qtdFuncionario;
     }
 
     public String getNome() {

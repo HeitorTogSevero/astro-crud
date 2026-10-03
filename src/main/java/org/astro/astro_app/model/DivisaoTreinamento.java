@@ -8,7 +8,6 @@ public class DivisaoTreinamento {
     private int idDivisao;
     private int idCronograma;
     private int codigo;
-    private int qtdFuncionario;
     private int idEmpresa;
     private String nome;
 
@@ -16,21 +15,20 @@ public class DivisaoTreinamento {
     //Metodo construtor da classe
 
 
-    public DivisaoTreinamento(int idDivisao, int idCronograma, int codigo, int qtdFuncionario, int idEmpresa, String nome) {
+    public DivisaoTreinamento(int idDivisao, int idCronograma, int codigo, int idEmpresa, String nome) {
         this.idDivisao = idDivisao;
         this.idCronograma = idCronograma;
         this.codigo = codigo;
-        this.qtdFuncionario = qtdFuncionario;
         this.idEmpresa = idEmpresa;
         this.nome = nome;
     }
 
     public DivisaoTreinamento(){}
 
-    public DivisaoTreinamento( int idCronograma, int codigo, int qtdFuncionario, int idEmpresa, String nome) {
+    public DivisaoTreinamento( int idCronograma, int codigo, int idEmpresa, String nome) {
         this.idCronograma = idCronograma;
         this.codigo = codigo;
-        this.qtdFuncionario = qtdFuncionario;
+
         this.idEmpresa = idEmpresa;
         this.nome = nome;
     }
@@ -47,10 +45,6 @@ public class DivisaoTreinamento {
 
     public int getCodigo() {
         return codigo;
-    }
-
-    public int getQtdFuncionario() {
-        return qtdFuncionario;
     }
 
     public int getIdEmpresa() {

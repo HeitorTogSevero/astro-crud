@@ -17,13 +17,12 @@ public class DivisaoTreinamentoDAO {
         try{
             conn = conexao.conectar();
 
-            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO divisao_treinamento (nome, codigo, qtd_funcionario, id_empresa, id_cronograma) values (?,?,?,?,?)");
+            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO divisao_treinamento (nome, codigo, id_empresa, id_cronograma) values (?,?,?,?)");
 
             pstmt.setString(1, divisaoTreinamento.getNome());
             pstmt.setInt(2, divisaoTreinamento.getCodigo());
-            pstmt.setInt(3, divisaoTreinamento.getQtdFuncionario());
-            pstmt.setInt(4, divisaoTreinamento.getIdEmpresa());
-            pstmt.setInt(5, divisaoTreinamento.getIdCronograma());
+            pstmt.setInt(3, divisaoTreinamento.getIdEmpresa());
+            pstmt.setInt(4, divisaoTreinamento.getIdCronograma());
 
 
             if (pstmt.executeUpdate() > 0){
@@ -56,7 +55,7 @@ public class DivisaoTreinamentoDAO {
             ResultSet rs = statement.executeQuery("SELECT * FROM divisao_treinamento ORDER BY 1");
 
             while(rs.next()){
-                vet.add(new DivisaoTreinamento(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getInt(5), rs.getString(6)));
+                vet.add(new DivisaoTreinamento(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getString(5)));
             }
 
             statement.close();
@@ -142,18 +141,18 @@ public class DivisaoTreinamentoDAO {
         try{
             conn = conexao.conectar();
 
-            PreparedStatement pstmt = conn.prepareStatement("UPDATE divisao_treinamento set nome = ? , codigo = ? , qtd_funcionario = ? , id_empresa = ? , id_cronograma = ? WHERE id_divisao = ?");
+            PreparedStatement pstmt = conn.prepareStatement("UPDATE divisao_treinamento set nome = ? , codigo = ?, id_empresa = ? , id_cronograma = ? WHERE id_divisao = ?");
 
             pstmt.setString(1, divisaoTreinamento.getNome());
             pstmt.setInt(2, divisaoTreinamento.getCodigo());
-            pstmt.setInt(3, divisaoTreinamento.getQtdFuncionario());
-            pstmt.setInt(4, divisaoTreinamento.getIdEmpresa());
-            pstmt.setInt(5, divisaoTreinamento.getIdCronograma());
+            pstmt.setInt(3, divisaoTreinamento.getIdEmpresa());
+            pstmt.setInt(4, divisaoTreinamento.getIdCronograma());
+            pstmt.setInt(5, divisaoTreinamento.getIdDivisao());
 
             if (pstmt.executeUpdate() > 0){
-                return 0;
+                return 1;
             }
-            return 1;
+            return 0;
 
         }catch (SQLException sqle){
             System.out.println(sqle.getMessage());

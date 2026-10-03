@@ -1,5 +1,6 @@
-package org.astro.astro_app.Controller.Alerta;
+package org.astro.astro_app.Controller.ServletAlerta;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
@@ -7,8 +8,8 @@ import org.astro.astro_app.dao.AlertaDAO;
 
 import java.io.IOException;
 
-@WebServlet(name = "alertas", value = "deletar-alerta")
-public class ServletDeleteAlerta extends HttpServlet{
+@WebServlet(name = "ServletAlertas", value = "/deletar-alerta")
+public class ServletDeletarAlerta extends HttpServlet{
 
     private AlertaDAO alertaDAO;
 
@@ -27,8 +28,8 @@ public class ServletDeleteAlerta extends HttpServlet{
 
         if("excluir".equals(acao)){
 
-            String idTexto = request.getParameter("");
-            int id = Integer.parseInt(idTexto);
+            String IdTexto = request.getParameter("");
+            int id = Integer.parseInt(IdTexto);
 
             alertaDAO.remover(id);
 

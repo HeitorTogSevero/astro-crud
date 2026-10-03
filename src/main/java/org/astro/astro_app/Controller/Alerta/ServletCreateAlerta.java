@@ -1,5 +1,6 @@
-package org.astro.astro_app.Controller.Alerta;
+package org.astro.astro_app.Controller.ServletAlerta;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
@@ -9,12 +10,12 @@ import java.sql.Date;
 
 import java.io.IOException;
 
-@WebServlet (name = "alertas", value = "/adicionar-alerta")
-public class ServletCreateAlerta extends HttpServlet{
+@WebServlet (name = "ServletAlertas", value = "/adicionar-alerta")
+public class ServletAdicionarAlerta extends HttpServlet{
 
     private AlertaDAO alertaDAO;
 
-    @Override
+
     public void init(){
         alertaDAO = new AlertaDAO();
     }
@@ -24,8 +25,8 @@ public class ServletCreateAlerta extends HttpServlet{
             HttpServletResponse response
     ) throws ServletException, IOException {
 
-       String codigoTexto = request.getParameter("");
-       int codigo = Integer.parseInt(codigoTexto);// Transformei o parametro em Inteiro
+        String codigoTexto = request.getParameter("");
+        int codigo = Integer.parseInt(codigoTexto);// Transformei o parametro em Inteiro
 
         String idEmpresaTexto = request.getParameter("");
         int idEmpresa = Integer.parseInt(idEmpresaTexto);// Transformei o parametro em Inteiro
@@ -38,6 +39,7 @@ public class ServletCreateAlerta extends HttpServlet{
 
         if(dtLimiteTexto != null && !dtLimiteTexto.isBlank()){
             DataLimite = Date.valueOf(dtLimiteTexto);// Transformei o parametro em Date
+            return;
         }
 
         Alerta novoAlerta = new Alerta(
@@ -49,7 +51,7 @@ public class ServletCreateAlerta extends HttpServlet{
 
         alertaDAO.inserir(novoAlerta);
 
-        response.sendRedirect("alerta");
+        response.sendRedirect(request.getContextPath() + "/alertas");
 
     }
 
