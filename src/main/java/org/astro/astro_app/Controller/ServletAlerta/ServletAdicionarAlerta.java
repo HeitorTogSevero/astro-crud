@@ -10,7 +10,7 @@ import java.sql.Date;
 
 import java.io.IOException;
 
-@WebServlet (name = "alertas", value = "/adicionar-alerta")
+@WebServlet (name = "ServletAlertas", value = "/adicionar-alerta")
 public class ServletAdicionarAlerta extends HttpServlet{
 
     private AlertaDAO alertaDAO;
@@ -25,8 +25,8 @@ public class ServletAdicionarAlerta extends HttpServlet{
             HttpServletResponse response
     ) throws ServletException, IOException {
 
-       String codigoTexto = request.getParameter("");
-       int codigo = Integer.parseInt(codigoTexto);// Transformei o parametro em Inteiro
+        String codigoTexto = request.getParameter("");
+        int codigo = Integer.parseInt(codigoTexto);// Transformei o parametro em Inteiro
 
         String idEmpresaTexto = request.getParameter("");
         int idEmpresa = Integer.parseInt(idEmpresaTexto);// Transformei o parametro em Inteiro
@@ -51,7 +51,7 @@ public class ServletAdicionarAlerta extends HttpServlet{
 
         alertaDAO.inserir(novoAlerta);
 
-        response.sendRedirect("alerta");
+        response.sendRedirect(request.getContextPath() + "/alertas");
 
     }
 

@@ -108,9 +108,9 @@ public class NrDescricaoDAO {
 
 
             if (pstmt.executeUpdate() > 0){
-                return 0;
+                return 1;
             }
-            return 1;
+            return 0;
 
         }catch (SQLException sqle){
             System.out.println(sqle.getMessage());
