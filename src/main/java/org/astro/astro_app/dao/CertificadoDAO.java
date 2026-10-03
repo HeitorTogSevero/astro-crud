@@ -200,10 +200,10 @@ public class CertificadoDAO {
             pstmt.setInt(6, c.getIdCertificado());
 
             if (pstmt.executeUpdate() > 0){
-                return 0;
+                return 1;
             }
 
-            return 1;
+            return 0;
 
         }catch (SQLException sqlE){
             System.out.println(sqlE.getMessage());

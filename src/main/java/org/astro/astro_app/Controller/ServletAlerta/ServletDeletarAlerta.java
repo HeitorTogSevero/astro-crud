@@ -8,7 +8,7 @@ import org.astro.astro_app.dao.AlertaDAO;
 
 import java.io.IOException;
 
-@WebServlet(name = "alertas", value = "deletar-alerta")
+@WebServlet(name = "ServletAlertas", value = "/deletar-alerta")
 public class ServletDeletarAlerta extends HttpServlet{
 
     private AlertaDAO alertaDAO;
