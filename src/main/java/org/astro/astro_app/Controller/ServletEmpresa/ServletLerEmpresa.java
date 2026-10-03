@@ -1,9 +1,0 @@
-package org.astro.astro_app.Controller.ServletEmpresa;
-
-import jakarta.servlet.RequestDispatcher;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.*;
-
-public class ServletLerEmpresa extends HttpServlet{
-}
