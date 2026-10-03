@@ -10,11 +10,11 @@ import java.sql.Date;
 import java.io.IOException;
 
 @WebServlet (name = "alertas", value = "/adicionar-alerta")
-public class ServletAdicionarAlerta extends HttpServlet{
+public class ServletCreateAlerta extends HttpServlet{
 
     private AlertaDAO alertaDAO;
 
-
+    @Override
     public void init(){
         alertaDAO = new AlertaDAO();
     }
@@ -38,7 +38,6 @@ public class ServletAdicionarAlerta extends HttpServlet{
 
         if(dtLimiteTexto != null && !dtLimiteTexto.isBlank()){
             DataLimite = Date.valueOf(dtLimiteTexto);// Transformei o parametro em Date
-            return;
         }
 
         Alerta novoAlerta = new Alerta(

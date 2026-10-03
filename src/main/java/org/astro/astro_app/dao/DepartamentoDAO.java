@@ -66,23 +66,33 @@ public class DepartamentoDAO {
     }
 
     //metodo read - por id
-    public ResultSet buscarPorIdDepart(int IdDepart){
-
+    public Departamento buscarPorIdDepart(int idDepart) {
         Conexao conexao = new Conexao();
         Connection conn = null;
-        ResultSet rs = null;
 
-        try{
+        try {
             conn = conexao.conectar();
-
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM departamento WHERE id_departamento = ?");
-            pstmt.setInt(1, IdDepart);
-            rs = pstmt.executeQuery();
+            pstmt.setInt(1, idDepart);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                return new Departamento(
+                        rs.getInt("id_departamento"),
+                        rs.getInt("id_empresa"),
+                        rs.getString("grau_risco"),
+                        rs.getInt("qtd_funcionario"),
+                        rs.getString("nome"),
+                        rs.getString("descricao"),
+                        rs.getString("atividade"));
+            }
+            return null;
+
         } catch (SQLException sqle) {
             System.out.println(sqle.getMessage());
-        }finally {
+            return null;
+        } finally {
             conexao.desconectar(conn);
-            return rs;
         }
     }
 
@@ -124,6 +134,7 @@ public class DepartamentoDAO {
             pstmt.setString(4, depto.getAtividade());
             pstmt.setInt(5, depto.getQtdFuncionario());
             pstmt.setInt(6, depto.getIdEmpresa());
+            pstmt.setInt(7, depto.getIdDepartamento());
 
             if (pstmt.executeUpdate() > 0){
                 return 0;

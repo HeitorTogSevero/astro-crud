@@ -2,5 +2,5 @@ package org.astro.astro_app.Controller.DivisaoTreinamento;
 
 import jakarta.servlet.http.*;
 
-public class ServletLerDivisaoTreinamento extends HttpServlet{
+public class ServletReadDivisaoTreinamento extends HttpServlet{
 }

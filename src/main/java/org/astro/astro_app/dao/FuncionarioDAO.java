@@ -21,14 +21,13 @@ public class FuncionarioDAO {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's:
-            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO funcionario (nome, cargo, cpf, id_empresa, id_funcionario, id_departamento) VALUES (?, ?, ?, ?, ?, ? )");
+            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO funcionario (nome, cargo, cpf, id_empresa, id_departamento) VALUES (?, ?, ?, ?, ?)");
 
             pstmt.setString(1, f.getNome());
             pstmt.setString(2, f.getCargo());
             pstmt.setString(3, f.getCpf());
             pstmt.setInt(4, f.getIdEmpresa());
-            pstmt.setInt(5, f.getIdFuncionario());
-            pstmt.setInt(6, f.getIdDepartamento());
+            pstmt.setInt(5, f.getIdDepartamento());
 
 
 //            Verificacao para saber se o INSERT funcionou:
@@ -78,27 +77,31 @@ public class FuncionarioDAO {
     }
 
 //    Metodo Read | Select - CRUD, mas baseado no ID
-    public ResultSet buscarPorIdFunc(int IdFunc) {
-
+    public Funcionario buscarPorIdFunc(int idFunc) {
         Conexao conexao = new Conexao();
         Connection conn = null;
-        ResultSet resultSet = null;
 
         try {
             conn = conexao.conectar();
-
-            // Interface para realizar comandos SQL's
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM funcionario WHERE id_funcionario = ?");
+            pstmt.setInt(1, idFunc);
+            ResultSet rs = pstmt.executeQuery();
 
-            pstmt.setInt(1, IdFunc);
-            resultSet = pstmt.executeQuery();
-
-        } catch (SQLException sqlE) {
-            System.out.println(sqlE.getMessage());
-
+            if (rs.next()) {
+                return new Funcionario(
+                        rs.getString("nome"),
+                        rs.getString("cargo"),
+                        rs.getString("cpf"),
+                        rs.getInt("id_empresa"),
+                        rs.getInt("id_funcionario"),
+                        rs.getInt("id_departamento"));
+            }
+            return null;
+        } catch (SQLException sqle) {
+            System.out.println(sqle.getMessage());
+            return null;
         } finally {
-            conexao.desconectar(conn); // desconectando do Banco
-            return resultSet;
+            conexao.desconectar(conn);
         }
     }
 

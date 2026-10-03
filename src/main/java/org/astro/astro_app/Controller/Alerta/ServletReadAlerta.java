@@ -9,8 +9,8 @@ import org.astro.astro_app.model.Alerta;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "alertas", value = "lista-alerta")
-public class ServletLerAlerta extends HttpServlet{
+@WebServlet(name = "alertas", value = "/listar-alerta")
+public class ServletReadAlerta extends HttpServlet{
 
     private AlertaDAO alertaDAO;
 
@@ -29,7 +29,7 @@ public class ServletLerAlerta extends HttpServlet{
         request.setAttribute("alertas", alertas);
 
         request.getRequestDispatcher(
-                "/webapp/WEB-INF/alerta.html"
+                "/webapp/WEB-INF/alerta.jsp"
         ).forward(request, response);
 
     }

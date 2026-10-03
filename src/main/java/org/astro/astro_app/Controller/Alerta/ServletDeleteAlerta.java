@@ -8,7 +8,7 @@ import org.astro.astro_app.dao.AlertaDAO;
 import java.io.IOException;
 
 @WebServlet(name = "alertas", value = "deletar-alerta")
-public class ServletDeletarAlerta extends HttpServlet{
+public class ServletDeleteAlerta extends HttpServlet{
 
     private AlertaDAO alertaDAO;
 
@@ -27,8 +27,8 @@ public class ServletDeletarAlerta extends HttpServlet{
 
         if("excluir".equals(acao)){
 
-            String IdTexto = request.getParameter("");
-            int id = Integer.parseInt(IdTexto);
+            String idTexto = request.getParameter("");
+            int id = Integer.parseInt(idTexto);
 
             alertaDAO.remover(id);
 
