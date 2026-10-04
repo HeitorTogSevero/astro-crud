@@ -28,9 +28,6 @@ public class ServletCreateDepartamento extends HttpServlet {
 
         String grauRisco = request.getParameter("grau_risco");
 
-        String qtdFuncionarioTexto = request.getParameter("qtd_funcionario");
-        int qtdFuncionario = Integer.parseInt(qtdFuncionarioTexto);
-
         String nome = request.getParameter("nome");
         String descricao = request.getParameter("descricao");
         String atividade = request.getParameter("atividade");
@@ -38,7 +35,6 @@ public class ServletCreateDepartamento extends HttpServlet {
         Departamento departamento = new Departamento(
                 idEmpresa,
                 grauRisco,
-                qtdFuncionario,
                 nome,
                 descricao,
                 atividade

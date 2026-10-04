@@ -2,28 +2,29 @@ package org.astro.astro_app.dao;
 
 import org.astro.astro_app.Conexão.Conexao;
 import org.astro.astro_app.model.DivisaoTreinamento;
-import org.astro.astro_app.model.Empresa;
 
 import java.sql.*;
 import java.util.ArrayList;
 
+// Classe DAO DivisaoTreinamento - CRUD:
 public class DivisaoTreinamentoDAO {
-    //metodo insert
+
+    // Metodo Create | Insert - CRUD
     public boolean inserir(DivisaoTreinamento divisaoTreinamento){
 
+        // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
         try{
             conn = conexao.conectar();
 
-            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO divisao_treinamento (nome, codigo, id_empresa, id_cronograma) values (?,?,?,?)");
+            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO divisao_treinamento (nome, codigo, id_empresa, id_cronograma) VALUES (?, ?, ?, ?)");
 
             pstmt.setString(1, divisaoTreinamento.getNome());
             pstmt.setInt(2, divisaoTreinamento.getCodigo());
             pstmt.setInt(3, divisaoTreinamento.getIdEmpresa());
             pstmt.setInt(4, divisaoTreinamento.getIdCronograma());
-
 
             if (pstmt.executeUpdate() > 0){
                 return true;
@@ -34,114 +35,142 @@ public class DivisaoTreinamentoDAO {
             System.out.println(sqle.getMessage());
             return false;
         }finally {
-            conexao.desconectar(conn);
+            conexao.desconectar(conn); // desconectando do Banco
         }
-
-
     }
 
-    //metodo read
+    // Metodo Read | Select - CRUD
     public ArrayList<DivisaoTreinamento> buscar(){
 
+        // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-        ArrayList <DivisaoTreinamento> vet = new ArrayList<>();
+        ArrayList<DivisaoTreinamento> vet = new ArrayList<>();
 
         try{
             conn = conexao.conectar();
 
-            Statement statement = conn.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM divisao_treinamento ORDER BY 1");
+            // Interface para realizar comandos SQL's:
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM divisao_treinamento ORDER BY id_divisao");
 
             while(rs.next()){
-                vet.add(new DivisaoTreinamento(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getString(5)));
+                // ordem do construtor: (idDivisao, idCronograma, codigo, idEmpresa, nome)
+                vet.add(new DivisaoTreinamento(rs.getInt("id_divisao"), rs.getInt("id_cronograma"), rs.getInt("codigo"), rs.getInt("id_empresa"), rs.getString("nome")));
             }
 
-            statement.close();
+            stmt.close();
+
         }catch (SQLException sqle){
             System.out.println(sqle.getMessage());
         }finally {
             conexao.desconectar(conn);
         }
+
         return vet;
     }
 
-//metodo read por id
-    public ResultSet buscarPorIdDiv(int IdDivisao){
+    // Metodo Read | Select - CRUD, mas baseado no Id da divisao
+    public DivisaoTreinamento buscarPorIdDiv(int idDivisao){
 
+        // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
-        ResultSet rs = null;
 
         try{
             conn = conexao.conectar();
 
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM divisao_treinamento WHERE id_divisao = ?");
 
-            pstmt.setInt(1, IdDivisao);
-            rs = pstmt.executeQuery();
+            pstmt.setInt(1, idDivisao);
+
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                return new DivisaoTreinamento(rs.getInt("id_divisao"), rs.getInt("id_cronograma"), rs.getInt("codigo"), rs.getInt("id_empresa"), rs.getString("nome"));
+            }
+            return null;
+
         } catch (SQLException sqle){
             System.out.println(sqle.getMessage());
+            return null;
         } finally {
             conexao.desconectar(conn);
-            return rs;
         }
     }
 
-    //metodo read por id
-    public ResultSet buscarPorIdEmpresa(int IdEmpresa){
+    // Metodo Read | Select - CRUD, mas baseado no Id da empresa
+    public ArrayList<DivisaoTreinamento> buscarPorIdEmpresa(int idEmpresa){
 
         Conexao conexao = new Conexao();
         Connection conn = null;
-        ResultSet rs = null;
+
+        ArrayList<DivisaoTreinamento> vet = new ArrayList<>();
 
         try{
             conn = conexao.conectar();
 
-            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM divisao_treinamento WHERE id_empresa = ?");
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM divisao_treinamento WHERE id_empresa = ? ORDER BY id_divisao");
 
-            pstmt.setInt(1, IdEmpresa);
-            rs = pstmt.executeQuery();
+            pstmt.setInt(1, idEmpresa);
+
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                vet.add(new DivisaoTreinamento(rs.getInt("id_divisao"), rs.getInt("id_cronograma"), rs.getInt("codigo"), rs.getInt("id_empresa"), rs.getString("nome")));
+            }
+
         } catch (SQLException sqle){
             System.out.println(sqle.getMessage());
         } finally {
             conexao.desconectar(conn);
-            return rs;
         }
+
+        return vet;
     }
 
-//metodo read por id
-    public ResultSet buscarPorIdCronograma(int IdCronogrma){
+    // Metodo Read | Select - CRUD, mas baseado no Id do cronograma
+    public ArrayList<DivisaoTreinamento> buscarPorIdCronograma(int idCronograma){
 
         Conexao conexao = new Conexao();
         Connection conn = null;
-        ResultSet rs = null;
+
+        ArrayList<DivisaoTreinamento> vet = new ArrayList<>();
 
         try{
             conn = conexao.conectar();
 
-            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM divisao_treinamento WHERE id_cronograma = ?");
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM divisao_treinamento WHERE id_cronograma = ? ORDER BY id_divisao");
 
-            pstmt.setInt(1, IdCronogrma);
-            rs = pstmt.executeQuery();
+            pstmt.setInt(1, idCronograma);
+
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                vet.add(new DivisaoTreinamento(rs.getInt("id_divisao"), rs.getInt("id_cronograma"), rs.getInt("codigo"), rs.getInt("id_empresa"), rs.getString("nome")));
+            }
+
         } catch (SQLException sqle){
             System.out.println(sqle.getMessage());
         } finally {
             conexao.desconectar(conn);
-            return rs;
         }
+
+        return vet;
     }
 
-    //metodo update
-    public int alterarEmpresa(DivisaoTreinamento divisaoTreinamento){
+    // Metodo Update - CRUD
+    public int alterarDivisaoTreinamento(DivisaoTreinamento divisaoTreinamento){
+
+        // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
         try{
             conn = conexao.conectar();
 
-            PreparedStatement pstmt = conn.prepareStatement("UPDATE divisao_treinamento set nome = ? , codigo = ?, id_empresa = ? , id_cronograma = ? WHERE id_divisao = ?");
+            PreparedStatement pstmt = conn.prepareStatement("UPDATE divisao_treinamento set nome = ?, codigo = ?, id_empresa = ?, id_cronograma = ? WHERE id_divisao = ?");
 
             pstmt.setString(1, divisaoTreinamento.getNome());
             pstmt.setInt(2, divisaoTreinamento.getCodigo());
@@ -160,12 +189,12 @@ public class DivisaoTreinamentoDAO {
         }finally {
             conexao.desconectar(conn);
         }
-
-
     }
 
-    //metodo delete
-    public int remover(int id){
+    // Metodo Delete | Remove - CRUD
+    public int remover(int idDivisao){
+
+        // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
@@ -174,18 +203,18 @@ public class DivisaoTreinamentoDAO {
 
             PreparedStatement pstmt = conn.prepareStatement("DELETE FROM divisao_treinamento WHERE id_divisao = ?");
 
-            pstmt.setInt(1, id);
+            pstmt.setInt(1, idDivisao);
 
-            if (pstmt.executeUpdate() == 0) {
-                return 0;
+            if (pstmt.executeUpdate() > 0){
+                return 1;
             }
-            return 1;
+            return 0;
+
         }catch (SQLException sqle){
             System.out.println(sqle.getMessage());
-            return  -1;
+            return -1;
         }finally {
             conexao.desconectar(conn);
         }
-
     }
 }

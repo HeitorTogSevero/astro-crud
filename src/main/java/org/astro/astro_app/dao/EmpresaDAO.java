@@ -6,17 +6,20 @@ import org.astro.astro_app.model.Empresa;
 import java.sql.*;
 import java.util.ArrayList;
 
+// Classe DAO Empresa - CRUD:
 public class EmpresaDAO {
-    //metodo inssert
+
+    // Metodo Create | Insert - CRUD
     public boolean inserir(Empresa empresa){
 
+        // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
         try{
             conn = conexao.conectar();
 
-            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO empresa (nome, cnae, rua, cep, cidade, bairro, estado, cnpj, dt_registro) values (?,?,?,?,?,?,?,?,?)");
+            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO empresa (nome, cnae, rua, cep, cidade, bairro, estado, cnpj, dt_registro) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
             pstmt.setString(1, empresa.getNome());
             pstmt.setString(2, empresa.getCnae());
@@ -26,7 +29,7 @@ public class EmpresaDAO {
             pstmt.setString(6, empresa.getBairro());
             pstmt.setString(7, empresa.getEstado());
             pstmt.setString(8, empresa.getCnpj());
-            pstmt.setDate(9, (Date) empresa.getDtRegistro());
+            pstmt.setDate(9, empresa.getDtRegistro());
 
             if (pstmt.executeUpdate() > 0){
                 return true;
@@ -39,67 +42,75 @@ public class EmpresaDAO {
         }finally {
             conexao.desconectar(conn);
         }
-
-
     }
 
-    //metodo read
+    // Metodo Read | Select - CRUD
     public ArrayList<Empresa> buscar(){
 
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-        ArrayList <Empresa> vet = new ArrayList<>();
+        ArrayList<Empresa> vet = new ArrayList<>();
 
         try{
             conn = conexao.conectar();
 
-            Statement statement = conn.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM empresa ORDER BY 1");
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM empresa ORDER BY id_empresa");
 
             while(rs.next()){
-                vet.add(new Empresa(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),  rs.getString(5),  rs.getString(6),  rs.getString(7),  rs.getString(8),  rs.getString(9), rs.getDate(10)));
+                vet.add(new Empresa(rs.getInt("id_empresa"), rs.getString("cnae"), rs.getString("nome"), rs.getString("cep"), rs.getString("cnpj"), rs.getString("rua"), rs.getString("estado"), rs.getString("bairro"), rs.getString("cidade"), rs.getDate("dt_registro")));
             }
 
-            statement.close();
+            stmt.close();
+
         }catch (SQLException sqle){
             System.out.println(sqle.getMessage());
         }finally {
             conexao.desconectar(conn);
         }
+
         return vet;
     }
 
-    //metodo read por id
-    public ResultSet buscarPorIdEmpresa(int IdEmpresa){
+    // Metodo Read | Select - CRUD, mas baseado no Id da empresa
+    public Empresa buscarPorIdEmpresa(int idEmpresa){
+
         Conexao conexao = new Conexao();
         Connection conn = null;
-        ResultSet rs = null;
 
         try{
             conn = conexao.conectar();
 
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM empresa WHERE id_empresa = ?");
 
-            pstmt.setInt(1, IdEmpresa);
-            rs = pstmt.executeQuery();
+            pstmt.setInt(1, idEmpresa);
+
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                return new Empresa(rs.getInt("id_empresa"), rs.getString("cnae"), rs.getString("nome"), rs.getString("cep"), rs.getString("cnpj"), rs.getString("rua"), rs.getString("estado"), rs.getString("bairro"), rs.getString("cidade"), rs.getDate("dt_registro"));
+            }
+            return null;
+
         } catch (SQLException sqle){
             System.out.println(sqle.getMessage());
+            return null;
         } finally {
             conexao.desconectar(conn);
-            return rs;
         }
     }
 
-    //metodo update
+    // Metodo Update - CRUD
     public int alterarEmpresa(Empresa empresa){
+
         Conexao conexao = new Conexao();
         Connection conn = null;
 
         try{
             conn = conexao.conectar();
 
-            PreparedStatement pstmt = conn.prepareStatement("UPDATE empresa set cnpj = ? , nome = ? , cnae = ? , bairro = ? , cep = ? , rua = ? , estado = ? , cidade = ?, dt_registro=? where id_empresa=?");
+            PreparedStatement pstmt = conn.prepareStatement("UPDATE empresa set cnpj = ?, nome = ?, cnae = ?, bairro = ?, cep = ?, rua = ?, estado = ?, cidade = ?, dt_registro = ? WHERE id_empresa = ?");
 
             pstmt.setString(1, empresa.getCnpj());
             pstmt.setString(2, empresa.getNome());
@@ -109,8 +120,8 @@ public class EmpresaDAO {
             pstmt.setString(6, empresa.getRua());
             pstmt.setString(7, empresa.getEstado());
             pstmt.setString(8, empresa.getCidade());
-            pstmt.setDate(9, (Date) empresa.getDtRegistro());
-
+            pstmt.setDate(9, empresa.getDtRegistro());
+            pstmt.setInt(10, empresa.getIdEmpresa());
 
             if (pstmt.executeUpdate() > 0){
                 return 1;
@@ -123,12 +134,11 @@ public class EmpresaDAO {
         }finally {
             conexao.desconectar(conn);
         }
-
-
     }
 
-    //metodo delete
-    public int remover(int id){
+    // Metodo Delete | Remove - CRUD
+    public int remover(int idEmpresa){
+
         Conexao conexao = new Conexao();
         Connection conn = null;
 
@@ -137,18 +147,18 @@ public class EmpresaDAO {
 
             PreparedStatement pstmt = conn.prepareStatement("DELETE FROM empresa WHERE id_empresa = ?");
 
-            pstmt.setInt(1, id);
+            pstmt.setInt(1, idEmpresa);
 
-            if (pstmt.executeUpdate() == 0) {
-                return 0;
+            if (pstmt.executeUpdate() > 0){
+                return 1;
             }
-            return 1;
+            return 0;
+
         }catch (SQLException sqle){
             System.out.println(sqle.getMessage());
-            return  -1;
+            return -1;
         }finally {
             conexao.desconectar(conn);
         }
-
     }
 }

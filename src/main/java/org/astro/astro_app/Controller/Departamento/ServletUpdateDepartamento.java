@@ -49,21 +49,15 @@ public class ServletUpdateDepartamento extends HttpServlet{
         int idDepartamento = Integer.parseInt(idDepartamentoTexto);
         String idEmpresaTexto = request.getParameter("id_empresa");
         int idEmpresa = Integer.parseInt(idEmpresaTexto);
-
         String grauRisco = request.getParameter("grau_risco");
-
         String nome = request.getParameter("nome");
         String descricao = request.getParameter("descricao");
         String atividade = request.getParameter("atividade");
-
-        String qtdFuncionarioTexto = request.getParameter("qtd_funcionario");
-        int qtdFuncionario = Integer.parseInt(qtdFuncionarioTexto);
 
         Departamento departamento = new Departamento(
                 idDepartamento,
                 idEmpresa,
                 grauRisco,
-                qtdFuncionario,   // faltava
                 nome,
                 descricao,
                 atividade

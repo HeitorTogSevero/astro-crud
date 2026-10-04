@@ -8,19 +8,15 @@ public class Departamento {
     private int idDepartamento;
     private int idEmpresa;
     private String grauRisco;
-    private int qtdFuncionario;
-
     private String nome;
     private String descricao;
     private String atividade;
 
-
     //Metodo contrutor da classe
-    public Departamento(int idDepartamento, int idEmpresa, String grauRisco, int qtdFuncionario, String nome, String descricao, String atividade) {
+    public Departamento(int idDepartamento, int idEmpresa, String grauRisco, String nome, String descricao, String atividade) {
         this.idDepartamento = idDepartamento;
         this.idEmpresa = idEmpresa;
         this.grauRisco = grauRisco;
-        this.qtdFuncionario = qtdFuncionario;
         this.nome = nome;
         this.descricao = descricao;
         this.atividade = atividade;
@@ -28,10 +24,9 @@ public class Departamento {
 
     public Departamento(){}
 
-    public Departamento(int idEmpresa, String grauRisco, int qtdFuncionario, String nome, String descricao, String atividade) {
+    public Departamento(int idEmpresa, String grauRisco, String nome, String descricao, String atividade) {
         this.idEmpresa = idEmpresa;
         this.grauRisco = grauRisco;
-        this.qtdFuncionario = qtdFuncionario;
         this.nome = nome;
         this.descricao = descricao;
         this.atividade = atividade;
@@ -49,10 +44,6 @@ public class Departamento {
 
     public String getGrauRisco() {
         return grauRisco;
-    }
-
-    public int getQtdFuncionario() {
-        return qtdFuncionario;
     }
 
     public String getNome() {

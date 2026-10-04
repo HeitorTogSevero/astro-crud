@@ -1,6 +1,5 @@
-package org.astro.astro_app.Controller.ServletAlerta;
+package org.astro.astro_app.Controller.Alerta;
 
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
@@ -11,7 +10,7 @@ import java.sql.Date;
 import java.io.IOException;
 
 @WebServlet (name = "ServletAlertas", value = "/adicionar-alerta")
-public class ServletAdicionarAlerta extends HttpServlet{
+public class ServletCreateAlerta extends HttpServlet{
 
     private AlertaDAO alertaDAO;
 
@@ -20,10 +19,7 @@ public class ServletAdicionarAlerta extends HttpServlet{
         alertaDAO = new AlertaDAO();
     }
 
-    protected void doPost(
-            HttpServletRequest request,
-            HttpServletResponse response
-    ) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String codigoTexto = request.getParameter("");
         int codigo = Integer.parseInt(codigoTexto);// Transformei o parametro em Inteiro

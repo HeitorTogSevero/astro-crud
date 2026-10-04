@@ -1,4 +1,4 @@
-package org.astro.astro_app.Controller.ServletAlerta;
+package org.astro.astro_app.Controller.Alerta;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet(name = "ServletAlertas", value = "/lista-alerta")
-public class ServletLerAlerta extends HttpServlet{
+public class ServletReadAlerta extends HttpServlet{
 
     private AlertaDAO alertaDAO;
 
@@ -20,18 +20,13 @@ public class ServletLerAlerta extends HttpServlet{
         alertaDAO = new AlertaDAO();
     }
 
-    protected void doGet(
-            HttpServletRequest request,
-            HttpServletResponse response
-    )throws ServletException, IOException{
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
 
         List<Alerta> alertas = alertaDAO.buscar();
 
         request.setAttribute("alertas", alertas);
 
-        request.getRequestDispatcher(
-                "/webapp/WEB-INF/alerta.jsp"
-        ).forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/AlertaJSP/ReadAlerta.jsp").forward(request, response);
 
         response.sendRedirect(request.getContextPath() + "/alertas");
     }

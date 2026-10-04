@@ -28,6 +28,6 @@ public class ServletReadDepartamento extends HttpServlet {
 
         request.setAttribute("departamentos", departamentos);
 
-        request.getRequestDispatcher("/WEB-INF/DepartamentoJSP/ReadDeprtamento.jsp").forward(request,response);
+        request.getRequestDispatcher("/WEB-INF/DepartamentoJSP/ReadDepartamento.jsp").forward(request,response);
     }
 }

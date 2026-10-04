@@ -1,4 +1,4 @@
-package org.astro.astro_app.Controller.ServletAlerta;
+package org.astro.astro_app.Controller.Alerta;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -9,7 +9,7 @@ import org.astro.astro_app.dao.AlertaDAO;
 import java.io.IOException;
 
 @WebServlet(name = "ServletAlertas", value = "/deletar-alerta")
-public class ServletDeletarAlerta extends HttpServlet{
+public class ServletDeleteAlerta extends HttpServlet{
 
     private AlertaDAO alertaDAO;
 
@@ -19,10 +19,7 @@ public class ServletDeletarAlerta extends HttpServlet{
     }
 
 
-    protected void doPost(
-            HttpServletRequest request,
-            HttpServletResponse response
-    )throws ServletException, IOException{
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
 
         String acao = request.getParameter("");
 

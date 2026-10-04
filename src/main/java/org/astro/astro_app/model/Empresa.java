@@ -1,11 +1,10 @@
 package org.astro.astro_app.model;
 
-import java.util.Date;
+import java.sql.Date;
 
 //Classe model Empresa
 public class Empresa {
     //Declaração de variáveis
-
     //Atributos da classe
     private int idEmpresa;
 

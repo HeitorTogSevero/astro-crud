@@ -6,18 +6,20 @@ import org.astro.astro_app.model.NrDescricao;
 import java.sql.*;
 import java.util.ArrayList;
 
+// Classe DAO NrDescricao - CRUD:
 public class NrDescricaoDAO {
 
-    //metodo inserir
+    // Metodo Create | Insert - CRUD
     public boolean inserir(NrDescricao nrDescricao){
 
+        // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
         try{
             conn = conexao.conectar();
 
-            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO nr_descricao (titulo, descricao, tempo_reciclagem) values (?,?,?)");
+            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO nr_descricao (titulo, descricao, tempo_reciclagem) VALUES (?, ?, ?)");
 
             pstmt.setString(1, nrDescricao.getTitulo());
             pstmt.setString(2, nrDescricao.getDescricao());
@@ -34,78 +36,80 @@ public class NrDescricaoDAO {
         }finally {
             conexao.desconectar(conn);
         }
-
-
     }
 
-    //metodo read
+    // Metodo Read | Select - CRUD
     public ArrayList<NrDescricao> buscar(){
 
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-        ArrayList <NrDescricao> vet = new ArrayList<>();
+        ArrayList<NrDescricao> vet = new ArrayList<>();
 
         try{
             conn = conexao.conectar();
 
-            Statement statement = conn.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM nr_descricao ORDER BY 1");
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM nr_descricao ORDER BY id_nrdescricao");
 
             while(rs.next()){
-                vet.add(new NrDescricao(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4)));
+                vet.add(new NrDescricao(rs.getInt("id_nrdescricao"), rs.getString("descricao"), rs.getString("tempo_reciclagem"), rs.getString("titulo")));
             }
 
-            statement.close();
+            stmt.close();
+
         }catch (SQLException sqle){
             System.out.println(sqle.getMessage());
         }finally {
             conexao.desconectar(conn);
         }
+
         return vet;
     }
 
+    // Metodo Read | Select - CRUD, mas baseado no Id
+    public NrDescricao buscarPorIdNrDescricao(int idNrDescricao){
 
-    //metodo read - com id
-    public ResultSet buscarPorIdNrDescricao(int IdNrDescricao){
         Conexao conexao = new Conexao();
         Connection conn = null;
-        ResultSet rs = null;
 
         try{
             conn = conexao.conectar();
 
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM nr_descricao WHERE id_nrdescricao = ?");
 
-            pstmt.setInt(1, IdNrDescricao);
-            rs = pstmt.executeQuery();
+            pstmt.setInt(1, idNrDescricao);
+
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                return new NrDescricao(rs.getInt("id_nrdescricao"), rs.getString("descricao"), rs.getString("tempo_reciclagem"), rs.getString("titulo"));
+            }
+            return null;
 
         } catch (SQLException sqle){
             System.out.println(sqle.getMessage());
+            return null;
         } finally {
             conexao.desconectar(conn);
-            return rs;
         }
-
-
-
     }
 
+    // Metodo Update - CRUD
+    public int alterarNrDescricao(NrDescricao nrDescricao){
 
-    //metodo update
-    public int alterarEmpresa(NrDescricao nrDescricao){
         Conexao conexao = new Conexao();
         Connection conn = null;
 
         try{
             conn = conexao.conectar();
 
-            PreparedStatement pstmt = conn.prepareStatement("UPDATE nr_descricao set titulo = ? , descricao = ? , tempo_reciclagem = ? WHERE id_nrdescricao=?");
+            PreparedStatement pstmt = conn.prepareStatement("UPDATE nr_descricao set titulo = ?, descricao = ?, tempo_reciclagem = ? WHERE id_nrdescricao = ?");
 
             pstmt.setString(1, nrDescricao.getTitulo());
             pstmt.setString(2, nrDescricao.getDescricao());
             pstmt.setString(3, nrDescricao.getTempoReciclagem());
-
+            pstmt.setInt(4, nrDescricao.getIdNrDescricao());
 
             if (pstmt.executeUpdate() > 0){
                 return 1;
@@ -118,13 +122,11 @@ public class NrDescricaoDAO {
         }finally {
             conexao.desconectar(conn);
         }
-
-
     }
 
+    // Metodo Delete | Remove - CRUD
+    public int remover(int idNrDescricao){
 
-    //metodo delete
-    public int remover(int id){
         Conexao conexao = new Conexao();
         Connection conn = null;
 
@@ -133,18 +135,18 @@ public class NrDescricaoDAO {
 
             PreparedStatement pstmt = conn.prepareStatement("DELETE FROM nr_descricao WHERE id_nrdescricao = ?");
 
-            pstmt.setInt(1, id);
+            pstmt.setInt(1, idNrDescricao);
 
-            if (pstmt.executeUpdate() == 0) {
-                return 0;
+            if (pstmt.executeUpdate() > 0){
+                return 1;
             }
-            return 1;
+            return 0;
+
         }catch (SQLException sqle){
             System.out.println(sqle.getMessage());
-            return  -1;
+            return -1;
         }finally {
             conexao.desconectar(conn);
         }
-
     }
 }
