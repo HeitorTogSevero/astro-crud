@@ -6,94 +6,96 @@ import org.astro.astro_app.model.Equipamento;
 import java.sql.*;
 import java.util.ArrayList;
 
+// Classe DAO Equipamento - CRUD:
 public class EquipamentoDAO {
 
-//    Metodo CREATE | Insert - CRUD
+    // Metodo Create | Insert - CRUD
     public boolean inserir(Equipamento equip){
 
-        // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
         try{
-            conn =conexao.conectar();
+            conn = conexao.conectar();
 
-            // Interface para realizar comandos SQL's
             PreparedStatement pstmt = conn.prepareStatement("INSERT INTO equipamento (dt_validade, nome, classificacao_gov) VALUES (?, ?, ?)");
 
             pstmt.setDate(1, equip.getDtValidade());
             pstmt.setString(2, equip.getNome());
             pstmt.setString(3, equip.getClasificacaoGov());
 
-            // Verificando se o Insert deu certo:
             if(pstmt.executeUpdate() > 0){
                 return true;
             }
             return false;
+
         }catch(SQLException sqlE){
             System.out.println(sqlE.getMessage());
             return false;
         }finally {
-            conexao.desconectar(conn);// desconectando do Banco
+            conexao.desconectar(conn);
         }
     }
 
-    //    Metofo READ | Select - CRUD
+    // Metodo READ | Select - CRUD
     public ArrayList<Equipamento> buscar(){
 
-        // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
+
         ArrayList<Equipamento> vet = new ArrayList<>();
 
         try{
             conn = conexao.conectar();
 
-            // Interface para realizar comandos SQL's:
-            Statement pstmt = conn.createStatement();
-
-            ResultSet rs = pstmt.executeQuery("SELECT * FROM equipamento ORDER BY 1");
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM equipamento ORDER BY id_equipamento");
 
             while(rs.next()){
-                vet.add(new Equipamento(rs.getInt(1), rs.getDate(2), rs.getString(3), rs.getString(4)));
+                vet.add(new Equipamento(rs.getInt("id_equipamento"), rs.getDate("dt_validade"), rs.getString("nome"), rs.getString("classificacao_gov")));
             }
+
+            stmt.close();
 
         }catch(SQLException sqlE){
             System.out.println(sqlE.getMessage());
         }finally{
-            conexao.desconectar(conn);// desconectando do Banco
+            conexao.desconectar(conn);
         }
+
         return vet;
     }
 
-    //    Metodo READ | Select - CRUD, mas baseado no ID
-    public ResultSet buscarPorIdEquipamento(int IdEquip){
+    // Metodo READ | Select - CRUD, mas baseado no Id do equipamento
+    public Equipamento buscarPorIdEquipamento(int idEquip){
 
-        // Criando a Conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
-
-        ResultSet rs = null;
 
         try{
             conn = conexao.conectar();
 
-            // Interface para realizar comandos SQL's
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM equipamento WHERE id_equipamento = ?");
 
-            pstmt.setInt(1, IdEquip);
-            rs = pstmt.executeQuery();
+            pstmt.setInt(1, idEquip);
+
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                return new Equipamento(rs.getInt("id_equipamento"), rs.getDate("dt_validade"), rs.getString("nome"), rs.getString("classificacao_gov"));
+            }
+            return null;
 
         }catch(SQLException sqlE){
             System.out.println(sqlE.getMessage());
+            return null;
         }finally {
-            conexao.desconectar(conn); // desconectando do Banco
+            conexao.desconectar(conn);
         }
-        return rs;
     }
 
-//    Metodo Update - CRUD
-    public int alterarEmail(Equipamento equip) {
+    // Metodo Update - CRUD
+    public int alterarEquipamento(Equipamento equip) {
 
         // Criando a conexão com o Banco de Dados:
         Conexao conexao = new Conexao();
@@ -102,30 +104,28 @@ public class EquipamentoDAO {
         try {
             conn = conexao.conectar();
 
-            // Interface para realizar comandos SQL's:
-            PreparedStatement pstmt = conn.prepareStatement("UPDATE equipamento SET  dt_validade = ?, nome = ?, classificacao_gov = ? WHERE id_equipamento = ?");
+            PreparedStatement pstmt = conn.prepareStatement("UPDATE equipamento SET dt_validade = ?, nome = ?, classificacao_gov = ? WHERE id_equipamento = ?");
 
             pstmt.setDate(1, equip.getDtValidade());
             pstmt.setString(2, equip.getNome());
             pstmt.setString(3, equip.getClasificacaoGov());
             pstmt.setInt(4, equip.getIdEquipamento());
 
-
             if(pstmt.executeUpdate() > 0){
                 return 1;
             }
-
             return 0;
+
         }catch(SQLException sqlE){
             System.out.println(sqlE.getMessage());
             return -1;
         }finally {
-            conexao.desconectar(conn);// desconectando do Banco
+            conexao.desconectar(conn);
         }
     }
 
-    //    Metodo DELETE - CRUD
-    public int remover(int id){
+    // Metodo DELETE - CRUD
+    public int remover(int idEquipamento){
 
         // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
@@ -134,20 +134,20 @@ public class EquipamentoDAO {
         try{
             conn = conexao.conectar();
 
-            // Interface para realizar comandos SQL's
-            PreparedStatement pstmt = conn.prepareStatement("DELETE FROM equipamento WHERE  id_equipamento = ?");
+            PreparedStatement pstmt = conn.prepareStatement("DELETE FROM equipamento WHERE id_equipamento = ?");
 
-            pstmt.setInt(1, id);
+            pstmt.setInt(1, idEquipamento);
 
-            if(pstmt.executeUpdate() == 0){
+            if(pstmt.executeUpdate() > 0){
                 return 1;
             }
             return 0;
+
         }catch(SQLException sqlE){
             System.out.println(sqlE.getMessage());
             return -1;
         }finally {
-            conexao.desconectar(conn);// desconectando do Banco
+            conexao.desconectar(conn);
         }
     }
 }

@@ -6,29 +6,31 @@ import org.astro.astro_app.model.Departamento;
 import java.sql.*;
 import java.util.ArrayList;
 
+// Classe DAO Departamento - CRUD:
 public class DepartamentoDAO {
 
-    //metodo insert
+    // Metodo Create | Insert - CRUD
     public boolean inserir(Departamento depto){
+
         Conexao conexao = new Conexao();
         Connection conn = null;
 
         try{
             conn = conexao.conectar();
 
-            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO departamento (nome, descricao, grau_risco, atividade, qtd_funcionario, id_empresa) VALUES (?,?,?,?,?,?)");
+            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO departamento (nome, descricao, grau_risco, atividade, id_empresa) VALUES (?, ?, ?, ?, ?)");
 
             pstmt.setString(1, depto.getNome());
             pstmt.setString(2, depto.getDescricao());
             pstmt.setString(3, depto.getGrauRisco());
             pstmt.setString(4, depto.getAtividade());
-            pstmt.setInt(5, depto.getQtdFuncionario());
-            pstmt.setInt(6, depto.getIdEmpresa());
+            pstmt.setInt(5, depto.getIdEmpresa());
 
-            if(pstmt.executeUpdate() > 0 ){
+            if(pstmt.executeUpdate() > 0){
                 return true;
             }
             return false;
+
         }catch (SQLException sqle){
             System.out.println(sqle.getMessage());
             return false;
@@ -37,98 +39,120 @@ public class DepartamentoDAO {
         }
     }
 
-    //metodo read
+    // Metodo Read | Select - CRUD
     public ArrayList<Departamento> buscar(){
 
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-        ArrayList<Departamento> vet= new ArrayList<>();
+        ArrayList<Departamento> vet = new ArrayList<>();
 
         try{
             conn = conexao.conectar();
 
-            Statement statement = conn.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM departamento ORDER BY 1");
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM departamento ORDER BY id_departamento");
 
             while(rs.next()){
-                vet.add(new Departamento(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getString(6), rs.getString(7)));
+                vet.add(new Departamento(rs.getInt("id_departamento"), rs.getInt("id_empresa"), rs.getString("grau_risco"), rs.getString("nome"), rs.getString("descricao"), rs.getString("atividade")));
             }
 
-            statement.close();
+            stmt.close();
 
         }catch (SQLException sqle){
-            System.out.println("O erro foi: " + sqle.getMessage());
+            System.out.println(sqle.getMessage());
         }finally {
-            conexao.desconectar(conn);
+            conexao.desconectar(conn); // desconectando do Banco
         }
+
         return vet;
     }
 
-    //metodo read - por id
-    public ResultSet buscarPorIdDepart(int IdDepart){
+    // Metodo Read | Select - CRUD, mas baseado no Id do departamento
+    public Departamento buscarPorIdDepart(int idDepart){
 
+        // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
-        ResultSet rs = null;
 
         try{
             conn = conexao.conectar();
 
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM departamento WHERE id_departamento = ?");
-            pstmt.setInt(1, IdDepart);
-            rs = pstmt.executeQuery();
+
+            pstmt.setInt(1, idDepart);
+
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                return new Departamento(rs.getInt("id_departamento"), rs.getInt("id_empresa"), rs.getString("grau_risco"), rs.getString("nome"), rs.getString("descricao"), rs.getString("atividade"));
+            }
+            return null;
+
         } catch (SQLException sqle) {
             System.out.println(sqle.getMessage());
-        }finally {
+            return null;
+        } finally {
             conexao.desconectar(conn);
-            return rs;
         }
     }
 
-//metodo read - por id
-    public ResultSet buscarPorIdEmpresa(int IdEmpresa){
+    // Metodo Read | Select - CRUD, mas baseado no Id da empresa
+    public ArrayList<Departamento> buscarPorIdEmpresa(int idEmpresa){
 
+        // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
-        ResultSet rs = null;
+
+        ArrayList<Departamento> vet = new ArrayList<>();
 
         try{
             conn = conexao.conectar();
 
-            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM departamento WHERE id_empresa = ?");
-            pstmt.setInt(1, IdEmpresa);
-            rs = pstmt.executeQuery();
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM departamento WHERE id_empresa = ? ORDER BY id_departamento");
+
+            pstmt.setInt(1, idEmpresa);
+
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                vet.add(new Departamento(rs.getInt("id_departamento"), rs.getInt("id_empresa"), rs.getString("grau_risco"), rs.getString("nome"), rs.getString("descricao"), rs.getString("atividade")));
+            }
+
         } catch (SQLException sqle) {
             System.out.println(sqle.getMessage());
-        }finally {
+        } finally {
             conexao.desconectar(conn);
-            return rs;
         }
+
+        return vet;
     }
 
-    //metodo update
+    // Metodo Update - CRUD
     public int alterarDepartamento(Departamento depto){
 
+        // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
         try{
             conn = conexao.conectar();
 
-            PreparedStatement pstmt = conn.prepareStatement("UPDATE departamento set nome = ?, descricao = ?, grau_risco=?, atividade=?, qtd_funcionario=?,id_empresa=? WHERE id_departamento=?");
+            // Interface para realizar comandos SQL's
+            PreparedStatement pstmt = conn.prepareStatement("UPDATE departamento set nome = ?, descricao = ?, grau_risco = ?, atividade = ?, id_empresa = ? WHERE id_departamento = ?");
 
             pstmt.setString(1, depto.getNome());
             pstmt.setString(2, depto.getDescricao());
             pstmt.setString(3, depto.getGrauRisco());
             pstmt.setString(4, depto.getAtividade());
-            pstmt.setInt(5, depto.getQtdFuncionario());
-            pstmt.setInt(6, depto.getIdEmpresa());
+            pstmt.setInt(5, depto.getIdEmpresa());
+            pstmt.setInt(6, depto.getIdDepartamento());
 
             if (pstmt.executeUpdate() > 0){
-                return 0;
+                return 1;
             }
-            return 1;
+            return 0;
+
         }catch (SQLException sqle){
             System.out.println(sqle.getMessage());
             return -1;
@@ -137,8 +161,10 @@ public class DepartamentoDAO {
         }
     }
 
-    //metodo delete
-    public int remover(int id){
+    // Metodo Delete | Remove - CRUD
+    public int remover(int idDepartamento){
+
+        // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
@@ -147,12 +173,13 @@ public class DepartamentoDAO {
 
             PreparedStatement pstmt = conn.prepareStatement("DELETE FROM departamento WHERE id_departamento = ?");
 
-            pstmt.setInt(1, id);
+            pstmt.setInt(1, idDepartamento);
 
-            if (pstmt.executeUpdate() == 0) {
-                return 0;
+            if (pstmt.executeUpdate() > 0){
+                return 1;
             }
-            return 1;
+            return 0;
+
         }catch (SQLException sqle){
             System.out.println(sqle.getMessage());
             return -1;

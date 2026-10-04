@@ -9,7 +9,7 @@ import java.util.ArrayList;
 // Classe DAO Certificado - CRUD:
 public class CertificadoDAO {
 
-//    Metodo Create | Insert - CRUD
+    // Metodo Create | Insert - CRUD
     public boolean inserir(Certificado c){
 
         // Criando a conexão com o banco de dados
@@ -20,7 +20,7 @@ public class CertificadoDAO {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's:
-            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO certificado (id_funcionario, id_nrfuncionario, id_nrempresa, dt_emissao, validade) VALUES (?, ?, ?, ?, ? )");
+            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO certificado (id_funcionario, id_nrfuncionario, id_nrempresa, dt_emissao, validade) VALUES (?, ?, ?, ?, ?)");
 
             pstmt.setInt(1, c.getIdFuncionario());
             pstmt.setInt(2, c.getIdNrFuncionario());
@@ -28,7 +28,7 @@ public class CertificadoDAO {
             pstmt.setDate(4, c.getDtEmissao());
             pstmt.setDate(5, c.getDtValidade());
 
-//            Verificacao para saber se o INSERT funcionou:
+            // Verificacao para saber se o INSERT funcionou:
             if (pstmt.executeUpdate() > 0){
                 return true;
             }
@@ -42,7 +42,7 @@ public class CertificadoDAO {
         }
     }
 
-//    Metodo Read | Select - CRUD
+    // Metodo Read | Select - CRUD
     public ArrayList<Certificado> buscar() {
 
         // Criando a conexão com o Banco de Dados
@@ -55,15 +55,14 @@ public class CertificadoDAO {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's:
-            Statement pstmt = conn.createStatement();
-
-            ResultSet rs = pstmt.executeQuery("SELECT * FROM certificado ORDER BY 1");
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM certificado ORDER BY id_certificado");
 
             while (rs.next()) {
-                vet.add(new Certificado(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4),rs.getDate(5), rs.getDate(6)));
+                vet.add(new Certificado(rs.getInt("id_certificado"), rs.getInt("id_funcionario"), rs.getInt("id_nrfuncionario"), rs.getInt("id_nrempresa"), rs.getDate("dt_emissao"), rs.getDate("validade")));
             }
 
-            pstmt.close();
+            stmt.close();
 
         } catch (SQLException sqlE) {
             System.out.println(sqlE.getMessage());
@@ -74,112 +73,133 @@ public class CertificadoDAO {
         return vet;
     }
 
-//    Metodo Read | Select - CRUD, mas baseado no ID
-    public ResultSet buscarPorIdCertificado(int IdCertificado) {
+    // Metodo Read | Select - CRUD, mas baseado no Id do certificado
+    public Certificado buscarPorIdCertificado(int idCertificado) {
 
+        // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
-        ResultSet resultSet = null;
 
         try {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's
-            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Certificado WHERE id_certificado = ?");
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM certificado WHERE id_certificado = ?");
 
-            pstmt.setInt(1, IdCertificado);
-            resultSet = pstmt.executeQuery();
+            pstmt.setInt(1, idCertificado);
+
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                return new Certificado(rs.getInt("id_certificado"), rs.getInt("id_funcionario"), rs.getInt("id_nrfuncionario"), rs.getInt("id_nrempresa"), rs.getDate("dt_emissao"), rs.getDate("validade"));
+            }
+            return null;
 
         } catch (SQLException sqlE) {
             System.out.println(sqlE.getMessage());
-
+            return null;
         } finally {
             conexao.desconectar(conn); // desconectando do Banco
-            return resultSet;
         }
-
     }
 
-//    Metodo Read | Select - CRUD, mas baseado no ID
-    public ResultSet buscarPorIdFuncionario(int IdFuncionario) {
+    // Metodo Read | Select - CRUD, mas baseado no Id do funcionario
+    public ArrayList<Certificado> buscarPorIdFuncionario(int idFuncionario) {
 
+        // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
-        ResultSet resultSet = null;
+
+        ArrayList<Certificado> vet = new ArrayList<>();
 
         try {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's
-            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM certificado WHERE id_funcionario = ?");
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM certificado WHERE id_funcionario = ? ORDER BY id_certificado");
 
-            pstmt.setInt(1, IdFuncionario);
-            resultSet = pstmt.executeQuery();
+            pstmt.setInt(1, idFuncionario);
+
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                vet.add(new Certificado(rs.getInt("id_certificado"), rs.getInt("id_funcionario"), rs.getInt("id_nrfuncionario"), rs.getInt("id_nrempresa"), rs.getDate("dt_emissao"), rs.getDate("validade")));
+            }
 
         } catch (SQLException sqlE) {
             System.out.println(sqlE.getMessage());
-
         } finally {
             conexao.desconectar(conn); // desconectando do Banco
-            return resultSet;
         }
 
+        return vet;
     }
 
-//    Metodo Read | Select - CRUD, mas baseado no ID
-    public ResultSet buscarPorIdNrFunc(int IdNrFunc) {
+    // Metodo Read | Select - CRUD, mas baseado no Id do nr_funcionario
+    public ArrayList<Certificado> buscarPorIdNrFunc(int idNrFunc) {
 
+        // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
-        ResultSet resultSet = null;
+
+        ArrayList<Certificado> vet = new ArrayList<>();
 
         try {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's
-            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM certificado WHERE id_nrfuncionario = ?");
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM certificado WHERE id_nrfuncionario = ? ORDER BY id_certificado");
 
-            pstmt.setInt(1, IdNrFunc);
-            resultSet = pstmt.executeQuery();
+            pstmt.setInt(1, idNrFunc);
+
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                vet.add(new Certificado(rs.getInt("id_certificado"), rs.getInt("id_funcionario"), rs.getInt("id_nrfuncionario"), rs.getInt("id_nrempresa"), rs.getDate("dt_emissao"), rs.getDate("validade")));
+            }
 
         } catch (SQLException sqlE) {
             System.out.println(sqlE.getMessage());
-
         } finally {
             conexao.desconectar(conn); // desconectando do Banco
-            return resultSet;
         }
 
+        return vet;
     }
 
-//    Metodo Read | Select - CRUD, mas baseado no ID
-    public ResultSet buscarPorIdEmpresa(int IdEmpresa) {
+    // Metodo Read | Select - CRUD, mas baseado no Id do nr_empresa
+    public ArrayList<Certificado> buscarPorIdEmpresa(int idNrEmpresa) {
 
+        // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
-        ResultSet resultSet = null;
+
+        ArrayList<Certificado> vet = new ArrayList<>();
 
         try {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's
-            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM certificado WHERE id_nrempresa = ?");
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM certificado WHERE id_nrempresa = ? ORDER BY id_certificado");
 
-            pstmt.setInt(1, IdEmpresa);
-            resultSet = pstmt.executeQuery();
+            pstmt.setInt(1, idNrEmpresa);
+
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                vet.add(new Certificado(rs.getInt("id_certificado"), rs.getInt("id_funcionario"), rs.getInt("id_nrfuncionario"), rs.getInt("id_nrempresa"), rs.getDate("dt_emissao"), rs.getDate("validade")));
+            }
 
         } catch (SQLException sqlE) {
             System.out.println(sqlE.getMessage());
-
         } finally {
             conexao.desconectar(conn); // desconectando do Banco
-            return resultSet;
         }
 
+        return vet;
     }
 
-
-    //    Metodo Update - CRUD
+    // Metodo Update - CRUD
     public int alterarCertificado(Certificado c){
 
         // Criando a conexão com o Banco de Dados
@@ -190,7 +210,7 @@ public class CertificadoDAO {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's
-            PreparedStatement pstmt = conn.prepareStatement("UPDATE certificado set id_funcionario = ?, id_nrfuncionario = ?, id_nrempresa = ?, dt_emissao = ?,  validade = ? WHERE id_certificado = ?");
+            PreparedStatement pstmt = conn.prepareStatement("UPDATE certificado set id_funcionario = ?, id_nrfuncionario = ?, id_nrempresa = ?, dt_emissao = ?, validade = ? WHERE id_certificado = ?");
 
             pstmt.setInt(1, c.getIdFuncionario());
             pstmt.setInt(2, c.getIdNrFuncionario());
@@ -209,12 +229,12 @@ public class CertificadoDAO {
             System.out.println(sqlE.getMessage());
             return -1;
         }finally {
-            conexao.desconectar(conn);
+            conexao.desconectar(conn); // desconectando do Banco
         }
     }
 
-//    Metodo Delete | Remove - CRUD
-    public int remover(int id){
+    // Metodo Delete | Remove - CRUD
+    public int remover(int idCertificado){
 
         // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
@@ -224,21 +244,20 @@ public class CertificadoDAO {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's:
-            PreparedStatement pstmt = conn.prepareStatement("DELETE FROM certificado where id_certificado = ?");
+            PreparedStatement pstmt = conn.prepareStatement("DELETE FROM certificado WHERE id_certificado = ?");
 
-            pstmt.setInt(1, id);
+            pstmt.setInt(1, idCertificado);
 
-            if (pstmt.executeUpdate() == 0) {
-                return 0;
+            if (pstmt.executeUpdate() > 0){
+                return 1;
             }
-            return 1;
+            return 0;
+
         } catch (SQLException sqle) {
             System.out.println(sqle.getMessage());
             return -1;
         } finally {
             conexao.desconectar(conn); // desconectando do Banco
         }
-
     }
- }
-
+}

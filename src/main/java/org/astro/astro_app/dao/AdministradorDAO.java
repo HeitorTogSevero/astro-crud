@@ -6,15 +6,17 @@ import org.astro.astro_app.model.Administrador;
 import java.sql.*;
 import java.util.ArrayList;
 
-// Metodo Create | Insert - CRUD
+// Classe DAO Administrador - CRUD
 public class AdministradorDAO {
-    public boolean inserirAdmin(Administrador admin){
 
-        // Criando a Conexão com o Banco de Dados
+    // Metodo Create | Insert - CRUD
+    public boolean inserirAdmin(Administrador admin) {
+
+        // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-        try{
+        try {
             conn = conexao.conectar();
 
             PreparedStatement pstmt = conn.prepareStatement("INSERT INTO administrador (nome, email, senha) VALUES (?, ?, ?)");
@@ -23,53 +25,51 @@ public class AdministradorDAO {
             pstmt.setString(2, admin.getEmail());
             pstmt.setString(3, admin.getSenha());
 
-            if(pstmt.executeUpdate() > 0){
-                return true;
-            }
-            return false;
+            return pstmt.executeUpdate() > 0;
 
-        }catch (SQLException sqlE){
+        } catch (SQLException sqlE) {
             System.out.println(sqlE.getMessage());
             return false;
-        }finally {
+        } finally {
             conexao.desconectar(conn); // desconectando do BD
         }
     }
 
-// Metodo Read | Select - CRUD:
-    public ArrayList<Administrador> buscar(){
+    // Metodo Read | Select - CRUD
+    public ArrayList<Administrador> buscar() {
 
-        // Criando a conexão com o Banco de Dados:
+        // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
         ArrayList<Administrador> vet = new ArrayList<>();
 
-        try{
+        try {
             conn = conexao.conectar();
 
-            Statement pstmt = conn.createStatement();
-            ResultSet rs = pstmt.executeQuery("SELECT * FROM administrador ORDER BY 1");
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM administrador ORDER BY id_admin");
 
-            while(rs.next()){
-                vet.add(new Administrador(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4)));
+            while (rs.next()) {
+                vet.add(new Administrador(rs.getInt("id_admin"), rs.getString("nome"), rs.getString("email"), rs.getString("senha")));
             }
-        }catch (SQLException sqlE){
+
+            stmt.close();
+
+        } catch (SQLException sqlE) {
             System.out.println(sqlE.getMessage());
-        }finally {
+        } finally {
             conexao.desconectar(conn);
-            return vet;
         }
+        return vet;
     }
 
-// Metodo Read | Select - CRUD, busca por ID
-    public ResultSet buscaPorIdAdmin(int idAdmin){
+    // Metodo Read | Select - CRUD, busca por ID
+    public Administrador buscaPorIdAdmin(int idAdmin) {
 
-        // Criando conexão com o Banco de Dados
+        // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
-
-        ResultSet rs = null;
 
         try {
             conn = conexao.conectar();
@@ -78,68 +78,79 @@ public class AdministradorDAO {
 
             pstmt.setInt(1, idAdmin);
 
-        }catch (SQLException sqlE){
-            System.out.println(sqlE.getMessage());
-        }finally {
-            conexao.desconectar(conn);// desconectando do BD
-            return rs;
-        }
-    }
+            ResultSet rs = pstmt.executeQuery();
 
-// Metodo Update - CRUD
-    public int alterarAdministrador(Administrador admin){
-
-        // Criando Conexão com o Banco de Dados
-        Conexao conexao = new Conexao();
-        Connection conn = null;
-
-        try{
-            conn = conexao.conectar();
-
-            PreparedStatement pstmt = conn.prepareStatement("UPDATE administrador set nome = ?, email = ?, senha = ? WHERE id_admin = ? ");
-
-            pstmt.setString(1, admin.getNome());
-            pstmt.setString(2, admin.getEmail());
-            pstmt.setString(3, admin.getSenha());
-            pstmt.setInt(4,admin.getIdAdmin());
-
-            if (pstmt.executeUpdate() > 0){
-                return 1;
+            // Lê os dados antes de fechar a conexão
+            if (rs.next()) {
+                return new Administrador(
+                        rs.getInt("id_admin"),
+                        rs.getString("nome"),
+                        rs.getString("email"),
+                        rs.getString("senha"));
             }
+            return null; // não encontrou
 
-            return 0;
-
-        }catch (SQLException sqlE){
+        } catch (SQLException sqlE) {
             System.out.println(sqlE.getMessage());
-            return -1;
-        }finally {
+            return null;
+        } finally {
             conexao.desconectar(conn);
         }
     }
 
-//Metodo Delete | Remove - CRUD
-    public int remover(int idAdmin){
+    // Metodo Update - CRUD
+    public int alterarAdministrador(Administrador admin) {
 
-        // Criando conexão com o Banco de Dados
+        // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-        try{
+        try {
+            conn = conexao.conectar();
+
+            PreparedStatement pstmt = conn.prepareStatement("UPDATE administrador SET nome = ?, email = ?, senha = ? WHERE id_admin = ?");
+
+            pstmt.setString(1, admin.getNome());
+            pstmt.setString(2, admin.getEmail());
+            pstmt.setString(3, admin.getSenha());
+            pstmt.setInt(4, admin.getIdAdmin());
+
+            if (pstmt.executeUpdate() > 0) {
+                return 1;
+            }
+            return 0;
+
+        } catch (SQLException sqlE) {
+            System.out.println(sqlE.getMessage());
+            return -1;
+        } finally {
+            conexao.desconectar(conn);
+        }
+    }
+
+    // Metodo Delete | Remove - CRUD
+    public int remover(int idAdmin) {
+
+        // Criando a conexão com o Banco de Dados
+        Conexao conexao = new Conexao();
+        Connection conn = null;
+
+        try {
             conn = conexao.conectar();
 
             PreparedStatement pstmt = conn.prepareStatement("DELETE FROM administrador WHERE id_admin = ?");
 
             pstmt.setInt(1, idAdmin);
 
-            if (pstmt.executeUpdate() > 0){
+            if (pstmt.executeUpdate() > 0) {
                 return 1;
             }
             return 0;
 
-        }catch (SQLException sqlE){
+        } catch (SQLException sqlE) {
             System.out.println(sqlE.getMessage());
             return -1;
-        }finally {
+        } finally {
             conexao.desconectar(conn);
         }
     }

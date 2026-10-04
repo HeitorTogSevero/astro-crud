@@ -6,129 +6,132 @@ import org.astro.astro_app.model.Estrutura;
 import java.sql.*;
 import java.util.ArrayList;
 
+// Classe DAO Estrutura - CRUD:
 public class EstruturaDAO {
-//    Metodo CREATE | Insert - CRUD
+
+    // Metodo Create | Insert - CRUD
     public boolean inserir(Estrutura est){
 
-        // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
         try{
-            conn =conexao.conectar();
+            conn = conexao.conectar();
 
-            // Interface para realizar comandos SQL's
             PreparedStatement pstmt = conn.prepareStatement("INSERT INTO estrutura (id_empresa, risco, descricao) VALUES (?, ?, ?)");
 
             pstmt.setInt(1, est.getIdEmpresa());
             pstmt.setString(2, est.getRisco());
             pstmt.setString(3, est.getDescricao());
 
-            // Verificando se o Insert deu certo:
             if(pstmt.executeUpdate() > 0){
                 return true;
             }
             return false;
+
         }catch(SQLException sqlE){
             System.out.println(sqlE.getMessage());
             return false;
         }finally {
-            conexao.desconectar(conn);// desconectando do Banco
+            conexao.desconectar(conn);
         }
     }
 
-    //    Metofo READ | Select - CRUD
+    // Metodo READ | Select - CRUD
     public ArrayList<Estrutura> buscar(){
 
-        // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
+
         ArrayList<Estrutura> vet = new ArrayList<>();
 
         try{
             conn = conexao.conectar();
 
-            // Interface para realizar comandos SQL's:
-            Statement pstmt = conn.createStatement();
-
-            ResultSet rs = pstmt.executeQuery("SELECT * FROM estrutura ORDER BY 1");
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM estrutura ORDER BY id_estrutura");
 
             while(rs.next()){
-                vet.add(new Estrutura(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4)));
+                vet.add(new Estrutura(rs.getInt("id_estrutura"), rs.getInt("id_empresa"), rs.getString("risco"), rs.getString("descricao")));
             }
+
+            stmt.close();
 
         }catch(SQLException sqlE){
             System.out.println(sqlE.getMessage());
         }finally{
-            conexao.desconectar(conn);// desconectando do Banco
+            conexao.desconectar(conn);
         }
+
         return vet;
     }
 
-    //    Metodo READ | Select - CRUD, mas baseado no ID
-    public ResultSet buscarPorIdEstutura(int IdEstrutura){
+    // Metodo READ | Select - CRUD, mas baseado no Id da estrutura
+    public Estrutura buscarPorIdEstrutura(int idEstrutura){
 
-        // Criando a Conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
-
-        ResultSet rs = null;
 
         try{
             conn = conexao.conectar();
 
-            // Interface para realizar comandos SQL's
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM estrutura WHERE id_estrutura = ?");
 
-            pstmt.setInt(1, IdEstrutura);
-            rs = pstmt.executeQuery();
+            pstmt.setInt(1, idEstrutura);
+
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                return new Estrutura(rs.getInt("id_estrutura"), rs.getInt("id_empresa"), rs.getString("risco"), rs.getString("descricao"));
+            }
+            return null;
 
         }catch(SQLException sqlE){
             System.out.println(sqlE.getMessage());
+            return null;
         }finally {
-            conexao.desconectar(conn); // desconectando do Banco
+            conexao.desconectar(conn);
         }
-        return rs;
     }
 
-    //    Metodo READ | Select - CRUD, mas baseado no ID da empresa
-    public ResultSet buscarPorIdEmpresa(int IdEmpresa){
+    // Metodo READ | Select - CRUD, mas baseado no Id da empresa
+    public ArrayList<Estrutura> buscarPorIdEmpresa(int idEmpresa){
 
-        // Criando a Conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-        ResultSet rs = null;
+        ArrayList<Estrutura> vet = new ArrayList<>();
 
         try{
             conn = conexao.conectar();
 
-            // Interface para realizar comandos SQL's
-            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM estrutura WHERE id_empresa = ?");
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM estrutura WHERE id_empresa = ? ORDER BY id_estrutura");
 
-            pstmt.setInt(1, IdEmpresa);
-            rs = pstmt.executeQuery();
+            pstmt.setInt(1, idEmpresa);
+
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                vet.add(new Estrutura(rs.getInt("id_estrutura"), rs.getInt("id_empresa"), rs.getString("risco"), rs.getString("descricao")));
+            }
 
         }catch(SQLException sqlE){
             System.out.println(sqlE.getMessage());
         }finally {
-            conexao.desconectar(conn); // desconectando do Banco
+            conexao.desconectar(conn);
         }
-        return rs;
+
+        return vet;
     }
 
-
-    //    Metodo Update - CRUD
-    public int alterarEmail(Estrutura est) {
-
-        // Criando a conexão com o Banco de Dados:
+    // Metodo Update - CRUD
+    public int alterarEstrutura(Estrutura est) {
         Conexao conexao = new Conexao();
         Connection conn = null;
 
         try {
             conn = conexao.conectar();
 
-            // Interface para realizar comandos SQL's:
             PreparedStatement pstmt = conn.prepareStatement("UPDATE estrutura SET id_empresa = ?, risco = ?, descricao = ? WHERE id_estrutura = ?");
 
             pstmt.setInt(1, est.getIdEmpresa());
@@ -136,22 +139,21 @@ public class EstruturaDAO {
             pstmt.setString(3, est.getDescricao());
             pstmt.setInt(4, est.getIdEstrutura());
 
-
             if(pstmt.executeUpdate() > 0){
                 return 1;
             }
-
             return 0;
+
         }catch(SQLException sqlE){
             System.out.println(sqlE.getMessage());
             return -1;
         }finally {
-            conexao.desconectar(conn);// desconectando do Banco
+            conexao.desconectar(conn);
         }
     }
 
-    //    Metodo DELETE - CRUD
-    public int remover(int id){
+    // Metodo DELETE - CRUD
+    public int remover(int idEstrutura){
 
         // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
@@ -160,20 +162,20 @@ public class EstruturaDAO {
         try{
             conn = conexao.conectar();
 
-            // Interface para realizar comandos SQL's
             PreparedStatement pstmt = conn.prepareStatement("DELETE FROM estrutura WHERE id_estrutura = ?");
 
-            pstmt.setInt(1, id);
+            pstmt.setInt(1, idEstrutura);
 
-            if(pstmt.executeUpdate() == 0){
+            if(pstmt.executeUpdate() > 0){
                 return 1;
             }
             return 0;
+
         }catch(SQLException sqlE){
             System.out.println(sqlE.getMessage());
             return -1;
         }finally {
-            conexao.desconectar(conn);// desconectando do Banco
+            conexao.desconectar(conn);
         }
     }
 }

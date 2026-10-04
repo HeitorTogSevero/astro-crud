@@ -55,10 +55,10 @@ public class AlertaDAO {
 
             // Interface para realizar comandos SQL's:
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM alerta ORDER BY 1");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM alerta ORDER BY id_alerta");
 
             while (rs.next()) {
-                vet.add(new Alerta(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getDate(5)));
+                vet.add(new Alerta(rs.getInt("id_alerta"), rs.getInt("codigo"), rs.getInt("id_empresa"), rs.getString("descricao"), rs.getDate("dt_limite")));
             }
 
             stmt.close();
@@ -72,13 +72,12 @@ public class AlertaDAO {
         return vet;
     }
 
-    // Metodo Read | Select - CRUD, mas baseado no Id
-    public ResultSet buscarPorIdAlerta(int IdAlerta) {
+    // Metodo Read | Select - CRUD, mas baseado no Id do alerta
+    public Alerta buscarPorIdAlerta(int idAlerta) {
 
         // Criando conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
-        ResultSet resultSet = null;
 
         try {
             conn = conexao.conectar();
@@ -86,46 +85,58 @@ public class AlertaDAO {
             // Interface para realizar comandos SQL's
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM alerta WHERE id_alerta = ?");
 
-            pstmt.setInt(1, IdAlerta);
+            pstmt.setInt(1, idAlerta);
 
-            resultSet = pstmt.executeQuery();
+            ResultSet rs = pstmt.executeQuery();
+
+            // le os dados ANTES de fechar a conexao
+            if (rs.next()) {
+                return new Alerta(rs.getInt("id_alerta"), rs.getInt("codigo"), rs.getInt("id_empresa"), rs.getString("descricao"), rs.getDate("dt_limite"));
+            }
+            return null;
 
         } catch (SQLException sqlE) {
             System.out.println(sqlE.getMessage());
+            return null;
         } finally {
             conexao.desconectar(conn); // desconectando do Banco
-            return resultSet;
         }
     }
 
-    // Metodo Read | Select - CRUD, mas baseado no Id
-    public ResultSet buscarPorIdEmpresa(int idEmpresa) {
+    // Metodo Read | Select - CRUD, mas baseado no Id da empresa
+    public ArrayList<Alerta> buscarPorIdEmpresa(int idEmpresa) {
 
         // Criando conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
-        ResultSet rs = null;
+
+        ArrayList<Alerta> vet = new ArrayList<>();
 
         try {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's:
-            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM alerta WHERE id_empresa = ?");
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM alerta WHERE id_empresa = ? ORDER BY id_alerta");
 
             pstmt.setInt(1, idEmpresa);
 
-            rs = pstmt.executeQuery();
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                vet.add(new Alerta(rs.getInt("id_alerta"), rs.getInt("codigo"), rs.getInt("id_empresa"), rs.getString("descricao"), rs.getDate("dt_limite")));
+            }
 
         } catch (SQLException sqlE) {
             System.out.println(sqlE.getMessage());
         } finally {
             conexao.desconectar(conn); // desconectando do Banco
-            return rs;
         }
+
+        return vet;
     }
 
     //Metodo Update - CRUD
-    public int alterarCertificado(Alerta a){
+    public int alterarAlerta(Alerta a){
 
         // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
@@ -135,7 +146,7 @@ public class AlertaDAO {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's
-            PreparedStatement pstmt = conn.prepareStatement("UPDATE alerta set codigo = ?, id_empresa = ?, descricao = ?, dt_limete = ? WHERE id_alerta = ?");
+            PreparedStatement pstmt = conn.prepareStatement("UPDATE alerta set codigo = ?, id_empresa = ?, descricao = ?, dt_limite = ? WHERE id_alerta = ?");
 
             pstmt.setInt(1, a.getCodigo());
             pstmt.setInt(2, a.getIdEmpresa());
@@ -160,7 +171,7 @@ public class AlertaDAO {
     }
 
     // Metodo Delete | Remove - CRUD
-    public int remover(int codigo) {
+    public int remover(int idAlerta) {
 
         // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
@@ -170,15 +181,15 @@ public class AlertaDAO {
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's:
-            PreparedStatement pstmt = conn.prepareStatement("DELETE FROM alerta WHERE codigo = ?");
+            PreparedStatement pstmt = conn.prepareStatement("DELETE FROM alerta WHERE id_alerta = ?");
 
-            pstmt.setInt(1, codigo);
+            pstmt.setInt(1, idAlerta);
 
 
             if (pstmt.executeUpdate() == 0) {
                 return 0;
             }
-            return 1; 
+            return 1;
 
         } catch (SQLException sqle) {
             System.out.println(sqle.getMessage());
@@ -187,7 +198,4 @@ public class AlertaDAO {
             conexao.desconectar(conn); // desconectando do Banco
         }
     }
-
-
-
 }
