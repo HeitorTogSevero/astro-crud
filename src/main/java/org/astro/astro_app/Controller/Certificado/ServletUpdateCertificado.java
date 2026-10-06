@@ -50,15 +50,19 @@ public class ServletUpdateCertificado extends HttpServlet {
 
         String idCertificadoTexto = request.getParameter("id_certificado");
         int idCertificado = Integer.parseInt(idCertificadoTexto);
+
         String idFuncionarioTexto = request.getParameter("id_funcionario");
         int idFuncionario = Integer.parseInt(idFuncionarioTexto);
+
         String idNrFuncionarioTexto = request.getParameter("id_nrfuncionario");
         int idNrFuncionario = Integer.parseInt(idNrFuncionarioTexto);
+
         String idNrEmpresaTexto = request.getParameter("id_nrempresa");
         int idNrEmpresa = Integer.parseInt(idNrEmpresaTexto);
 
         String emissaoTexto = request.getParameter("dt_emissao");
         Date dataEmissao = null;
+
         if (emissaoTexto != null && !emissaoTexto.isBlank()) {
             dataEmissao = Date.valueOf(emissaoTexto);
         }
