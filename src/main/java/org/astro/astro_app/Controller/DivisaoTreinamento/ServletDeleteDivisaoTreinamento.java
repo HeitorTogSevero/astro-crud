@@ -1,6 +1,38 @@
 package org.astro.astro_app.Controller.DivisaoTreinamento;
 
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
+import org.astro.astro_app.dao.DivisaoTreinamentoDAO;
 
-public class ServletDeleteDivisaoTreinamento extends HttpServlet {
+import java.io.IOException;
+
+@WebServlet(name = "ServletDivisoes", value = "/excluir-divisao")
+public class ServletDeleteDivisaoTreinamento extends HttpServlet{
+
+    private DivisaoTreinamentoDAO divisaoTreinamentoDAO;
+
+    @Override
+    public void init(){
+        divisaoTreinamentoDAO = new DivisaoTreinamentoDAO();
+    }
+
+    @Override
+    protected void doPost(
+            HttpServletRequest request,
+            HttpServletResponse response
+    )throws ServletException, IOException{
+
+        String acao = request.getParameter("");
+
+        if("excluir".equals(acao)){
+
+            String idTexto = request.getParameter("id");
+            int id = Integer.parseInt(idTexto);
+
+            divisaoTreinamentoDAO.remover(id);
+
+            response.sendRedirect(request.getContextPath() + "/divisoes");
+        }
+    }
 }
