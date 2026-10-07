@@ -101,6 +101,7 @@ body {
 
 .main-content {
     flex: 1;
+    min-width: 0; /* permite encolher de volta, mesmo com conteúdo largo dentro */
     padding: 32px 48px;
     display: flex;
     flex-direction: column;
@@ -163,58 +164,6 @@ body {
     color: #8b8b9b;
 }
 
-
-/*Se não tiver perfil tirar essa parte de baixo*/
-.user-profile {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    background-color: var(--bg-button);
-    margin: auto;
-    margin-bottom: 8px;
-    padding-left: 10px;
-    border-radius: 30px;
-}
-
-.user-profile #nome-user {
-    font-size: 15px;
-}
-
-.user-profile #admin {
-    font-weight: 300;
-    font-size: 12px;
-}
-
-.user-profile span {
-    margin: auto;
-    padding-right: 50px;
-    font-size: 13px;
-    font-weight: 700;
-}
-
-#estado-user {
-    background-color: rgb(65, 234, 62);
-    display: inline-block;
-    border-radius: 50%;
-    width: 8px;
-    height: 8px;
-}
-
-.avatar {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background-color: transparent;
-    border: 2px solid var(--primary-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-/*Tirar até aqui*/
-
-
 .welcome-banner {
     background-color: var(--bg-panel);
     padding: 24px 32px;
@@ -269,9 +218,9 @@ body {
 
 .panel {
     background-color: var(--bg-panel);
-    padding: 22px 20px;
+    padding: 24px 20px;
     border-radius: 12px;
-    
+    min-width: 0;
 }
 
 .panel h2 {
@@ -281,26 +230,14 @@ body {
 }
 
 #tabela-rolavel-inicio {
-    max-height: 260px;
-    overflow-y: auto;
+    max-width: 100%;
+    overflow-x: auto; 
+    overflow-y: hidden;
+    border-radius: 25px;
     margin-left: 10px;
     margin-right: 10px;
-    overflow: visible;
-    margin-bottom: 18px;
+    margin-bottom: 1px;
     margin-top: 20px;
-}
-
-.tabela-rolavel thead th {
-    position: sticky;
-    top: 0;
-    z-index: 1;
-}
-
-.rodape-tabela {
-    padding: 12px 4px 0;
-    color: var(--text-muted);
-    font-size: 14px;
-    margin-left: 10px;
 }
 
 .mt-4 {
@@ -319,25 +256,31 @@ body {
     width: 100%;
     border-collapse: collapse;
     margin-top: 10px;
-    border-radius: 8px;
-    overflow: hidden;
 }
 
 .data-table th, .data-table td {
-    padding: 24px;
+    padding: 15px;
     text-align: center;
+    font-size: 12px;
+}
+
+.data-table td {
+    padding: 22px 15px;
 }
 
 .data-table th {
     background-color: var(--table-header);
     color: white;
     font-weight: 600;
+    padding: 20px;
+    font-size: 14px;
+    min-width: 200px;
 }
 
 .data-table tbody tr {
     background-color: var(--table-row);
     color: var(--table-text);
-    border-bottom: 2px solid var(--bg-panel);
+    border-bottom: 2px solid #4a4499;
 }
 
 .data-table tbody tr:last-child {

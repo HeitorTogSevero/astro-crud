@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astro - Painel de Administração</title>
+    <link rel="stylesheet" href="../../../../../FrontAstro/lp/crud/crud.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="logo">
+            <img src="../../../../../FrontAstro/lp/crud/imagens/logotipo.png" alt="Logotipo" class="img-logo">
+        </div>
+
+        <nav class="nav-menu">
+            <a href="crud.html" class="nav-item active">
+                <i class="fa-solid fa-house"></i>Início
+            </a>
+            <a href="empresa.html" class="nav-item">
+                <i class="fa-regular fa-building"></i>empresa
+            </a>
+            <a href="funcionario.html" class="nav-item">
+                <i class="fa-solid fa-users"></i>funcionario
+            </a>
+            <a href="departamento.html" class="nav-item">
+                <i class="fa-solid fa-layer-group"></i>departamento
+            </a>
+            <a href="divisao_treinamento.html" class="nav-item">
+                <i class="fa-regular fa-file-lines"></i>divisao_treinamento 
+            </a>
+            <a href="alerta.html" class="nav-item">
+                <i class="fa-regular fa-calendar-check"></i>alerta
+            </a>
+            <a href="certificado.html" class="nav-item">
+                <i class="fa-solid fa-award"></i>certificado
+            </a>
+            <div class="sidebar-bottom">
+                <a href="#" class="nav-item">
+                    <i class="fa-solid fa-right-from-bracket"></i>Sair
+                </a>
+            </div>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        
+        <header class="header">
+            <h1>
+                <strong>Início</strong> - Painel de Administração Geral
+            </h1>
+            
+        </header>
+
+        <section class="welcome-banner">
+            <div class="welcome-text">
+                <h2>Olá Admin! 👋</h2>
+                <p>Gerencie os dados e acompanhe o desempenho do sistema em tempo real.</p>
+            </div>
+        </section>
+
+        <section class="stats-grid">
+            <div class="stat-card">
+                <h3>18</h3>
+                <p>Empresas<br>ativas</p>
+            </div>
+            <div class="stat-card">
+                <h3>84</h3>
+                <p>Departamentos<br>ativos</p>
+            </div>
+            <div class="stat-card">
+                <h3>231</h3>
+                <p>Funcionários<br>gerenciados</p>
+            </div>
+            <div class="stat-card">
+                <h3>367</h3>
+                <p>Certificados<br>registrados</p>
+            </div>
+        </section>
+
+        <section class="bottom-grid">
+
+            <div class="panel recent-activity">
+
+                <h2 class="mt-4">Últimas 3 empresas registradas:</h2>
+    
+                <div class="tabela-rolavel" id="tabela-rolavel-inicio">
+                    <table class="data-table" id="tabela-empresas">
+                        <thead class="data-cabecalho">
+                            <tr>
+                                <th>id_empresa</th>
+                                <th>cnpj</th>
+                                <th>nome</th>
+                                <th>qtd_funcionario</th>
+                                <th>cnae</th>
+                                <th>bairro</th>
+                                <th>cep</th>
+                                <th>rua</th>
+                                <th>estado</th>
+                                <th>cidade</th>
+                                <th>dt_registro</th>
+                            </tr>
+                        </thead>
+                        <tbody id="corpo-tabela-empresas">
+                            <tr data-id-empresa="1">
+                                <td>1</td>
+                                <td>62.248.660/0001-43</td>
+                                <td>Elos</td>
+                                <td>45</td>
+                                <td>62.01-5-01</td>
+                                <td>Centro</td>
+                                <td>13010-000</td>
+                                <td>Rua das Flores, 123</td>
+                                <td>SP</td>
+                                <td>São Paulo</td>
+                                <td>01-09-2026</td>
+                            </tr>
+                            <tr data-id-empresa="2">
+                                <td>2</td>
+                                <td>30.325.076/0001-58</td>
+                                <td>Inventra</td>
+                                <td>28</td>
+                                <td>63.11-9-00</td>
+                                <td>Jardim Aquarius</td>
+                                <td>12246-000</td>
+                                <td>Av. Brasil, 500</td>
+                                <td>SP</td>
+                                <td>São José dos Campos</td>
+                                <td>03-09-2026</td>
+                            </tr>
+                            <tr data-id-empresa="3">
+                                <td>3</td>
+                                <td>35.100.242/0001-31</td>
+                                <td>Argos</td>
+                                <td>15</td>
+                                <td>70.20-4-00</td>
+                                <td>Savassi</td>
+                                <td>30130-000</td>
+                                <td>Rua Pernambuco, 800</td>
+                                <td>MG</td>
+                                <td>Belo Horizonte</td>
+                                <td>05-09-2026</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+</body>
+</html>
