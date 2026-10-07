@@ -28,7 +28,7 @@ public class ServletUpdateDivisaoTreinamento extends HttpServlet{
         String acao = request.getParameter("");
 
         if ("editar".equals(acao)) {
-            int id = Integer.parseInt(request.getParameter("id"));
+            int id = Integer.parseInt(request.getParameter("id_divisao"));
 
             DivisaoTreinamento divisaoTreinamento = (DivisaoTreinamento) divisaoTreinamentoDAO.buscarPorIdDiv(id);
 

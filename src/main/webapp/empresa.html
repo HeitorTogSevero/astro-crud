@@ -1,0 +1,794 @@
+<!--NOTAS:
+Como cada página de tabela é relativamente igual, deixei comentários pra entender melhor só nessa página da empresa, então é só seguir como padrão essa página para as outras-->
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astro - Empresas</title>
+    <link rel="stylesheet" href="../../../../../FrontAstro/lp/crud/crud.css">
+    <link rel="stylesheet" href="../../../../../FrontAstro/lp/crud/tabelas.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="logo">
+            <img src="../../../../../FrontAstro/lp/crud/imagens/logotipo.png" alt="Logotipo" class="img-logo">
+        </div>
+
+        <nav class="nav-menu">
+            <a href="crud.html" class="nav-item">
+                <i class="fa-solid fa-house"></i>Início
+            </a>
+            <a href="empresa.html" class="nav-item active">
+                <i class="fa-regular fa-building"></i>empresa
+            </a>
+            <a href="funcionario.html" class="nav-item">
+                <i class="fa-solid fa-users"></i>funcionario
+            </a>
+            <a href="departamento.html" class="nav-item">
+                <i class="fa-solid fa-layer-group"></i>departamento
+            </a>
+            <a href="divisao_treinamento.html" class="nav-item">
+                <i class="fa-regular fa-file-lines"></i>divisao_treinamento 
+            </a>
+            <a href="alerta.html" class="nav-item">
+                <i class="fa-regular fa-calendar-check"></i>alerta
+            </a>
+            <a href="certificado.html" class="nav-item">
+                <i class="fa-solid fa-award"></i>certificado
+            </a>
+            <div class="sidebar-bottom">
+                <a href="#" class="nav-item">
+                    <i class="fa-solid fa-right-from-bracket"></i>Sair
+                </a>
+            </div>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+
+        <header class="header cabecalho-pagina">
+            <div class="titulo-container">
+                <h1><strong>empresa - </strong> <span id="periodo-titulo">Setembro 2026</span></h1>
+            </div>
+
+        </header>
+
+        <section class="barra-controles">
+
+            <div class="controle-esquerda">
+                <div class="search-bar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <!--BOTÃO DE PESQUISAR REGISTRO-->
+                    <input type="text" id="busca-empresa" name="busca-empresa" placeholder="Pesquisar empresa...">
+                </div>
+            </div>
+
+            <div class="controle-direita">
+
+                <!--BOTÃO DE ADICIONAR FILTRO-->
+                <button class="btn-filtrar" id="btn-filtrar-empresa" type="button">
+                    <i class="fa-solid fa-filter"></i> Filtrar
+                </button>
+
+                <!--BOTÃO DE ADICIONAR REGISTRO-->
+                <button class="btn-adicionar" id="btn-adicionar-empresa" type="button" data-acao="adicionar-empresa">
+                    <i class="fa-solid fa-plus"></i> Adicionar empresa
+                </button>
+            </div>
+        </section>
+
+        <!--TABELA COM OS DADOS VINDOS DO BANCO (Coloquei alguns valores de exemplo só para ver como ela funcionaria de verdade, mas o correto seria deixar vazio pra depois ser preenchido pelo banco)-->
+        <section class="panel painel-tabela">
+            <div class="tabela-rolavel">
+                <table class="data-table" id="tabela-empresas">
+                    <thead class="data-cabecalho">
+                        <tr>
+                            <th class="ordenavel" data-coluna="id_empresa"><strong>id_empresa</strong> <i class="fa-solid fa-sort"></i></th>
+                            <th class="ordenavel" data-coluna="nome">nome <i class="fa-solid fa-sort"></i></th>
+                            <th data-coluna="cnpj">cnpj</th>
+                            <th class="ordenavel" data-coluna="qtd_funcionario">qtd_funcionario <i class="fa-solid fa-sort"></i></th>
+                            <th data-coluna="cnae">cnae </th>
+                            <th class="ordenavel" data-coluna="bairro">bairro <i class="fa-solid fa-sort"></i></th>
+                            <th data-coluna="cep">cep </th>
+                            <th class="ordenavel" data-coluna="rua">rua <i class="fa-solid fa-sort"></i></th>
+                            <th class="ordenavel" data-coluna="estado">estado <i class="fa-solid fa-sort"></i></th>
+                            <th class="ordenavel" data-coluna="cidade">cidade <i class="fa-solid fa-sort"></i></th>
+                            <th class="ordenavel" data-coluna="dt_registro">dt_registro <i class="fa-solid fa-sort"></i></th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="corpo-tabela-empresas">
+                        <tr id_empresa="" nome="" cnpj="" qtd_funcionario="" cnae="" bairro="" cep="" rua="" estado="" cidade="" dt_registro="">
+                            <td>1</td>
+                            <td>Elos</td>
+                            <td>62.248.660/0001-43</td>
+                            <td>100</td>
+                            <td>Inventra</td>
+                            <td>Inventra</td>
+                            <td>Inventra</td>
+                            <td>Inventra</td>
+                            <td>Inventra</td>
+                            <td>Inventra</td>
+                            <td>12-09-2027</td>
+                            <td>
+                                <div class="celula-acoes">
+                                    <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
+                                    <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr id_empresa="" nome="" cnpj="" qtd_funcionario="" cnae="" bairro="" cep="" rua="" estado="" cidade="" dt_registro="">
+                            <td>1</td>
+                            <td>Elos</td>
+                            <td>62.248.660/0001-43</td>
+                            <td>100</td>
+                            <td>Inventra</td>
+                            <td>Inventra</td>
+                            <td>Inventra</td>
+                            <td>Inventra</td>
+                            <td>Inventra</td>
+                            <td>Inventra</td>
+                            <td>12-09-2027</td>
+                            <td>
+                                <div class="celula-acoes">
+                                    <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
+                                    <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr id_empresa="" nome="" cnpj="" qtd_funcionario="" cnae="" bairro="" cep="" rua="" estado="" cidade="" dt_registro="">
+                            <td>1</td>
+                            <td>Elos</td>
+                            <td>62.248.660/0001-43</td>
+                            <td>100</td>
+                            <td>Inventra</td>
+                            <td>Inventra</td>
+                            <td>Inventra</td>
+                            <td>Inventra</td>
+                            <td>Inventra</td>
+                            <td>Inventra</td>
+                            <td>12-09-2027</td>
+                            <td>
+                                <div class="celula-acoes">
+                                    <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
+                                    <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr id_empresa="" nome="" cnpj="" qtd_funcionario="" cnae="" bairro="" cep="" rua="" estado="" cidade="" dt_registro="">
+                            <td>1</td>
+                            <td>Elos</td>
+                            <td>62.248.660/0001-43</td>
+                            <td>100</td>
+                            <td>Inventra</td>
+                            <td>Inventra</td>
+                            <td>Inventra</td>
+                            <td>Inventra</td>
+                            <td>Inventra</td>
+                            <td>Inventra</td>
+                            <td>12-09-2027</td>
+                            <td>
+                                <div class="celula-acoes">
+                                    <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
+                                    <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr id_empresa="" nome="" cnpj="" qtd_funcionario="" cnae="" bairro="" cep="" rua="" estado="" cidade="" dt_registro="">
+                            <td>1</td>
+                            <td>Elos</td>
+                            <td>62.248.660/0001-43</td>
+                            <td>100</td>
+                            <td>Inventra</td>
+                            <td>Inventra</td>
+                            <td>Inventra</td>
+                            <td>Inventra</td>
+                            <td>Inventra</td>
+                            <td>Inventra</td>
+                            <td>12-09-2027</td>
+                            <td>
+                                <div class="celula-acoes">
+                                    <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
+                                    <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr id_empresa="" nome="" cnpj="" qtd_funcionario="" cnae="" bairro="" cep="" rua="" estado="" cidade="" dt_registro="">
+                            <td>1</td>
+                            <td>Elos</td>
+                            <td>62.248.660/0001-43</td>
+                            <td>100</td>
+                            <td>Inventra</td>
+                            <td>Inventra</td>
+                            <td>Inventra</td>
+                            <td>Inventra</td>
+                            <td>Inventra</td>
+                            <td>Inventra</td>
+                            <td>12-09-2027</td>
+                            <td>
+                                <div class="celula-acoes">
+                                    <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
+                                    <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
+                                </div>
+                            </td>
+                        </tr>
+                        
+                        <tr id_empresa="" nome="" cnpj="" qtd_funcionario="" cnae="" bairro="" cep="" rua="" estado="" cidade="" dt_registro="">
+                            <td>1</td>
+                            <td>Elos</td>
+                            <td>62.248.660/0001-43</td>
+                            <td>100</td>
+                            <td>Inventra</td>
+                            <td>Inventra</td>
+                            <td>Inventra</td>
+                            <td>Inventra</td>
+                            <td>Inventra</td>
+                            <td>Inventra</td>
+                            <td>12-09-2027</td>
+                            <td>
+                                <div class="celula-acoes">
+                                    <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
+                                    <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr id_empresa="" nome="" cnpj="" qtd_funcionario="" cnae="" bairro="" cep="" rua="" estado="" cidade="" dt_registro="">
+                            <td>1</td>
+                            <td>Elos</td>
+                            <td>62.248.660/0001-43</td>
+                            <td>100</td>
+                            <td>Inventra</td>
+                            <td>Inventra</td>
+                            <td>Inventra</td>
+                            <td>Inventra</td>
+                            <td>Inventra</td>
+                            <td>Inventra</td>
+                            <td>12-09-2027</td>
+                            <td>
+                                <div class="celula-acoes">
+                                    <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
+                                    <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr id_empresa="" nome="" cnpj="" qtd_funcionario="" cnae="" bairro="" cep="" rua="" estado="" cidade="" dt_registro="">
+                            <td>1</td>
+                            <td>Elos</td>
+                            <td>62.248.660/0001-43</td>
+                            <td>100</td>
+                            <td>Inventra</td>
+                            <td>Inventra</td>
+                            <td>Inventra</td>
+                            <td>Inventra</td>
+                            <td>Inventra</td>
+                            <td>Inventra</td>
+                            <td>12-09-2027</td>
+                            <td>
+                                <div class="celula-acoes">
+                                    <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
+                                    <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
+                                </div>
+                            </td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- back-end: cada <tr> é um registro da tabela "empresa".
+                         data-id-empresa deve receber o id_empresa (PK) vindo do banco.
+                         Os data-* a mais guardam as colunas que existem no banco mas
+                         não aparecem na tabela (qtd_funcionario, cnae, bairro, cep,
+                         rua) — usar esses valores para pré-preencher o formulário de
+                         edição sem precisar de uma nova requisição. -->
+
+                        <!-- back-end: as próximas linhas entram aqui, seguindo o
+                             mesmo padrão de atributos acima. A rolagem já está
+                             pronta em .tabela-rolavel, então a tabela cresce sem
+                             quebrar o layout da página -->
+
+        </section>
+
+    </main>
+
+    <div class="modal-fundo" id="modal-adicionar" hidden>
+        <div class="modal-caixa" role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
+
+            <div class="modal-cabecalho">
+                <h2 id="modal-titulo">Adicionar em empresa</h2>
+                <button type="button" class="modal-fechar" id="fechar-modal" aria-label="Fechar">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!--MODAL DE ADICIONAR UM REGISTRO-->
+            <form id="formulario-adicionar" class="modal-formulario" action="" method="post">
+
+                <div class="modal-campo">
+                    <label for="campo-cnpj">cnpj</label>
+                    <input type="text" id="campo-cnpj" name="cnpj" placeholder="00.000.000/0000-00" required>
+                </div>
+
+                <div class="modal-campo">
+                    <label for="campo-nome">nome</label>
+                    <input type="text" id="campo-nome" name="nome" placeholder="Nome" required>
+                </div>
+
+                <div class="modal-campo">
+                    <label for="campo-qtd-funcionario">qtd_funcionario</label>
+                    <input type="number" id="campo-qtd-funcionario" name="qtd_funcionario" min="0" placeholder="0">
+                </div>
+
+                <div class="modal-campo">
+                    <label for="campo-cnae">cnae</label>
+                    <input type="text" id="campo-cnae" name="cnae" placeholder="Código CNAE">
+                </div>
+
+                <div class="modal-campo">
+                    <label for="campo-bairro">bairro</label>
+                    <input type="text" id="campo-bairro" name="bairro" placeholder="Bairro">
+                </div>
+
+                <div class="modal-campo">
+                    <label for="campo-cep">cep</label>
+                    <input type="text" id="campo-cep" name="cep" placeholder="00000-000">
+                </div>
+
+                <div class="modal-campo">
+                    <label for="campo-rua">rua</label>
+                    <input type="text" id="campo-rua" name="rua" placeholder="Rua">
+                </div>
+
+                <div class="modal-campo">
+                    <label for="campo-estado">estado</label>
+                    <input type="text" id="campo-estado" name="estado" placeholder="SP" maxlength="2" required>
+                </div>
+
+                <div class="modal-campo">
+                    <label for="campo-cidade">cidade</label>
+                    <input type="text" id="campo-cidade" name="cidade" placeholder="Cidade" required>
+                </div>
+
+                <div class="modal-campo">
+                    <label for="campo-dt_registro">dt_registro</label>
+                    <input type="date" id="campo-dt_registro" name="dt_registro" placeholder="AAAA-MM-DD" maxlength="2" required>
+                </div>
+
+                <div class="modal-rodape">
+                    <button type="button" class="botao-cancelar" id="cancelar-modal">Cancelar</button>
+                    <button type="submit" class="botao-salvar">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!--MODAL DE COLOCAR UM FILTRO-->
+    <div class="modal-fundo" id="modal-filtro" hidden>
+        <div class="modal-caixa" role="dialog" aria-modal="true" aria-labelledby="modal-titulo-filtro">
+
+            <div class="modal-cabecalho">
+                <h2 id="modal-titulo-filtro">Filtrar empresas</h2>
+                <button type="button" class="modal-fechar" id="fechar-modal-filtro" aria-label="Fechar">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <form id="formulario-filtro" class="modal-formulario" action="" method="get">
+
+                <div class="modal-campo">
+                    <label for="filtro-estado">estado</label>
+                    <!-- back-end: popular com os estados que realmente
+                         existem entre as empresas cadastradas -->
+                    <select id="filtro-estado" name="estado">
+                        <option value="" selected>Todos</option>
+                        <option value="AC">Acre</option>
+                        <option value="AL">Alagoas</option>
+                        <option value="AP">Amapá</option>
+                        <option value="AM">Amazonas</option>
+                        <option value="BA">Bahia</option>
+                        <option value="CE">Ceará</option>
+                        <option value="DF">Distrito Federal</option>
+                        <option value="ES">Espírito Santo</option>
+                        <option value="GO">Goiás</option>
+                        <option value="MA">Maranhão</option>
+                        <option value="MT">Mato Grosso</option>
+                        <option value="MS">Mato Grosso do Sul</option>
+                        <option value="MG">Minas Gerais</option>
+                        <option value="PA">Pará</option>
+                        <option value="PB">Paraíba</option>
+                        <option value="PR">Paraná</option>
+                        <option value="PE">Pernambuco</option>
+                        <option value="PI">Piauí</option>
+                        <option value="RJ">Rio de Janeiro</option>
+                        <option value="RN">Rio Grande do Norte</option>
+                        <option value="RS">Rio Grande do Sul</option>
+                        <option value="RO">Rondônia</option>
+                        <option value="RR">Roraima</option>
+                        <option value="SC">Santa Catarina</option>
+                        <option value="SP">São Paulo</option>
+                        <option value="SE">Sergipe</option>
+                        <option value="TO">Tocantins</option>
+
+                    </select>
+                </div>
+
+                <div class="modal-campo">
+                    <label for="filtro-cidade">cidade</label>
+                    <input type="text" id="filtro-cidade" name="cidade" placeholder="Ex: Campinas">
+                </div>
+
+                <div class="modal-campo">
+                    <label for="filtro-cnae">cnae</label>
+                    <input type="text" id="filtro-cnae" name="cnae" placeholder="Código CNAE">
+                </div>
+
+                <div class="modal-campo">
+                    <label>qtd_funcionario</label>
+                    <div class="modal-campo-faixa">
+                        <input type="number" id="filtro-qtd-funcionario-min" name="qtd_funcionario_min" min="0" placeholder="Mínimo">
+                        <span>até</span>
+                        <input type="number" id="filtro-qtd-funcionario-max" name="qtd_funcionario_max" min="0" placeholder="Máximo">
+                    </div>
+                </div>
+
+                <div class="modal-campo">
+                    <label>dt_registro</label>
+                    <div class="modal-campo-faixa">
+                        <input type="date" id="filtro-dt-registro-min" name="dt_registro_min">
+                        <span>até</span>
+                        <input type="date" id="filtro-dt-registro-max" name="dt_registro_max">
+                    </div>
+                </div>
+
+                <div class="modal-rodape">
+                    <button type="reset" class="botao-cancelar" id="limpar-filtro">Limpar</button>
+                    <button type="submit" class="botao-salvar">Aplicar filtro</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!--MODAL DE EDITAR UM REGISTRO-->
+    <div class="modal-fundo" id="modal-editar" hidden>
+        <div class="modal-caixa" role="dialog" aria-modal="true" aria-labelledby="modal-titulo-editar">
+
+            <div class="modal-cabecalho">
+                <h2 id="modal-titulo-editar">Editar empresa</h2>
+                <button type="button" class="modal-fechar" id="fechar-modal-editar" aria-label="Fechar">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <form id="formulario-editar" class="modal-formulario" action="" method="post">
+
+                <input type="hidden" id="editar-id-empresa" name="id_empresa">
+
+                <div class="modal-campo">
+                    <label for="editar-nome">nome</label>
+                    <input type="text" id="editar-nome" name="nome" required>
+                </div>
+
+                <div class="modal-campo">
+                    <label for="editar-cnpj">cnpj</label>
+                    <input type="text" id="editar-cnpj" name="cnpj" placeholder="00.000.000/0000-00" required>
+                </div>
+
+                <div class="modal-campo">
+                    <label for="editar-qtd-funcionario">qtd_funcionario</label>
+                    <input type="number" id="editar-qtd-funcionario" name="qtd_funcionario" min="0" required>
+                </div>
+
+                <div class="modal-campo">
+                    <label for="editar-cnae">cnae</label>
+                    <input type="text" id="editar-cnae" name="cnae" required>
+                </div>
+
+                <div class="modal-campo">
+                    <label for="editar-bairro">bairro</label>
+                    <input type="text" id="editar-bairro" name="bairro" required>
+                </div>
+
+                <div class="modal-campo">
+                    <label for="editar-cep">cep</label>
+                    <input type="text" id="editar-cep" name="cep" placeholder="00000-000" required>
+                </div>
+
+                <div class="modal-campo">
+                    <label for="editar-rua">rua</label>
+                    <input type="text" id="editar-rua" name="rua" required>
+                </div>
+
+                <div class="modal-campo">
+                    <label for="editar-estado">estado</label>
+                    <input type="text" id="editar-estado" name="estado" maxlength="2" required>
+                </div>
+
+                <div class="modal-campo">
+                    <label for="editar-cidade">cidade</label>
+                    <input type="text" id="editar-cidade" name="cidade" required>
+                </div>
+
+                <div class="modal-campo">
+                    <label for="editar-dt-registro">dt_registro</label>
+                    <input type="date" id="editar-dt-registro" name="dt_registro" required>
+                </div>
+
+                <div class="modal-rodape">
+                    <button type="button" class="botao-cancelar" id="cancelar-modal-editar">Cancelar</button>
+                    <button type="submit" class="botao-salvar">Salvar alterações</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!--MODAL DE EXCLUIR UM REGISTRO-->
+    <div class="modal-fundo" id="modal-excluir" hidden>
+        <div class="modal-caixa modal-caixa-pequena" role="dialog" aria-modal="true" aria-labelledby="modal-titulo-excluir">
+
+            <div class="modal-cabecalho">
+                <h2 id="modal-titulo-excluir">Excluir registro</h2>
+                <button type="button" class="modal-fechar" id="fechar-modal-excluir" aria-label="Fechar">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <p class="modal-texto-confirmacao">
+                Tem certeza que deseja excluir
+                <strong id="excluir-nome"></strong>?
+                Essa ação não pode ser desfeita.
+            </p>
+
+            <form id="formulario-excluir" action="" method="post">
+                <input type="hidden" id="excluir-id" name="id_empresa">
+
+                <div class="modal-rodape">
+                    <button type="button" class="botao-cancelar" id="cancelar-modal-excluir">Cancelar</button>
+                    <button type="submit" class="botao-excluir">Excluir</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+
+        // ABRIR MODAL DE FILTRO
+        const botaoAbrirFiltro = document.querySelector('.btn-filtrar');
+        const modalFiltro = document.getElementById('modal-filtro');
+        const botaoFecharFiltro = document.getElementById('fechar-modal-filtro');
+
+        function abrirFiltro() {
+            modalFiltro.hidden = false;
+        }
+
+        function fecharFiltro() {
+            modalFiltro.hidden = true;
+        }
+
+        botaoAbrirFiltro.addEventListener('click', abrirFiltro);
+        botaoFecharFiltro.addEventListener('click', fecharFiltro);
+
+        modalFiltro.addEventListener('click', function (evento) {
+            if (evento.target === modalFiltro) {
+                fecharFiltro();
+            }
+        });
+
+        // ORDENAÇÃO EM ORDEM CRESCENTE OU DECRESCENTE NUMÉRICA OU ALFABÉTICA NO CABEÇA~LHO DA TABELA
+        const cabecalhosOrdenaveis = document.querySelectorAll('.ordenavel');
+
+        cabecalhosOrdenaveis.forEach(function (cabecalho) {
+            cabecalho.addEventListener('click', function () {
+                const coluna = cabecalho.dataset.coluna;
+                const direcaoAtual = cabecalho.dataset.direcao || 'nenhuma';
+
+                let novaDirecao;
+                if (direcaoAtual === 'nenhuma') {
+                    novaDirecao = 'asc';
+                } else if (direcaoAtual === 'asc') {
+                    novaDirecao = 'desc';
+                } else {
+                    novaDirecao = 'nenhuma';
+                }
+
+                // tira o ícone/estado de "ativo" dos outros cabeçalhos,
+                // deixando só o que foi clicado marcado
+                cabecalhosOrdenaveis.forEach(function (outroCabecalho) {
+                    if (outroCabecalho !== cabecalho) {
+                        delete outroCabecalho.dataset.direcao;
+                        outroCabecalho.querySelector('i').className = 'fa-solid fa-sort';
+                    }
+                });
+
+                if (novaDirecao === 'nenhuma') {
+                    // cancelou a ordenação dessa coluna
+                    delete cabecalho.dataset.direcao;
+                    cabecalho.querySelector('i').className = 'fa-solid fa-sort';
+                } else {
+                    cabecalho.dataset.direcao = novaDirecao;
+                    cabecalho.querySelector('i').className =
+                        novaDirecao === 'asc' ? 'fa-solid fa-sort-up' : 'fa-solid fa-sort-down';
+                }
+            });
+        });
+
+        // MUDA O FORMATO DA DATA PARA DD-MM-AAAA
+        function converterDataBrParaIso(dataBr) {
+            const partes = dataBr.split('-');
+            if (partes.length !== 3) {
+                return ''; // data vazia ou em formato inesperado
+            }
+            const [dia, mes, ano] = partes;
+            return ano + '-' + mes.padStart(2, '0') + '-' + dia.padStart(2, '0');
+        }
+
+        // ABRRIR MODAL DE EDITAR
+        const corpoTabelaEmpresas = document.getElementById('corpo-tabela-empresas');
+        const modalEditar = document.getElementById('modal-editar');
+        const botaoFecharEditar = document.getElementById('fechar-modal-editar');
+        const botaoCancelarEditar = document.getElementById('cancelar-modal-editar');
+
+        function abrirEditar() {
+            modalEditar.hidden = false;
+        }
+
+        function fecharEditar() {
+            modalEditar.hidden = true;
+        }
+
+        corpoTabelaEmpresas.addEventListener('click', function (evento) {
+            const botaoEditar = evento.target.closest('.btn-editar');
+            if (!botaoEditar) {
+                return; // o clique não foi em nenhum botão "Editar"
+            }
+
+            const linha = botaoEditar.closest('tr');
+
+            const idEmpresa =
+                linha.children[0].textContent.trim();
+
+            const nome = 
+                linha.children[1].textContent.trim();
+
+            const cnpj = 
+                linha.children[2].textContent.trim();
+
+            const qtd_funcionario = 
+                linha.children[3].textContent.trim();
+
+            const cnae = 
+                linha.children[4].textContent.trim();
+
+            const bairro = 
+                linha.children[5].textContent.trim();
+
+            const cep = 
+                linha.children[6].textContent.trim();
+
+            const rua = 
+                linha.children[7].textContent.trim();
+
+            const estado = 
+                linha.children[8].textContent.trim();
+
+            const cidade = 
+                linha.children[9].textContent.trim();
+
+            const dt_registro = 
+                linha.children[10].textContent.trim();
+
+            document.getElementById('editar-id-empresa').value =
+                idEmpresa;
+
+            document.getElementById('editar-nome').value =
+                nome;
+
+            document.getElementById('editar-cnpj').value =
+                cnpj;
+
+            document.getElementById('editar-qtd-funcionario').value =
+                qtd_funcionario;
+
+            document.getElementById('editar-cnae').value =
+                cnae;
+
+            document.getElementById('editar-bairro').value =
+                bairro;
+
+            document.getElementById('editar-cep').value =
+                cep;
+
+            document.getElementById('editar-rua').value =
+                rua;
+
+            document.getElementById('editar-estado').value =
+                estado;
+
+            document.getElementById('editar-cidade').value =
+                cidade;
+
+            document.getElementById('editar-dt-registro').value =
+                converterDataBrParaIso(dt_registro);
+
+            abrirEditar();
+        });
+
+        botaoFecharEditar.addEventListener('click', fecharEditar);
+        botaoCancelarEditar.addEventListener('click', fecharEditar);
+
+        modalEditar.addEventListener('click', function (evento) {
+            if (evento.target === modalEditar) {
+                fecharEditar();
+            }
+        });
+
+        // ABRIR MODAL DE EXCLUIR
+        const modalExcluir = document.getElementById('modal-excluir');
+        const botaoFecharExcluir = document.getElementById('fechar-modal-excluir');
+        const botaoCancelarExcluir = document.getElementById('cancelar-modal-excluir');
+
+        function abrirExcluir() {
+            modalExcluir.hidden = false;
+        }
+
+        function fecharExcluir() {
+            modalExcluir.hidden = true;
+        }
+
+        corpoTabelaEmpresas.addEventListener('click', function (evento) {
+            const botaoRemover = evento.target.closest('.btn-remover');
+            if (!botaoRemover) {
+                return; // o clique não foi em nenhum botão "Remover"
+            }
+
+            const linha = botaoRemover.closest('tr');
+
+            // id do registro (pro back-end saber o que apagar) e o nome
+            // (só pra mostrar na pergunta de confirmação)
+            document.getElementById('excluir-id').value = linha.dataset.idEmpresa;
+            document.getElementById('excluir-nome').textContent = linha.children[1].textContent.trim();
+
+            abrirExcluir();
+        });
+
+        botaoFecharExcluir.addEventListener('click', fecharExcluir);
+        botaoCancelarExcluir.addEventListener('click', fecharExcluir);
+
+        modalExcluir.addEventListener('click', function (evento) {
+            if (evento.target === modalExcluir) {
+                fecharExcluir();
+            }
+        });
+
+        const botaoAbrirModal = document.querySelector('.btn-adicionar');
+        const modal = document.getElementById('modal-adicionar');
+        const botaoFecharModal = document.getElementById('fechar-modal');
+        const botaoCancelarModal = document.getElementById('cancelar-modal');
+
+        function abrirModal() {
+            modal.hidden = false;
+        }
+
+        function fecharModal() {
+            modal.hidden = true;
+        }
+
+        botaoAbrirModal.addEventListener('click', abrirModal);
+        botaoFecharModal.addEventListener('click', fecharModal);
+        botaoCancelarModal.addEventListener('click', fecharModal);
+
+        modal.addEventListener('click', function (evento) {
+            if (evento.target === modal) {
+                fecharModal();
+            }
+        });
+        
+    </script>
+
+</body>
+</html>
