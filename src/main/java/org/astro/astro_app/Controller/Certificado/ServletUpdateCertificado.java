@@ -38,13 +38,9 @@ public class ServletUpdateCertificado extends HttpServlet {
         request.setAttribute("certificado", certificado);
         request.getRequestDispatcher("/WEB-INF/CertificadoJSP/UpdateCertificado.jsp").forward(request,response);
     }
-
     //salvando alterações
-
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         //os dados chegam como bytes, tem que transformar em padrão :
         request.setCharacterEncoding("UTF-8");
 

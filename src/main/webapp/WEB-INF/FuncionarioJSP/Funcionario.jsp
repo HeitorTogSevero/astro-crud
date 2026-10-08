@@ -1,0 +1,580 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astro - Painel de Administração</title>
+    <link rel="stylesheet" href="../../../../../FrontAstro/lp/crud/crud.css">
+    <link rel="stylesheet" href="../../../../../FrontAstro/lp/crud/tabelas.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<aside class="sidebar">
+    <div class="logo">
+        <img src="../../../../../FrontAstro/lp/crud/imagens/logotipo.png" alt="Logotipo" class="img-logo">
+    </div>
+
+    <nav class="nav-menu">
+        <a href="crud.html" class="nav-item">
+            <i class="fa-solid fa-house"></i>Início
+        </a>
+        <a href="empresa.html" class="nav-item">
+            <i class="fa-regular fa-building"></i>empresa
+        </a>
+        <a href="funcionario.html" class="nav-item active">
+            <i class="fa-solid fa-users"></i>funcionario
+        </a>
+        <a href="departamento.html" class="nav-item">
+            <i class="fa-solid fa-layer-group"></i>departamento
+        </a>
+        <a href="divisao_treinamento.html" class="nav-item">
+            <i class="fa-regular fa-file-lines"></i>divisao_treinamento
+        </a>
+        <a href="alerta.html" class="nav-item">
+            <i class="fa-regular fa-calendar-check"></i>alerta
+        </a>
+        <a href="certificado.html" class="nav-item">
+            <i class="fa-solid fa-award"></i>certificado
+        </a>
+        <div class="sidebar-bottom">
+            <a href="#" class="nav-item">
+                <i class="fa-solid fa-right-from-bracket"></i>Sair
+            </a>
+        </div>
+    </nav>
+</aside>
+
+<main class="main-content">
+
+    <header class="header cabecalho-pagina">
+        <div class="titulo-container">
+            <h1><strong>funcionario - </strong> <span id="periodo-titulo">Setembro 2026</span></h1>
+        </div>
+
+    </header>
+
+    <section class="barra-controles">
+
+        <div class="controle-esquerda">
+            <div class="search-bar">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <!-- back-end -->
+                <input type="text" id="busca-funcionario" name="busca-funcionario" placeholder="Pesquisar funcionário...">
+            </div>
+        </div>
+
+        <div class="controle-direita">
+            <!-- back-end: ainda não definimos as regras de filtro.
+                 Por enquanto é só um botão -->
+            <button class="btn-filtrar" id="btn-filtrar-funcionario" type="button">
+                <i class="fa-solid fa-filter"></i> Filtrar
+            </button>
+
+            <!-- back-end -->
+            <button class="btn-adicionar" id="btn-adicionar-funcionario" type="button" data-acao="adicionar-registro">
+                <i class="fa-solid fa-plus"></i> Adicionar funcionario
+            </button>
+        </div>
+    </section>
+
+    <!-- ver a disposição do dados dentro da tabela para ela não esticar com dados extremamente grandes -->
+    <section class="panel painel-tabela">
+        <div class="tabela-rolavel">
+            <table class="data-table" id="tabela-funcionarios">
+                <thead class="data-cabecalho">
+                <tr>
+                    <th class="ordenavel" data-coluna="id_funcionario"><strong>id_funcionario</strong> <i class="fa-solid fa-sort"></i></th>
+                    <th data-coluna="cpf">cpf </th>
+                    <th class="ordenavel" data-coluna="nome">nome <i class="fa-solid fa-sort"></i></th>
+                    <th class="ordenavel" data-coluna="cargo">cargo <i class="fa-solid fa-sort"></i></th>
+                    <th class="ordenavel" data-coluna="id_empresa">id_empresa <i class="fa-solid fa-sort"></i></th>
+                    <th class="ordenavel" data-coluna="id_departamento">id_departamento <i class="fa-solid fa-sort"></i></th>
+                    <th>Ações</th>
+                </tr>
+                </thead>
+                <tbody id="corpo-tabela-funcionarios">
+                <tr id_funcionario="" cpf="" nome="" cargo="" id_empresa="" id_departamento="">
+                    <td>1</td>
+                    <td>123.456.789-12</td>
+                    <td>Murilo de Borba Xavier</td>
+                    <td>Engenheiro de Software</td>
+                    <td>8</td>
+                    <td>2</td>
+                    <td>
+                        <div class="celula-acoes">
+                            <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
+                            <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
+                        </div>
+                    </td>
+                </tr>
+                <tr id_funcionario="" cpf="" nome="" cargo="" id_empresa="" id_departamento="">
+                    <td>2</td>
+                    <td>987.654.321-98</td>
+                    <td>Yasmin Nakamura</td>
+                    <td>Analista de Dados</td>
+                    <td>8</td>
+                    <td>2</td>
+                    <td>
+                        <div class="celula-acoes">
+                            <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
+                            <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
+                        </div>
+                    </td>
+                </tr>
+                <tr id_funcionario="" cpf="" nome="" cargo="" id_empresa="" id_departamento="">
+                    <td>3</td>
+                    <td>123.234.345-12</td>
+                    <td>Alice dos Santos Queiroz</td>
+                    <td>Analista Financeiro</td>
+                    <td>8</td>
+                    <td>2</td>
+                    <td>
+                        <div class="celula-acoes">
+                            <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
+                            <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
+                        </div>
+                    </td>
+                </tr>
+                <tr id_funcionario="" cpf="" nome="" cargo="" id_empresa="" id_departamento="">
+                    <td>4</td>
+                    <td>987.876.765-98</td>
+                    <td>Lorenzo Bianchini de Andrade</td>
+                    <td>Product Manager</td>
+                    <td>8</td>
+                    <td>2</td>
+                    <td>
+                        <div class="celula-acoes">
+                            <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
+                            <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
+                        </div>
+                    </td>
+                </tr>
+                <tr id_funcionario="" cpf="" nome="" cargo="" id_empresa="" id_departamento="">
+                    <td>5</td>
+                    <td>298.384.683-28</td>
+                    <td>Ygor Lovato Toledo Silva</td>
+                    <td>Executivo de Vendas</td>
+                    <td>8</td>
+                    <td>2</td>
+                    <td>
+                        <div class="celula-acoes">
+                            <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
+                            <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
+                        </div>
+                    </td>
+                </tr>
+                <tr id_funcionario="" cpf="" nome="" cargo="" id_empresa="" id_departamento="">
+                    <td>6</td>
+                    <td>827.283.915-24</td>
+                    <td>Heitor Tognelli Severo</td>
+                    <td>Gerente de Qualidade</td>
+                    <td>8</td>
+                    <td>2</td>
+                    <td>
+                        <div class="celula-acoes">
+                            <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
+                            <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr id_funcionario="" cpf="" nome="" cargo="" id_empresa="" id_departamento="">
+                    <td>7</td>
+                    <td>293.956.115-83</td>
+                    <td>José Roberto da Silva</td>
+                    <td>Estoquista</td>
+                    <td>8</td>
+                    <td>2</td>
+                    <td>
+                        <div class="celula-acoes">
+                            <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
+                            <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
+                        </div>
+                    </td>
+                </tr>
+                <tr id_funcionario="" cpf="" nome="" cargo="" id_empresa="" id_departamento="">
+                    <td>8</td>
+                    <td>293.834.129-27</td>
+                    <td>Carlos Almeida Jubilar</td>
+                    <td>Estoquista</td>
+                    <td>8</td>
+                    <td>2</td>
+                    <td>
+                        <div class="celula-acoes">
+                            <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
+                            <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
+                        </div>
+                    </td>
+                </tr>
+                <tr id_funcionario="" cpf="" nome="" cargo="" id_empresa="" id_departamento="">
+                    <td>9</td>
+                    <td>912.283.951-36</td>
+                    <td>Guilherme de Oliveira Rocha</td>
+                    <td>Estoquista</td>
+                    <td>8</td>
+                    <td>2</td>
+                    <td>
+                        <div class="celula-acoes">
+                            <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
+                            <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+</main>
+
+<div class="modal-fundo" id="modal-adicionar" hidden>
+    <div class="modal-caixa" role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
+
+        <div class="modal-cabecalho">
+            <h2 id="modal-titulo">Adicionar em funcionario</h2>
+            <button type="button" class="modal-fechar" id="fechar-modal" aria-label="Fechar">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <form id="formulario-adicionar" class="modal-formulario" action="" method="post">
+
+            <div class="modal-campo">
+                <label for="campo-cpf">cpf</label>
+                <input type="text" id="campo-cpf" name="cpf" placeholder="000.000.000-00" inputmode="numeric" autocomplete="off" required>
+            </div>
+
+            <div class="modal-campo">
+                <label for="campo-nome">nome</label>
+                <input type="text" id="campo-nome" name="nome" placeholder="Nome" required>
+            </div>
+
+            <div class="modal-campo">
+                <label for="campo-cargo">cargo</label>
+                <input type="text" id="campo-cargo" name="cargo" placeholder="Cargo" required>
+            </div>
+
+            <div class="modal-campo">
+                <label for="campo-id_empresa">id_empresa</label>
+                <input type="number" id="campo-id_empresa" name="id_empresa"
+                       min="0"
+                       placeholder="ID" required>
+            </div>
+
+            <div class="modal-campo">
+                <label for="campo-id_departamento">id_departamento</label>
+                <input type="number" id="campo-id_departamento" name="id_departamento"
+                       min="0"
+                       placeholder="ID" required>
+            </div>
+
+            <div class="modal-rodape">
+                <button type="button" class="botao-cancelar" id="cancelar-modal">Cancelar</button>
+                <button type="submit" class="botao-salvar">Salvar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Cargo, Empresa (id_empresa), Departamento (id_departamento) -->
+<div class="modal-fundo" id="modal-filtro" hidden>
+    <div class="modal-caixa" role="dialog" aria-modal="true" aria-labelledby="modal-titulo-filtro">
+
+        <div class="modal-cabecalho">
+            <h2 id="modal-titulo-filtro">Filtrar funcionários</h2>
+            <button type="button" class="modal-fechar" id="fechar-modal-filtro" aria-label="Fechar">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <form id="formulario-filtro" class="modal-formulario" action="" method="get">
+
+            <div class="modal-campo">
+                <label for="filtro-cargo">Cargo</label>
+                <input type="text" id="filtro-cargo" name="cargo" placeholder="Ex: Analista de Dados">
+            </div>
+
+            <div class="modal-campo">
+                <label for="filtro-id_empresa">id_empresa</label>
+                <input type="number" id="filtro-id_empresa" name="id_empresa" min="0" placeholder="0">
+            </div>
+
+            <div class="modal-campo">
+                <label for="filtro-id_departamento">id_departamento</label>
+                <input type="number" id="filtro-id_departamento" name="id_departamento" min="0" placeholder="0">
+            </div>
+
+            <div class="modal-rodape">
+                <button type="reset" class="botao-cancelar" id="limpar-filtro">Limpar</button>
+                <button type="submit" class="botao-salvar">Aplicar filtro</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="modal-fundo" id="modal-editar" hidden>
+    <div class="modal-caixa" role="dialog" aria-modal="true" aria-labelledby="modal-titulo-editar">
+
+        <div class="modal-cabecalho">
+            <h2 id="modal-titulo-editar">Editar funcionário</h2>
+            <button type="button" class="modal-fechar" id="fechar-modal-editar" aria-label="Fechar">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <form id="formulario-editar" class="modal-formulario" action="" method="post">
+
+            <input type="hidden" id="editar-id-funcionario" name="id_funcionario">
+
+            <div class="modal-campo">
+                <label for="editar-cpf">cpf</label>
+                <input type="text" id="editar-cpf" name="cpf"
+                       placeholder="000.000.000-00" required>
+            </div>
+
+            <div class="modal-campo">
+                <label for="editar-nome">nome</label>
+                <input type="text" id="editar-nome" name="nome" required>
+            </div>
+
+            <div class="modal-campo">
+                <label for="editar-cargo">cargo</label>
+                <input type="text" id="editar-cargo" name="cargo" required>
+            </div>
+
+            <div class="modal-campo">
+                <label for="editar-id_empresa">id_empresa</label>
+                <input type="number" id="editar-id_empresa" name="id_empresa" min="0" required>
+            </div>
+
+            <div class="modal-campo">
+                <label for="editar-id_departamento">id_departamento</label>
+                <input type="number" id="editar-id_departamento" name="id_departamento" min="0" required>
+            </div>
+
+            <div class="modal-rodape">
+                <button type="button" class="botao-cancelar" id="cancelar-modal-editar">Cancelar</button>
+                <button type="submit" class="botao-salvar">Salvar alterações</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="modal-fundo" id="modal-excluir" hidden>
+    <div class="modal-caixa modal-caixa-pequena" role="dialog" aria-modal="true" aria-labelledby="modal-titulo-excluir">
+
+        <div class="modal-cabecalho">
+            <h2 id="modal-titulo-excluir">Excluir registro</h2>
+            <button type="button" class="modal-fechar" id="fechar-modal-excluir" aria-label="Fechar">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <p class="modal-texto-confirmacao">
+            Tem certeza que deseja excluir
+            <strong id="excluir-nome"></strong>?
+            Essa ação não pode ser desfeita.
+        </p>
+
+        <form id="formulario-excluir" action="" method="post">
+            <input type="hidden" id="excluir-id" name="id_funcionario">
+
+            <div class="modal-rodape">
+                <button type="button" class="botao-cancelar" id="cancelar-modal-excluir">Cancelar</button>
+                <button type="submit" class="botao-excluir">Excluir</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+
+    const botaoAbrirFiltro = document.querySelector('.btn-filtrar');
+    const modalFiltro = document.getElementById('modal-filtro');
+    const botaoFecharFiltro = document.getElementById('fechar-modal-filtro');
+
+    function abrirFiltro() {
+        modalFiltro.hidden = false;
+    }
+
+    function fecharFiltro() {
+        modalFiltro.hidden = true;
+    }
+
+    botaoAbrirFiltro.addEventListener('click', abrirFiltro);
+    botaoFecharFiltro.addEventListener('click', fecharFiltro);
+
+    modalFiltro.addEventListener('click', function (evento) {
+        if (evento.target === modalFiltro) {
+            fecharFiltro();
+        }
+    });
+
+    const cabecalhosOrdenaveis = document.querySelectorAll('.ordenavel');
+
+    cabecalhosOrdenaveis.forEach(function (cabecalho) {
+        cabecalho.addEventListener('click', function () {
+            const coluna = cabecalho.dataset.coluna;
+            const direcaoAtual = cabecalho.dataset.direcao || 'nenhuma';
+
+            let novaDirecao;
+            if (direcaoAtual === 'nenhuma') {
+                novaDirecao = 'asc';
+            } else if (direcaoAtual === 'asc') {
+                novaDirecao = 'desc';
+            } else {
+                novaDirecao = 'nenhuma';
+            }
+
+            cabecalhosOrdenaveis.forEach(function (outroCabecalho) {
+                if (outroCabecalho !== cabecalho) {
+                    delete outroCabecalho.dataset.direcao;
+                    outroCabecalho.querySelector('i').className = 'fa-solid fa-sort';
+                }
+            });
+
+            if (novaDirecao === 'nenhuma') {
+                delete cabecalho.dataset.direcao;
+                cabecalho.querySelector('i').className = 'fa-solid fa-sort';
+            } else {
+                cabecalho.dataset.direcao = novaDirecao;
+                cabecalho.querySelector('i').className =
+                    novaDirecao === 'asc' ? 'fa-solid fa-sort-up' : 'fa-solid fa-sort-down';
+            }
+        });
+    });
+
+    const corpoTabelaFuncionarios = document.getElementById('corpo-tabela-funcionarios');
+    const modalEditar = document.getElementById('modal-editar');
+    const botaoFecharEditar = document.getElementById('fechar-modal-editar');
+    const botaoCancelarEditar = document.getElementById('cancelar-modal-editar');
+
+    function abrirEditar() {
+        modalEditar.hidden = false;
+    }
+
+    function fecharEditar() {
+        modalEditar.hidden = true;
+    }
+
+    corpoTabelaFuncionarios.addEventListener('click', function (evento) {
+        const botaoEditar = evento.target.closest('.btn-editar');
+        if (!botaoEditar) {
+            return;
+        }
+
+        const linha = botaoEditar.closest('tr');
+
+        const idFuncionario =
+            linha.children[0].textContent.trim();
+
+        const cpf =
+            linha.children[1].textContent.trim();
+
+        const nome =
+            linha.children[2].textContent.trim();
+
+        const cargo =
+            linha.children[3].textContent.trim();
+
+        const idEmpresa =
+            linha.children[4].textContent.trim();
+
+        const idDepartamento =
+            linha.children[5].textContent.trim();
+
+        document.getElementById('editar-id-funcionario').value =
+            idFuncionario;
+
+        document.getElementById('editar-cpf').value =
+            cpf;
+
+        document.getElementById('editar-nome').value =
+            nome;
+
+        document.getElementById('editar-cargo').value =
+            cargo;
+
+        document.getElementById('editar-id_empresa').value =
+            idEmpresa;
+
+        document.getElementById('editar-id_departamento').value =
+            idDepartamento;
+
+        abrirEditar();
+    });
+
+    botaoFecharEditar.addEventListener('click', fecharEditar);
+    botaoCancelarEditar.addEventListener('click', fecharEditar);
+
+    modalEditar.addEventListener('click', function (evento) {
+        if (evento.target === modalEditar) {
+            fecharEditar();
+        }
+    });
+
+    const modalExcluir = document.getElementById('modal-excluir');
+    const botaoFecharExcluir = document.getElementById('fechar-modal-excluir');
+    const botaoCancelarExcluir = document.getElementById('cancelar-modal-excluir');
+
+    function abrirExcluir() {
+        modalExcluir.hidden = false;
+    }
+
+    function fecharExcluir() {
+        modalExcluir.hidden = true;
+    }
+
+    corpoTabelaFuncionarios.addEventListener('click', function (evento) {
+        const botaoRemover = evento.target.closest('.btn-remover');
+        if (!botaoRemover) {
+            return;
+        }
+
+        const linha = botaoRemover.closest('tr');
+
+        document.getElementById('excluir-id').value = linha.dataset.idDepartamento;
+        document.getElementById('excluir-nome').textContent = linha.children[2].textContent.trim();
+
+        abrirExcluir();
+    });
+
+    botaoFecharExcluir.addEventListener('click', fecharExcluir);
+    botaoCancelarExcluir.addEventListener('click', fecharExcluir);
+
+    modalExcluir.addEventListener('click', function (evento) {
+        if (evento.target === modalExcluir) {
+            fecharExcluir();
+        }
+    });
+
+    const botaoAbrirModal = document.querySelector('.btn-adicionar');
+    const modal = document.getElementById('modal-adicionar');
+    const botaoFecharModal = document.getElementById('fechar-modal');
+    const botaoCancelarModal = document.getElementById('cancelar-modal');
+
+    function abrirModal() {
+        modal.hidden = false;
+    }
+
+    function fecharModal() {
+        modal.hidden = true;
+    }
+
+    botaoAbrirModal.addEventListener('click', abrirModal);
+    botaoFecharModal.addEventListener('click', fecharModal);
+    botaoCancelarModal.addEventListener('click', fecharModal);
+
+    modal.addEventListener('click', function (evento) {
+        if (evento.target === modal) {
+            fecharModal();
+        }
+    });
+
+</script>
+</body>
+</html>
