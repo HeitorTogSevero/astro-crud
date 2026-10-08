@@ -4,16 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Astro - Painel de Administração</title>
-    <link rel="stylesheet" href="../../../../../FrontAstro/lp/crud/crud.css">
-    <link rel="stylesheet" href="../../../../../FrontAstro/lp/crud/tabelas.css">
+
+    <link rel="stylesheet" href="style/crud.css">
+
+    <link rel="stylesheet" href="style/tabelas.css">
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 </head>
 <body>
 
     <aside class="sidebar">
         <div class="logo">
-            <img src="../../../../../FrontAstro/lp/crud/imagens/logotipo.png" alt="Logotipo" class="img-logo">
+            <img src="imagens/logotipo.png" alt="Logotipo" class="img-logo">
         </div>
 
         <nav class="nav-menu">
@@ -84,7 +89,6 @@
                             <th class="ordenavel" data-coluna="id_divisao"><strong>id_divisao</strong> <i class="fa-solid fa-sort"></i></th>
                             <th class="ordenavel" data-coluna="nome">nome <i class="fa-solid fa-sort"></i></th>
                             <th class="ordenavel" data-coluna="codigo">codigo <i class="fa-solid fa-sort"></i></th>
-                            <th class="ordenavel" data-coluna="qtd_funcionario">qtd_funcionario <i class="fa-solid fa-sort"></i></th>
                             <th class="ordenavel" data-coluna="id_empresa">id_empresa <i class="fa-solid fa-sort"></i></th>
                             <th class="ordenavel" data-coluna="id_cronograma">id_cronograma <i class="fa-solid fa-sort"></i></th>
                             <th>Ações</th>
@@ -92,125 +96,11 @@
                     </thead>
                     <tbody id="corpo-tabela-divisao_treinamento">
                         <tr id_divisao="" nome="" codigo="" qtd_funcionario="" id_empresa="" id_cronograma="">
-                            <td>1</td>
-                            <td>Elos</td>
-                            <td>1923</td>
-                            <td>3</td>
-                            <td>4</td>
-                            <td>5</td>
-                            <td>
-                                <div class="celula-acoes">
-                                    <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
-                                    <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr id_divisao="" nome="" codigo="" qtd_funcionario="" id_empresa="" id_cronograma="">
-                            <td>2</td>
-                            <td>Inventra</td>
-                            <td>1923</td>
-                            <td>3</td>
-                            <td>4</td>
-                            <td>5</td>
-                            <td>
-                                <div class="celula-acoes">
-                                    <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
-                                    <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr id_divisao="" nome="" codigo="" qtd_funcionario="" id_empresa="" id_cronograma="">
-                            <td>2</td>
-                            <td>Argos</td>
-                            <td>1923</td>
-                            <td>3</td>
-                            <td>4</td>
-                            <td>5</td>
-                            <td>
-                                <div class="celula-acoes">
-                                    <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
-                                    <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr id_divisao="" nome="" codigo="" qtd_funcionario="" id_empresa="" id_cronograma="">
-                            <td>3</td>
-                            <td>Olius</td>
-                            <td>1923</td>
-                            <td>3</td>
-                            <td>4</td>
-                            <td>5</td>
-                            <td>
-                                <div class="celula-acoes">
-                                    <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
-                                    <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr id_divisao="" nome="" codigo="" qtd_funcionario="" id_empresa="" id_cronograma="">
-                            <td>4</td>
-                            <td>Apollo</td>
-                            <td>1923</td>
-                            <td>3</td>
-                            <td>4</td>
-                            <td>5</td>
-                            <td>
-                                <div class="celula-acoes">
-                                    <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
-                                    <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr id_divisao="" nome="" codigo="" qtd_funcionario="" id_empresa="" id_cronograma="">
-                            <td>5</td>
-                            <td>Cometa</td>
-                            <td>1923</td>
-                            <td>3</td>
-                            <td>4</td>
-                            <td>5</td>
-                            <td>
-                                <div class="celula-acoes">
-                                    <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
-                                    <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
-                                </div>
-                            </td>
-                        </tr>
-                        
-                        <tr id_divisao="" nome="" codigo="" qtd_funcionario="" id_empresa="" id_cronograma="">
-                            <td>6</td>
-                            <td>Inventra</td>
-                            <td>1923</td>
-                            <td>3</td>
-                            <td>4</td>
-                            <td>5</td>
-                            <td>
-                                <div class="celula-acoes">
-                                    <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
-                                    <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr id_divisao="" nome="" codigo="" qtd_funcionario="" id_empresa="" id_cronograma="">
-                            <td>7</td>
-                            <td>Inventra</td>
-                            <td>1923</td>
-                            <td>3</td>
-                            <td>4</td>
-                            <td>5</td>
-                            <td>
-                                <div class="celula-acoes">
-                                    <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
-                                    <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr id_divisao="" nome="" codigo="" qtd_funcionario="" id_empresa="" id_cronograma="">
-                            <td>8</td>
-                            <td>Inventra</td>
-                            <td>1923</td>
-                            <td>3</td>
-                            <td>4</td>
-                            <td>5</td>
+                            <td id="idDivisaoTreinamento"></td>
+                            <td id="nome"></td>
+                            <td id="codigo"></td>
+                            <td id="idEmpresa"></td>
+                            <td id="idCronograma"></td>
                             <td>
                                 <div class="celula-acoes">
                                     <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
@@ -294,11 +184,9 @@
                 </div>
 
                 <div class="modal-campo">
-                    <label>Quantidade de funcionários</label>
+                    <label>Nome</label>
                     <div class="modal-campo-faixa">
-                        <input type="number" id="filtro-qtd-funcionario-min" name="qtd_funcionario_min" min="0" placeholder="Mínimo">
-                        <span>até</span>
-                        <input type="number" id="filtro-qtd-funcionario-max" name="qtd_funcionario_max" min="0" placeholder="Máximo">
+                        <input type="text" id="filtro-nome" placeholder="Nome">
                     </div>
                 </div>
 

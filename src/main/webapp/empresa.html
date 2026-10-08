@@ -7,16 +7,21 @@ Como cada página de tabela é relativamente igual, deixei comentários pra ente
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Astro - Empresas</title>
-    <link rel="stylesheet" href="../../../../../FrontAstro/lp/crud/crud.css">
-    <link rel="stylesheet" href="../../../../../FrontAstro/lp/crud/tabelas.css">
+
+    <link rel="stylesheet" href="style/crud.css">
+    
+    <link rel="stylesheet" href="style/tabelas.css">
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 </head>
 <body>
 
     <aside class="sidebar">
         <div class="logo">
-            <img src="../../../../../FrontAstro/lp/crud/imagens/logotipo.png" alt="Logotipo" class="img-logo">
+            <img src="imagens/logotipo.png" alt="Logotipo" class="img-logo">
         </div>
 
         <nav class="nav-menu">
@@ -105,17 +110,16 @@ Como cada página de tabela é relativamente igual, deixei comentários pra ente
                     </thead>
                     <tbody id="corpo-tabela-empresas">
                         <tr id_empresa="" nome="" cnpj="" qtd_funcionario="" cnae="" bairro="" cep="" rua="" estado="" cidade="" dt_registro="">
-                            <td>1</td>
-                            <td>Elos</td>
-                            <td>62.248.660/0001-43</td>
-                            <td>100</td>
-                            <td>Inventra</td>
-                            <td>Inventra</td>
-                            <td>Inventra</td>
-                            <td>Inventra</td>
-                            <td>Inventra</td>
-                            <td>Inventra</td>
-                            <td>12-09-2027</td>
+                            <td id="idEmpresa"></td>
+                            <td id="cnpj"></td>
+                            <td id="nome"></td>
+                            <td id="cnae"></td>
+                            <td id="bairro"></td>
+                            <td id="cep"></td>
+                            <td id="rua"></td>
+                            <td id="estado"></td>
+                            <td id="cidade"></td>
+                            <td id="dtRegistro"></td>
                             <td>
                                 <div class="celula-acoes">
                                     <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
@@ -123,176 +127,9 @@ Como cada página de tabela é relativamente igual, deixei comentários pra ente
                                 </div>
                             </td>
                         </tr>
-                        <tr id_empresa="" nome="" cnpj="" qtd_funcionario="" cnae="" bairro="" cep="" rua="" estado="" cidade="" dt_registro="">
-                            <td>1</td>
-                            <td>Elos</td>
-                            <td>62.248.660/0001-43</td>
-                            <td>100</td>
-                            <td>Inventra</td>
-                            <td>Inventra</td>
-                            <td>Inventra</td>
-                            <td>Inventra</td>
-                            <td>Inventra</td>
-                            <td>Inventra</td>
-                            <td>12-09-2027</td>
-                            <td>
-                                <div class="celula-acoes">
-                                    <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
-                                    <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr id_empresa="" nome="" cnpj="" qtd_funcionario="" cnae="" bairro="" cep="" rua="" estado="" cidade="" dt_registro="">
-                            <td>1</td>
-                            <td>Elos</td>
-                            <td>62.248.660/0001-43</td>
-                            <td>100</td>
-                            <td>Inventra</td>
-                            <td>Inventra</td>
-                            <td>Inventra</td>
-                            <td>Inventra</td>
-                            <td>Inventra</td>
-                            <td>Inventra</td>
-                            <td>12-09-2027</td>
-                            <td>
-                                <div class="celula-acoes">
-                                    <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
-                                    <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr id_empresa="" nome="" cnpj="" qtd_funcionario="" cnae="" bairro="" cep="" rua="" estado="" cidade="" dt_registro="">
-                            <td>1</td>
-                            <td>Elos</td>
-                            <td>62.248.660/0001-43</td>
-                            <td>100</td>
-                            <td>Inventra</td>
-                            <td>Inventra</td>
-                            <td>Inventra</td>
-                            <td>Inventra</td>
-                            <td>Inventra</td>
-                            <td>Inventra</td>
-                            <td>12-09-2027</td>
-                            <td>
-                                <div class="celula-acoes">
-                                    <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
-                                    <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr id_empresa="" nome="" cnpj="" qtd_funcionario="" cnae="" bairro="" cep="" rua="" estado="" cidade="" dt_registro="">
-                            <td>1</td>
-                            <td>Elos</td>
-                            <td>62.248.660/0001-43</td>
-                            <td>100</td>
-                            <td>Inventra</td>
-                            <td>Inventra</td>
-                            <td>Inventra</td>
-                            <td>Inventra</td>
-                            <td>Inventra</td>
-                            <td>Inventra</td>
-                            <td>12-09-2027</td>
-                            <td>
-                                <div class="celula-acoes">
-                                    <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
-                                    <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr id_empresa="" nome="" cnpj="" qtd_funcionario="" cnae="" bairro="" cep="" rua="" estado="" cidade="" dt_registro="">
-                            <td>1</td>
-                            <td>Elos</td>
-                            <td>62.248.660/0001-43</td>
-                            <td>100</td>
-                            <td>Inventra</td>
-                            <td>Inventra</td>
-                            <td>Inventra</td>
-                            <td>Inventra</td>
-                            <td>Inventra</td>
-                            <td>Inventra</td>
-                            <td>12-09-2027</td>
-                            <td>
-                                <div class="celula-acoes">
-                                    <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
-                                    <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
-                                </div>
-                            </td>
-                        </tr>
-                        
-                        <tr id_empresa="" nome="" cnpj="" qtd_funcionario="" cnae="" bairro="" cep="" rua="" estado="" cidade="" dt_registro="">
-                            <td>1</td>
-                            <td>Elos</td>
-                            <td>62.248.660/0001-43</td>
-                            <td>100</td>
-                            <td>Inventra</td>
-                            <td>Inventra</td>
-                            <td>Inventra</td>
-                            <td>Inventra</td>
-                            <td>Inventra</td>
-                            <td>Inventra</td>
-                            <td>12-09-2027</td>
-                            <td>
-                                <div class="celula-acoes">
-                                    <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
-                                    <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr id_empresa="" nome="" cnpj="" qtd_funcionario="" cnae="" bairro="" cep="" rua="" estado="" cidade="" dt_registro="">
-                            <td>1</td>
-                            <td>Elos</td>
-                            <td>62.248.660/0001-43</td>
-                            <td>100</td>
-                            <td>Inventra</td>
-                            <td>Inventra</td>
-                            <td>Inventra</td>
-                            <td>Inventra</td>
-                            <td>Inventra</td>
-                            <td>Inventra</td>
-                            <td>12-09-2027</td>
-                            <td>
-                                <div class="celula-acoes">
-                                    <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
-                                    <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr id_empresa="" nome="" cnpj="" qtd_funcionario="" cnae="" bairro="" cep="" rua="" estado="" cidade="" dt_registro="">
-                            <td>1</td>
-                            <td>Elos</td>
-                            <td>62.248.660/0001-43</td>
-                            <td>100</td>
-                            <td>Inventra</td>
-                            <td>Inventra</td>
-                            <td>Inventra</td>
-                            <td>Inventra</td>
-                            <td>Inventra</td>
-                            <td>Inventra</td>
-                            <td>12-09-2027</td>
-                            <td>
-                                <div class="celula-acoes">
-                                    <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
-                                    <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
-                                </div>
-                            </td>
-                        </tr>
-                        
                     </tbody>
                 </table>
             </div>
-
-            <!-- back-end: cada <tr> é um registro da tabela "empresa".
-                         data-id-empresa deve receber o id_empresa (PK) vindo do banco.
-                         Os data-* a mais guardam as colunas que existem no banco mas
-                         não aparecem na tabela (qtd_funcionario, cnae, bairro, cep,
-                         rua) — usar esses valores para pré-preencher o formulário de
-                         edição sem precisar de uma nova requisição. -->
-
-                        <!-- back-end: as próximas linhas entram aqui, seguindo o
-                             mesmo padrão de atributos acima. A rolagem já está
-                             pronta em .tabela-rolavel, então a tabela cresce sem
-                             quebrar o layout da página -->
-
         </section>
 
     </main>
@@ -429,11 +266,9 @@ Como cada página de tabela é relativamente igual, deixei comentários pra ente
                 </div>
 
                 <div class="modal-campo">
-                    <label>qtd_funcionario</label>
+                    <label>Nome</label>
                     <div class="modal-campo-faixa">
-                        <input type="number" id="filtro-qtd-funcionario-min" name="qtd_funcionario_min" min="0" placeholder="Mínimo">
-                        <span>até</span>
-                        <input type="number" id="filtro-qtd-funcionario-max" name="qtd_funcionario_max" min="0" placeholder="Máximo">
+                        <input type="text" id="filtro-nome" name="nome" placeholder="Digite seu nome">
                     </div>
                 </div>
 
