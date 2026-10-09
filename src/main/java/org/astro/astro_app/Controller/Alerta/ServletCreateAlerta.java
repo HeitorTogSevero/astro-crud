@@ -34,12 +34,18 @@ public class ServletCreateAlerta extends HttpServlet{
         String dtLimiteTexto = request.getParameter("");
 
         Date dataLimite = null;
+
         LocalDate localDataLimite = dataLimite.toLocalDate();
 
         String mensagem = "";
 
         if(dtLimiteTexto != null && !dtLimiteTexto.isBlank()){
             dataLimite = Date.valueOf(dtLimiteTexto);// Transformei o parametro em Date
+        }
+
+        else if(dtLimiteTexto == null && dtLimiteTexto.isBlank()){
+            mensagem = "Erro: a data não poder ser vazia";
+            request.setAttribute("erro", mensagem);
         }
 
         else if(descricao == null || descricao.equals(" ")){

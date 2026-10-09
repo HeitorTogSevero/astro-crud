@@ -27,6 +27,9 @@ public class ServletCreateFuncionario extends HttpServlet {
        final Pattern cpfRegex =
                 Pattern.compile("^(\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}|\\d{11})$");
 
+        final Pattern emailRegex =
+                Pattern.compile("^[a-zA-Z0-9._%+#$!\\-]+@(gmail|hotmail|yahoo|outlook)\\.(com|com\\.br|org\\.br)$");
+
         String nome = request.getParameter("nome");
 
         String cargo = request.getParameter("cargo");
@@ -41,30 +44,62 @@ public class ServletCreateFuncionario extends HttpServlet {
         String idDepartamentoTexto = request.getParameter("id_departamento");
         int idDepartamento = Integer.parseInt(idDepartamentoTexto);
 
-        if(cpf == null || !cpfRegex.matcher(cpf.toLowerCase()).matches()){
-            response.getWriter().println("Erro: Formato do CPF inválido. Use 000.000.000-00");
+        String mensagem;
+
+        if(!cpfRegex.matcher(cpf).matches()){
+            mensagem = "Erro: Formato do CPF inválido. Use 000.000.000-00";
+            request.setAttribute("erro", mensagem);
         }
 
-        if(cargo == null || cargo.length() > 50){
-            response.getWriter().println("Erro: O cargo deve ter no max. 50 caracteres");
+        else if(cargo == null || cargo.length() > 50){
+            mensagem = "Erro: O cargo deve ter no max. 50 caracteres";
+            request.setAttribute("erro", mensagem);
         }
 
-        if(nome == null || nome.length() > 100){
-            response.getWriter().println("Erro: o nome deve ter no max. 100 caracteres");
+        else if(nome == null || nome.equals(" ")){
+            mensagem = "Erro: nome não pode ser vazio";
+        }
+
+        else if(nome.length() > 100){
+            mensagem = "Erro: o nome deve ter no max. 100 caracteres";
+            request.setAttribute("erro", mensagem);
+        }
+
+        else if(idEmpresa <= 0 || idEmpresaTexto.equals(" ")){
+            mensagem = "o id deve ser > 0";
+            request.setAttribute("erro", mensagem);
+        }
+
+        else if(idDepartamento <= 0 || idDepartamentoTexto.equals(" ")){
+            mensagem = "o id deve ser > 0";
+            request.setAttribute("erro", mensagem);
+        }
+
+        else if(email.length() > 50){
+            mensagem = "Erro: o email pode ter até 50 caracterses";
+            request.setAttribute("erro", mensagem);
+        }
+
+        else if(!emailRegex.matcher(email).matches()){
+            mensagem = "Erro: o formato do email não é aceito";
+            request.setAttribute("erro", mensagem);
         }
 
 
-        Funcionario funcionario = new Funcionario(
-                nome,
-                cargo,
-                cpf,
-                email,
-                idEmpresa,
-                idDepartamento
-        );
+        else {
+            Funcionario funcionario = new Funcionario(
+                    nome,
+                    cargo,
+                    cpf,
+                    email,
+                    idEmpresa,
+                    idDepartamento
+            );
 
-        funcionarioDAO.inserir(funcionario);
+            funcionarioDAO.inserir(funcionario);
 
-        response.sendRedirect(request.getContextPath() + "landingpage");
+            response.sendRedirect(request.getContextPath() + "landingpage");
+        }
     }
+
 }

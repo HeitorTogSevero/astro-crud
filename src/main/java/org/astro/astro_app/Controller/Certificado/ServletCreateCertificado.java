@@ -48,8 +48,18 @@ public class ServletCreateCertificado extends HttpServlet{
             dataEmissao = java.sql.Date.valueOf(dataEmissaotexto);
         }
 
-        if(validadetexto !=null && !validadetexto.isBlank()){
+        else if(dataEmissaotexto == null && dataEmissaotexto.isBlank()){
+            mensagem = "Erro: a data não poder ser vazia";
+            request.setAttribute("erro", mensagem);
+        }
+
+        else if(validadetexto != null && !validadetexto.isBlank()){
             validade = java.sql.Date.valueOf(validadetexto);
+        }
+
+        else if(validade == null && validadetexto.isBlank()){
+            mensagem = "Erro: a data não poder ser vazia";
+            request.setAttribute("erro", mensagem);
         }
 
         else if(idFuncionario <= 0 || idFuncionariotexto.equals(" ")){

@@ -97,7 +97,7 @@
                         </tr>
                     </thead>
                     <tbody id="corpo-tabela-departamentos">
-                        <tr id_departamento="" nome="" descricao="" grau_risco="" atividade="" qtd_funcionario="" id_empresa="">
+                        <tr id_departamento="" nome="" descricao="" grau_risco="" atividade=""  id_empresa="">
                             <td id="idDepartamento"></td>
                             <td id="nome"></td>
                             <td id="descricao"></td>
@@ -246,11 +246,6 @@
                 </div>
 
                 <div class="modal-campo">
-                    <label for="editar-qtd_funcionario">qtd_funcionario</label>
-                    <input type="number" id="editar-qtd_funcionario" name="qtd_funcionario" min="0" required>
-                </div>
-
-                <div class="modal-campo">
                     <label for="editar-id_empresa">id_empresa</label>
                     <input type="number" id="editar-id_empresa" name="id_empresa" min="0" required>
                 </div>
@@ -384,11 +379,8 @@
             const atividade =
                 linha.children[4].textContent.trim();
 
-            const qtd_funcionario =
-                linha.children[5].textContent.trim();
-
             const id_empresa =
-                linha.children[6].textContent.trim();
+                linha.children[5].textContent.trim();
 
 
             document.getElementById('editar-id-departamento').value =
@@ -406,8 +398,6 @@
             document.getElementById('editar-atividade').value =
                 atividade;
 
-            document.getElementById('editar-qtd_funcionario').value =
-                qtd_funcionario;
 
             document.getElementById('editar-id_empresa').value =
                 id_empresa;
