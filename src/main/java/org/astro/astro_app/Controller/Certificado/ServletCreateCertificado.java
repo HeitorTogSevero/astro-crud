@@ -10,6 +10,8 @@ import org.astro.astro_app.model.Certificado;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.time.LocalDate;
+
 @WebServlet(name = "ServletCreateCertificado", value = "/adicionar-certificado")
 public class ServletCreateCertificado extends HttpServlet{
 
@@ -34,31 +36,58 @@ public class ServletCreateCertificado extends HttpServlet{
 
         String dataEmissaotexto = request.getParameter("dt_emissao");
         Date dataEmissao = null;
-        if(dataEmissaotexto != null && !dataEmissaotexto.isBlank()){
-            dataEmissao = java.sql.Date.valueOf(dataEmissaotexto);
-        }
+        LocalDate localDataEmissao = dataEmissao.toLocalDate();
 
         String validadetexto = request.getParameter("validade");
         Date validade = null;
+        LocalDate localValidade = validade.toLocalDate();
+
+        String mensagem = "";
+
+        if(dataEmissaotexto != null && !dataEmissaotexto.isBlank()){
+            dataEmissao = java.sql.Date.valueOf(dataEmissaotexto);
+        }
 
         if(validadetexto !=null && !validadetexto.isBlank()){
             validade = java.sql.Date.valueOf(validadetexto);
         }
 
-        if(idFuncionario == 0 || idFuncionariotexto.equals(" ")){
-
+        else if(idFuncionario <= 0 || idFuncionariotexto.equals(" ")){
+            mensagem = "Erro: o id deve ser > 0";
+            request.setAttribute("erro", mensagem);
         }
 
-        Certificado certificado = new Certificado(
-                idFuncionario,
-                idNrFuncionario,
-                dataEmissao,
-                validade,
-                idNrEmpresa
-        );
+        else if(idNrFuncionario <= 0 || idNrFuncionariotexto.equals(" ")){
+            mensagem = "Erro: o id deve ser > 0";
+            request.setAttribute("erro", mensagem);
+        }
 
-        certificadoDAO.inserir(certificado);
+        else if(idNrEmpresa <= 0 || idNrEmpresatexto.equals(" ")){
+            mensagem = "Erro: o id deve ser > 0";
+            request.setAttribute("erro", mensagem);
+        }
 
-        response.sendRedirect(request.getContextPath() + "landingpage"); //mudar depois
+        else if(dataEmissao == null || localDataEmissao.isAfter(LocalDate.now())){
+            mensagem = "Erro: a data deve ser anterior ou no dia atual";
+            request.setAttribute("erro", mensagem);
+        }
+        else if (validade == null || localValidade.isBefore(LocalDate.now())) {
+            mensagem = "Erro: a validade deve ser a partir do dia atual";
+            request.setAttribute("erro", mensagem);
+        }
+
+        else {
+            Certificado certificado = new Certificado(
+                    idFuncionario,
+                    idNrFuncionario,
+                    dataEmissao,
+                    validade,
+                    idNrEmpresa
+            );
+
+            certificadoDAO.inserir(certificado);
+
+            response.sendRedirect(request.getContextPath() + "landingpage");
+        }
     }
 }

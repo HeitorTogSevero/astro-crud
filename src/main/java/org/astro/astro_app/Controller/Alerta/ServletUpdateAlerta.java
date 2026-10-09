@@ -36,7 +36,8 @@ public class ServletUpdateAlerta extends HttpServlet{
             return;
         }
 
-        List<Alerta> alertas = alertaDAO.buscar();
+        String sql = "SELECT * FROM alerta";
+        List<Alerta> alertas = alertaDAO.buscar(sql);
 
         request.setAttribute("alertas",alertas);
 

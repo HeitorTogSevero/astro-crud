@@ -17,13 +17,14 @@ public class FuncionarioDAO {
 
         try{
             conn = conexao.conectar();
-            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO funcionario (nome, cargo, cpf, id_empresa, id_departamento) VALUES (?, ?, ?, ?, ?)");
+            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO funcionario (nome, cargo, cpf, id_empresa, id_departamento, email) VALUES (?, ?, ?, ?, ?, ?)");
 
             pstmt.setString(1, f.getNome());
             pstmt.setString(2, f.getCargo());
             pstmt.setString(3, f.getCpf());
             pstmt.setInt(4, f.getIdEmpresa());
             pstmt.setInt(5, f.getIdDepartamento());
+            pstmt.setString(6, f.getEmail());
 
             if (pstmt.executeUpdate() > 0){
                 return true;
@@ -54,7 +55,7 @@ public class FuncionarioDAO {
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
-                vet.add(new Funcionario(rs.getString("nome"), rs.getString("cargo"), rs.getString("cpf"), rs.getInt("id_empresa"), rs.getInt("id_funcionario"), rs.getInt("id_departamento")));
+                vet.add(new Funcionario(rs.getString("nome"), rs.getString("cargo"), rs.getString("cpf"), rs.getString("email"), rs.getInt("id_empresa"), rs.getInt("id_funcionario"), rs.getInt("id_departamento")));
             }
 
             stmt.close();
@@ -83,7 +84,7 @@ public class FuncionarioDAO {
 
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
-                return new Funcionario(rs.getString("nome"), rs.getString("cargo"), rs.getString("cpf"), rs.getInt("id_empresa"), rs.getInt("id_funcionario"), rs.getInt("id_departamento"));
+                return new Funcionario(rs.getString("nome"), rs.getString("cargo"), rs.getString("cpf"), rs.getString("email"), rs.getInt("id_empresa"), rs.getInt("id_funcionario"), rs.getInt("id_departamento"));
             }
             return null;
 
@@ -113,7 +114,7 @@ public class FuncionarioDAO {
             ResultSet rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                vet.add(new Funcionario(rs.getString("nome"), rs.getString("cargo"), rs.getString("cpf"), rs.getInt("id_empresa"), rs.getInt("id_funcionario"), rs.getInt("id_departamento")));
+                vet.add(new Funcionario(rs.getString("nome"), rs.getString("cargo"), rs.getString("cpf"), rs.getString("email"), rs.getInt("id_empresa"), rs.getInt("id_funcionario"), rs.getInt("id_departamento")));
             }
 
         } catch (SQLException sqlE) {
@@ -143,7 +144,7 @@ public class FuncionarioDAO {
             ResultSet rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                vet.add(new Funcionario(rs.getString("nome"), rs.getString("cargo"), rs.getString("cpf"), rs.getInt("id_empresa"), rs.getInt("id_funcionario"), rs.getInt("id_departamento")));
+                vet.add(new Funcionario(rs.getString("nome"), rs.getString("cargo"), rs.getString("cpf"), rs.getString("email"), rs.getInt("id_empresa"), rs.getInt("id_funcionario"), rs.getInt("id_departamento")));
             }
 
         } catch (SQLException sqlE) {

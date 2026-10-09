@@ -35,16 +35,45 @@ public class ServletCreateDivisaoTreinamento extends HttpServlet{
 
         String nome = request.getParameter("");
 
-        DivisaoTreinamento novaDivisaoTreinamento = new DivisaoTreinamento(
-                idCronograma,
-                codigo,
-                idEmpresa,
-                nome
-        );
+        String mensagem;
 
-        divisaoTreinamentoDAO.inserir(novaDivisaoTreinamento);
+        if(idCronograma <= 0 || IdCronogramaTexto.equals(" ")){
+            mensagem = "Erro: o id deve ser > 0";
+            request.setAttribute("erro", mensagem);
+        }
 
-        response.sendRedirect(request.getContextPath() + "/divisao-treinamento");
+        else if(codigo <= 0 || codigoTexto.equals(" ")){
+            mensagem = "Erro: o id deve ser > 0";
+            request.setAttribute("erro", mensagem);
+        }
+
+        else if(idEmpresa <= 0 || idEmpresaTexto.equals(" ")){
+            mensagem = "Erro: o id deve ser > 0";
+            request.setAttribute("erro", mensagem);
+        }
+
+        else if(nome == null || nome.equals(" ")){
+            mensagem = "Erro: o nome não pode ser vazio";
+            request.setAttribute("erro", mensagem);
+        }
+
+        else if(nome.length() > 50){
+            mensagem = "Erro: o nome deve conter até 50 caracteres";
+            request.setAttribute("erro", mensagem);
+        }
+
+        else {
+            DivisaoTreinamento novaDivisaoTreinamento = new DivisaoTreinamento(
+                    idCronograma,
+                    codigo,
+                    idEmpresa,
+                    nome
+            );
+
+            divisaoTreinamentoDAO.inserir(novaDivisaoTreinamento);
+
+            response.sendRedirect(request.getContextPath() + "/divisao-treinamento");
+        }
 
     }
 }
