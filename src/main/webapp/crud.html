@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Astro - Painel de Administração</title>
-    <link rel="stylesheet" href="../../../../../FrontAstro/lp/crud/crud.css">
+    <link rel="stylesheet" href="style/crud.css">
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -12,7 +13,7 @@
 
     <aside class="sidebar">
         <div class="logo">
-            <img src="../../../../../FrontAstro/lp/crud/imagens/logotipo.png" alt="Logotipo" class="img-logo">
+            <img src="imagens/logotipo.png" alt="Logotipo" class="img-logo">
         </div>
 
         <nav class="nav-menu">
@@ -38,7 +39,7 @@
                 <i class="fa-solid fa-award"></i>certificado
             </a>
             <div class="sidebar-bottom">
-                <a href="#" class="nav-item">
+                <a href="#" class="nav-item" id="exit-bottom">
                     <i class="fa-solid fa-right-from-bracket"></i>Sair
                 </a>
             </div>
@@ -93,7 +94,6 @@
                                 <th>id_empresa</th>
                                 <th>cnpj</th>
                                 <th>nome</th>
-                                <th>qtd_funcionario</th>
                                 <th>cnae</th>
                                 <th>bairro</th>
                                 <th>cep</th>
@@ -104,44 +104,17 @@
                             </tr>
                         </thead>
                         <tbody id="corpo-tabela-empresas">
-                            <tr data-id-empresa="1">
-                                <td>1</td>
-                                <td>62.248.660/0001-43</td>
-                                <td>Elos</td>
-                                <td>45</td>
-                                <td>62.01-5-01</td>
-                                <td>Centro</td>
-                                <td>13010-000</td>
-                                <td>Rua das Flores, 123</td>
-                                <td>SP</td>
-                                <td>São Paulo</td>
-                                <td>01-09-2026</td>
-                            </tr>
                             <tr data-id-empresa="2">
-                                <td>2</td>
-                                <td>30.325.076/0001-58</td>
-                                <td>Inventra</td>
-                                <td>28</td>
-                                <td>63.11-9-00</td>
-                                <td>Jardim Aquarius</td>
-                                <td>12246-000</td>
-                                <td>Av. Brasil, 500</td>
-                                <td>SP</td>
-                                <td>São José dos Campos</td>
-                                <td>03-09-2026</td>
-                            </tr>
-                            <tr data-id-empresa="3">
-                                <td>3</td>
-                                <td>35.100.242/0001-31</td>
-                                <td>Argos</td>
-                                <td>15</td>
-                                <td>70.20-4-00</td>
-                                <td>Savassi</td>
-                                <td>30130-000</td>
-                                <td>Rua Pernambuco, 800</td>
-                                <td>MG</td>
-                                <td>Belo Horizonte</td>
-                                <td>05-09-2026</td>
+                                <td id="idEmpresa"></td>
+                                <td id="cnpj"></td>
+                                <td id="nome"></td>
+                                <td id="cnae"></td>
+                                <td id="bairro"></td>
+                                <td id="cep"></td>
+                                <td id="rua"></td>
+                                <td id="estado"></td>
+                                <td id="cidade"></td>
+                                <td id="dtRegistro"></td>
                             </tr>
                         </tbody>
                     </table>

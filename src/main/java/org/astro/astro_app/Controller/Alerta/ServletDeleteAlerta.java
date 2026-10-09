@@ -30,7 +30,7 @@ public class ServletDeleteAlerta extends HttpServlet{
 
             alertaDAO.remover(id);
 
-            response.sendRedirect(request.getContextPath() + "/alertas");
+            response.sendRedirect(request.getContextPath() + "/AlertaJSP/alertaJSP.jsp");
         }
     }
 }

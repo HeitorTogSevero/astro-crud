@@ -4,10 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Astro - Painel de Administração</title>
-    <link rel="stylesheet" href="/style/crud.css">
-    <link rel="stylesheet" href="/style/tabelas.css">
+    
+    <link rel="stylesheet" href="style/crud.css">
+
+    <link rel="stylesheet" href="style/tabelas.css">
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 </head>
 <body>
 
@@ -39,7 +44,7 @@
                 <i class="fa-solid fa-award"></i>certificado
             </a>
             <div class="sidebar-bottom">
-                <a href="#" class="nav-item">
+                <a href="#" class="nav-item" id="exit-bottom">
                     <i class="fa-solid fa-right-from-bracket"></i>Sair
                 </a>
             </div>
@@ -91,117 +96,14 @@
                     </thead>
                     <tbody id="corpo-tabela-alerta">
                         <tr id_alerta="" descricao="" codigo="" dt_limite="" id_empresa="">
-                            <td>1</td>
-                            <td>Elos</td>
-                            <td>123</td>
-                            <td>12-04-2017</td>
-                            <td>9</td>
+                    
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                             <td>
-                                <div class="celula-acoes">
-                                    <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
-                                    <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr id_alerta="" descricao="" codigo="" dt_limite="" id_empresa="">
-                            <td>2</td>
-                            <td>Inventra</td>
-                            <td>123</td>
-                            <td>12-04-2017</td>
-                            <td>9</td>
-                            <td>
-                                <div class="celula-acoes">
-                                    <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
-                                    <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr id_alerta="" descricao="" codigo="" dt_limite="" id_empresa="">
-                            <td>2</td>
-                            <td>Argos</td>
-                            <td>123</td>
-                            <td>12-04-2017</td>
-                            <td>9</td>
-                            <td>
-                                <div class="celula-acoes">
-                                    <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
-                                    <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr id_alerta="" descricao="" codigo="" dt_limite="" id_empresa="">
-                            <td>3</td>
-                            <td>Olius</td>
-                            <td>123</td>
-                            <td>12-04-2017</td>
-                            <td>9</td>
-                            <td>
-                                <div class="celula-acoes">
-                                    <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
-                                    <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr id_alerta="" descricao="" codigo="" dt_limite="" id_empresa="">
-                            <td>4</td>
-                            <td>Apollo</td>
-                            <td>123</td>
-                            <td>12-04-2017</td>
-                            <td>9</td>
-                            <td>
-                                <div class="celula-acoes">
-                                    <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
-                                    <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr id_alerta="" descricao="" codigo="" dt_limite="" id_empresa="">
-                            <td>5</td>
-                            <td>Cometa</td>
-                            <td>123</td>
-                            <td>12-04-2017</td>
-                            <td>9</td>
-                            <td>
-                                <div class="celula-acoes">
-                                    <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
-                                    <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
-                                </div>
-                            </td>
-                        </tr>
-                        
-                        <tr id_alerta="" descricao="" codigo="" dt_limite="" id_empresa="">
-                            <td>6</td>
-                            <td>Inventra</td>
-                            <td>123</td>
-                            <td>12-04-2017</td>
-                            <td>9</td>
-                            <td>
-                                <div class="celula-acoes">
-                                    <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
-                                    <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr id_alerta="" descricao="" codigo="" dt_limite="" id_empresa="">
-                            <td>7</td>
-                            <td>Inventra</td>
-                            <td>123</td>
-                            <td>12-04-2017</td>
-                            <td>9</td>
-                            <td>
-                                <div class="celula-acoes">
-                                    <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
-                                    <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr id_alerta="" descricao="" codigo="" dt_limite="" id_empresa="">
-                            <td>8</td>
-                            <td>Inventra</td>
-                            <td>123</td>
-                            <td>12-04-2017</td>
-                            <td>9</td>
-                            <td>
+
                                 <div class="celula-acoes">
                                     <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
                                     <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
