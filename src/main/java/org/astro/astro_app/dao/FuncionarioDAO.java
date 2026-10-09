@@ -156,6 +156,27 @@ public class FuncionarioDAO {
         return vet;
     }
 
+    //metodo contar funcionarios
+
+    public int contarFuncionarios(){
+        int total = 0;
+        Conexao conexao = new Conexao();
+        Connection conn = null;
+
+        try{
+            conn  = conexao.conectar();
+
+            PreparedStatement pstmt = conn.prepareStatement("SELECT COUNT(id_funcionario) FROM funcionario");
+            ResultSet rs = pstmt.executeQuery();
+
+            if(rs.next()){
+                total = rs.getInt(1);
+            }
+        }catch (SQLException e ){
+            System.out.println("Erro ao contar funcionarios: " + e.getMessage());
+        }
+        return total;
+    }
     // Metodo Update - CRUD
     public int alterarFuncionario(Funcionario f){
 
