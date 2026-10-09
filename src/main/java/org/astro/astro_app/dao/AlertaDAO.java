@@ -42,7 +42,7 @@ public class AlertaDAO {
     }
 
     // Metodo Read | Select - CRUD
-    public ArrayList<Alerta> buscar() {
+    public ArrayList<Alerta> buscar(String sql) {
 
         // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
@@ -55,7 +55,7 @@ public class AlertaDAO {
 
             // Interface para realizar comandos SQL's:
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM alerta ORDER BY id_alerta");
+            ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
                 vet.add(new Alerta(rs.getInt("id_alerta"), rs.getInt("codigo"), rs.getInt("id_empresa"), rs.getString("descricao"), rs.getDate("dt_limite")));

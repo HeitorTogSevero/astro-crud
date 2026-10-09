@@ -43,7 +43,7 @@ public class NrFuncionarioDAO {
     }
 
     // Metodo READ | Select - CRUD
-    public ArrayList<NrFuncionario> buscar(){
+    public ArrayList<NrFuncionario> buscar(String sql){
 
         // Criando a conexão com o banco de dados
         Conexao conexao = new Conexao();
@@ -56,7 +56,7 @@ public class NrFuncionarioDAO {
 
             // Interface para realizar comandos sql
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM nr_funcionario ORDER BY id_nrfuncionario");
+            ResultSet rs = stmt.executeQuery(sql);
 
             while(rs.next()){
                 // ordem do construtor: idNrFunc, idNrDescricao, numero, dtRealizacao, titulo, status

@@ -38,7 +38,7 @@ public class EstruturaDAO {
     }
 
     // Metodo READ | Select - CRUD
-    public ArrayList<Estrutura> buscar(){
+    public ArrayList<Estrutura> buscar(String sql){
 
         Conexao conexao = new Conexao();
         Connection conn = null;
@@ -49,7 +49,7 @@ public class EstruturaDAO {
             conn = conexao.conectar();
 
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM estrutura ORDER BY id_estrutura");
+            ResultSet rs = stmt.executeQuery(sql);
 
             while(rs.next()){
                 vet.add(new Estrutura(rs.getInt("id_estrutura"), rs.getInt("id_empresa"), rs.getString("risco"), rs.getString("descricao")));

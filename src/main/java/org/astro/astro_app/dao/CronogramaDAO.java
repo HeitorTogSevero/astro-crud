@@ -40,7 +40,7 @@ public class CronogramaDAO {
     }
 
     // Metodo Read | Select - CRUD
-    public ArrayList<Cronograma> buscar(){
+    public ArrayList<Cronograma> buscar(String sql){
 
         // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
@@ -53,7 +53,7 @@ public class CronogramaDAO {
 
             // Interface para realizar comandos SQL's:
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM cronograma ORDER BY id_cronograma");
+            ResultSet rs = stmt.executeQuery(sql);
 
             while(rs.next()){
                 vet.add(new Cronograma(rs.getInt("id_funcionario"), rs.getInt("id_empresa"), rs.getInt("id_cronograma"), rs.getDate("agendamento")));

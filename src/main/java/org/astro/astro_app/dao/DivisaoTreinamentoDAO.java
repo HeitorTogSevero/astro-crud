@@ -40,7 +40,7 @@ public class DivisaoTreinamentoDAO {
     }
 
     // Metodo Read | Select - CRUD
-    public ArrayList<DivisaoTreinamento> buscar(){
+    public ArrayList<DivisaoTreinamento> buscar(String sql){
 
         // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
@@ -53,7 +53,7 @@ public class DivisaoTreinamentoDAO {
 
             // Interface para realizar comandos SQL's:
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM divisao_treinamento ORDER BY id_divisao");
+            ResultSet rs = stmt.executeQuery(sql);
 
             while(rs.next()){
                 // ordem do construtor: (idDivisao, idCronograma, codigo, idEmpresa, nome)

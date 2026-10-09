@@ -36,7 +36,7 @@ public class AdministradorDAO {
     }
 
     // Metodo Read | Select - CRUD
-    public ArrayList<Administrador> buscar() {
+    public ArrayList<Administrador> buscar(String sql) {
 
         // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
@@ -48,7 +48,7 @@ public class AdministradorDAO {
             conn = conexao.conectar();
 
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM administrador ORDER BY id_admin");
+            ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
                 vet.add(new Administrador(rs.getInt("id_admin"), rs.getString("nome"), rs.getString("email"), rs.getString("senha")));

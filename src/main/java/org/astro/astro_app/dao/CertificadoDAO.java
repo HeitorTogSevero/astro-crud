@@ -43,7 +43,7 @@ public class CertificadoDAO {
     }
 
     // Metodo Read | Select - CRUD
-    public ArrayList<Certificado> buscar() {
+    public ArrayList<Certificado> buscar(String sql) {
 
         // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
@@ -56,7 +56,7 @@ public class CertificadoDAO {
 
             // Interface para realizar comandos SQL's:
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM certificado ORDER BY id_certificado");
+            ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
                 vet.add(new Certificado(rs.getInt("id_certificado"), rs.getInt("id_funcionario"), rs.getInt("id_nrfuncionario"), rs.getInt("id_nrempresa"), rs.getDate("dt_emissao"), rs.getDate("validade")));

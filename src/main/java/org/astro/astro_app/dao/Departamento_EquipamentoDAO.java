@@ -39,7 +39,7 @@ public class Departamento_EquipamentoDAO {
     }
 
     // Metodo READ | Select - CRUD
-    public ArrayList<Departamento_Equipamento> buscar(){
+    public ArrayList<Departamento_Equipamento> buscar(String sql){
 
         // Criando a Conexão com o Banco de Dados:
         Conexao conexao = new Conexao();
@@ -52,7 +52,7 @@ public class Departamento_EquipamentoDAO {
 
             // Interface para realizar comandos SQL's
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM depart_equipamento ORDER BY id_departamento, id_equipamento");
+            ResultSet rs = stmt.executeQuery(sql);
 
             while(rs.next()){
                 // ordem do construtor: (idDepartamento, idEquipamento)

@@ -1,5 +1,6 @@
 package org.astro.astro_app.Controller.Alerta;
 
+import jakarta.ejb.Local;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
@@ -8,6 +9,7 @@ import org.astro.astro_app.model.Alerta;
 import java.sql.Date;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 @WebServlet (name = "ServletAlertas", value = "/adicionar-alerta")
 public class ServletCreateAlerta extends HttpServlet{
@@ -31,23 +33,45 @@ public class ServletCreateAlerta extends HttpServlet{
 
         String dtLimiteTexto = request.getParameter("");
 
-        Date DataLimite = null;
+        Date dataLimite = null;
+        LocalDate localDataLimite = dataLimite.toLocalDate();
 
         if(dtLimiteTexto != null && !dtLimiteTexto.isBlank()){
-            DataLimite = Date.valueOf(dtLimiteTexto);// Transformei o parametro em Date
+            dataLimite = Date.valueOf(dtLimiteTexto);// Transformei o parametro em Date
             return;
         }
 
-        Alerta novoAlerta = new Alerta(
-                codigo,
-                idEmpresa,
-                descricao,
-                DataLimite
-        );
+        else if(descricao == null || descricao.equals(" ")){
+            response.getWriter().println("Erro: O campo descrição não foi preenchido");
+        }
+        else if(descricao.length() > 250){
+            response.getWriter().println("Erro: Descrição max. de caracteres é 250");
+        }
 
-        alertaDAO.inserir(novoAlerta);
+        else if(codigo <= 0 || codigoTexto.equals(" ")){
+            response.getWriter().println("Erro: O código deve ser > 0, e não pode ser nulo");
+        } 
 
-        response.sendRedirect(request.getContextPath() + "/alertas");
+        else if(localDataLimite.isBefore(LocalDate.now())){
+            response.getWriter().println("Erro: A data deve ser depois ou no dia de Hoje");
+        } 
+        
+        else if (idEmpresa == 0 || idEmpresaTexto.equals(" ")){
+            response.getWriter().println("Erro: Este Id deve ser > 0, e não pode der nulo");
+        }
+
+        else {
+            Alerta novoAlerta = new Alerta(
+                    codigo,
+                    idEmpresa,
+                    descricao,
+                    dataLimite
+            );
+
+            alertaDAO.inserir(novoAlerta);
+
+            response.sendRedirect(request.getContextPath() + "/alertas");
+        }
 
     }
 
