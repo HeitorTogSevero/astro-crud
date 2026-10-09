@@ -100,6 +100,54 @@ public class EmpresaDAO {
             conexao.desconectar(conn);
         }
     }
+    //Metodo pra ver ultimas 3 empresas cadastradas
+    public ArrayList<Empresa> listarUltimasTresEmpresas(){
+
+        ArrayList<Empresa> empresas = new ArrayList<>();
+        Conexao conexao = new Conexao();
+        Connection conn = null;
+
+        try{
+            conn = conexao.conectar();
+
+            PreparedStatement pstmt = conn.prepareStatement("SELECT id_empresa, cnpj, nome, cnae, bairro, cep, rua, estado, cidade, dt_registro FROM empresa ORDER BY dt_registro DESC LIMIT 3;");
+
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()){
+                empresas.add(new Empresa(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getDate(10)));
+            }
+
+        }catch (SQLException e){
+            System.out.println("erro ao listar as ultimas 3 empresas foi: " + e.getMessage());
+        }
+        return empresas;
+    }
+
+
+    //Metodo de contar empresas, que retorna o total de empresas cadastradas no banco de dados
+    public int contarEmpresas(){
+        int total = 0;
+        Conexao conexao = new Conexao();
+        Connection conn = null;
+        try{
+            conn = conexao.conectar();
+
+            PreparedStatement pstmt = conn.prepareStatement("SELECT COUNT(id_empresa) FROM empresa;");
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()){
+                total = rs.getInt(1);
+            }
+
+        }catch (SQLException e){
+            System.out.println("erro ao contar empresas: " + e.getMessage());
+        }
+        return total;
+    }
+
+
+
 
     // Metodo Update - CRUD
     public int alterarEmpresa(Empresa empresa){

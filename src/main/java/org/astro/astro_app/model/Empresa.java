@@ -33,7 +33,9 @@ public class Empresa {
         this.dtRegistro = dtRegistro;
     }
 
-    public Empresa(){}
+    public Empresa(){
+
+    }
 
     public Empresa(String cnae, String nome, String cep, String cnpj, String rua, String estado, String bairro, String cidade, Date dtRegistro) {
         this.cnae = cnae;
@@ -46,6 +48,7 @@ public class Empresa {
         this.cidade = cidade;
         this.dtRegistro = dtRegistro;
     }
+
 
     // Metodos Getters:
 

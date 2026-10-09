@@ -199,6 +199,28 @@ public class CertificadoDAO {
         return vet;
     }
 
+    //metodo de contar certificados
+    public int contarCertificados(){
+        int total = 0;
+        Conexao conexao=new Conexao();
+        Connection conn = null;
+
+        try {
+            conn = conexao.conectar();
+
+            PreparedStatement pstmt = conn.prepareStatement("SELECT COUNT(id_certificado) FROM certificado");
+
+            ResultSet rs = pstmt.executeQuery();
+
+            if(rs.next()){
+                rs.getInt(1);
+            }
+
+        }catch (SQLException e ){
+            System.out.println("Erro ao contar certificados: " + e.getMessage());
+        }
+        return total;
+    }
     // Metodo Update - CRUD
     public int alterarCertificado(Certificado c){
 
