@@ -40,8 +40,13 @@ public class ServletCreateCertificado extends HttpServlet{
 
         String validadetexto = request.getParameter("validade");
         Date validade = null;
+
         if(validadetexto !=null && !validadetexto.isBlank()){
             validade = java.sql.Date.valueOf(validadetexto);
+        }
+
+        if(idFuncionario == 0 || idFuncionariotexto.equals(" ")){
+
         }
 
         Certificado certificado = new Certificado(

@@ -39,7 +39,7 @@ public class FuncionarioDAO {
     }
 
     // Metodo Read | Select - CRUD
-    public ArrayList<Funcionario> buscar() {
+    public ArrayList<Funcionario> buscar(String sql) {
 
         // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
@@ -51,7 +51,7 @@ public class FuncionarioDAO {
             conn = conexao.conectar();
 
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM funcionario ORDER BY id_funcionario");
+            ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
                 vet.add(new Funcionario(rs.getString("nome"), rs.getString("cargo"), rs.getString("cpf"), rs.getInt("id_empresa"), rs.getInt("id_funcionario"), rs.getInt("id_departamento")));

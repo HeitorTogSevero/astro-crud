@@ -39,7 +39,7 @@ public class NrDescricaoDAO {
     }
 
     // Metodo Read | Select - CRUD
-    public ArrayList<NrDescricao> buscar(){
+    public ArrayList<NrDescricao> buscar(String sql){
 
         Conexao conexao = new Conexao();
         Connection conn = null;
@@ -50,7 +50,7 @@ public class NrDescricaoDAO {
             conn = conexao.conectar();
 
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM nr_descricao ORDER BY id_nrdescricao");
+            ResultSet rs = stmt.executeQuery(sql);
 
             while(rs.next()){
                 vet.add(new NrDescricao(rs.getInt("id_nrdescricao"), rs.getString("descricao"), rs.getString("tempo_reciclagem"), rs.getString("titulo")));

@@ -45,7 +45,7 @@ public class EmpresaDAO {
     }
 
     // Metodo Read | Select - CRUD
-    public ArrayList<Empresa> buscar(){
+    public ArrayList<Empresa> buscar(String sql){
 
         Conexao conexao = new Conexao();
         Connection conn = null;
@@ -56,7 +56,7 @@ public class EmpresaDAO {
             conn = conexao.conectar();
 
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM empresa ORDER BY id_empresa");
+            ResultSet rs = stmt.executeQuery(sql);
 
             while(rs.next()){
                 vet.add(new Empresa(rs.getInt("id_empresa"), rs.getString("cnae"), rs.getString("nome"), rs.getString("cep"), rs.getString("cnpj"), rs.getString("rua"), rs.getString("estado"), rs.getString("bairro"), rs.getString("cidade"), rs.getDate("dt_registro")));

@@ -38,7 +38,7 @@ public class EquipamentoDAO {
     }
 
     // Metodo READ | Select - CRUD
-    public ArrayList<Equipamento> buscar(){
+    public ArrayList<Equipamento> buscar(String sql){
 
         Conexao conexao = new Conexao();
         Connection conn = null;
@@ -49,7 +49,7 @@ public class EquipamentoDAO {
             conn = conexao.conectar();
 
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM equipamento ORDER BY id_equipamento");
+            ResultSet rs = stmt.executeQuery(sql);
 
             while(rs.next()){
                 vet.add(new Equipamento(rs.getInt("id_equipamento"), rs.getDate("dt_validade"), rs.getString("nome"), rs.getString("classificacao_gov")));

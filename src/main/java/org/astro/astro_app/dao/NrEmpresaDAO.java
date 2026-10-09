@@ -40,7 +40,7 @@ public class NrEmpresaDAO {
     }
 
     // Metodo Read | Select - CRUD
-    public ArrayList<NrEmpresa> buscar(){
+    public ArrayList<NrEmpresa> buscar(String sql){
 
         Conexao conexao = new Conexao();
         Connection conn = null;
@@ -51,7 +51,7 @@ public class NrEmpresaDAO {
             conn = conexao.conectar();
 
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM nr_empresa ORDER BY id_nrempresa");
+            ResultSet rs = stmt.executeQuery(sql);
 
             while(rs.next()){
                 vet.add(new NrEmpresa(rs.getInt("id_nrempresa"), rs.getInt("id_nrdescricao"), rs.getInt("numero"), rs.getString("titulo"), rs.getString("status"), rs.getDate("dt_realizacao")));

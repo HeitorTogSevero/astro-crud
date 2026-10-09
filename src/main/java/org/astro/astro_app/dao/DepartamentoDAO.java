@@ -40,7 +40,7 @@ public class DepartamentoDAO {
     }
 
     // Metodo Read | Select - CRUD
-    public ArrayList<Departamento> buscar(){
+    public ArrayList<Departamento> buscar(String sql){
 
         Conexao conexao = new Conexao();
         Connection conn = null;
@@ -51,7 +51,7 @@ public class DepartamentoDAO {
             conn = conexao.conectar();
 
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM departamento ORDER BY id_departamento");
+            ResultSet rs = stmt.executeQuery(sql);
 
             while(rs.next()){
                 vet.add(new Departamento(rs.getInt("id_departamento"), rs.getInt("id_empresa"), rs.getString("grau_risco"), rs.getString("nome"), rs.getString("descricao"), rs.getString("atividade")));
