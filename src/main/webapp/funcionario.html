@@ -94,6 +94,7 @@
                             <th data-coluna="cpf">cpf </th>
                             <th class="ordenavel" data-coluna="nome">nome <i class="fa-solid fa-sort"></i></th>
                             <th class="ordenavel" data-coluna="cargo">cargo <i class="fa-solid fa-sort"></i></th>
+                            <th class="ordenavel" data-coluna="cargo">email <i class="fa-solid fa-sort"></i></th>
                             <th class="ordenavel" data-coluna="id_empresa">id_empresa <i class="fa-solid fa-sort"></i></th>
                             <th class="ordenavel" data-coluna="id_departamento">id_departamento <i class="fa-solid fa-sort"></i></th>
                             <th>Ações</th>
@@ -105,6 +106,7 @@
                             <td id="cpf"></td>
                             <td id="nome"></td>
                             <td id="cargo"></td>
+                            <td id="email"></td>
                             <td id="idEmpresa"></td>
                             <td id="idDepart"></td>
                             <td>
@@ -149,6 +151,11 @@
                 </div>
 
                 <div class="modal-campo">
+                    <label for="campo-email">email</label>
+                    <input type="text" id="campo-email" name="email" placeholder="Email" required>
+                </div>
+
+                <div class="modal-campo">
                     <label for="campo-id_empresa">id_empresa</label>
                     <input type="number" id="campo-id_empresa" name="id_empresa" 
                     min="0"
@@ -156,7 +163,7 @@
                 </div>
 
                 <div class="modal-campo">
-                    <label for="campo-bairro">id_departamento</label>
+                    <label for="campo-id_departamento">id_departamento</label>
                     <input type="number" id="campo-id_departamento" name="id_departamento" 
                     min="0"
                     placeholder="ID" required>
@@ -194,7 +201,7 @@
                 </div>
 
                 <div class="modal-campo">
-                    <label for="filtro-i_departamento">id_departamento</label>
+                    <label for="filtro-id_departamento">id_departamento</label>
                     <input type="number" id="filtro-id_departamento" name="id_departamento" min="0" placeholder="0">
                 </div>
 
@@ -234,6 +241,11 @@
                 <div class="modal-campo">
                     <label for="editar-cargo">cargo</label>
                     <input type="text" id="editar-cargo" name="cargo" required>
+                </div>
+
+                <div class="modal-campo">
+                    <label for="editar-email">email</label>
+                    <input type="text" id="editar-email" name="email" required>
                 </div>
 
                 <div class="modal-campo">
@@ -371,11 +383,14 @@
             const cargo =
                 linha.children[3].textContent.trim();
 
-            const idEmpresa =
+            const email =
                 linha.children[4].textContent.trim();
 
-            const idDepartamento =
+            const idEmpresa =
                 linha.children[5].textContent.trim();
+
+            const idDepartamento =
+                linha.children[6].textContent.trim();
 
             document.getElementById('editar-id-funcionario').value =
                 idFuncionario;
@@ -388,6 +403,9 @@
 
             document.getElementById('editar-cargo').value =
                 cargo;
+
+            document.getElementById('editar-email').value =
+                email;
 
             document.getElementById('editar-id_empresa').value =
                 idEmpresa;

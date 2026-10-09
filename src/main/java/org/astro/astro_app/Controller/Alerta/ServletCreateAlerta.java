@@ -36,29 +36,38 @@ public class ServletCreateAlerta extends HttpServlet{
         Date dataLimite = null;
         LocalDate localDataLimite = dataLimite.toLocalDate();
 
+        String mensagem = "";
+
         if(dtLimiteTexto != null && !dtLimiteTexto.isBlank()){
             dataLimite = Date.valueOf(dtLimiteTexto);// Transformei o parametro em Date
-            return;
         }
 
         else if(descricao == null || descricao.equals(" ")){
-            response.getWriter().println("Erro: O campo descrição não foi preenchido");
+            mensagem = "Erro: A descrição não pode ser vazia";
+            request.setAttribute("erro", mensagem);
         }
+
         else if(descricao.length() > 250){
-            response.getWriter().println("Erro: Descrição max. de caracteres é 250");
+            mensagem = "Erro: Descrição max. de caracteres é 250";
+            request.setAttribute("erro", mensagem);
         }
 
         else if(codigo <= 0 || codigoTexto.equals(" ")){
-            response.getWriter().println("Erro: O código deve ser > 0, e não pode ser nulo");
+            mensagem = "Erro: O código deve ser > 0, e não pode ser nulo";
+            request.setAttribute("erro", mensagem);
         } 
 
         else if(localDataLimite.isBefore(LocalDate.now())){
-            response.getWriter().println("Erro: A data deve ser depois ou no dia de Hoje");
+            mensagem = "Erro: A data limite deve ser a partir da data atual";
+            request.setAttribute("erro", mensagem);
         } 
         
-        else if (idEmpresa == 0 || idEmpresaTexto.equals(" ")){
-            response.getWriter().println("Erro: Este Id deve ser > 0, e não pode der nulo");
+        else if (idEmpresa <= 0 || idEmpresaTexto.equals(" ")){
+            mensagem = "Erro: Este Id deve ser > 0, e não pode der nulo";
+            request.setAttribute("erro", mensagem);
         }
+
+
 
         else {
             Alerta novoAlerta = new Alerta(

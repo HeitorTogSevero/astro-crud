@@ -8,6 +8,7 @@ public class Funcionario {
     private String nome;
     private String cargo;
     private String cpf;
+    private String email;
 
     private int idEmpresa;
     private int idFuncionario;
@@ -15,10 +16,11 @@ public class Funcionario {
 
 
     // Metodo Construtor da classe
-    public Funcionario(String nome, String cargo, String cpf, int idEmpresa, int idFuncionario, int idDepartamento) {
+    public Funcionario(String nome, String cargo, String cpf, String email, int idEmpresa, int idFuncionario, int idDepartamento) {
         this.nome = nome;
         this.cargo = cargo;
         this.cpf = cpf;
+        this.email = email;
         this.idEmpresa = idEmpresa;
         this.idFuncionario = idFuncionario;
         this.idDepartamento = idDepartamento;
@@ -28,10 +30,11 @@ public class Funcionario {
 
     }
 
-    public Funcionario(String nome, String cargo, String cpf, int idEmpresa, int idDepartamento) {
+    public Funcionario(String nome, String cargo, String cpf, String email, int idEmpresa, int idDepartamento) {
         this.nome = nome;
         this.cargo = cargo;
         this.cpf = cpf;
+        this.email = email;
         this.idEmpresa = idEmpresa;
         this.idDepartamento = idDepartamento;
     }
@@ -60,5 +63,9 @@ public class Funcionario {
 
     public int getIdDepartamento() {
         return idDepartamento;
+    }
+
+    public String getEmail(){
+        return email;
     }
 }

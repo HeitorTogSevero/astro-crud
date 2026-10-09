@@ -33,6 +33,8 @@ public class ServletCreateFuncionario extends HttpServlet {
 
         String cpf = request.getParameter("cpf");
 
+        String email = request.getParameter("email");
+
         String idEmpresaTexto = request.getParameter("id_empresa");
         int idEmpresa = Integer.parseInt(idEmpresaTexto);
 
@@ -56,6 +58,7 @@ public class ServletCreateFuncionario extends HttpServlet {
                 nome,
                 cargo,
                 cpf,
+                email,
                 idEmpresa,
                 idDepartamento
         );
