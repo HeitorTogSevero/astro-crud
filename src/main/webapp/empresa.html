@@ -97,7 +97,6 @@ Como cada página de tabela é relativamente igual, deixei comentários pra ente
                             <th class="ordenavel" data-coluna="id_empresa"><strong>id_empresa</strong> <i class="fa-solid fa-sort"></i></th>
                             <th class="ordenavel" data-coluna="nome">nome <i class="fa-solid fa-sort"></i></th>
                             <th data-coluna="cnpj">cnpj</th>
-                            <th class="ordenavel" data-coluna="qtd_funcionario">qtd_funcionario <i class="fa-solid fa-sort"></i></th>
                             <th data-coluna="cnae">cnae </th>
                             <th class="ordenavel" data-coluna="bairro">bairro <i class="fa-solid fa-sort"></i></th>
                             <th data-coluna="cep">cep </th>
@@ -109,7 +108,7 @@ Como cada página de tabela é relativamente igual, deixei comentários pra ente
                         </tr>
                     </thead>
                     <tbody id="corpo-tabela-empresas">
-                        <tr id_empresa="" nome="" cnpj="" qtd_funcionario="" cnae="" bairro="" cep="" rua="" estado="" cidade="" dt_registro="">
+                        <tr id_empresa="" nome="" cnpj="" cnae="" bairro="" cep="" rua="" estado="" cidade="" dt_registro="">
                             <td id="idEmpresa"></td>
                             <td id="cnpj"></td>
                             <td id="nome"></td>
@@ -310,11 +309,6 @@ Como cada página de tabela é relativamente igual, deixei comentários pra ente
                 </div>
 
                 <div class="modal-campo">
-                    <label for="editar-qtd-funcionario">qtd_funcionario</label>
-                    <input type="number" id="editar-qtd-funcionario" name="qtd_funcionario" min="0" required>
-                </div>
-
-                <div class="modal-campo">
                     <label for="editar-cnae">cnae</label>
                     <input type="text" id="editar-cnae" name="cnae" required>
                 </div>
@@ -488,29 +482,26 @@ Como cada página de tabela é relativamente igual, deixei comentários pra ente
             const cnpj = 
                 linha.children[2].textContent.trim();
 
-            const qtd_funcionario = 
+            const cnae = 
                 linha.children[3].textContent.trim();
 
-            const cnae = 
+            const bairro = 
                 linha.children[4].textContent.trim();
 
-            const bairro = 
+            const cep = 
                 linha.children[5].textContent.trim();
 
-            const cep = 
+            const rua = 
                 linha.children[6].textContent.trim();
 
-            const rua = 
+            const estado = 
                 linha.children[7].textContent.trim();
 
-            const estado = 
+            const cidade = 
                 linha.children[8].textContent.trim();
 
-            const cidade = 
-                linha.children[9].textContent.trim();
-
             const dt_registro = 
-                linha.children[10].textContent.trim();
+                linha.children[9].textContent.trim();
 
             document.getElementById('editar-id-empresa').value =
                 idEmpresa;
@@ -520,9 +511,6 @@ Como cada página de tabela é relativamente igual, deixei comentários pra ente
 
             document.getElementById('editar-cnpj').value =
                 cnpj;
-
-            document.getElementById('editar-qtd-funcionario').value =
-                qtd_funcionario;
 
             document.getElementById('editar-cnae').value =
                 cnae;
