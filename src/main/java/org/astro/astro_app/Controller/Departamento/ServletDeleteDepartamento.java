@@ -10,7 +10,7 @@ import org.astro.astro_app.dao.DepartamentoDAO;
 
 import java.io.IOException;
 
-@WebServlet(name = "ServletDeleteDepartamento", value = "deletar-departamento")
+@WebServlet(name = "ServletDeleteDepartamento", value = "/deletar-departamento")
 public class ServletDeleteDepartamento extends HttpServlet {
 
     private DepartamentoDAO departamentoDAO;

@@ -157,7 +157,6 @@ public class FuncionarioDAO {
     }
 
     //metodo contar funcionarios
-
     public int contarFuncionarios(){
         int total = 0;
         Conexao conexao = new Conexao();
@@ -174,9 +173,12 @@ public class FuncionarioDAO {
             }
         }catch (SQLException e ){
             System.out.println("Erro ao contar funcionarios: " + e.getMessage());
+        }finally {
+            conexao.desconectar(conn);
         }
         return total;
     }
+
     // Metodo Update - CRUD
     public int alterarFuncionario(Funcionario f){
 

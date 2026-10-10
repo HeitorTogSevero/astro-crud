@@ -213,11 +213,13 @@ public class CertificadoDAO {
             ResultSet rs = pstmt.executeQuery();
 
             if(rs.next()){
-                rs.getInt(1);
+                total = rs.getInt(1);
             }
 
         }catch (SQLException e ){
             System.out.println("Erro ao contar certificados: " + e.getMessage());
+        }finally {
+            conexao.desconectar(conn);
         }
         return total;
     }

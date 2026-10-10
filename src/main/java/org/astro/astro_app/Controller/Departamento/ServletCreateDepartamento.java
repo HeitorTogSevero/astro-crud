@@ -10,7 +10,7 @@ import org.astro.astro_app.model.Departamento;
 
 import java.io.IOException;
 
-@WebServlet(name = "ServletCreateDepartamento", value = "adicionar-departamento")
+@WebServlet(name = "ServletCreateDepartamento", value = "/adicionar-departamento")
 public class ServletCreateDepartamento extends HttpServlet {
 
     private DepartamentoDAO departamentoDAO;

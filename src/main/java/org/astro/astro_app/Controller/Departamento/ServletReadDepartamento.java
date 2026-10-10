@@ -11,7 +11,7 @@ import org.astro.astro_app.model.Departamento;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "ServletReadDepartamento", value = "listar-departamento")
+@WebServlet(name = "ServletReadDepartamento", value = "/listar-departamento")
 public class ServletReadDepartamento extends HttpServlet {
 
     private DepartamentoDAO departamentoDAO;
