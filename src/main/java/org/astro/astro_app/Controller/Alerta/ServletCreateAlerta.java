@@ -1,94 +1,99 @@
 package org.astro.astro_app.Controller.Alerta;
 
-import jakarta.ejb.Local;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 import org.astro.astro_app.dao.AlertaDAO;
 import org.astro.astro_app.model.Alerta;
 import java.sql.Date;
-
 import java.io.IOException;
 import java.time.LocalDate;
 
-@WebServlet (name = "ServletAlertas", value = "/adicionar-alerta")
-public class ServletCreateAlerta extends HttpServlet{
+@WebServlet(name = "ServletCreateAlerta", value = "/adicionar-alerta")
+public class ServletCreateAlerta extends HttpServlet {
 
     private AlertaDAO alertaDAO;
 
-
-    public void init(){
+    public void init() {
         alertaDAO = new AlertaDAO();
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String codigoTexto = request.getParameter("");
-        int codigo = Integer.parseInt(codigoTexto);// Transformei o parametro em Inteiro
+        request.setCharacterEncoding("UTF-8");
 
-        String idEmpresaTexto = request.getParameter("");
-        int idEmpresa = Integer.parseInt(idEmpresaTexto);// Transformei o parametro em Inteiro
-
-        String descricao = request.getParameter("");
-
-        String dtLimiteTexto = request.getParameter("");
+        String codigoTexto = request.getParameter("codigo");
+        String idEmpresaTexto = request.getParameter("id_empresa");
+        String descricao = request.getParameter("descricao");
+        String dtLimiteTexto = request.getParameter("dt_limite");
 
         Date dataLimite = null;
+        String mensagem = null;
 
-        LocalDate localDataLimite = dataLimite.toLocalDate();
-
-        String mensagem = "";
-
-        if(dtLimiteTexto != null && !dtLimiteTexto.isBlank()){
-            dataLimite = Date.valueOf(dtLimiteTexto);// Transformei o parametro em Date
-        }
-
-        else if(dtLimiteTexto == null && dtLimiteTexto.isBlank()){
-            mensagem = "Erro: a data não poder ser vazia";
+        if (dtLimiteTexto == null || dtLimiteTexto.isBlank()) {
+            mensagem = "a data não pode ser vazia";
             request.setAttribute("erro", mensagem);
         }
-
-        else if(descricao == null || descricao.equals(" ")){
-            mensagem = "Erro: A descrição não pode ser vazia";
+        else if (descricao == null || descricao.isBlank()) {
+            mensagem = "a descricao não pode ser vazia";
             request.setAttribute("erro", mensagem);
         }
-
-        else if(descricao.length() > 250){
-            mensagem = "Erro: Descrição max. de caracteres é 250";
+        else if (descricao.length() > 250) {
+            mensagem = "O maximo de caracteres é 250";
             request.setAttribute("erro", mensagem);
         }
-
-        else if(codigo <= 0 || codigoTexto.equals(" ")){
-            mensagem = "Erro: O código deve ser > 0, e não pode ser nulo";
-            request.setAttribute("erro", mensagem);
-        } 
-
-        else if(localDataLimite.isBefore(LocalDate.now())){
-            mensagem = "Erro: A data limite deve ser a partir da data atual";
-            request.setAttribute("erro", mensagem);
-        } 
-        
-        else if (idEmpresa <= 0 || idEmpresaTexto.equals(" ")){
-            mensagem = "Erro: Este Id deve ser > 0, e não pode der nulo";
+        else if (codigoTexto == null || codigoTexto.isBlank()) {
+            mensagem = "O codigo nao pode ser nulo";
             request.setAttribute("erro", mensagem);
         }
-
-
+        else if (idEmpresaTexto == null || idEmpresaTexto.isBlank()) {
+            mensagem = "O id da empresa não pode ser nulo";
+            request.setAttribute("erro", mensagem);
+        }
 
         else {
-            Alerta novoAlerta = new Alerta(
-                    codigo,
-                    idEmpresa,
-                    descricao,
-                    dataLimite
-            );
+            // apos os campos estar prenchidos, vai vir pra ca
+            try {
+                int codigo = Integer.parseInt(codigoTexto);
+                int idEmpresa = Integer.parseInt(idEmpresaTexto);
+                dataLimite = Date.valueOf(dtLimiteTexto);
+                LocalDate localDataLimite = dataLimite.toLocalDate();
+                if (codigo <= 0) {
+                    mensagem = "O codigo deve ser > 0";
+                    request.setAttribute("erro", mensagem);
+                }
+                else if (idEmpresa <= 0) {
+                    mensagem = "Este id deve ser > 0";
+                    request.setAttribute("erro", mensagem);
+                }
+                else if (localDataLimite.isBefore(LocalDate.now())) {
+                    mensagem = "A data limite deve ser a partir da data atual";
+                    request.setAttribute("erro", mensagem);
+                }
+                else {
+                    Alerta novoAlerta = new Alerta(
+                            codigo,
+                            idEmpresa,
+                            descricao,
+                            dataLimite
+                    );
 
-            alertaDAO.inserir(novoAlerta);
+                    alertaDAO.inserir(novoAlerta);
+                    //depois manda o usuario pro servletreadAlerta
+                    response.sendRedirect(request.getContextPath() + "/lista-alerta");
+                    return;
+                }
 
-            response.sendRedirect(request.getContextPath() + "/alertas");
+            } catch (NumberFormatException e) {
+                mensagem = "Código ou id da empresa devem ser numeros validos";
+                request.setAttribute("erro", mensagem);
+            } catch (IllegalArgumentException e) {
+                mensagem = "data invalida, use o formato AAAA-MM-DD";
+                request.setAttribute("erro", mensagem);
+            }
         }
 
+        //teve erro,volta para a pagina
+        request.getRequestDispatcher("/WEB-INF/AlertaJSP/alertaJSP.jsp").forward(request, response);
     }
-
-
 }
