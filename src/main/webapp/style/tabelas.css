@@ -438,3 +438,15 @@
 .botao-excluir:hover {
     background-color: #c7373c;
 }
+
+.valido{
+
+    font-size: 12px;
+    color: rgb(105, 238, 105);
+}
+
+.invalido{
+
+    font-size: 10px;
+    color: rgb(229, 79, 79);
+}
