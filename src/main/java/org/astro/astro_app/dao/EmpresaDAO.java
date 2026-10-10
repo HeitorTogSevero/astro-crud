@@ -100,6 +100,7 @@ public class EmpresaDAO {
             conexao.desconectar(conn);
         }
     }
+
     //Metodo pra ver ultimas 3 empresas cadastradas
     public ArrayList<Empresa> listarUltimasTresEmpresas(){
 
@@ -120,10 +121,11 @@ public class EmpresaDAO {
 
         }catch (SQLException e){
             System.out.println("erro ao listar as ultimas 3 empresas foi: " + e.getMessage());
+        }finally {
+            conexao.desconectar(conn);
         }
         return empresas;
     }
-
 
     //Metodo de contar empresas, que retorna o total de empresas cadastradas no banco de dados
     public int contarEmpresas(){
@@ -142,12 +144,11 @@ public class EmpresaDAO {
 
         }catch (SQLException e){
             System.out.println("erro ao contar empresas: " + e.getMessage());
+        }finally {
+            conexao.desconectar(conn);
         }
         return total;
     }
-
-
-
 
     // Metodo Update - CRUD
     public int alterarEmpresa(Empresa empresa){

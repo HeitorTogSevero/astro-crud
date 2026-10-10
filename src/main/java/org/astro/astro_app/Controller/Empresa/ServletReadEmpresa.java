@@ -7,6 +7,7 @@ import org.astro.astro_app.dao.EmpresaDAO;
 import org.astro.astro_app.model.Empresa;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "ServletEmpresa", value = "/listar-empresas")
@@ -23,14 +24,12 @@ public class ServletReadEmpresa extends HttpServlet{
             HttpServletResponse response
     )throws ServletException, IOException {
 
-        List<Empresa> empresas = empresaDAO.buscar();
+        ArrayList<Empresa> empresas = empresaDAO.buscar();
 
         request.setAttribute("empresas", empresas);
 
         request.getRequestDispatcher(
                 "/webapp/WEB-INF/alerta.jsp"
         ).forward(request, response);
-
-        response.sendRedirect(request.getContextPath() + "/empresas");
     }
 }

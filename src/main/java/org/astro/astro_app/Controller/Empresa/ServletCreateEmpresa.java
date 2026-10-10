@@ -26,80 +26,61 @@ public class ServletCreateEmpresa extends HttpServlet{
             HttpServletRequest request,
             HttpServletResponse response
     )throws ServletException, IOException{
-
         final Pattern cepRegex =
-                Pattern.compile("^(\\d{5}-\\d{3})| \\d{8}");
-
+                Pattern.compile("^(\\d{5}-\\d{3}|\\d{8})$");
         final Pattern cnpjRegex =
-                Pattern.compile("^(\\d{2}.\\d{3}.\\d{3}/\\d{4}-\\d{0}|\\d{14})");
-
+                Pattern.compile("^(\\d{2}\\.\\d{3}\\.\\d{3}/\\d{4}-\\d{2}|\\d{14})$");
         final Pattern cnaeRegex =
-                Pattern.compile("^(\\d{4}-\\d{1}/\\d{2})");
+                Pattern.compile("^\\d{4}-\\d{1}/\\d{2}$");
 
-        String cnae = request.getParameter("");
-
-        String nome = request.getParameter("");
-
-        String cep = request.getParameter("");
-
-        String cnpj = request.getParameter("");
-
-        String rua = request.getParameter("");
-
-        String bairro = request.getParameter("");
-
-        String cidade = request.getParameter("");
-
-        String estado = request.getParameter("");
-
-        String dataRegistroTexto = request.getParameter("");
+        String cnae = request.getParameter("cnae");
+        String nome = request.getParameter("nome");
+        String cep = request.getParameter("cep");
+        String cnpj = request.getParameter("cnpj");
+        String rua = request.getParameter("rua");
+        String bairro = request.getParameter("bairro");
+        String cidade = request.getParameter("cidade");
+        String estado = request.getParameter("estado");
+        String dataRegistroTexto = request.getParameter("dt_registro");
 
         Date dataRegistro = null;
-
-        LocalDate localDataRegistro = dataRegistro.toLocalDate();
+        LocalDate localDataRegistro = null;
 
         String mensagem;
 
         if(dataRegistroTexto != null && !dataRegistroTexto.isBlank()){
             dataRegistro = Date.valueOf(dataRegistroTexto);
+            localDataRegistro = dataRegistro.toLocalDate();
         }
-
         else if(dataRegistroTexto == null && dataRegistroTexto.isBlank()){
-            mensagem = "Erro: a data não poder ser vazio";
+            mensagem = "Erro: a data não poder ser vazia";
             request.setAttribute("erro", mensagem);
         }
-
         else if(nome == null || nome.equals(" ")){
-            mensagem = "Erro: o nome não poder ser vazio";
+            mensagem = "Erro: o nome não pode ser vazio";
             request.setAttribute("erro", mensagem);
         }
-
         else if(nome.length() > 100){
             mensagem = "Erro: o nome pode conter até 100 caracteres";
             request.setAttribute("erro", mensagem);
 
         }
-
         else if(rua == null || rua.equals(" ")){
             mensagem = "Erro: o nome rua não poder ser vazio";
             request.setAttribute("erro", mensagem);
 
         }
-
         else if(rua.length() > 100){
             mensagem = "Erro: o nome da rua pode conter até 100 caracteres";
             request.setAttribute("erro", mensagem);
         }
-
         else if(bairro == null || bairro.equals(" ")){
             mensagem = "Erro: o nome do bairro não poder ser vazio";
             request.setAttribute("erro", mensagem);
         }
-
         else if(bairro.length() > 100){
             mensagem = "Erro: o nome do bairro pode conter até 100 caracteres";
             request.setAttribute("erro", mensagem);
-
         }
 
         else if(cidade == null || cidade.equals(" ")){

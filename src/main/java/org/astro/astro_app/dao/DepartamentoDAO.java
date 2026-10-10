@@ -129,7 +129,6 @@ public class DepartamentoDAO {
     }
 
     //metodo de contar departamentos, que retorna o total de departamentos cadastrados no banco de dados
-
     public int contarDepartamentos(){
         int total = 0;
         Conexao conexao = new Conexao();
@@ -145,9 +144,12 @@ public class DepartamentoDAO {
             }
         }catch (SQLException e){
             System.out.println("erro ao contar os departamentos: " + e.getMessage());
+        }finally {
+            conexao.desconectar(conn);
         }
         return total;
     }
+
     // Metodo Update - CRUD
     public int alterarDepartamento(Departamento depto){
 
