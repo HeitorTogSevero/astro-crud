@@ -38,7 +38,7 @@ public class ServletUpdateDivisaoTreinamento extends HttpServlet{
 
         }
 
-        String sql = " ";
+        String sql = "SELECT * FROM divisao_treinamento";
 
         List<DivisaoTreinamento> divisoes = divisaoTreinamentoDAO.buscar(sql);
 

@@ -132,13 +132,15 @@
             <form id="formulario-adicionar" class="modal-formulario" action="" method="post">
 
                 <div class="modal-campo">
-                    <label for="campo-nome">nome</label>
+                    <label for="campo-nome">Nome</label>
                     <input type="text" id="campo-nome" name="nome" placeholder="Nome" required>
+                    <span id="erroNome"></span>
                 </div>
 
                 <div class="modal-campo">
                     <label for="campo-descricao">descricao</label>
                     <input type="text" id="campo-descricao" name="descricao" placeholder="Descrição" required>
+                    <span id="erroDescr"></span>
                 </div>
 
                 <div class="modal-campo">
@@ -151,6 +153,7 @@
                 <div class="modal-campo">
                     <label for="campo-atividade">atividade</label>
                     <input type="text" id="campo-atividade" name="atividade" placeholder="Atividade" required>
+                    <span id="erroAtv"></span>
                 </div>
 
                 <div class="modal-campo">
@@ -158,6 +161,7 @@
                     <input type="number" id="campo-id_empresa" name="id_empresa" 
                     min="0"
                     placeholder="ID">
+                    <span id="erroIdEmpresa"></span>
                 </div>
 
                 <div class="modal-campo">
@@ -473,6 +477,7 @@
         });
         
     </script>
+    <script src="JS/create-Departamento.js"></script>
 
 </body>
 </html>

@@ -45,8 +45,12 @@ public class ServletUpdateFuncionario extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
 
         String nome = request.getParameter("nome");
+
         String cargo = request.getParameter("cargo");
+
         String cpf = request.getParameter("cpf");
+
+        String email = request.getParameter("email");
 
         String idEmpresaTexto = request.getParameter("id_empresa");
         int idEmpresa = Integer.parseInt(idEmpresaTexto);
@@ -61,6 +65,7 @@ public class ServletUpdateFuncionario extends HttpServlet {
                  nome,
                  cargo,
                  cpf,
+                 email,
                  idEmpresa,
                  idFuncionario,
                  idDepartamento

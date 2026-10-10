@@ -131,23 +131,27 @@
             <form id="formulario-adicionar" class="modal-formulario" action="" method="post">
 
                 <div class="modal-campo">
-                    <label for="campo-descricao">descricao</label>
+                    <label for="campo-descricao">Descricao: </label>
                     <input type="text" id="campo-descricao" name="descricao" placeholder="Nome" required>
+                    <span id="erroDescr"></span>
                 </div>
 
                 <div class="modal-campo">
-                    <label for="campo-codigo">codigo</label>
-                    <input type="text" id="campo-codigo" name="codigo" placeholder="ID" required>
+                    <label for="campo-codigo">Código:</label>
+                    <input type="number" id="campo-codigo" name="codigo" placeholder="ID" required>
+                    <span id="erroCod"></span>
                 </div>
 
                 <div class="modal-campo">
-                    <label for="campo-dt_limite">dt_limite</label>
-                    <input type="text" id="campo-dt_limite" name="dt_limite" placeholder="AAAA-MM-DD" maxlength="2" required>
+                    <label for="campo-dt_limite">Data Limite:</label>
+                    <input type="text" id="campo-dt_limite" name="dt_limite" placeholder="AAAA/MM/DD"  required>
+                    <span id="erroData"></span>
                 </div>
 
                 <div class="modal-campo">
-                    <label for="campo-id_empresa">id_empresa</label>
+                    <label for="campo-id_empresa">Empresa (id): </label>
                     <input type="text" id="campo-id_empresa" name="id_empresa" placeholder="ID" required>
+                    <span id="erroId"></span>
                 </div>
 
                 <div class="modal-rodape">
@@ -171,12 +175,12 @@
             <form id="formulario-filtro" class="modal-formulario" action="" method="get">
 
                 <div class="modal-campo">
-                    <label for="filtro-codigo">codigo</label>
+                    <label for="filtro-codigo">Código</label>
                     <input type="number" id="filtro-codigo" name="codigo" min="0" placeholder="0">
                 </div>
 
                 <div class="modal-campo">
-                    <label>dt_limite</label>
+                    <label>Data Limite:</label>
                     <div class="modal-campo-faixa">
                         <input type="date" id="filtro-dt-limite-min" name="dt_limite_min">
                         <span>até</span>
@@ -185,7 +189,7 @@
                 </div>
 
                 <div class="modal-campo">
-                    <label for="filtro-id_empresa">id_empresa</label>
+                    <label for="filtro-id_empresa">Empresa (id)</label>
                     <input type="number" id="filtro-id_empresa" name="id_empresa" min="0" placeholder="0">
                 </div>
 
@@ -212,24 +216,28 @@
                 <input type="hidden" id="editar-id-alerta" name="id_alerta">
 
                 <div class="modal-campo">
-                    <label for="editar-descricao">descricao</label>
+                    <label for="editar-descricao">Descricao: </label>
                     <input type="text" id="editar-descricao" name="descricao" 
                     required>
+                    <span id="editar-erroDescr"></span>
                 </div>
 
                 <div class="modal-campo">
-                    <label for="editar-codigo">codigo</label>
+                    <label for="editar-codigo">Código: </label>
                     <input type="number" id="editar-codigo" name="codigo" min="0" required>
+                    <span id="editar-erroCod"></span>
                 </div>
 
                 <div class="modal-campo">
-                    <label for="editar-dt_limite">dt_limite</label>
-                    <input type="date" id="editar-dt_limite" name="dt_limite" required>
+                    <label for="editar-dt_limite">Data Limite: </label>
+                    <input type="text" id="editar-dt_limite" name="dt_limite" required>
+                    <span id="editar-erroData"></span>
                 </div>
 
                 <div class="modal-campo">
-                    <label for="editar-id_empresa">id_empresa</label>
+                    <label for="editar-id_empresa">Empresa (id): </label>
                     <input type="number" id="editar-id_empresa" name="id_empresa" min="0" required>
+                    <span id="editar-erroId"></span>
                 </div>
 
                 <div class="modal-rodape">
@@ -457,6 +465,11 @@
         });
         
     </script>
+
+    <script src="JS/create-alerta.js"></script>
+    <script src="JS/update-alerta.js"></script>
+
+
 
 </body>
 </html>
