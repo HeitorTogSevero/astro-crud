@@ -9,9 +9,10 @@ import org.astro.astro_app.dao.DepartamentoDAO;
 import org.astro.astro_app.model.Departamento;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "ServletReadDepartamento", value = "/listar-departamento")
+@WebServlet(name = "ServletReadDepartamento", value = "/listar-departamentos")
 public class ServletReadDepartamento extends HttpServlet {
 
     private DepartamentoDAO departamentoDAO;
@@ -24,10 +25,38 @@ public class ServletReadDepartamento extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        List<Departamento> departamentos = departamentoDAO.buscar();
+        String grauRiscoTexto = request.getParameter("grau_risco");
+        String atividade = request.getParameter("atividade");
+        String idEmpresaTexto = request.getParameter("id_empresa");
+
+        StringBuilder sql = new StringBuilder("SELECT * FROM departamento WHERE 1=1");
+
+        try {
+            //filtro grau risco
+            if (grauRiscoTexto != null && !grauRiscoTexto.isBlank() && !grauRiscoTexto.equals("0")){
+                sql.append(" AND grau_risco = '").append(Integer.parseInt(grauRiscoTexto)).append("'");
+            }
+            if (atividade != null && !atividade.isBlank()) {
+                sql.append(" AND atividade ILIKE '%").append(atividade.trim().replace("'", "''")).append("%'");
+            }
+            //filtro id empresa
+            if(idEmpresaTexto != null && !idEmpresaTexto.isBlank() && !idEmpresaTexto.equals("0")){
+                sql.append(" AND id_empresa = ").append(Integer.parseInt(idEmpresaTexto));
+            }
+        }catch (IllegalArgumentException e) {
+            sql = new StringBuilder("SELECT * FROM departamento WHERE 1=1");
+            request.setAttribute("erro", "filtro invalido");
+        }
+        sql.append(" ORDER BY 1");
+
+        ArrayList<Departamento> departamentos = departamentoDAO.buscar(sql.toString());
 
         request.setAttribute("departamentos", departamentos);
 
-        request.getRequestDispatcher("/WEB-INF/DepartamentoJSP/ReadDepartamento.jsp").forward(request,response);
+        request.setAttribute("filtroGrauRisco", grauRiscoTexto);
+        request.setAttribute("filtroAtividade", atividade);
+        request.setAttribute("filtroIdEmpresa", idEmpresaTexto);
+
+        request.getRequestDispatcher("/WEB-INF/DepartamentoJSP/Departamento.jsp").forward(request,response);
     }
 }

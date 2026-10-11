@@ -7,9 +7,9 @@ import org.astro.astro_app.dao.DivisaoTreinamentoDAO;
 import org.astro.astro_app.model.DivisaoTreinamento;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.ArrayList;
 
-@WebServlet(name = "ServletDivisoes", value = "/listar-divisoes")
+@WebServlet(name = "ServletReadDivisaoTreinamento", value = "/listar-divisoes")
 public class ServletReadDivisaoTreinamento extends HttpServlet{
 
     private DivisaoTreinamentoDAO divisaoTreinamentoDAO;
@@ -20,17 +20,39 @@ public class ServletReadDivisaoTreinamento extends HttpServlet{
     }
 
     @Override
-    protected void doGet(
-            HttpServletRequest request,
-            HttpServletResponse response
-    )throws ServletException, IOException{
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
 
-        List<DivisaoTreinamento> divisoes = divisaoTreinamentoDAO.buscar();
+        String codigoTexto = request.getParameter("codigo");
+        String idEmpresaTexto = request.getParameter("id_empresa");
+        String nome = request.getParameter("nome");
 
-        request.setAttribute("divisoes", divisoes);
+        StringBuilder sql = new StringBuilder("SELECT * FROM divisao_treinamento WHERE 1=1");
 
-        request.getRequestDispatcher(
-                ""
-        ).forward(request, response);
+        try {
+            if (codigoTexto != null && !codigoTexto.isBlank() && !codigoTexto.equals("0")) {
+                sql.append(" AND codigo = ").append(Integer.parseInt(codigoTexto));
+            }
+            if (idEmpresaTexto != null && !idEmpresaTexto.isBlank() && !idEmpresaTexto.equals("0")) {
+                sql.append(" AND id_empresa = ").append(Integer.parseInt(idEmpresaTexto));
+            }
+            if (nome != null && !nome.isBlank()) {
+                sql.append(" AND nome ILIKE '%").append(nome.trim().replace("'", "''")).append("%'");
+            }
+
+        } catch (IllegalArgumentException e) {
+            sql = new StringBuilder("SELECT * FROM divisao_treinamento WHERE 1=1");
+            request.setAttribute("erro", "filtro invalido");
+        }
+        sql.append(" ORDER BY 1");
+
+        ArrayList<DivisaoTreinamento> divisaoTreinamentos = divisaoTreinamentoDAO.buscar(sql.toString());
+
+        request.setAttribute("divisoes", divisaoTreinamentos);
+
+        request.setAttribute("filtroCodigo", codigoTexto);
+        request.setAttribute("filtroIdEmpresa", idEmpresaTexto);
+        request.setAttribute("filtroNome", nome);
+
+        request.getRequestDispatcher("/WEB-INF/DivisaoTreinamentoJSP/DivisaoTreinamento.jsp").forward(request, response);
     }
 }

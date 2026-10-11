@@ -4,10 +4,9 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 import org.astro.astro_app.dao.DivisaoTreinamentoDAO;
-
 import java.io.IOException;
 
-@WebServlet(name = "ServletDivisoes", value = "/excluir-divisao")
+@WebServlet(name = "ServletDeleteDivisaoTreinamento", value = "/deletar-divisao")
 public class ServletDeleteDivisaoTreinamento extends HttpServlet{
 
     private DivisaoTreinamentoDAO divisaoTreinamentoDAO;
@@ -18,21 +17,37 @@ public class ServletDeleteDivisaoTreinamento extends HttpServlet{
     }
 
     @Override
-    protected void doPost(
-            HttpServletRequest request,
-            HttpServletResponse response
-    )throws ServletException, IOException{
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
 
-        String acao = request.getParameter("");
+        String idDivisaoTreinamentoTexto = request.getParameter("id_divisao");
+        String mensagem = "";
 
-        if("excluir".equals(acao)){
-
-            String idTexto = request.getParameter("id");
-            int id = Integer.parseInt(idTexto);
-
-            divisaoTreinamentoDAO.remover(id);
-
-            response.sendRedirect(request.getContextPath() + "/divisoes");
+        if(idDivisaoTreinamentoTexto == null || idDivisaoTreinamentoTexto.isBlank()){
+            mensagem = "id nao informado";
+            request.setAttribute("erro", mensagem);
+            request.getRequestDispatcher("/WEB-INF/DivisaoTreinamentoJSP/DivisaoTreinamento.jsp").forward(request,response);
+            return;
         }
+
+        try {
+            int idDivisaoTreinamento = Integer.parseInt(idDivisaoTreinamentoTexto);
+
+            if (idDivisaoTreinamento <=0){
+                mensagem = "O id deve ser > 0";
+                request.setAttribute("erro", mensagem);
+                request.getRequestDispatcher("/WEB-INF/DivisaoTreinamentoJSP/DivisaoTreinamento.jsp").forward(request,response);
+                return;
+            }
+
+            divisaoTreinamentoDAO.remover(idDivisaoTreinamento);
+            response.sendRedirect(request.getContextPath() + "/listar-divisoes");
+
+        }catch (NumberFormatException e){
+            mensagem = "o id da divisao deve ser valido";
+            request.setAttribute("erro", mensagem);
+            request.getRequestDispatcher("/WEB-INF/DivisaoTreinamentoJSP/DivisaoTreinamento.jsp").forward(request,response);
+
+        }
+
     }
 }

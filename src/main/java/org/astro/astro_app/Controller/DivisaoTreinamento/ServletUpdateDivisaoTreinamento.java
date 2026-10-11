@@ -7,9 +7,8 @@ import org.astro.astro_app.dao.DivisaoTreinamentoDAO;
 import org.astro.astro_app.model.DivisaoTreinamento;
 
 import java.io.IOException;
-import java.util.List;
 
-@WebServlet(name = "ServletDivisoes", value ="/alterar-tarefa")
+@WebServlet(name = "ServletUpdateDivisaoTreinamento", value ="/alterar-divisao")
 public class ServletUpdateDivisaoTreinamento extends HttpServlet{
 
     private DivisaoTreinamentoDAO divisaoTreinamentoDAO;
@@ -20,34 +19,78 @@ public class ServletUpdateDivisaoTreinamento extends HttpServlet{
     }
 
     @Override
-    protected void doPost(
-            HttpServletRequest request,
-            HttpServletResponse response
-    )throws ServletException, IOException{
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
 
-        String acao = request.getParameter("");
+        request.setCharacterEncoding("UTF-8");
 
-        if ("editar".equals(acao)) {
-            int id = Integer.parseInt(request.getParameter("id_divisao"));
+        String idDivisaoTexto = request.getParameter("id_divisao");
+        String idCronogramaTexto = request.getParameter("id_cronograma");
+        String codigoTexto = request.getParameter("codigo");
+        String idEmpresaTexto = request.getParameter("id_empresa");
+        String nome = request.getParameter("nome");
 
-            DivisaoTreinamento divisaoTreinamento = (DivisaoTreinamento) divisaoTreinamentoDAO.buscarPorIdDiv(id);
+        String mensagem = "";
 
-            request.getRequestDispatcher(
-                    ""
-            ).forward(request, response);
+        if(idDivisaoTexto == null || idDivisaoTexto.isBlank()){
+            mensagem = "o id da divisao não informado";
+            request.setAttribute("erro", mensagem);
+        }else if(idCronogramaTexto == null || idCronogramaTexto.isBlank()){
+            mensagem = "o id do cronograma não pode ser vazio";
+            request.setAttribute("erro", mensagem);
+        }else if(codigoTexto == null || codigoTexto.isBlank()){
+            mensagem = "o codigo não pode ser vazio";
+            request.setAttribute("erro", mensagem);
+        }else if(idEmpresaTexto == null || idEmpresaTexto.isBlank()){
+            mensagem = "o id da empresa não pode ser vazio";
+            request.setAttribute("erro", mensagem);
+        }else if(nome == null || nome.isBlank()){
+            mensagem = "o nome não pode ser vazio";
+            request.setAttribute("erro", mensagem);
+        }else if(nome.length() > 50){
+            mensagem = "o nome deve conter até 50 caracteres";
+            request.setAttribute("erro", mensagem);
+        }else{
+            try{
+                int idDivisao = Integer.parseInt(idDivisaoTexto);
+                int idCronograma = Integer.parseInt(idCronogramaTexto);
+                int codigo = Integer.parseInt(codigoTexto);
+                int idEmpresa = Integer.parseInt(idEmpresaTexto);
 
+                if(idDivisao <=0){
+                    mensagem = "Id da divisao é invalido";
+                    request.setAttribute("erro", mensagem);
+                }else if(idCronograma <=0){
+                    mensagem = "id do cronograma é inválido";
+                    request.setAttribute("erro", mensagem);
+                }else if(codigo <= 0){
+                    mensagem = "o codigo é inválido";
+                    request.setAttribute("erro", mensagem);
+                }else if(idEmpresa <=0){
+                    mensagem = "o id da empresa é inválido";
+                    request.setAttribute("erro", mensagem);
+                }else{
+
+                    DivisaoTreinamento divisaoTreinamento = new DivisaoTreinamento(
+                            idDivisao,
+                            idCronograma,
+                            codigo,
+                            idEmpresa,
+                            nome
+                    );
+
+                    divisaoTreinamentoDAO.alterarDivisaoTreinamento(divisaoTreinamento);
+
+                    response.sendRedirect(request.getContextPath() + "/listar-divisoes");
+
+                    return;
+                }
+            }catch (NumberFormatException e){
+                mensagem = "Os ids devem ser numeros validos";
+                request.setAttribute("erro", mensagem);
+            }
         }
 
-        String sql = "SELECT * FROM divisao_treinamento";
+        request.getRequestDispatcher("/WEB-INF/DivisaoTreinamentoJSP/DivisaoTreinamento.jsp").forward(request,response);
 
-        List<DivisaoTreinamento> divisoes = divisaoTreinamentoDAO.buscar(sql);
-
-        request.setAttribute("divisoes", divisoes);
-
-        request.getRequestDispatcher(
-                ""
-        ).forward(request, response);
-
-        response.sendRedirect(request.getContextPath() + "/divisoes");
     }
 }

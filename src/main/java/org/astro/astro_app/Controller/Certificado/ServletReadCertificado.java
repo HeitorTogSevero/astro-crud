@@ -67,7 +67,7 @@ public class ServletReadCertificado extends HttpServlet {
         request.setAttribute("filtroDtEmissaoMax", dataEmissaoMaximaTexto);
         request.setAttribute("filtroIdFuncionario", idFuncionarioTexto);
 
-        request.getRequestDispatcher("/WEB-INF/CertificadoJSP/CertificadoJSP.jsp").forward(request,response);
+        request.getRequestDispatcher("/WEB-INF/CertificadoJSP/Certificado.jsp").forward(request,response);
 
     }
 }

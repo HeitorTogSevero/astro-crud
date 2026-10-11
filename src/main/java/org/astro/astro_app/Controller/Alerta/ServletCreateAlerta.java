@@ -82,7 +82,7 @@ public class ServletCreateAlerta extends HttpServlet {
 
                     alertaDAO.inserir(novoAlerta);
                     //depois manda o usuario pro servletreadAlerta
-                    response.sendRedirect(request.getContextPath() + "/lista-alerta");
+                    response.sendRedirect(request.getContextPath() + "/listar-alerta");
                     return;
                 }
 
@@ -90,12 +90,12 @@ public class ServletCreateAlerta extends HttpServlet {
                 mensagem = "Código ou id da empresa devem ser numeros validos";
                 request.setAttribute("erro", mensagem);
             } catch (IllegalArgumentException e) {
-                mensagem = "data invalida, use o formato AAAA-MM-DD";
+                mensagem = "data invalida, use o formato ano-mes-dia";
                 request.setAttribute("erro", mensagem);
             }
         }
 
         //teve erro,volta para a pagina
-        request.getRequestDispatcher("/WEB-INF/AlertaJSP/alertaJSP.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/AlertaJSP/alerta.jsp").forward(request, response);
     }
 }
