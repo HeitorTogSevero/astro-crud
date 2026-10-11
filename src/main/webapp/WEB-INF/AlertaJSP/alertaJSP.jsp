@@ -1,563 +1,357 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="jakarta.tags.core" %>
-<%@ page import="java.util.ArrayList" %>
-<!DOCTYPE html>
-<html lang="pt">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Astro - Painel de Administração</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/style/crud.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/style/tabelas.css">
-    <img src="${pageContext.request.contextPath}/imagens/logotipo.png" alt="Logotipo" class="img-logo">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-</head>
-<body>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
+<%@ page import="java.util.List,
+    java.util.ArrayList,
+    java.text.SimpleDateFormat,
+    org.astro.astro_app.model.Alerta"%>
+<%! private String v(String s) {
+    return s == null ? "" : s;
+    }%>
+<%  String caminho = request.getContextPath();
+    ArrayList<Alerta> alertas = (ArrayList<Alerta>) request.getAttribute("alertas");
+    //formato  dd-MM-yyyy
+    SimpleDateFormat formatoExibicao = new SimpleDateFormat("dd-MM-yyyy");
+    //valores de filtro(pra nao ficar null
+    String fCodigo = v(request.getParameter("codigo"));
+    String fDtMin = v(request.getParameter("dt_limite_min"));
+    String fDtMax = v(request.getParameter("dt_limite_max"));
+    String fIdEmpresa = v(request.getParameter("id_empresa")); %>
+    <!DOCTYPE html>
+    <html lang="pt">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Astro - Alertas</title>
 
-<aside class="sidebar">
-    <div class="logo">
-        <img src="imagens/logotipo.png" alt="Logotipo" class="img-logo">
-    </div>
+        <link rel="stylesheet" href="<%=caminho%>/style/crud.css">
+        <link rel="stylesheet" href="<%=caminho%>/style/tabelas.css">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    </head>
+    <body>
 
-    <nav class="nav-menu">
-        <a href="crud.html" class="nav-item">
-            <i class="fa-solid fa-house"></i>Início
-        </a>
-        <a href="empresa.html" class="nav-item">
-            <i class="fa-regular fa-building"></i>empresa
-        </a>
-        <a href="funcionario.html" class="nav-item">
-            <i class="fa-solid fa-users"></i>funcionario
-        </a>
-        <a href="departamento.html" class="nav-item">
-            <i class="fa-solid fa-layer-group"></i>departamento
-        </a>
-        <a href="divisao_treinamento.html" class="nav-item">
-            <i class="fa-regular fa-file-lines"></i>divisao_treinamento
-        </a>
-        <a href="alerta.html" class="nav-item active">
-            <i class="fa-regular fa-calendar-check"></i>alerta
-        </a>
-        <a href="certificado.html" class="nav-item">
-            <i class="fa-solid fa-award"></i>certificado
-        </a>
-        <div class="sidebar-bottom">
-            <a href="#" class="nav-item">
-                <i class="fa-solid fa-right-from-bracket"></i>Sair
+    <aside class="sidebar">
+        <div class="logo">
+            <img src="<%=caminho%>/imagens/logotipo.png" alt="Logotipo" class="img-logo">
+        </div>
+
+        <nav class="nav-menu">
+            <a href="<%=caminho%>/crud.jsp" class="nav-item">
+                <i class="fa-solid fa-house"></i>Início
             </a>
-        </div>
-    </nav>
-</aside>
-
-<main class="main-content">
-
-    <header class="header cabecalho-pagina">
-        <div class="titulo-container">
-            <h1><strong>alerta - </strong> <span id="periodo-titulo">Setembro 2026</span></h1>
-        </div>
-
-    </header>
-
-    <section class="barra-controles">
-
-        <div class="controle-esquerda">
-            <div class="search-bar">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" id="busca-alerta" name="busca-alerta" placeholder="Pesquisar alerta...">
+            <a href="<%=caminho%>/listar-empresas" class="nav-item">
+                <i class="fa-regular fa-building"></i>empresa
+            </a>
+            <a href="<%=caminho%>/listar-funcionarios" class="nav-item">
+                <i class="fa-solid fa-users"></i>funcionario
+            </a>
+            <a href="<%=caminho%>/listar-departamentos" class="nav-item">
+                <i class="fa-solid fa-layer-group"></i>departamento
+            </a>
+            <a href="<%=caminho%>/listar-divisoes" class="nav-item">
+                <i class="fa-regular fa-file-lines"></i>divisao_treinamento
+            </a>
+            <a href="<%=caminho%>/lista-alerta" class="nav-item active">
+                <i class="fa-regular fa-calendar-check"></i>alerta
+            </a>
+            <a href="<%=caminho%>/listar-certificados" class="nav-item">
+                <i class="fa-solid fa-award"></i>certificado
+            </a>
+            <div class="sidebar-bottom">
+                <a href="#" class="nav-item" id="exit-bottom">
+                    <i class="fa-solid fa-right-from-bracket"></i>Sair
+                </a>
             </div>
-        </div>
+        </nav>
+    </aside>
 
-        <div class="controle-direita">
+    <main class="main-content">
 
-            <button class="btn-filtrar" id="btn-filtrar-alerta" type="button">
-                <i class="fa-solid fa-filter"></i> Filtrar
-            </button>
-
-            <button class="btn-adicionar" id="btn-adicionar-registro" type="button" data-acao="adicionar-registro">
-                <i class="fa-solid fa-plus"></i> Adicionar alerta
-            </button>
-        </div>
-    </section>
-
-    <section class="panel painel-tabela">
-        <div class="tabela-rolavel">
-            <table class="data-table" id="tabela-alerta">
-                <thead class="data-cabecalho">
-                <tr>
-                    <th class="ordenavel" data-coluna="id_alerta"><strong>id_alerta</strong> <i class="fa-solid fa-sort"></i></th>
-                    <th class="ordenavel" data-coluna="descricao">descricao <i class="fa-solid fa-sort"></i></th>
-                    <th class="ordenavel" data-coluna="codigo">codigo <i class="fa-solid fa-sort"></i></th>
-                    <th class="ordenavel" data-coluna="dt_limite">dt_limite <i class="fa-solid fa-sort"></i></th>
-                    <th class="ordenavel" data-coluna="id_empresa">id_empresa <i class="fa-solid fa-sort"></i></th>
-                    <th>Ações</th>
-                </tr>
-                </thead>
-                <tbody id="corpo-tabela-alerta">
-                <tr id_alerta="" descricao="" codigo="" dt_limite="" id_empresa="">
-                    <td>1</td>
-                    <td>Elos</td>
-                    <td>123</td>
-                    <td>12-04-2017</td>
-                    <td>9</td>
-                    <td>
-                        <div class="celula-acoes">
-                            <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
-                            <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
-                        </div>
-                    </td>
-                </tr>
-                <tr id_alerta="" descricao="" codigo="" dt_limite="" id_empresa="">
-                    <td>2</td>
-                    <td>Inventra</td>
-                    <td>123</td>
-                    <td>12-04-2017</td>
-                    <td>9</td>
-                    <td>
-                        <div class="celula-acoes">
-                            <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
-                            <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
-                        </div>
-                    </td>
-                </tr>
-                <tr id_alerta="" descricao="" codigo="" dt_limite="" id_empresa="">
-                    <td>2</td>
-                    <td>Argos</td>
-                    <td>123</td>
-                    <td>12-04-2017</td>
-                    <td>9</td>
-                    <td>
-                        <div class="celula-acoes">
-                            <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
-                            <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
-                        </div>
-                    </td>
-                </tr>
-                <tr id_alerta="" descricao="" codigo="" dt_limite="" id_empresa="">
-                    <td>3</td>
-                    <td>Olius</td>
-                    <td>123</td>
-                    <td>12-04-2017</td>
-                    <td>9</td>
-                    <td>
-                        <div class="celula-acoes">
-                            <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
-                            <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
-                        </div>
-                    </td>
-                </tr>
-                <tr id_alerta="" descricao="" codigo="" dt_limite="" id_empresa="">
-                    <td>4</td>
-                    <td>Apollo</td>
-                    <td>123</td>
-                    <td>12-04-2017</td>
-                    <td>9</td>
-                    <td>
-                        <div class="celula-acoes">
-                            <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
-                            <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
-                        </div>
-                    </td>
-                </tr>
-                <tr id_alerta="" descricao="" codigo="" dt_limite="" id_empresa="">
-                    <td>5</td>
-                    <td>Cometa</td>
-                    <td>123</td>
-                    <td>12-04-2017</td>
-                    <td>9</td>
-                    <td>
-                        <div class="celula-acoes">
-                            <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
-                            <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
-                        </div>
-                    </td>
-                </tr>
-
-                <tr id_alerta="" descricao="" codigo="" dt_limite="" id_empresa="">
-                    <td>6</td>
-                    <td>Inventra</td>
-                    <td>123</td>
-                    <td>12-04-2017</td>
-                    <td>9</td>
-                    <td>
-                        <div class="celula-acoes">
-                            <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
-                            <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
-                        </div>
-                    </td>
-                </tr>
-                <tr id_alerta="" descricao="" codigo="" dt_limite="" id_empresa="">
-                    <td>7</td>
-                    <td>Inventra</td>
-                    <td>123</td>
-                    <td>12-04-2017</td>
-                    <td>9</td>
-                    <td>
-                        <div class="celula-acoes">
-                            <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
-                            <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
-                        </div>
-                    </td>
-                </tr>
-                <tr id_alerta="" descricao="" codigo="" dt_limite="" id_empresa="">
-                    <td>8</td>
-                    <td>Inventra</td>
-                    <td>123</td>
-                    <td>12-04-2017</td>
-                    <td>9</td>
-                    <td>
-                        <div class="celula-acoes">
-                            <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
-                            <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
-                        </div>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-
-    </section>
-
-</main>
-
-<div class="modal-fundo" id="modal-adicionar" hidden>
-    <div class="modal-caixa" role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
-
-        <div class="modal-cabecalho">
-            <h2 id="modal-titulo">Adicionar em alerta</h2>
-            <button type="button" class="modal-fechar" id="fechar-modal" aria-label="Fechar">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-        </div>
-
-        <form id="formulario-adicionar" class="modal-formulario" action="" method="post">
-
-            <div class="modal-campo">
-                <label for="campo-descricao">descricao</label>
-                <input type="text" id="campo-descricao" name="descricao" placeholder="Nome" required>
+        <header class="header cabecalho-pagina">
+            <div class="titulo-container">
+                <h1><strong>alerta - </strong> <span id="periodo-titulo">Setembro 2026</span></h1>
             </div>
+        </header>
 
-            <div class="modal-campo">
-                <label for="campo-codigo">codigo</label>
-                <input type="text" id="campo-codigo" name="codigo" placeholder="ID" required>
-            </div>
-
-            <div class="modal-campo">
-                <label for="campo-dt_limite">dt_limite</label>
-                <input type="text" id="campo-dt_limite" name="dt_limite" placeholder="AAAA-MM-DD" maxlength="2" required>
-            </div>
-
-            <div class="modal-campo">
-                <label for="campo-id_empresa">id_empresa</label>
-                <input type="text" id="campo-id_empresa" name="id_empresa" placeholder="ID" required>
-            </div>
-
-            <div class="modal-rodape">
-                <button type="button" class="botao-cancelar" id="cancelar-modal">Cancelar</button>
-                <button type="submit" class="botao-salvar">Salvar</button>
-            </div>
-        </form>
-    </div>
-</div>
-
-<div class="modal-fundo" id="modal-filtro" hidden>
-    <div class="modal-caixa" role="dialog" aria-modal="true" aria-labelledby="modal-titulo-filtro">
-
-        <div class="modal-cabecalho">
-            <h2 id="modal-titulo-filtro">Filtrar alertas</h2>
-            <button type="button" class="modal-fechar" id="fechar-modal-filtro" aria-label="Fechar">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-        </div>
-
-        <form id="formulario-filtro" class="modal-formulario" action="" method="get">
-
-            <div class="modal-campo">
-                <label for="filtro-codigo">codigo</label>
-                <input type="number" id="filtro-codigo" name="codigo" min="0" placeholder="0">
-            </div>
-
-            <div class="modal-campo">
-                <label>dt_limite</label>
-                <div class="modal-campo-faixa">
-                    <input type="date" id="filtro-dt-limite-min" name="dt_limite_min">
-                    <span>até</span>
-                    <input type="date" id="filtro-dt-limite-max" name="dt_limite_max">
+        <section class="barra-controles">
+            <div class="controle-esquerda">
+                <div class="search-bar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="busca-alerta" name="busca-alerta" placeholder="Pesquisar alerta...">
                 </div>
             </div>
 
-            <div class="modal-campo">
-                <label for="filtro-id_empresa">id_empresa</label>
-                <input type="number" id="filtro-id_empresa" name="id_empresa" min="0" placeholder="0">
+            <div class="controle-direita">
+                <button class="btn-filtrar" id="btn-filtrar-alerta" type="button">
+                    <i class="fa-solid fa-filter"></i> Filtrar
+                </button>
+                <button class="btn-adicionar" id="btn-adicionar-alerta" type="button">
+                    <i class="fa-solid fa-plus"></i> Adicionar alerta
+                </button>
             </div>
+        </section>
 
-            <div class="modal-rodape">
-                <button type="reset" class="botao-cancelar" id="limpar-filtro">Limpar</button>
-                <button type="submit" class="botao-salvar">Aplicar filtro</button>
-            </div>
-        </form>
-    </div>
-</div>
-
-<div class="modal-fundo" id="modal-editar" hidden>
-    <div class="modal-caixa" role="dialog" aria-modal="true" aria-labelledby="modal-titulo-editar">
-
-        <div class="modal-cabecalho">
-            <h2 id="modal-titulo-editar">Editar alerta</h2>
-            <button type="button" class="modal-fechar" id="fechar-modal-editar" aria-label="Fechar">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-        </div>
-
-        <form id="formulario-editar" class="modal-formulario" action="" method="post">
-
-            <input type="hidden" id="editar-id-alerta" name="id_alerta">
-
-            <div class="modal-campo">
-                <label for="editar-descricao">descricao</label>
-                <input type="text" id="editar-descricao" name="descricao"
-                       required>
-            </div>
-
-            <div class="modal-campo">
-                <label for="editar-codigo">codigo</label>
-                <input type="number" id="editar-codigo" name="codigo" min="0" required>
-            </div>
-
-            <div class="modal-campo">
-                <label for="editar-dt_limite">dt_limite</label>
-                <input type="date" id="editar-dt_limite" name="dt_limite" required>
-            </div>
-
-            <div class="modal-campo">
-                <label for="editar-id_empresa">id_empresa</label>
-                <input type="number" id="editar-id_empresa" name="id_empresa" min="0" required>
-            </div>
-
-            <div class="modal-rodape">
-                <button type="button" class="botao-cancelar" id="cancelar-modal-editar">Cancelar</button>
-                <button type="submit" class="botao-salvar">Salvar alterações</button>
-            </div>
-        </form>
-    </div>
-</div>
-
-<div class="modal-fundo" id="modal-excluir" hidden>
-    <div class="modal-caixa modal-caixa-pequena" role="dialog" aria-modal="true" aria-labelledby="modal-titulo-excluir">
-
-        <div class="modal-cabecalho">
-            <h2 id="modal-titulo-excluir">Excluir registro</h2>
-            <button type="button" class="modal-fechar" id="fechar-modal-excluir" aria-label="Fechar">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-        </div>
-
-        <p class="modal-texto-confirmacao">
-            Tem certeza que deseja excluir
-            <strong id="excluir-nome"></strong>?
-            Essa ação não pode ser desfeita.
-        </p>
-
-        <form id="formulario-excluir" action="" method="post">
-            <input type="hidden" id="excluir-id" name="id_alerta">
-
-            <div class="modal-rodape">
-                <button type="button" class="botao-cancelar" id="cancelar-modal-excluir">Cancelar</button>
-                <button type="submit" class="botao-excluir">Excluir</button>
-            </div>
-        </form>
-    </div>
-</div>
-
-<script>
-
-    const botaoAbrirFiltro = document.querySelector('.btn-filtrar');
-    const modalFiltro = document.getElementById('modal-filtro');
-    const botaoFecharFiltro = document.getElementById('fechar-modal-filtro');
-
-    function abrirFiltro() {
-        modalFiltro.hidden = false;
-    }
-
-    function fecharFiltro() {
-        modalFiltro.hidden = true;
-    }
-
-    botaoAbrirFiltro.addEventListener('click', abrirFiltro);
-    botaoFecharFiltro.addEventListener('click', fecharFiltro);
-
-    modalFiltro.addEventListener('click', function (evento) {
-        if (evento.target === modalFiltro) {
-            fecharFiltro();
+        <%
+        String mensagem = (String) request.getAttribute("erro");
+        if (mensagem == null) {
+        mensagem = (String) request.getAttribute("mensagem");
         }
-    });
+        if (mensagem != null) {
+        String cor = mensagem.toLowerCase().contains("sucesso") ? "green" : "red";
+        %>
+        <p style="color: <%= cor %>"><%= mensagem %></p>
+        <% } %>
 
-    const cabecalhosOrdenaveis = document.querySelectorAll('.ordenavel');
+        <section class="panel painel-tabela">
+            <div class="tabela-rolavel">
+                <table class="data-table" id="tabela-alerta">
+                    <thead class="data-cabecalho">
+                    <tr>
+                        <th class="ordenavel" data-coluna="id_alerta"><strong>id_alerta</strong> <i class="fa-solid fa-sort"></i></th>
+                        <th class="ordenavel" data-coluna="descricao">descricao <i class="fa-solid fa-sort"></i></th>
+                        <th class="ordenavel" data-coluna="codigo">codigo <i class="fa-solid fa-sort"></i></th>
+                        <th class="ordenavel" data-coluna="dt_limite">dt_limite <i class="fa-solid fa-sort"></i></th>
+                        <th class="ordenavel" data-coluna="id_empresa">id_empresa <i class="fa-solid fa-sort"></i></th>
+                        <th>Ações</th>
+                    </tr>
+                    </thead>
+                    <tbody id="corpo-tabela-alerta">
+                    <%
+                    if (alertas != null && !alertas.isEmpty()) {
+                    for (Alerta a : alertas) {
+                    %>
+                    <tr data-id-alerta="<%= a.getIdAlerta() %>">
+                        <td><%= a.getIdAlerta() %></td>
+                        <td><%= a.getDescricao() %></td>
+                        <td><%= a.getCodigo() %></td>
+                        <!-- Mostra dd-MM-yyyy na tabela -->
+                        <td><%= a.getDtLimite() != null ? formatoExibicao.format(a.getDtLimite()) : "" %></td>
+                        <td><%= a.getIdEmpresa() %></td>
+                        <td>
+                            <div class="celula-acoes">
+                                <button class="btn-editar" type="button"><i class="fa-solid fa-pen"></i> Editar</button>
+                                <button class="btn-remover" type="button"><i class="fa-solid fa-trash"></i></button>
+                            </div>
+                        </td>
+                    </tr>
+                    <%
+                    }
+                    } else {
+                    %>
+                    <tr>
+                        <td colspan="6">Nenhum alerta encontrado.</td>
+                    </tr>
+                    <% } %>
+                    </tbody>
+                </table>
+            </div>
+            <p class="rodape-tabela">Mostrando <%= alertas != null ? alertas.size() : 0 %> alertas</p>
+        </section>
 
-    cabecalhosOrdenaveis.forEach(function (cabecalho) {
-        cabecalho.addEventListener('click', function () {
-            const coluna = cabecalho.dataset.coluna;
-            const direcaoAtual = cabecalho.dataset.direcao || 'nenhuma';
+    </main>
 
-            let novaDirecao;
-            if (direcaoAtual === 'nenhuma') {
-                novaDirecao = 'asc';
-            } else if (direcaoAtual === 'asc') {
-                novaDirecao = 'desc';
-            } else {
-                novaDirecao = 'nenhuma';
-            }
+    <!-- MODAL ADICIONAR -->
+    <div class="modal-fundo" id="modal-adicionar" hidden>
+        <div class="modal-caixa" role="dialog" aria-modal="true">
+            <div class="modal-cabecalho">
+                <h2>Adicionar em alerta</h2>
+                <button type="button" class="modal-fechar" id="fechar-modal"><i class="fa-solid fa-xmark"></i></button>
+            </div>
 
-            cabecalhosOrdenaveis.forEach(function (outroCabecalho) {
-                if (outroCabecalho !== cabecalho) {
-                    delete outroCabecalho.dataset.direcao;
-                    outroCabecalho.querySelector('i').className = 'fa-solid fa-sort';
-                }
-            });
+            <form id="formulario-adicionar" class="modal-formulario"
+                  action="<%=caminho%>/adicionar-alerta" method="post">
 
-            if (novaDirecao === 'nenhuma') {
-                delete cabecalho.dataset.direcao;
-                cabecalho.querySelector('i').className = 'fa-solid fa-sort';
-            } else {
-                cabecalho.dataset.direcao = novaDirecao;
-                cabecalho.querySelector('i').className =
-                    novaDirecao === 'asc' ? 'fa-solid fa-sort-up' : 'fa-solid fa-sort-down';
-            }
+                <div class="modal-campo">
+                    <label for="campo-descricao">Descricao:</label>
+                    <input type="text" id="campo-descricao" name="descricao" required>
+                </div>
+                <div class="modal-campo">
+                    <label for="campo-codigo">Código:</label>
+                    <input type="number" id="campo-codigo" name="codigo" min="0" required>
+                </div>
+                <div class="modal-campo">
+                    <label for="campo-dt_limite">Data Limite:</label>
+                    <!-- type="date" sempre trabalha com aaaa-mm-dd -->
+                    <input type="date" id="campo-dt_limite" name="dt_limite" required>
+                </div>
+                <div class="modal-campo">
+                    <label for="campo-id_empresa">Empresa (id):</label>
+                    <input type="number" id="campo-id_empresa" name="id_empresa" min="0" required>
+                </div>
 
+                <div class="modal-rodape">
+                    <button type="button" class="botao-cancelar" id="cancelar-modal">Cancelar</button>
+                    <button type="submit" class="botao-salvar">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL FILTRO -->
+    <div class="modal-fundo" id="modal-filtro" hidden>
+        <div class="modal-caixa" role="dialog" aria-modal="true">
+            <div class="modal-cabecalho">
+                <h2>Filtrar alertas</h2>
+                <button type="button" class="modal-fechar" id="fechar-modal-filtro"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <form id="formulario-filtro" class="modal-formulario"
+                  action="<%=caminho%>/lista-alerta" method="get">
+
+                <div class="modal-campo">
+                    <label for="filtro-codigo">Código</label>
+                    <input type="number" id="filtro-codigo" name="codigo" min="0" value="<%= fCodigo %>">
+                </div>
+                <div class="modal-campo">
+                    <label>Data Limite:</label>
+                    <div class="modal-campo-faixa">
+                        <input type="date" name="dt_limite_min" value="<%= fDtMin %>">
+                        <span>até</span>
+                        <input type="date" name="dt_limite_max" value="<%= fDtMax %>">
+                    </div>
+                </div>
+                <div class="modal-campo">
+                    <label for="filtro-id_empresa">Empresa (id)</label>
+                    <input type="number" id="filtro-id_empresa" name="id_empresa" min="0" value="<%= fIdEmpresa %>">
+                </div>
+
+                <div class="modal-rodape">
+                    <a href="<%=caminho%>/lista-alerta" class="botao-cancelar">Limpar</a>
+                    <button type="submit" class="botao-salvar">Aplicar filtro</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL EDITAR -->
+    <div class="modal-fundo" id="modal-editar" hidden>
+        <div class="modal-caixa" role="dialog" aria-modal="true">
+            <div class="modal-cabecalho">
+                <h2>Editar alerta</h2>
+                <button type="button" class="modal-fechar" id="fechar-modal-editar"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <form id="formulario-editar" class="modal-formulario"
+                  action="<%=caminho%>/alterar-alerta" method="post">
+
+                <input type="hidden" id="editar-id-alerta" name="id_alerta">
+
+                <div class="modal-campo">
+                    <label for="editar-descricao">Descricao:</label>
+                    <input type="text" id="editar-descricao" name="descricao" required>
+                </div>
+                <div class="modal-campo">
+                    <label for="editar-codigo">Código:</label>
+                    <input type="number" id="editar-codigo" name="codigo" min="0" required>
+                </div>
+                <div class="modal-campo">
+                    <label for="editar-dt_limite">Data Limite:</label>
+                    <!-- type="date" precisa receber aaaa-mm-dd -->
+                    <input type="date" id="editar-dt_limite" name="dt_limite" required>
+                </div>
+                <div class="modal-campo">
+                    <label for="editar-id_empresa">Empresa (id):</label>
+                    <input type="number" id="editar-id_empresa" name="id_empresa" min="0" required>
+                </div>
+
+                <div class="modal-rodape">
+                    <button type="button" class="botao-cancelar" id="cancelar-modal-editar">Cancelar</button>
+                    <button type="submit" class="botao-salvar">Salvar alterações</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL EXCLUIR -->
+    <div class="modal-fundo" id="modal-excluir" hidden>
+        <div class="modal-caixa modal-caixa-pequena" role="dialog" aria-modal="true">
+            <div class="modal-cabecalho">
+                <h2>Excluir registro</h2>
+                <button type="button" class="modal-fechar" id="fechar-modal-excluir"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <p class="modal-texto-confirmacao">
+                Tem certeza que deseja excluir <strong id="excluir-nome"></strong>?
+                Essa ação não pode ser desfeita.
+            </p>
+
+            <form id="formulario-excluir" action="<%=caminho%>/deletar-alerta" method="post">
+                <input type="hidden" id="excluir-id" name="id_alerta">
+                <div class="modal-rodape">
+                    <button type="button" class="botao-cancelar" id="cancelar-modal-excluir">Cancelar</button>
+                    <button type="submit" class="botao-excluir">Excluir</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // FILTRO
+        const modalFiltro = document.getElementById('modal-filtro');
+        document.querySelector('.btn-filtrar').addEventListener('click', () => modalFiltro.hidden = false);
+        document.getElementById('fechar-modal-filtro').addEventListener('click', () => modalFiltro.hidden = true);
+        modalFiltro.addEventListener('click', e => { if (e.target === modalFiltro) modalFiltro.hidden = true; });
+
+        // Converte dd-MM-yyyy (tabela) -> yyyy-MM-dd (input type="date")
+        function converterDataBrParaIso(dataBr) {
+            if (!dataBr) return '';
+            // Já está no formato do banco?
+            if (dataBr.length === 10 && dataBr.charAt(4) === '-') return dataBr;
+
+            const partes = dataBr.split('-');
+            if (partes.length !== 3) return '';
+            const [dia, mes, ano] = partes;
+            return ano + '-' + mes.padStart(2, '0') + '-' + dia.padStart(2, '0');
+        }
+
+        // EDITAR
+        const corpoTabela = document.getElementById('corpo-tabela-alerta');
+        const modalEditar = document.getElementById('modal-editar');
+
+        corpoTabela.addEventListener('click', function (evento) {
+            const botao = evento.target.closest('.btn-editar');
+            if (!botao) return;
+
+            const c = botao.closest('tr').children;
+            const t = i => c[i].textContent.trim();
+
+            document.getElementById('editar-id-alerta').value = t(0);
+            document.getElementById('editar-descricao').value = t(1);
+            document.getElementById('editar-codigo').value = t(2);
+            // Converte a data da tabela (dd-MM-yyyy) para o input date (yyyy-MM-dd)
+            document.getElementById('editar-dt_limite').value = converterDataBrParaIso(t(3));
+            document.getElementById('editar-id_empresa').value = t(4);
+
+            modalEditar.hidden = false;
         });
-    });
 
-    // MUDA O FORMATO DA DATA PARA DD-MM-AAAA
-    function converterDataBrParaIso(dataBr) {
-        const partes = dataBr.split('-');
-        if (partes.length !== 3) {
-            return ''; // data vazia ou em formato inesperado
-        }
-        const [dia, mes, ano] = partes;
-        return ano + '-' + mes.padStart(2, '0') + '-' + dia.padStart(2, '0');
-    }
+        document.getElementById('fechar-modal-editar').addEventListener('click', () => modalEditar.hidden = true);
+        document.getElementById('cancelar-modal-editar').addEventListener('click', () => modalEditar.hidden = true);
+        modalEditar.addEventListener('click', e => { if (e.target === modalEditar) modalEditar.hidden = true; });
 
-    const corpoTabelaAlerta = document.getElementById('corpo-tabela-alerta');
-    const modalEditar = document.getElementById('modal-editar');
-    const botaoFecharEditar = document.getElementById('fechar-modal-editar');
-    const botaoCancelarEditar = document.getElementById('cancelar-modal-editar');
+        // EXCLUIR
+        const modalExcluir = document.getElementById('modal-excluir');
 
-    function abrirEditar() {
-        modalEditar.hidden = false;
-    }
+        corpoTabela.addEventListener('click', function (evento) {
+            const botao = evento.target.closest('.btn-remover');
+            if (!botao) return;
 
-    function fecharEditar() {
-        modalEditar.hidden = true;
-    }
+            const linha = botao.closest('tr');
+            document.getElementById('excluir-id').value = linha.dataset.idAlerta;
+            document.getElementById('excluir-nome').textContent = linha.children[1].textContent.trim();
+            modalExcluir.hidden = false;
+        });
 
-    corpoTabelaAlerta.addEventListener('click', function (evento) {
-        const botaoEditar = evento.target.closest('.btn-editar');
-        if (!botaoEditar) {
-            return;
-        }
+        document.getElementById('fechar-modal-excluir').addEventListener('click', () => modalExcluir.hidden = true);
+        document.getElementById('cancelar-modal-excluir').addEventListener('click', () => modalExcluir.hidden = true);
+        modalExcluir.addEventListener('click', e => { if (e.target === modalExcluir) modalExcluir.hidden = true; });
 
-        const linha = botaoEditar.closest('tr');
+        // ADICIONAR
+        const modalAdicionar = document.getElementById('modal-adicionar');
+        document.querySelector('.btn-adicionar').addEventListener('click', () => modalAdicionar.hidden = false);
+        document.getElementById('fechar-modal').addEventListener('click', () => modalAdicionar.hidden = true);
+        document.getElementById('cancelar-modal').addEventListener('click', () => modalAdicionar.hidden = true);
+        modalAdicionar.addEventListener('click', e => { if (e.target === modalAdicionar) modalAdicionar.hidden = true; });
+    </script>
 
-        const idAlerta =
-            linha.children[0].textContent.trim();
-
-        const descricao =
-            linha.children[1].textContent.trim();
-
-        const codigo =
-            linha.children[2].textContent.trim();
-
-        const dt_limite =
-            linha.children[3].textContent.trim();
-
-        const id_empresa =
-            linha.children[4].textContent.trim();
-
-        document.getElementById('editar-id-alerta').value =
-            idAlerta;
-
-        document.getElementById('editar-descricao').value =
-            descricao;
-
-        document.getElementById('editar-codigo').value =
-            codigo;
-
-        document.getElementById('editar-dt_limite').value =
-            converterDataBrParaIso(dt_limite);
-
-        document.getElementById('editar-id_empresa').value =
-            id_empresa;
-
-        abrirEditar();
-    });
-
-    botaoFecharEditar.addEventListener('click', fecharEditar);
-    botaoCancelarEditar.addEventListener('click', fecharEditar);
-
-    modalEditar.addEventListener('click', function (evento) {
-        if (evento.target === modalEditar) {
-            fecharEditar();
-        }
-    });
-
-    const modalExcluir = document.getElementById('modal-excluir');
-    const botaoFecharExcluir = document.getElementById('fechar-modal-excluir');
-    const botaoCancelarExcluir = document.getElementById('cancelar-modal-excluir');
-
-    function abrirExcluir() {
-        modalExcluir.hidden = false;
-    }
-
-    function fecharExcluir() {
-        modalExcluir.hidden = true;
-    }
-
-    corpoTabelaAlerta.addEventListener('click', function (evento) {
-        const botaoRemover = evento.target.closest('.btn-remover');
-        if (!botaoRemover) {
-            return;
-        }
-
-        const linha = botaoRemover.closest('tr');
-
-        document.getElementById('excluir-id').value = linha.dataset.idAlerta;
-        document.getElementById('excluir-nome').textContent = linha.children[1].textContent.trim();
-
-        abrirExcluir();
-    });
-
-    botaoFecharExcluir.addEventListener('click', fecharExcluir);
-    botaoCancelarExcluir.addEventListener('click', fecharExcluir);
-
-    modalExcluir.addEventListener('click', function (evento) {
-        if (evento.target === modalExcluir) {
-            fecharExcluir();
-        }
-    });
-
-    const botaoAbrirModal = document.querySelector('.btn-adicionar');
-    const modal = document.getElementById('modal-adicionar');
-    const botaoFecharModal = document.getElementById('fechar-modal');
-    const botaoCancelarModal = document.getElementById('cancelar-modal');
-
-    function abrirModal() {
-        modal.hidden = false;
-    }
-
-    function fecharModal() {
-        modal.hidden = true;
-    }
-
-    botaoAbrirModal.addEventListener('click', abrirModal);
-    botaoFecharModal.addEventListener('click', fecharModal);
-    botaoCancelarModal.addEventListener('click', fecharModal);
-
-    modal.addEventListener('click', function (evento) {
-        if (evento.target === modal) {
-            fecharModal();
-        }
-    });
-
-</script>
-
-</body>
-</html>
+    </body>
+    </html>

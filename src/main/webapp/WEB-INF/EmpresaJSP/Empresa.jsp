@@ -1,28 +1,31 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@ page import="java.util.List,
-    java.util.ArrayList,
-    java.text.SimpleDateFormat,
-    org.astro.astro_app.model.Empresa"
+java.util.ArrayList,
+java.text.SimpleDateFormat,
+org.astro.astro_app.model.Empresa"
 %>
 <%!
-// Método auxiliar: devolve "" se o valor for null (evita escrever "null" na tela)
+// Evita escrever "null" na tela
 private String v(String s) {
 return s == null ? "" : s;
-}%>
-
+}
+%>
 <%
-    String caminho = request.getContextPath();
-    ArrayList<Empresa> empresas = (ArrayList<Empresa>) request.getAttribute("empresas");
-    SimpleDateFormat formato = new SimpleDateFormat("dd-mm-yyyy");
+String caminho = request.getContextPath();
+ArrayList<Empresa> empresas = (ArrayList<Empresa>) request.getAttribute("empresas");
+
+    // formato dd-MM-yyyy
+    SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
+
     String[] estados = {"AC","AL","AP","AM","BA","CE","DF","ES","GO","MA","MT","MS","MG","PA","PB","PR","PE","PI","RJ","RN","RS","RO","RR","SC","SP","SE","TO"};
 
-    // Valores do filtro, para manter na tela depois de filtrar
+    // valores de filtro (pra nao ficar null)
     String fEstado = v(request.getParameter("estado"));
     String fCidade = v(request.getParameter("cidade"));
-    String fCnae = v(request.getParameter("cnae"));
-    String fNome = v(request.getParameter("nome"));
-    String fDtMin = v(request.getParameter("dt_registro_min"));
-    String fDtMax = v(request.getParameter("dt_registro_max"));
+    String fCnae   = v(request.getParameter("cnae"));
+    String fNome   = v(request.getParameter("nome"));
+    String fDtMin  = v(request.getParameter("dt_registro_min"));
+    String fDtMax  = v(request.getParameter("dt_registro_max"));
     %>
     <!DOCTYPE html>
     <html lang="pt">
@@ -59,7 +62,7 @@ return s == null ? "" : s;
             <a href="<%=caminho%>/listar-divisoes" class="nav-item">
                 <i class="fa-regular fa-file-lines"></i>divisao_treinamento
             </a>
-            <a href="<%=caminho%>/listar-alertas" class="nav-item">
+            <a href="<%=caminho%>/lista-alerta" class="nav-item">
                 <i class="fa-regular fa-calendar-check"></i>alerta
             </a>
             <a href="<%=caminho%>/listar-certificados" class="nav-item">
@@ -93,8 +96,7 @@ return s == null ? "" : s;
                 <button class="btn-filtrar" id="btn-filtrar-empresa" type="button">
                     <i class="fa-solid fa-filter"></i> Filtrar
                 </button>
-
-                <button class="btn-adicionar" id="btn-adicionar-empresa" type="button" data-acao="adicionar-empresa">
+                <button class="btn-adicionar" id="btn-adicionar-empresa" type="button">
                     <i class="fa-solid fa-plus"></i> Adicionar empresa
                 </button>
             </div>
@@ -103,8 +105,11 @@ return s == null ? "" : s;
         <!-- Mensagem de sucesso/erro enviada pelo servlet -->
         <%
         String mensagem = (String) request.getAttribute("mensagem");
+        if (mensagem == null) {
+        mensagem = (String) request.getAttribute("erro");
+        }
         if (mensagem != null) {
-        String cor = mensagem.contains("sucesso") ? "green" : "red";
+        String cor = mensagem.toLowerCase().contains("sucesso") ? "green" : "red";
         %>
         <p style="color: <%= cor %>"><%= mensagem %></p>
         <% } %>
@@ -115,16 +120,16 @@ return s == null ? "" : s;
                     <thead class="data-cabecalho">
                     <tr>
                         <th class="ordenavel" data-coluna="id_empresa"><strong>id_empresa</strong> <i class="fa-solid fa-sort"></i></th>
-                        <th class="ordenavel" data-coluna="nome">nome<i class="fa-solid fa-sort"></i></th>
+                        <th class="ordenavel" data-coluna="nome">nome <i class="fa-solid fa-sort"></i></th>
                         <th data-coluna="cnpj">cnpj</th>
-                        <th class="ordenavel" data-coluna="qtd_funcionario">qtd_funcionario<i class="fa-solid fa-sort"></i></th>
+                        <th class="ordenavel" data-coluna="qtd_funcionario">qtd_funcionario <i class="fa-solid fa-sort"></i></th>
                         <th data-coluna="cnae">cnae</th>
-                        <th class="ordenavel" data-coluna="bairro">bairro<i class="fa-solid fa-sort"></i></th>
+                        <th class="ordenavel" data-coluna="bairro">bairro <i class="fa-solid fa-sort"></i></th>
                         <th data-coluna="cep">cep</th>
-                        <th class="ordenavel" data-coluna="rua">rua<i class="fa-solid fa-sort"></i></th>
-                        <th class="ordenavel" data-coluna="estado">estado<i class="fa-solid fa-sort"></i></th>
-                        <th class="ordenavel" data-coluna="cidade">cidade<i class="fa-solid fa-sort"></i></th>
-                        <th class="ordenavel" data-coluna="dt_registro">dt_registro<i class="fa-solid fa-sort"></i></th>
+                        <th class="ordenavel" data-coluna="rua">rua <i class="fa-solid fa-sort"></i></th>
+                        <th class="ordenavel" data-coluna="estado">estado <i class="fa-solid fa-sort"></i></th>
+                        <th class="ordenavel" data-coluna="cidade">cidade <i class="fa-solid fa-sort"></i></th>
+                        <th class="ordenavel" data-coluna="dt_registro">dt_registro <i class="fa-solid fa-sort"></i></th>
                         <th>Ações</th>
                     </tr>
                     </thead>
@@ -134,31 +139,25 @@ return s == null ? "" : s;
                     for (Empresa e : empresas) {
                     %>
                     <tr data-id-empresa="<%= e.getIdEmpresa() %>">
-                        <td><%=e.getIdEmpresa()%></td>
-
-                        <td><%=e.getNome()%></td>
-
-                        <td><%=e.getCnpj()%></td>
-
-                        <td><%=e.getQtdFuncionario()%></td>
-
-                        <td><%=e.getCnae()%></td>
-
-                        <td><%=e.getBairro()%></td>
-
-                        <td><%=e.getCep()%></td>
-
-                        <td><%=e.getRua()%></td>
-
-                        <td><%=e.getEstado()%></td>
-
-                        <td><%=e.getCidade()%></td>
-
-                        <td><%=e.getDtRegistro() != null ? formato.format(e.getDtRegistro()) : "" %></td>
+                        <td><%= e.getIdEmpresa() %></td>
+                        <td><%= e.getNome() %></td>
+                        <td><%= e.getCnpj() %></td>
+                        <td><%= e.getQtdFuncionario() %></td>
+                        <td><%= e.getCnae() %></td>
+                        <td><%= e.getBairro() %></td>
+                        <td><%= e.getCep() %></td>
+                        <td><%= e.getRua() %></td>
+                        <td><%= e.getEstado() %></td>
+                        <td><%= e.getCidade() %></td>
+                        <td><%= e.getDtRegistro() != null ? formato.format(e.getDtRegistro()) : "" %></td>
                         <td>
                             <div class="celula-acoes">
-                                <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
-                                <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
+                                <button class="btn-editar" type="button">
+                                    <i class="fa-solid fa-pen"></i> Editar
+                                </button>
+                                <button class="btn-remover" type="button">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
                             </div>
                         </td>
                     </tr>
@@ -174,7 +173,9 @@ return s == null ? "" : s;
                 </table>
             </div>
 
-            <p class="rodape-tabela" id="contagem-empresas">Mostrando <%= empresas != null ? empresas.size() : 0 %> empresas</p>
+            <p class="rodape-tabela" id="contagem-empresas">
+                Mostrando <%= empresas != null ? empresas.size() : 0 %> empresas
+            </p>
         </section>
 
     </main>
@@ -190,7 +191,8 @@ return s == null ? "" : s;
                 </button>
             </div>
 
-            <form id="formulario-adicionar" class="modal-formulario" action="<%=caminho%>/adicionar-empresa" method="post">
+            <form id="formulario-adicionar" class="modal-formulario"
+                  action="<%=caminho%>/adicionar-empresa" method="post">
 
                 <div class="modal-campo">
                     <label for="campo-cnpj">cnpj</label>
@@ -261,13 +263,14 @@ return s == null ? "" : s;
                 </button>
             </div>
 
-            <form id="formulario-filtro" class="modal-formulario" action="<%=caminho%>/listar-empresas" method="get">
+            <form id="formulario-filtro" class="modal-formulario"
+                  action="<%=caminho%>/listar-empresas" method="get">
 
                 <div class="modal-campo">
                     <label for="filtro-estado">estado</label>
                     <select id="filtro-estado" name="estado">
                         <option value="" <%= fEstado.isEmpty() ? "selected" : "" %>>Todos</option>
-                        <% for (String uf : ufs) { %>
+                        <% for (String uf : estados) { %>
                         <option value="<%= uf %>" <%= uf.equals(fEstado) ? "selected" : "" %>><%= uf %></option>
                         <% } %>
                     </select>
@@ -285,9 +288,7 @@ return s == null ? "" : s;
 
                 <div class="modal-campo">
                     <label for="filtro-nome">Nome</label>
-                    <div class="modal-campo-faixa">
-                        <input type="text" id="filtro-nome" name="nome" placeholder="Digite o nome" value="<%= fNome %>">
-                    </div>
+                    <input type="text" id="filtro-nome" name="nome" placeholder="Digite o nome" value="<%= fNome %>">
                 </div>
 
                 <div class="modal-campo">
@@ -318,9 +319,9 @@ return s == null ? "" : s;
                 </button>
             </div>
 
-            <form id="formulario-editar" class="modal-formulario" action="<%=caminho%>/editar-empresa" method="post">
+            <form id="formulario-editar" class="modal-formulario"
+                  action="<%=caminho%>/editar-empresa" method="post">
 
-                <input type="hidden" name="acao" value="editar">
                 <input type="hidden" id="editar-id-empresa" name="id_empresa">
 
                 <div class="modal-campo">
@@ -399,7 +400,6 @@ return s == null ? "" : s;
             </p>
 
             <form id="formulario-excluir" action="<%=caminho%>/excluir-empresa" method="post">
-                <input type="hidden" name="acao" value="excluir">
                 <input type="hidden" id="excluir-id" name="id_empresa">
 
                 <div class="modal-rodape">
@@ -442,8 +442,12 @@ return s == null ? "" : s;
             });
         });
 
-        // ---------- DATA dd-MM-yyyy -> yyyy-MM-dd ----------
+        // ---------- DATA: dd-MM-yyyy (tabela) -> yyyy-MM-dd (input type="date") ----------
         function converterDataBrParaIso(dataBr) {
+            if (!dataBr) return '';
+            // Já está no formato do banco?
+            if (dataBr.length === 10 && dataBr.charAt(4) === '-') return dataBr;
+
             const partes = dataBr.split('-');
             if (partes.length !== 3) return '';
             const [dia, mes, ano] = partes;
@@ -458,7 +462,7 @@ return s == null ? "" : s;
             const botao = evento.target.closest('.btn-editar');
             if (!botao) return;
 
-            const c = botao.closest('tr').children; // mesma ordem das colunas do <thead>
+            const c = botao.closest('tr').children;
             const t = i => c[i].textContent.trim();
 
             document.getElementById('editar-id-empresa').value = t(0);
