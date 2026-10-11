@@ -24,7 +24,7 @@ public class ServletDeleteAlerta extends HttpServlet {
 
         //validacao
         if (idAlertaTexto == null || idAlertaTexto.isBlank()) {
-            mensagem = "O id do alerta não informado";
+            mensagem = "o id do alerta não informado";
             request.setAttribute("erro", mensagem);
             request.getRequestDispatcher("/WEB-INF/AlertaJSP/alertaJSP.jsp").forward(request, response);
             return;
