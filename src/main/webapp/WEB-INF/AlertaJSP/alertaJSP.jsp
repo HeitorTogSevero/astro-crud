@@ -163,19 +163,23 @@
                 <div class="modal-campo">
                     <label for="campo-descricao">Descricao:</label>
                     <input type="text" id="campo-descricao" name="descricao" required>
+                    <span id="erroDescr"></span>
                 </div>
                 <div class="modal-campo">
                     <label for="campo-codigo">Código:</label>
                     <input type="number" id="campo-codigo" name="codigo" min="0" required>
+                    <span id="erroCod"></span>
                 </div>
                 <div class="modal-campo">
                     <label for="campo-dt_limite">Data Limite:</label>
                     <!-- type="date" sempre trabalha com aaaa-mm-dd -->
                     <input type="date" id="campo-dt_limite" name="dt_limite" required>
+                    <span id="erroData"></span>
                 </div>
                 <div class="modal-campo">
                     <label for="campo-id_empresa">Empresa (id):</label>
                     <input type="number" id="campo-id_empresa" name="id_empresa" min="0" required>
+                    <span id="erroId"></span>
                 </div>
 
                 <div class="modal-rodape">
@@ -238,19 +242,24 @@
                 <div class="modal-campo">
                     <label for="editar-descricao">Descricao:</label>
                     <input type="text" id="editar-descricao" name="descricao" required>
+                    <span id="editar-erroDescr"></span>
                 </div>
                 <div class="modal-campo">
                     <label for="editar-codigo">Código:</label>
                     <input type="number" id="editar-codigo" name="codigo" min="0" required>
+                    <span id="editar-erroCod"></span>
                 </div>
                 <div class="modal-campo">
                     <label for="editar-dt_limite">Data Limite:</label>
                     <!-- type="date" precisa receber aaaa-mm-dd -->
                     <input type="date" id="editar-dt_limite" name="dt_limite" required>
+                    <span id="editar-erroData"></span>
+
                 </div>
                 <div class="modal-campo">
                     <label for="editar-id_empresa">Empresa (id):</label>
                     <input type="number" id="editar-id_empresa" name="id_empresa" min="0" required>
+                    <span id="editar-erroId"></span>
                 </div>
 
                 <div class="modal-rodape">
@@ -352,6 +361,9 @@
         document.getElementById('cancelar-modal').addEventListener('click', () => modalAdicionar.hidden = true);
         modalAdicionar.addEventListener('click', e => { if (e.target === modalAdicionar) modalAdicionar.hidden = true; });
     </script>
+
+    <script src="../../JS/create-alerta.js"></script>
+    <script src="../../JS/update-alerta.js"></script>
 
     </body>
     </html>
