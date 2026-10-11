@@ -15,10 +15,12 @@ public class ServletReadAlerta extends HttpServlet {
 
     private AlertaDAO alertaDAO;
 
+    @Override
     public void init() {
         alertaDAO = new AlertaDAO();
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         //pega os filtros

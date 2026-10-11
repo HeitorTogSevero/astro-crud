@@ -21,17 +21,34 @@ public class ServletDeleteCertificado extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //pega o id alerta
+        String idAlertaTexto = request.getParameter("id_alerta");
+        String mensagem = "";
 
-        String acao = request.getParameter("");
+        //validacao
+        if(idAlertaTexto == null || idAlertaTexto.isBlank()){
+            mensagem = "id nao inforamdo";
+            request.setAttribute("erro", mensagem);
+            request.getRequestDispatcher("/WEB-INF/CertificadoJSP/Certificado.jsp").forward(request,response);
+            return;
+        }
 
-        if("excluir".equals(acao)){
+        try{
+            int idAlerta = Integer.parseInt(idAlertaTexto);
+            if (idAlerta <=0){
+                mensagem = "id invalido";
+                request.setAttribute("erro", mensagem);
+                request.getRequestDispatcher("/WEB-INF/CertificadoJSP/Certificado.jsp").forward(request,response);
+                return;
+            }
 
-            String idTexto = request.getParameter("id");
-            int id = Integer.parseInt(idTexto);
+            certificadoDAO.remover(idAlerta);
+            response.sendRedirect(request.getContextPath() + "lista-alertas");
 
-            certificadoDAO.remover(id);
-
-            response.sendRedirect(request.getContextPath() + "/certificado");
+        }catch (NumberFormatException e) {
+            mensagem = "o id do certificad deve ser valido";
+            request.setAttribute("erro", mensagem);
+            request.getRequestDispatcher("/WEB-INF/CertificadoJSP/Certificado.jsp").forward(request,response);
         }
     }
 }

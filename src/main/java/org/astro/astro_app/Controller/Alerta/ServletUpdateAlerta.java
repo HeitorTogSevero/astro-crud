@@ -15,10 +15,12 @@ public class ServletUpdateAlerta extends HttpServlet {
 
     private AlertaDAO alertaDAO;
 
+    @Override
     public void init() {
         alertaDAO = new AlertaDAO();
     }
 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         request.setCharacterEncoding("UTF-8");
