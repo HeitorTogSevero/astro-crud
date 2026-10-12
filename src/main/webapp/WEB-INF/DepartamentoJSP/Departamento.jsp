@@ -1,22 +1,23 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
-<%@ page import="java.util.List,
-    java.util.ArrayList,
-    org.astro.astro_app.model.Departamento"%>
-<%!private String v(String s) {
-return s == null ? "" : s;}%>
+<%@ page import="java.util.ArrayList,
+org.astro.astro_app.model.Departamento"
+%>
+<%! private String v(String s) {
+    return s == null ? "" : s;}%>
 <%  String caminho = request.getContextPath();
-    ArrayList<Departamento> departamentos = (ArrayList<Departamento>) request.getAttribute("departamentos");
+    ArrayList<Departamento> departamentos =
+    (ArrayList<Departamento>) request.getAttribute("departamentos");
     //valores de filtro(pra nao ficar null
-    String fGrauRisco  = v(request.getParameter("grau_risco"));
-    String fAtividade  = v(request.getParameter("atividade"));
-    String fIdEmpresa  = v(request.getParameter("id_empresa"));%>
+    String fGrauRisco = v(request.getParameter("grau_risco"));
+    String fAtividade = v(request.getParameter("atividade"));
+    String fIdEmpresa = v(request.getParameter("id_empresa"));
+%>
 <!DOCTYPE html>
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Astro - Departamentos</title>
-
     <link rel="stylesheet" href="<%=caminho%>/style/crud.css">
     <link rel="stylesheet" href="<%=caminho%>/style/tabelas.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -28,7 +29,6 @@ return s == null ? "" : s;}%>
     <div class="logo">
         <img src="<%=caminho%>/imagens/logotipo.png" alt="Logotipo" class="img-logo">
     </div>
-
     <nav class="nav-menu">
         <a href="<%=caminho%>/crud.jsp" class="nav-item">
             <i class="fa-solid fa-house"></i>Início
@@ -71,21 +71,21 @@ return s == null ? "" : s;}%>
         <div class="controle-esquerda">
             <div class="search-bar">
                 <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" id="busca-departamento" name="busca-departamento" placeholder="Pesquisar departamento...">
+                <input type="text" id="busca-departamento" placeholder="Pesquisar departamento...">
             </div>
         </div>
-
         <div class="controle-direita">
-            <button class="btn-filtrar" id="btn-filtrar-departamento" type="button">
+            <button class="btn-filtrar" type="button">
                 <i class="fa-solid fa-filter"></i> Filtrar
             </button>
-            <button class="btn-adicionar" id="btn-adicionar-departamento" type="button">
+            <button class="btn-adicionar" type="button">
                 <i class="fa-solid fa-plus"></i> Adicionar departamento
             </button>
         </div>
     </section>
 
-    <%String mensagem = (String) request.getAttribute("erro");
+    <%
+    String mensagem = (String) request.getAttribute("erro");
     if (mensagem == null) {
     mensagem = (String) request.getAttribute("mensagem");
     }
@@ -110,7 +110,6 @@ return s == null ? "" : s;}%>
                 </tr>
                 </thead>
                 <tbody id="corpo-tabela-departamentos">
-<<<<<<< HEAD
                 <%
                 if (departamentos != null && !departamentos.isEmpty()) {
                 for (Departamento d : departamentos) {
@@ -139,21 +138,6 @@ return s == null ? "" : s;}%>
                 %>
                 <tr>
                     <td colspan="7">Nenhum departamento encontrado.</td>
-=======
-                <tr id_departamento="" nome="" descricao="" grau_risco="" atividade="" id_empresa="">
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <div class="celula-acoes">
-                            <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
-                            <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
-                        </div>
-                    </td>
->>>>>>> da0f446578970a5337882feb04739ca403e58456
                 </tr>
                 <% } %>
                 </tbody>
@@ -166,7 +150,7 @@ return s == null ? "" : s;}%>
 
 </main>
 
-<!--ADICIONAR-->
+<!-- MODAL ADICIONAR -->
 <div class="modal-fundo" id="modal-adicionar" hidden>
     <div class="modal-caixa" role="dialog" aria-modal="true">
         <div class="modal-cabecalho">
@@ -175,78 +159,27 @@ return s == null ? "" : s;}%>
                 <i class="fa-solid fa-xmark"></i>
             </button>
         </div>
-
-        <form id="formulario-adicionar" class="modal-formulario"
-              action="<%=caminho%>/adicionar-departamento" method="post">
-
+        <form class="modal-formulario" action="<%=caminho%>/adicionar-departamento" method="post">
             <div class="modal-campo">
-<<<<<<< HEAD
                 <label for="campo-nome">Nome:</label>
                 <input type="text" id="campo-nome" name="nome" required>
             </div>
-
             <div class="modal-campo">
                 <label for="campo-descricao">Descricao:</label>
                 <input type="text" id="campo-descricao" name="descricao" required>
             </div>
-
             <div class="modal-campo">
                 <label for="campo-grau_risco">Grau de risco:</label>
                 <input type="number" id="campo-grau_risco" name="grau_risco" min="1" max="4" required>
             </div>
-
             <div class="modal-campo">
                 <label for="campo-atividade">Atividade:</label>
                 <input type="text" id="campo-atividade" name="atividade" required>
             </div>
-
             <div class="modal-campo">
                 <label for="campo-id_empresa">id_empresa:</label>
                 <input type="number" id="campo-id_empresa" name="id_empresa" min="0" required>
-=======
-                <label for="campo-nome">nome</label>
-                <input type="text" id="campo-nome" name="nome" placeholder="Nome" required>
-                <span id="erroNome"> </span>
             </div>
-
-            <div class="modal-campo">
-                <label for="campo-descricao">descricao</label>
-                <input type="text" id="campo-descricao" name="descricao" placeholder="Descrição" required>
-                <span id="erroDescr"> </span>
-            </div>
-
-            <div class="modal-campo">
-                <label for="campo-grau_risco">grau_risco</label>
-                <input type="number" id="campo-grau_risco" name="grau_risco"
-                       min="1" max="4"
-                       placeholder="Grau de risco" required>
-                <span id="erroRisco"> </span>
-
-            </div>
-
-            <div class="modal-campo">
-                <label for="campo-atividade">atividade</label>
-                <input type="text" id="campo-atividade" name="atividade" placeholder="Atividade" required>
-                <span id="erroAtv"> </span>
-            </div>
-
-            <div class="modal-campo">
-                <label for="campo-id_empresa">id_empresa</label>
-                <input type="number" id="campo-id_empresa" name="id_empresa"
-                       min="0"
-                       placeholder="ID">
-                <span id="erroIdEmpresa"> </span>
-            </div>
-
-            <div class="modal-campo">
-                <label for="campo-id_departamento">id_departamento</label>
-                <input type="number" id="campo-id_departamento" name="id_departamento"
-                       min="0"
-                       placeholder="ID">
-                <span id="erroIdDepart"> </span>
->>>>>>> da0f446578970a5337882feb04739ca403e58456
-            </div>
-
             <div class="modal-rodape">
                 <button type="button" class="botao-cancelar" id="cancelar-modal">Cancelar</button>
                 <button type="submit" class="botao-salvar">Salvar</button>
@@ -255,7 +188,7 @@ return s == null ? "" : s;}%>
     </div>
 </div>
 
-<!--FILTRAR-->
+<!-- MODAL FILTRO -->
 <div class="modal-fundo" id="modal-filtro" hidden>
     <div class="modal-caixa" role="dialog" aria-modal="true">
         <div class="modal-cabecalho">
@@ -264,28 +197,22 @@ return s == null ? "" : s;}%>
                 <i class="fa-solid fa-xmark"></i>
             </button>
         </div>
-
-        <form id="formulario-filtro" class="modal-formulario"
-              action="<%=caminho%>/listar-departamentos" method="get">
-
+        <form class="modal-formulario" action="<%=caminho%>/listar-departamentos" method="get">
             <div class="modal-campo">
                 <label for="filtro-grau_risco">grau_risco</label>
                 <input type="number" id="filtro-grau_risco" name="grau_risco" min="1" max="4"
                        value="<%= fGrauRisco %>">
             </div>
-
             <div class="modal-campo">
                 <label for="filtro-atividade">atividade</label>
                 <input type="text" id="filtro-atividade" name="atividade"
                        value="<%= fAtividade %>">
             </div>
-
             <div class="modal-campo">
                 <label for="filtro-id_empresa">id_empresa</label>
                 <input type="number" id="filtro-id_empresa" name="id_empresa" min="0"
                        value="<%= fIdEmpresa %>">
             </div>
-
             <div class="modal-rodape">
                 <a href="<%=caminho%>/listar-departamentos" class="botao-cancelar">Limpar</a>
                 <button type="submit" class="botao-salvar">Aplicar filtro</button>
@@ -294,7 +221,7 @@ return s == null ? "" : s;}%>
     </div>
 </div>
 
-<!--EDITAR-->
+<!-- MODAL EDITAR -->
 <div class="modal-fundo" id="modal-editar" hidden>
     <div class="modal-caixa" role="dialog" aria-modal="true">
         <div class="modal-cabecalho">
@@ -303,41 +230,28 @@ return s == null ? "" : s;}%>
                 <i class="fa-solid fa-xmark"></i>
             </button>
         </div>
-
-        <form id="formulario-editar" class="modal-formulario"
-              action="<%=caminho%>/alterar-departamento" method="post">
-
+        <form class="modal-formulario" action="<%=caminho%>/alterar-departamento" method="post">
             <input type="hidden" id="editar-id-departamento" name="id_departamento">
-
             <div class="modal-campo">
                 <label for="editar-nome">Nome:</label>
                 <input type="text" id="editar-nome" name="nome" required>
             </div>
-
             <div class="modal-campo">
                 <label for="editar-descricao">Descricao:</label>
                 <input type="text" id="editar-descricao" name="descricao" required>
             </div>
-
             <div class="modal-campo">
                 <label for="editar-grau_risco">Grau de risco:</label>
                 <input type="number" id="editar-grau_risco" name="grau_risco" min="1" max="4" required>
             </div>
-
             <div class="modal-campo">
                 <label for="editar-atividade">Atividade:</label>
                 <input type="text" id="editar-atividade" name="atividade" required>
             </div>
-
             <div class="modal-campo">
-<<<<<<< HEAD
                 <label for="editar-id_empresa">id_empresa:</label>
-=======
-                <label for="editar-id_empresa">id_empresa</label>
->>>>>>> da0f446578970a5337882feb04739ca403e58456
                 <input type="number" id="editar-id_empresa" name="id_empresa" min="0" required>
             </div>
-
             <div class="modal-rodape">
                 <button type="button" class="botao-cancelar" id="cancelar-modal-editar">Cancelar</button>
                 <button type="submit" class="botao-salvar">Salvar alterações</button>
@@ -346,7 +260,7 @@ return s == null ? "" : s;}%>
     </div>
 </div>
 
-<!--EXCLUIR-->
+<!-- MODAL EXCLUIR -->
 <div class="modal-fundo" id="modal-excluir" hidden>
     <div class="modal-caixa modal-caixa-pequena" role="dialog" aria-modal="true">
         <div class="modal-cabecalho">
@@ -355,14 +269,12 @@ return s == null ? "" : s;}%>
                 <i class="fa-solid fa-xmark"></i>
             </button>
         </div>
-
         <p class="modal-texto-confirmacao">
             Tem certeza que deseja excluir
             <strong id="excluir-nome"></strong>?
             Essa ação não pode ser desfeita.
         </p>
-
-        <form id="formulario-excluir" action="<%=caminho%>/deletar-departamento" method="post">
+        <form action="<%=caminho%>/deletar-departamento" method="post">
             <input type="hidden" id="excluir-id" name="id_departamento">
             <div class="modal-rodape">
                 <button type="button" class="botao-cancelar" id="cancelar-modal-excluir">Cancelar</button>
@@ -379,14 +291,13 @@ return s == null ? "" : s;}%>
     document.getElementById('fechar-modal-filtro').addEventListener('click', () => modalFiltro.hidden = true);
     modalFiltro.addEventListener('click', e => { if (e.target === modalFiltro) modalFiltro.hidden = true; });
 
-    // EDITAR
+    // EDITAR — ordem: id, nome, descricao, grau_risco, atividade, id_empresa
     const corpoTabela = document.getElementById('corpo-tabela-departamentos');
     const modalEditar = document.getElementById('modal-editar');
 
     corpoTabela.addEventListener('click', function (evento) {
         const botao = evento.target.closest('.btn-editar');
         if (!botao) return;
-
         const c = botao.closest('tr').children;
         const t = i => c[i].textContent.trim();
 
@@ -396,7 +307,6 @@ return s == null ? "" : s;}%>
         document.getElementById('editar-grau_risco').value = t(3);
         document.getElementById('editar-atividade').value = t(4);
         document.getElementById('editar-id_empresa').value = t(5);
-
         modalEditar.hidden = false;
     });
 
@@ -406,17 +316,14 @@ return s == null ? "" : s;}%>
 
     // EXCLUIR
     const modalExcluir = document.getElementById('modal-excluir');
-
     corpoTabela.addEventListener('click', function (evento) {
         const botao = evento.target.closest('.btn-remover');
         if (!botao) return;
-
         const linha = botao.closest('tr');
         document.getElementById('excluir-id').value = linha.dataset.idDepartamento;
         document.getElementById('excluir-nome').textContent = linha.children[1].textContent.trim();
         modalExcluir.hidden = false;
     });
-
     document.getElementById('fechar-modal-excluir').addEventListener('click', () => modalExcluir.hidden = true);
     document.getElementById('cancelar-modal-excluir').addEventListener('click', () => modalExcluir.hidden = true);
     modalExcluir.addEventListener('click', e => { if (e.target === modalExcluir) modalExcluir.hidden = true; });

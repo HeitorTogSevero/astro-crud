@@ -9,9 +9,9 @@ return s == null ? "" : s;
 <%  String caminho = request.getContextPath();
     ArrayList<DivisaoTreinamento> divisoes = (ArrayList<DivisaoTreinamento>) request.getAttribute("divisoes");
     //valores de filtro(pra nao ficar null
-    String fCodigo    = v(request.getParameter("codigo"));
+    String fCodigo = v(request.getParameter("codigo"));
     String fIdEmpresa = v(request.getParameter("id_empresa"));
-    String fNome      = v(request.getParameter("nome"));%>
+    String fNome = v(request.getParameter("nome"));%>
 <!DOCTYPE html>
 <html lang="pt">
 <head>
@@ -315,7 +315,6 @@ return s == null ? "" : s;
         const c = botao.closest('tr').children;
         const t = i => c[i].textContent.trim();
 
-        // ordem: id_divisao, nome, codigo, id_empresa, id_cronograma
         document.getElementById('editar-id-divisao').value = t(0);
         document.getElementById('editar-nome').value = t(1);
         document.getElementById('editar-codigo').value = t(2);
@@ -355,4 +354,4 @@ return s == null ? "" : s;
 </script>
 
 </body>
-        </html>
+</html>
