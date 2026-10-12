@@ -1,0 +1,12 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" build-on-make="true" name="Astro_app:war_exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/Astro_app_war_exploded</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="Astro_App" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

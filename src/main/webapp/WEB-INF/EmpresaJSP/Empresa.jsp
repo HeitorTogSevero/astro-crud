@@ -1,25 +1,19 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
-<%@ page import="java.util.List,
-java.util.ArrayList,
+<%@ page import="java.util.ArrayList,
 java.text.SimpleDateFormat,
 org.astro.astro_app.model.Empresa"
 %>
 <%!
-// Evita escrever "null" na tela
 private String v(String s) {
 return s == null ? "" : s;
 }
 %>
-<%
-String caminho = request.getContextPath();
-ArrayList<Empresa> empresas = (ArrayList<Empresa>) request.getAttribute("empresas");
-
-    // formato dd-MM-yyyy
+<%  String caminho = request.getContextPath();
+    ArrayList<Empresa> empresas = (ArrayList<Empresa>) request.getAttribute("empresas");
+    //formato  dd-MM-yyyy
     SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
-
     String[] estados = {"AC","AL","AP","AM","BA","CE","DF","ES","GO","MA","MT","MS","MG","PA","PB","PR","PE","PI","RJ","RN","RS","RO","RR","SC","SP","SE","TO"};
-
-    // valores de filtro (pra nao ficar null)
+    //valores de filtro(pra nao ficar null
     String fEstado = v(request.getParameter("estado"));
     String fCidade = v(request.getParameter("cidade"));
     String fCnae   = v(request.getParameter("cnae"));
@@ -27,488 +21,351 @@ ArrayList<Empresa> empresas = (ArrayList<Empresa>) request.getAttribute("empresa
     String fDtMin  = v(request.getParameter("dt_registro_min"));
     String fDtMax  = v(request.getParameter("dt_registro_max"));
     %>
-    <!DOCTYPE html>
-    <html lang="pt">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Astro - Empresas</title>
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astro - Empresas</title>
+    <link rel="stylesheet" href="<%=caminho%>/style/crud.css">
+    <link rel="stylesheet" href="<%=caminho%>/style/tabelas.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
 
-        <link rel="stylesheet" href="<%=caminho%>/style/crud.css">
-        <link rel="stylesheet" href="<%=caminho%>/style/tabelas.css">
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    </head>
-    <body>
-
-    <aside class="sidebar">
-        <div class="logo">
-            <img src="<%=caminho%>/imagens/logotipo.png" alt="Logotipo" class="img-logo">
-        </div>
-
-        <nav class="nav-menu">
-            <a href="<%=caminho%>/crud.jsp" class="nav-item">
-                <i class="fa-solid fa-house"></i>Início
-            </a>
-            <a href="<%=caminho%>/listar-empresas" class="nav-item active">
-                <i class="fa-regular fa-building"></i>empresa
-            </a>
-            <a href="<%=caminho%>/listar-funcionarios" class="nav-item">
-                <i class="fa-solid fa-users"></i>funcionario
-            </a>
-            <a href="<%=caminho%>/listar-departamentos" class="nav-item">
-                <i class="fa-solid fa-layer-group"></i>departamento
-            </a>
-            <a href="<%=caminho%>/listar-divisoes" class="nav-item">
-                <i class="fa-regular fa-file-lines"></i>divisao_treinamento
-            </a>
-            <a href="<%=caminho%>/lista-alerta" class="nav-item">
-                <i class="fa-regular fa-calendar-check"></i>alerta
-            </a>
-            <a href="<%=caminho%>/listar-certificados" class="nav-item">
-                <i class="fa-solid fa-award"></i>certificado
-            </a>
-            <div class="sidebar-bottom">
-                <a href="#" class="nav-item" id="exit-bottom">
-                    <i class="fa-solid fa-right-from-bracket"></i>Sair
-                </a>
-            </div>
-        </nav>
-    </aside>
-
-    <main class="main-content">
-
-        <header class="header cabecalho-pagina">
-            <div class="titulo-container">
-                <h1><strong>empresa - </strong> <span id="periodo-titulo">Setembro 2026</span></h1>
-            </div>
-        </header>
-
-        <section class="barra-controles">
-            <div class="controle-esquerda">
-                <div class="search-bar">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    <input type="text" id="busca-empresa" name="busca-empresa" placeholder="Pesquisar empresa...">
-                </div>
-            </div>
-
-            <div class="controle-direita">
-                <button class="btn-filtrar" id="btn-filtrar-empresa" type="button">
-                    <i class="fa-solid fa-filter"></i> Filtrar
-                </button>
-                <button class="btn-adicionar" id="btn-adicionar-empresa" type="button">
-                    <i class="fa-solid fa-plus"></i> Adicionar empresa
-                </button>
-            </div>
-        </section>
-
-        <!-- Mensagem de sucesso/erro enviada pelo servlet -->
-        <%
-        String mensagem = (String) request.getAttribute("mensagem");
-        if (mensagem == null) {
-        mensagem = (String) request.getAttribute("erro");
-        }
-        if (mensagem != null) {
-        String cor = mensagem.toLowerCase().contains("sucesso") ? "green" : "red";
-        %>
-        <p style="color: <%= cor %>"><%= mensagem %></p>
-        <% } %>
-
-        <section class="panel painel-tabela">
-            <div class="tabela-rolavel">
-                <table class="data-table" id="tabela-empresas">
-                    <thead class="data-cabecalho">
-                    <tr>
-                        <th class="ordenavel" data-coluna="id_empresa"><strong>id_empresa</strong> <i class="fa-solid fa-sort"></i></th>
-                        <th class="ordenavel" data-coluna="nome">nome <i class="fa-solid fa-sort"></i></th>
-                        <th data-coluna="cnpj">cnpj</th>
-                        <th class="ordenavel" data-coluna="qtd_funcionario">qtd_funcionario <i class="fa-solid fa-sort"></i></th>
-                        <th data-coluna="cnae">cnae</th>
-                        <th class="ordenavel" data-coluna="bairro">bairro <i class="fa-solid fa-sort"></i></th>
-                        <th data-coluna="cep">cep</th>
-                        <th class="ordenavel" data-coluna="rua">rua <i class="fa-solid fa-sort"></i></th>
-                        <th class="ordenavel" data-coluna="estado">estado <i class="fa-solid fa-sort"></i></th>
-                        <th class="ordenavel" data-coluna="cidade">cidade <i class="fa-solid fa-sort"></i></th>
-                        <th class="ordenavel" data-coluna="dt_registro">dt_registro <i class="fa-solid fa-sort"></i></th>
-                        <th>Ações</th>
-                    </tr>
-                    </thead>
-                    <tbody id="corpo-tabela-empresas">
-                    <%
-                    if (empresas != null && !empresas.isEmpty()) {
-                    for (Empresa e : empresas) {
-                    %>
-                    <tr data-id-empresa="<%= e.getIdEmpresa() %>">
-                        <td><%= e.getIdEmpresa() %></td>
-                        <td><%= e.getNome() %></td>
-                        <td><%= e.getCnpj() %></td>
-                        <td><%= e.getQtdFuncionario() %></td>
-                        <td><%= e.getCnae() %></td>
-                        <td><%= e.getBairro() %></td>
-                        <td><%= e.getCep() %></td>
-                        <td><%= e.getRua() %></td>
-                        <td><%= e.getEstado() %></td>
-                        <td><%= e.getCidade() %></td>
-                        <td><%= e.getDtRegistro() != null ? formato.format(e.getDtRegistro()) : "" %></td>
-                        <td>
-                            <div class="celula-acoes">
-                                <button class="btn-editar" type="button">
-                                    <i class="fa-solid fa-pen"></i> Editar
-                                </button>
-                                <button class="btn-remover" type="button">
-                                    <i class="fa-solid fa-trash"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <%
-                    }
-                    } else {
-                    %>
-                    <tr>
-                        <td colspan="12">Nenhuma empresa encontrada.</td>
-                    </tr>
-                    <% } %>
-                    </tbody>
-                </table>
-            </div>
-
-            <p class="rodape-tabela" id="contagem-empresas">
-                Mostrando <%= empresas != null ? empresas.size() : 0 %> empresas
-            </p>
-        </section>
-
-    </main>
-
-    <!-- MODAL: ADICIONAR -->
-    <div class="modal-fundo" id="modal-adicionar" hidden>
-        <div class="modal-caixa" role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
-
-            <div class="modal-cabecalho">
-                <h2 id="modal-titulo">Adicionar em empresa</h2>
-                <button type="button" class="modal-fechar" id="fechar-modal" aria-label="Fechar">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-            </div>
-
-            <form id="formulario-adicionar" class="modal-formulario"
-                  action="<%=caminho%>/adicionar-empresa" method="post">
-
-                <div class="modal-campo">
-                    <label for="campo-cnpj">cnpj</label>
-                    <input type="text" id="campo-cnpj" name="cnpj" placeholder="00.000.000/0000-00" required>
-                </div>
-
-                <div class="modal-campo">
-                    <label for="campo-nome">nome</label>
-                    <input type="text" id="campo-nome" name="nome" placeholder="Nome" required>
-                </div>
-
-                <div class="modal-campo">
-                    <label for="campo-qtd-funcionario">qtd_funcionario</label>
-                    <input type="number" id="campo-qtd-funcionario" name="qtd_funcionario" min="0" required>
-                </div>
-
-                <div class="modal-campo">
-                    <label for="campo-cnae">cnae</label>
-                    <input type="text" id="campo-cnae" name="cnae" placeholder="Código CNAE">
-                </div>
-
-                <div class="modal-campo">
-                    <label for="campo-bairro">bairro</label>
-                    <input type="text" id="campo-bairro" name="bairro" placeholder="Bairro">
-                </div>
-
-                <div class="modal-campo">
-                    <label for="campo-cep">cep</label>
-                    <input type="text" id="campo-cep" name="cep" placeholder="00000-000">
-                </div>
-
-                <div class="modal-campo">
-                    <label for="campo-rua">rua</label>
-                    <input type="text" id="campo-rua" name="rua" placeholder="Rua">
-                </div>
-
-                <div class="modal-campo">
-                    <label for="campo-estado">estado</label>
-                    <input type="text" id="campo-estado" name="estado" placeholder="SP" maxlength="2" required>
-                </div>
-
-                <div class="modal-campo">
-                    <label for="campo-cidade">cidade</label>
-                    <input type="text" id="campo-cidade" name="cidade" placeholder="Cidade" required>
-                </div>
-
-                <div class="modal-campo">
-                    <label for="campo-dt_registro">dt_registro</label>
-                    <input type="date" id="campo-dt_registro" name="dt_registro" required>
-                </div>
-
-                <div class="modal-rodape">
-                    <button type="button" class="botao-cancelar" id="cancelar-modal">Cancelar</button>
-                    <button type="submit" class="botao-salvar">Salvar</button>
-                </div>
-            </form>
-        </div>
+<aside class="sidebar">
+    <div class="logo">
+        <img src="<%=caminho%>/imagens/logotipo.png" alt="Logotipo" class="img-logo">
     </div>
-
-    <!-- MODAL: FILTRO -->
-    <div class="modal-fundo" id="modal-filtro" hidden>
-        <div class="modal-caixa" role="dialog" aria-modal="true" aria-labelledby="modal-titulo-filtro">
-
-            <div class="modal-cabecalho">
-                <h2 id="modal-titulo-filtro">Filtrar empresas</h2>
-                <button type="button" class="modal-fechar" id="fechar-modal-filtro" aria-label="Fechar">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-            </div>
-
-            <form id="formulario-filtro" class="modal-formulario"
-                  action="<%=caminho%>/listar-empresas" method="get">
-
-                <div class="modal-campo">
-                    <label for="filtro-estado">estado</label>
-                    <select id="filtro-estado" name="estado">
-                        <option value="" <%= fEstado.isEmpty() ? "selected" : "" %>>Todos</option>
-                        <% for (String uf : estados) { %>
-                        <option value="<%= uf %>" <%= uf.equals(fEstado) ? "selected" : "" %>><%= uf %></option>
-                        <% } %>
-                    </select>
-                </div>
-
-                <div class="modal-campo">
-                    <label for="filtro-cidade">cidade</label>
-                    <input type="text" id="filtro-cidade" name="cidade" placeholder="Ex: Campinas" value="<%= fCidade %>">
-                </div>
-
-                <div class="modal-campo">
-                    <label for="filtro-cnae">cnae</label>
-                    <input type="text" id="filtro-cnae" name="cnae" placeholder="Código CNAE" value="<%= fCnae %>">
-                </div>
-
-                <div class="modal-campo">
-                    <label for="filtro-nome">Nome</label>
-                    <input type="text" id="filtro-nome" name="nome" placeholder="Digite o nome" value="<%= fNome %>">
-                </div>
-
-                <div class="modal-campo">
-                    <label>dt_registro</label>
-                    <div class="modal-campo-faixa">
-                        <input type="date" id="filtro-dt-registro-min" name="dt_registro_min" value="<%= fDtMin %>">
-                        <span>até</span>
-                        <input type="date" id="filtro-dt-registro-max" name="dt_registro_max" value="<%= fDtMax %>">
-                    </div>
-                </div>
-
-                <div class="modal-rodape">
-                    <a href="<%=caminho%>/listar-empresas" class="botao-cancelar" id="limpar-filtro">Limpar</a>
-                    <button type="submit" class="botao-salvar">Aplicar filtro</button>
-                </div>
-            </form>
+    <nav class="nav-menu">
+        <a href="<%=caminho%>/crud.jsp" class="nav-item"><i class="fa-solid fa-house"></i>Início</a>
+        <a href="<%=caminho%>/listar-empresas" class="nav-item active"><i class="fa-regular fa-building"></i>empresa</a>
+        <a href="<%=caminho%>/listar-funcionarios" class="nav-item"><i class="fa-solid fa-users"></i>funcionario</a>
+        <a href="<%=caminho%>/listar-departamentos" class="nav-item"><i class="fa-solid fa-layer-group"></i>departamento</a>
+        <a href="<%=caminho%>/listar-divisoes" class="nav-item"><i class="fa-regular fa-file-lines"></i>divisao_treinamento</a>
+        <a href="<%=caminho%>/lista-alerta" class="nav-item"><i class="fa-regular fa-calendar-check"></i>alerta</a>
+        <a href="<%=caminho%>/listar-certificados" class="nav-item"><i class="fa-solid fa-award"></i>certificado</a>
+        <div class="sidebar-bottom">
+            <a href="#" class="nav-item" id="exit-bottom"><i class="fa-solid fa-right-from-bracket"></i>Sair</a>
         </div>
-    </div>
+    </nav>
+</aside>
 
-    <!-- MODAL: EDITAR -->
-    <div class="modal-fundo" id="modal-editar" hidden>
-        <div class="modal-caixa" role="dialog" aria-modal="true" aria-labelledby="modal-titulo-editar">
-
-            <div class="modal-cabecalho">
-                <h2 id="modal-titulo-editar">Editar empresa</h2>
-                <button type="button" class="modal-fechar" id="fechar-modal-editar" aria-label="Fechar">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-            </div>
-
-            <form id="formulario-editar" class="modal-formulario"
-                  action="<%=caminho%>/editar-empresa" method="post">
-
-                <input type="hidden" id="editar-id-empresa" name="id_empresa">
-
-                <div class="modal-campo">
-                    <label for="editar-nome">nome</label>
-                    <input type="text" id="editar-nome" name="nome" required>
-                </div>
-
-                <div class="modal-campo">
-                    <label for="editar-cnpj">cnpj</label>
-                    <input type="text" id="editar-cnpj" name="cnpj" placeholder="00.000.000/0000-00" required>
-                </div>
-
-                <div class="modal-campo">
-                    <label for="editar-qtd-funcionario">qtd_funcionario</label>
-                    <input type="number" id="editar-qtd-funcionario" name="qtd_funcionario" min="0" required>
-                </div>
-
-                <div class="modal-campo">
-                    <label for="editar-cnae">cnae</label>
-                    <input type="text" id="editar-cnae" name="cnae" required>
-                </div>
-
-                <div class="modal-campo">
-                    <label for="editar-bairro">bairro</label>
-                    <input type="text" id="editar-bairro" name="bairro" required>
-                </div>
-
-                <div class="modal-campo">
-                    <label for="editar-cep">cep</label>
-                    <input type="text" id="editar-cep" name="cep" placeholder="00000-000" required>
-                </div>
-
-                <div class="modal-campo">
-                    <label for="editar-rua">rua</label>
-                    <input type="text" id="editar-rua" name="rua" required>
-                </div>
-
-                <div class="modal-campo">
-                    <label for="editar-estado">estado</label>
-                    <input type="text" id="editar-estado" name="estado" maxlength="2" required>
-                </div>
-
-                <div class="modal-campo">
-                    <label for="editar-cidade">cidade</label>
-                    <input type="text" id="editar-cidade" name="cidade" required>
-                </div>
-
-                <div class="modal-campo">
-                    <label for="editar-dt-registro">dt_registro</label>
-                    <input type="date" id="editar-dt-registro" name="dt_registro" required>
-                </div>
-
-                <div class="modal-rodape">
-                    <button type="button" class="botao-cancelar" id="cancelar-modal-editar">Cancelar</button>
-                    <button type="submit" class="botao-salvar">Salvar alterações</button>
-                </div>
-            </form>
+<main class="main-content">
+    <header class="header cabecalho-pagina">
+        <div class="titulo-container">
+            <h1><strong>empresa - </strong> <span id="periodo-titulo">Setembro 2026</span></h1>
         </div>
-    </div>
+    </header>
 
-    <!-- MODAL: EXCLUIR -->
-    <div class="modal-fundo" id="modal-excluir" hidden>
-        <div class="modal-caixa modal-caixa-pequena" role="dialog" aria-modal="true" aria-labelledby="modal-titulo-excluir">
-
-            <div class="modal-cabecalho">
-                <h2 id="modal-titulo-excluir">Excluir registro</h2>
-                <button type="button" class="modal-fechar" id="fechar-modal-excluir" aria-label="Fechar">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
+    <section class="barra-controles">
+        <div class="controle-esquerda">
+            <div class="search-bar">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="busca-empresa" placeholder="Pesquisar empresa...">
             </div>
-
-            <p class="modal-texto-confirmacao">
-                Tem certeza que deseja excluir
-                <strong id="excluir-nome"></strong>?
-                Essa ação não pode ser desfeita.
-            </p>
-
-            <form id="formulario-excluir" action="<%=caminho%>/excluir-empresa" method="post">
-                <input type="hidden" id="excluir-id" name="id_empresa">
-
-                <div class="modal-rodape">
-                    <button type="button" class="botao-cancelar" id="cancelar-modal-excluir">Cancelar</button>
-                    <button type="submit" class="botao-excluir">Excluir</button>
-                </div>
-            </form>
         </div>
-    </div>
+        <div class="controle-direita">
+            <button class="btn-filtrar" type="button"><i class="fa-solid fa-filter"></i> Filtrar</button>
+            <button class="btn-adicionar" type="button"><i class="fa-solid fa-plus"></i> Adicionar empresa</button>
+        </div>
+    </section>
 
-    <script>
-        // ---------- FILTRO ----------
-        const modalFiltro = document.getElementById('modal-filtro');
-        document.querySelector('.btn-filtrar').addEventListener('click', () => modalFiltro.hidden = false);
-        document.getElementById('fechar-modal-filtro').addEventListener('click', () => modalFiltro.hidden = true);
-        modalFiltro.addEventListener('click', e => { if (e.target === modalFiltro) modalFiltro.hidden = true; });
+    <%
+    String mensagem = (String) request.getAttribute("erro");
+    if (mensagem == null) mensagem = (String) request.getAttribute("mensagem");
+    if (mensagem != null) {
+    String cor = mensagem.toLowerCase().contains("sucesso") ? "green" : "red";
+    %>
+    <p style="color: <%= cor %>"><%= mensagem %></p>
+    <% } %>
 
-        // ---------- ORDENAÇÃO (visual) ----------
-        const cabecalhosOrdenaveis = document.querySelectorAll('.ordenavel');
-        cabecalhosOrdenaveis.forEach(function (cabecalho) {
-            cabecalho.addEventListener('click', function () {
-                const atual = cabecalho.dataset.direcao || 'nenhuma';
-                const nova = atual === 'nenhuma' ? 'asc' : (atual === 'asc' ? 'desc' : 'nenhuma');
-
-                cabecalhosOrdenaveis.forEach(function (outro) {
-                    if (outro !== cabecalho) {
-                        delete outro.dataset.direcao;
-                        outro.querySelector('i').className = 'fa-solid fa-sort';
-                    }
-                });
-
-                if (nova === 'nenhuma') {
-                    delete cabecalho.dataset.direcao;
-                    cabecalho.querySelector('i').className = 'fa-solid fa-sort';
-                } else {
-                    cabecalho.dataset.direcao = nova;
-                    cabecalho.querySelector('i').className =
-                        nova === 'asc' ? 'fa-solid fa-sort-up' : 'fa-solid fa-sort-down';
+    <section class="panel painel-tabela">
+        <div class="tabela-rolavel">
+            <table class="data-table" id="tabela-empresas">
+                <thead class="data-cabecalho">
+                <tr>
+                    <th class="ordenavel" data-coluna="id_empresa"><strong>id_empresa</strong> <i class="fa-solid fa-sort"></i></th>
+                    <th class="ordenavel" data-coluna="nome">nome <i class="fa-solid fa-sort"></i></th>
+                    <th data-coluna="cnpj">cnpj</th>
+                    <th data-coluna="cnae">cnae</th>
+                    <th class="ordenavel" data-coluna="bairro">bairro <i class="fa-solid fa-sort"></i></th>
+                    <th data-coluna="cep">cep</th>
+                    <th class="ordenavel" data-coluna="rua">rua <i class="fa-solid fa-sort"></i></th>
+                    <th class="ordenavel" data-coluna="estado">estado <i class="fa-solid fa-sort"></i></th>
+                    <th class="ordenavel" data-coluna="cidade">cidade <i class="fa-solid fa-sort"></i></th>
+                    <th class="ordenavel" data-coluna="dt_registro">dt_registro <i class="fa-solid fa-sort"></i></th>
+                    <th>Ações</th>
+                </tr>
+                </thead>
+                <tbody id="corpo-tabela-empresas">
+                <%
+                if (empresas != null && !empresas.isEmpty()) {
+                for (Empresa e : empresas) {
+                %>
+                <tr data-id-empresa="<%= e.getIdEmpresa() %>">
+                    <td><%= e.getIdEmpresa() %></td>
+                    <td><%= e.getNome() %></td>
+                    <td><%= e.getCnpj() %></td>
+                    <td><%= e.getCnae() %></td>
+                    <td><%= e.getBairro() %></td>
+                    <td><%= e.getCep() %></td>
+                    <td><%= e.getRua() %></td>
+                    <td><%= e.getEstado() %></td>
+                    <td><%= e.getCidade() %></td>
+                    <td><%= e.getDtRegistro() != null ? formato.format(e.getDtRegistro()) : "" %></td>
+                    <td>
+                        <div class="celula-acoes">
+                            <button class="btn-editar" type="button"><i class="fa-solid fa-pen"></i> Editar</button>
+                            <button class="btn-remover" type="button"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </td>
+                </tr>
+                <%
                 }
-            });
-        });
+                } else {
+                %>
+                <tr><td colspan="11">Nenhuma empresa encontrada.</td></tr>
+                <% } %>
+                </tbody>
+            </table>
+        </div>
+        <p class="rodape-tabela">Mostrando <%= empresas != null ? empresas.size() : 0 %> empresas</p>
+    </section>
+</main>
 
-        // ---------- DATA: dd-MM-yyyy (tabela) -> yyyy-MM-dd (input type="date") ----------
-        function converterDataBrParaIso(dataBr) {
-            if (!dataBr) return '';
-            // Já está no formato do banco?
-            if (dataBr.length === 10 && dataBr.charAt(4) === '-') return dataBr;
+<!-- MODAL ADICIONAR -->
+<div class="modal-fundo" id="modal-adicionar" hidden>
+    <div class="modal-caixa" role="dialog" aria-modal="true">
+        <div class="modal-cabecalho">
+            <h2>Adicionar em empresa</h2>
+            <button type="button" class="modal-fechar" id="fechar-modal"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <form class="modal-formulario" action="<%=caminho%>/adicionar-empresa" method="post">
+            <div class="modal-campo">
+                <label for="campo-cnpj">cnpj</label>
+                <input type="text" id="campo-cnpj" name="cnpj" placeholder="00.000.000/0000-00" required>
+            </div>
+            <div class="modal-campo">
+                <label for="campo-nome">nome</label>
+                <input type="text" id="campo-nome" name="nome" required>
+            </div>
+            <div class="modal-campo">
+                <label for="campo-cnae">cnae</label>
+                <input type="text" id="campo-cnae" name="cnae" required>
+            </div>
+            <div class="modal-campo">
+                <label for="campo-bairro">bairro</label>
+                <input type="text" id="campo-bairro" name="bairro" required>
+            </div>
+            <div class="modal-campo">
+                <label for="campo-cep">cep</label>
+                <input type="text" id="campo-cep" name="cep" placeholder="00000-000" required>
+            </div>
+            <div class="modal-campo">
+                <label for="campo-rua">rua</label>
+                <input type="text" id="campo-rua" name="rua" required>
+            </div>
+            <div class="modal-campo">
+                <label for="campo-estado">estado</label>
+                <input type="text" id="campo-estado" name="estado" maxlength="2" required>
+            </div>
+            <div class="modal-campo">
+                <label for="campo-cidade">cidade</label>
+                <input type="text" id="campo-cidade" name="cidade" required>
+            </div>
+            <div class="modal-campo">
+                <label for="campo-dt_registro">dt_registro</label>
+                <input type="date" id="campo-dt_registro" name="dt_registro" required>
+            </div>
+            <div class="modal-rodape">
+                <button type="button" class="botao-cancelar" id="cancelar-modal">Cancelar</button>
+                <button type="submit" class="botao-salvar">Salvar</button>
+            </div>
+        </form>
+    </div>
+</div>
 
-            const partes = dataBr.split('-');
-            if (partes.length !== 3) return '';
-            const [dia, mes, ano] = partes;
-            return ano + '-' + mes.padStart(2, '0') + '-' + dia.padStart(2, '0');
-        }
+<!-- MODAL FILTRO -->
+<div class="modal-fundo" id="modal-filtro" hidden>
+    <div class="modal-caixa" role="dialog" aria-modal="true">
+        <div class="modal-cabecalho">
+            <h2>Filtrar empresas</h2>
+            <button type="button" class="modal-fechar" id="fechar-modal-filtro"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <form class="modal-formulario" action="<%=caminho%>/listar-empresas" method="get">
+            <div class="modal-campo">
+                <label for="filtro-estado">estado</label>
+                <select id="filtro-estado" name="estado">
+                    <option value="" <%= fEstado.isEmpty() ? "selected" : "" %>>Todos</option>
+                    <% for (String uf : estados) { %>
+                    <option value="<%= uf %>" <%= uf.equals(fEstado) ? "selected" : "" %>><%= uf %></option>
+                    <% } %>
+                </select>
+            </div>
+            <div class="modal-campo">
+                <label for="filtro-cidade">cidade</label>
+                <input type="text" id="filtro-cidade" name="cidade" value="<%= fCidade %>">
+            </div>
+            <div class="modal-campo">
+                <label for="filtro-cnae">cnae</label>
+                <input type="text" id="filtro-cnae" name="cnae" value="<%= fCnae %>">
+            </div>
+            <div class="modal-campo">
+                <label for="filtro-nome">Nome</label>
+                <input type="text" id="filtro-nome" name="nome" value="<%= fNome %>">
+            </div>
+            <div class="modal-campo">
+                <label>dt_registro</label>
+                <div class="modal-campo-faixa">
+                    <input type="date" name="dt_registro_min" value="<%= fDtMin %>">
+                    <span>até</span>
+                    <input type="date" name="dt_registro_max" value="<%= fDtMax %>">
+                </div>
+            </div>
+            <div class="modal-rodape">
+                <a href="<%=caminho%>/listar-empresas" class="botao-cancelar">Limpar</a>
+                <button type="submit" class="botao-salvar">Aplicar filtro</button>
+            </div>
+        </form>
+    </div>
+</div>
 
-        // ---------- EDITAR ----------
-        const corpoTabelaEmpresas = document.getElementById('corpo-tabela-empresas');
-        const modalEditar = document.getElementById('modal-editar');
+<!-- MODAL EDITAR -->
+<div class="modal-fundo" id="modal-editar" hidden>
+    <div class="modal-caixa" role="dialog" aria-modal="true">
+        <div class="modal-cabecalho">
+            <h2>Editar empresa</h2>
+            <button type="button" class="modal-fechar" id="fechar-modal-editar"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <form class="modal-formulario" action="<%=caminho%>/editar-empresa" method="post">
+            <input type="hidden" id="editar-id-empresa" name="id_empresa">
+            <div class="modal-campo">
+                <label for="editar-nome">nome</label>
+                <input type="text" id="editar-nome" name="nome" required>
+            </div>
+            <div class="modal-campo">
+                <label for="editar-cnpj">cnpj</label>
+                <input type="text" id="editar-cnpj" name="cnpj" required>
+            </div>
+            <div class="modal-campo">
+                <label for="editar-cnae">cnae</label>
+                <input type="text" id="editar-cnae" name="cnae" required>
+            </div>
+            <div class="modal-campo">
+                <label for="editar-bairro">bairro</label>
+                <input type="text" id="editar-bairro" name="bairro" required>
+            </div>
+            <div class="modal-campo">
+                <label for="editar-cep">cep</label>
+                <input type="text" id="editar-cep" name="cep" required>
+            </div>
+            <div class="modal-campo">
+                <label for="editar-rua">rua</label>
+                <input type="text" id="editar-rua" name="rua" required>
+            </div>
+            <div class="modal-campo">
+                <label for="editar-estado">estado</label>
+                <input type="text" id="editar-estado" name="estado" maxlength="2" required>
+            </div>
+            <div class="modal-campo">
+                <label for="editar-cidade">cidade</label>
+                <input type="text" id="editar-cidade" name="cidade" required>
+            </div>
+            <div class="modal-campo">
+                <label for="editar-dt-registro">dt_registro</label>
+                <input type="date" id="editar-dt-registro" name="dt_registro" required>
+            </div>
+            <div class="modal-rodape">
+                <button type="button" class="botao-cancelar" id="cancelar-modal-editar">Cancelar</button>
+                <button type="submit" class="botao-salvar">Salvar alterações</button>
+            </div>
+        </form>
+    </div>
+</div>
 
-        corpoTabelaEmpresas.addEventListener('click', function (evento) {
-            const botao = evento.target.closest('.btn-editar');
-            if (!botao) return;
+<!-- MODAL EXCLUIR -->
+<div class="modal-fundo" id="modal-excluir" hidden>
+    <div class="modal-caixa modal-caixa-pequena" role="dialog" aria-modal="true">
+        <div class="modal-cabecalho">
+            <h2>Excluir registro</h2>
+            <button type="button" class="modal-fechar" id="fechar-modal-excluir"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <p class="modal-texto-confirmacao">
+            Tem certeza que deseja excluir <strong id="excluir-nome"></strong>?
+            Essa ação não pode ser desfeita.
+        </p>
+        <form action="<%=caminho%>/deletar-empresa" method="post">
+            <input type="hidden" id="excluir-id" name="id_empresa">
+            <div class="modal-rodape">
+                <button type="button" class="botao-cancelar" id="cancelar-modal-excluir">Cancelar</button>
+                <button type="submit" class="botao-excluir">Excluir</button>
+            </div>
+        </form>
+    </div>
+</div>
 
-            const c = botao.closest('tr').children;
-            const t = i => c[i].textContent.trim();
+<script>
+    const modalFiltro = document.getElementById('modal-filtro');
+    document.querySelector('.btn-filtrar').addEventListener('click', () => modalFiltro.hidden = false);
+    document.getElementById('fechar-modal-filtro').addEventListener('click', () => modalFiltro.hidden = true);
+    modalFiltro.addEventListener('click', e => { if (e.target === modalFiltro) modalFiltro.hidden = true; });
 
-            document.getElementById('editar-id-empresa').value = t(0);
-            document.getElementById('editar-nome').value = t(1);
-            document.getElementById('editar-cnpj').value = t(2);
-            document.getElementById('editar-qtd-funcionario').value = t(3);
-            document.getElementById('editar-cnae').value = t(4);
-            document.getElementById('editar-bairro').value = t(5);
-            document.getElementById('editar-cep').value = t(6);
-            document.getElementById('editar-rua').value = t(7);
-            document.getElementById('editar-estado').value = t(8);
-            document.getElementById('editar-cidade').value = t(9);
-            document.getElementById('editar-dt-registro').value = converterDataBrParaIso(t(10));
+    function converterDataBrParaIso(dataBr) {
+        if (!dataBr) return '';
+        if (dataBr.length === 10 && dataBr.charAt(4) === '-') return dataBr;
+        const partes = dataBr.split('-');
+        if (partes.length !== 3) return '';
+        const [dia, mes, ano] = partes;
+        return ano + '-' + mes.padStart(2, '0') + '-' + dia.padStart(2, '0');
+    }
 
-            modalEditar.hidden = false;
-        });
+    // ordem das colunas: id, nome, cnpj, cnae, bairro, cep, rua, estado, cidade, dt_registro
+    const corpoTabela = document.getElementById('corpo-tabela-empresas');
+    const modalEditar = document.getElementById('modal-editar');
 
-        document.getElementById('fechar-modal-editar').addEventListener('click', () => modalEditar.hidden = true);
-        document.getElementById('cancelar-modal-editar').addEventListener('click', () => modalEditar.hidden = true);
-        modalEditar.addEventListener('click', e => { if (e.target === modalEditar) modalEditar.hidden = true; });
+    corpoTabela.addEventListener('click', function (evento) {
+        const botao = evento.target.closest('.btn-editar');
+        if (!botao) return;
+        const c = botao.closest('tr').children;
+        const t = i => c[i].textContent.trim();
 
-        // ---------- EXCLUIR ----------
-        const modalExcluir = document.getElementById('modal-excluir');
+        document.getElementById('editar-id-empresa').value = t(0);
+        document.getElementById('editar-nome').value = t(1);
+        document.getElementById('editar-cnpj').value = t(2);
+        document.getElementById('editar-cnae').value = t(3);
+        document.getElementById('editar-bairro').value = t(4);
+        document.getElementById('editar-cep').value = t(5);
+        document.getElementById('editar-rua').value = t(6);
+        document.getElementById('editar-estado').value = t(7);
+        document.getElementById('editar-cidade').value = t(8);
+        document.getElementById('editar-dt-registro').value = converterDataBrParaIso(t(9));
+        modalEditar.hidden = false;
+    });
 
-        corpoTabelaEmpresas.addEventListener('click', function (evento) {
-            const botao = evento.target.closest('.btn-remover');
-            if (!botao) return;
+    document.getElementById('fechar-modal-editar').addEventListener('click', () => modalEditar.hidden = true);
+    document.getElementById('cancelar-modal-editar').addEventListener('click', () => modalEditar.hidden = true);
+    modalEditar.addEventListener('click', e => { if (e.target === modalEditar) modalEditar.hidden = true; });
 
-            const linha = botao.closest('tr');
-            document.getElementById('excluir-id').value = linha.dataset.idEmpresa;
-            document.getElementById('excluir-nome').textContent = linha.children[1].textContent.trim();
+    const modalExcluir = document.getElementById('modal-excluir');
+    corpoTabela.addEventListener('click', function (evento) {
+        const botao = evento.target.closest('.btn-remover');
+        if (!botao) return;
+        const linha = botao.closest('tr');
+        document.getElementById('excluir-id').value = linha.dataset.idEmpresa;
+        document.getElementById('excluir-nome').textContent = linha.children[1].textContent.trim();
+        modalExcluir.hidden = false;
+    });
+    document.getElementById('fechar-modal-excluir').addEventListener('click', () => modalExcluir.hidden = true);
+    document.getElementById('cancelar-modal-excluir').addEventListener('click', () => modalExcluir.hidden = true);
+    modalExcluir.addEventListener('click', e => { if (e.target === modalExcluir) modalExcluir.hidden = true; });
 
-            modalExcluir.hidden = false;
-        });
-
-        document.getElementById('fechar-modal-excluir').addEventListener('click', () => modalExcluir.hidden = true);
-        document.getElementById('cancelar-modal-excluir').addEventListener('click', () => modalExcluir.hidden = true);
-        modalExcluir.addEventListener('click', e => { if (e.target === modalExcluir) modalExcluir.hidden = true; });
-
-        // ---------- ADICIONAR ----------
-        const modalAdicionar = document.getElementById('modal-adicionar');
-        document.querySelector('.btn-adicionar').addEventListener('click', () => modalAdicionar.hidden = false);
-        document.getElementById('fechar-modal').addEventListener('click', () => modalAdicionar.hidden = true);
-        document.getElementById('cancelar-modal').addEventListener('click', () => modalAdicionar.hidden = true);
-        modalAdicionar.addEventListener('click', e => { if (e.target === modalAdicionar) modalAdicionar.hidden = true; });
-    </script>
-
-    </body>
-    </html>
+    const modalAdicionar = document.getElementById('modal-adicionar');
+    document.querySelector('.btn-adicionar').addEventListener('click', () => modalAdicionar.hidden = false);
+    document.getElementById('fechar-modal').addEventListener('click', () => modalAdicionar.hidden = true);
+    document.getElementById('cancelar-modal').addEventListener('click', () => modalAdicionar.hidden = true);
+    modalAdicionar.addEventListener('click', e => { if (e.target === modalAdicionar) modalAdicionar.hidden = true; });
+</script>
+</body>
+</html>

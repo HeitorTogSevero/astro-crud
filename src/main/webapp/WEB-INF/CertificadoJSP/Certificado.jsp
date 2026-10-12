@@ -3,24 +3,16 @@
 java.util.ArrayList,
 java.text.SimpleDateFormat,
 org.astro.astro_app.model.Certificado"%>
-<%! private String v(String s) {
-return s == null ? "" : s;
-}
-
-//escapa < > " & ' (evita que um texto digitado na URL vire codigo na pagina)
-private String h(String s) {
-if (s == null) return "";
-return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
-.replace("\"", "&quot;").replace("'", "&#39;");
-}%>
+<%!private String v(String s) {
+    return s == null ? "" : s;}%>
 <%  String caminho = request.getContextPath();
-ArrayList<Certificado> certificados = (ArrayList<Certificado>) request.getAttribute("certificados");
+    ArrayList<Certificado> certificados = (ArrayList<Certificado>) request.getAttribute("certificados");
     //formato  dd-MM-yyyy
     SimpleDateFormat formatoExibicao = new SimpleDateFormat("dd-MM-yyyy");
     //valores de filtro(pra nao ficar null
-    String fDtEmissaoMin = v(request.getParameter("dt_emissao_min"));
-    String fDtEmissaoMax = v(request.getParameter("dt_emissao_max"));
-    String fIdFuncionario = v(request.getParameter("id_funcionario")); %>
+    String fDtMin = v(request.getParameter("dt_emissao_min"));
+    String fDtMax = v(request.getParameter("dt_emissao_max"));
+    String fIdFuncionario = v(request.getParameter("id_funcionario"));%>
     <!DOCTYPE html>
     <html lang="pt">
     <head>
@@ -104,7 +96,7 @@ ArrayList<Certificado> certificados = (ArrayList<Certificado>) request.getAttrib
         if (mensagem != null) {
         String cor = mensagem.toLowerCase().contains("sucesso") ? "green" : "red";
         %>
-        <p style="color: <%= cor %>"><%= h(mensagem) %></p>
+        <p style="color: <%= cor %>"><%= mensagem %></p>
         <% } %>
 
         <section class="panel painel-tabela">
@@ -128,7 +120,6 @@ ArrayList<Certificado> certificados = (ArrayList<Certificado>) request.getAttrib
                     %>
                     <tr data-id-certificado="<%= c.getIdCertificado() %>">
                         <td><%= c.getIdCertificado() %></td>
-                        <!-- Mostra dd-MM-yyyy na tabela -->
                         <td><%= c.getDtEmissao() != null ? formatoExibicao.format(c.getDtEmissao()) : "" %></td>
                         <td><%= c.getDtValidade() != null ? formatoExibicao.format(c.getDtValidade()) : "" %></td>
                         <td><%= c.getIdFuncionario() %></td>
@@ -136,8 +127,12 @@ ArrayList<Certificado> certificados = (ArrayList<Certificado>) request.getAttrib
                         <td><%= c.getIdNrEmpresa() %></td>
                         <td>
                             <div class="celula-acoes">
-                                <button class="btn-editar" type="button"><i class="fa-solid fa-pen"></i> Editar</button>
-                                <button class="btn-remover" type="button"><i class="fa-solid fa-trash"></i></button>
+                                <button class="btn-editar" type="button">
+                                    <i class="fa-solid fa-pen"></i> Editar
+                                </button>
+                                <button class="btn-remover" type="button">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
                             </div>
                         </td>
                     </tr>
@@ -152,7 +147,9 @@ ArrayList<Certificado> certificados = (ArrayList<Certificado>) request.getAttrib
                     </tbody>
                 </table>
             </div>
-            <p class="rodape-tabela">Mostrando <%= certificados != null ? certificados.size() : 0 %> certificados</p>
+            <p class="rodape-tabela">
+                Mostrando <%= certificados != null ? certificados.size() : 0 %> certificados
+            </p>
         </section>
 
     </main>
@@ -162,32 +159,37 @@ ArrayList<Certificado> certificados = (ArrayList<Certificado>) request.getAttrib
         <div class="modal-caixa" role="dialog" aria-modal="true">
             <div class="modal-cabecalho">
                 <h2>Adicionar em certificado</h2>
-                <button type="button" class="modal-fechar" id="fechar-modal"><i class="fa-solid fa-xmark"></i></button>
+                <button type="button" class="modal-fechar" id="fechar-modal">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
             </div>
 
             <form id="formulario-adicionar" class="modal-formulario"
                   action="<%=caminho%>/adicionar-certificado" method="post">
 
                 <div class="modal-campo">
-                    <label for="campo-dt_emissao">Data de emissão:</label>
-                    <!-- type="date" sempre trabalha com aaaa-mm-dd -->
+                    <label for="campo-dt_emissao">Data Emissão:</label>
                     <input type="date" id="campo-dt_emissao" name="dt_emissao" required>
                 </div>
+
                 <div class="modal-campo">
                     <label for="campo-validade">Validade:</label>
                     <input type="date" id="campo-validade" name="validade" required>
                 </div>
+
                 <div class="modal-campo">
-                    <label for="campo-id_funcionario">Funcionário (id):</label>
-                    <input type="number" id="campo-id_funcionario" name="id_funcionario" min="1" required>
+                    <label for="campo-id_funcionario">id_funcionario:</label>
+                    <input type="number" id="campo-id_funcionario" name="id_funcionario" min="0" required>
                 </div>
+
                 <div class="modal-campo">
-                    <label for="campo-id_nrfuncionario">NR do funcionário (id):</label>
-                    <input type="number" id="campo-id_nrfuncionario" name="id_nrfuncionario" min="1" required>
+                    <label for="campo-id_nrfuncionario">id_nrfuncionario:</label>
+                    <input type="number" id="campo-id_nrfuncionario" name="id_nrfuncionario" min="0" required>
                 </div>
+
                 <div class="modal-campo">
-                    <label for="campo-id_nrempresa">NR da empresa (id):</label>
-                    <input type="number" id="campo-id_nrempresa" name="id_nrempresa" min="1" required>
+                    <label for="campo-id_nrempresa">id_nrempresa:</label>
+                    <input type="number" id="campo-id_nrempresa" name="id_nrempresa" min="0" required>
                 </div>
 
                 <div class="modal-rodape">
@@ -203,23 +205,27 @@ ArrayList<Certificado> certificados = (ArrayList<Certificado>) request.getAttrib
         <div class="modal-caixa" role="dialog" aria-modal="true">
             <div class="modal-cabecalho">
                 <h2>Filtrar certificados</h2>
-                <button type="button" class="modal-fechar" id="fechar-modal-filtro"><i class="fa-solid fa-xmark"></i></button>
+                <button type="button" class="modal-fechar" id="fechar-modal-filtro">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
             </div>
 
             <form id="formulario-filtro" class="modal-formulario"
                   action="<%=caminho%>/listar-certificados" method="get">
 
                 <div class="modal-campo">
-                    <label>Data de emissão:</label>
+                    <label>dt_emissao</label>
                     <div class="modal-campo-faixa">
-                        <input type="date" name="dt_emissao_min" value="<%= h(fDtEmissaoMin) %>">
+                        <input type="date" name="dt_emissao_min" value="<%= fDtMin %>">
                         <span>até</span>
-                        <input type="date" name="dt_emissao_max" value="<%= h(fDtEmissaoMax) %>">
+                        <input type="date" name="dt_emissao_max" value="<%= fDtMax %>">
                     </div>
                 </div>
+
                 <div class="modal-campo">
-                    <label for="filtro-id_funcionario">Funcionário (id)</label>
-                    <input type="number" id="filtro-id_funcionario" name="id_funcionario" min="0" value="<%= h(fIdFuncionario) %>">
+                    <label for="filtro-id_funcionario">id_funcionario</label>
+                    <input type="number" id="filtro-id_funcionario" name="id_funcionario" min="0"
+                           value="<%= fIdFuncionario %>">
                 </div>
 
                 <div class="modal-rodape">
@@ -235,7 +241,9 @@ ArrayList<Certificado> certificados = (ArrayList<Certificado>) request.getAttrib
         <div class="modal-caixa" role="dialog" aria-modal="true">
             <div class="modal-cabecalho">
                 <h2>Editar certificado</h2>
-                <button type="button" class="modal-fechar" id="fechar-modal-editar"><i class="fa-solid fa-xmark"></i></button>
+                <button type="button" class="modal-fechar" id="fechar-modal-editar">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
             </div>
 
             <form id="formulario-editar" class="modal-formulario"
@@ -244,25 +252,28 @@ ArrayList<Certificado> certificados = (ArrayList<Certificado>) request.getAttrib
                 <input type="hidden" id="editar-id-certificado" name="id_certificado">
 
                 <div class="modal-campo">
-                    <label for="editar-dt_emissao">Data de emissão:</label>
-                    <!-- type="date" precisa receber aaaa-mm-dd -->
+                    <label for="editar-dt_emissao">Data Emissão:</label>
                     <input type="date" id="editar-dt_emissao" name="dt_emissao" required>
                 </div>
+
                 <div class="modal-campo">
                     <label for="editar-validade">Validade:</label>
                     <input type="date" id="editar-validade" name="validade" required>
                 </div>
+
                 <div class="modal-campo">
-                    <label for="editar-id_funcionario">Funcionário (id):</label>
-                    <input type="number" id="editar-id_funcionario" name="id_funcionario" min="1" required>
+                    <label for="editar-id_funcionario">id_funcionario:</label>
+                    <input type="number" id="editar-id_funcionario" name="id_funcionario" min="0" required>
                 </div>
+
                 <div class="modal-campo">
-                    <label for="editar-id_nrfuncionario">NR do funcionário (id):</label>
-                    <input type="number" id="editar-id_nrfuncionario" name="id_nrfuncionario" min="1" required>
+                    <label for="editar-id_nrfuncionario">id_nrfuncionario:</label>
+                    <input type="number" id="editar-id_nrfuncionario" name="id_nrfuncionario" min="0" required>
                 </div>
+
                 <div class="modal-campo">
-                    <label for="editar-id_nrempresa">NR da empresa (id):</label>
-                    <input type="number" id="editar-id_nrempresa" name="id_nrempresa" min="1" required>
+                    <label for="editar-id_nrempresa">id_nrempresa:</label>
+                    <input type="number" id="editar-id_nrempresa" name="id_nrempresa" min="0" required>
                 </div>
 
                 <div class="modal-rodape">
@@ -278,11 +289,14 @@ ArrayList<Certificado> certificados = (ArrayList<Certificado>) request.getAttrib
         <div class="modal-caixa modal-caixa-pequena" role="dialog" aria-modal="true">
             <div class="modal-cabecalho">
                 <h2>Excluir registro</h2>
-                <button type="button" class="modal-fechar" id="fechar-modal-excluir"><i class="fa-solid fa-xmark"></i></button>
+                <button type="button" class="modal-fechar" id="fechar-modal-excluir">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
             </div>
 
             <p class="modal-texto-confirmacao">
-                Tem certeza que deseja excluir o certificado <strong id="excluir-nome"></strong>?
+                Tem certeza que deseja excluir
+                <strong id="excluir-nome"></strong>?
                 Essa ação não pode ser desfeita.
             </p>
 
@@ -306,7 +320,6 @@ ArrayList<Certificado> certificados = (ArrayList<Certificado>) request.getAttrib
         // Converte dd-MM-yyyy (tabela) -> yyyy-MM-dd (input type="date")
         function converterDataBrParaIso(dataBr) {
             if (!dataBr) return '';
-            // Já está no formato do banco?
             if (dataBr.length === 10 && dataBr.charAt(4) === '-') return dataBr;
 
             const partes = dataBr.split('-');
@@ -327,7 +340,6 @@ ArrayList<Certificado> certificados = (ArrayList<Certificado>) request.getAttrib
             const t = i => c[i].textContent.trim();
 
             document.getElementById('editar-id-certificado').value = t(0);
-            // Converte as datas da tabela (dd-MM-yyyy) para o input date (yyyy-MM-dd)
             document.getElementById('editar-dt_emissao').value = converterDataBrParaIso(t(1));
             document.getElementById('editar-validade').value = converterDataBrParaIso(t(2));
             document.getElementById('editar-id_funcionario').value = t(3);
@@ -350,8 +362,7 @@ ArrayList<Certificado> certificados = (ArrayList<Certificado>) request.getAttrib
 
             const linha = botao.closest('tr');
             document.getElementById('excluir-id').value = linha.dataset.idCertificado;
-            // o certificado nao tem nome, entao mostra o id
-            document.getElementById('excluir-nome').textContent = linha.children[0].textContent.trim();
+            document.getElementById('excluir-nome').textContent = 'certificado #' + linha.children[0].textContent.trim();
             modalExcluir.hidden = false;
         });
 
@@ -366,6 +377,5 @@ ArrayList<Certificado> certificados = (ArrayList<Certificado>) request.getAttrib
         document.getElementById('cancelar-modal').addEventListener('click', () => modalAdicionar.hidden = true);
         modalAdicionar.addEventListener('click', e => { if (e.target === modalAdicionar) modalAdicionar.hidden = true; });
     </script>
-
 </body>
 </html>
