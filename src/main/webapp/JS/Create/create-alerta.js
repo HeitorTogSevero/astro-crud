@@ -145,11 +145,10 @@ form.addEventListener("input", function(){
 });
 
 
-
-
+// SUBMETER O FORMULÁRIO //
 form.addEventListener("submit", function(event) {
 
-    if (codigo.value <= 0 ) {
+    if (Number(codigo.value) <= 0 ) {
         event.preventDefault();
     }
 

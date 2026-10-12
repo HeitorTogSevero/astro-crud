@@ -344,11 +344,16 @@
         const botao = evento.target.closest('.btn-remover');
         if (!botao) return;
 
+<<<<<<< HEAD
         const linha = botao.closest('tr');
         document.getElementById('excluir-id').value = linha.dataset.idAlerta;
         document.getElementById('excluir-nome').textContent = linha.children[1].textContent.trim();
         modalExcluir.hidden = false;
     });
+=======
+    <script src="../../JS/Create/create-alerta.js"></script>
+    <script src="../../JS/Update/update-alerta.js"></script>
+>>>>>>> da0f446578970a5337882feb04739ca403e58456
 
     document.getElementById('fechar-modal-excluir').addEventListener('click', () => modalExcluir.hidden = true);
     document.getElementById('cancelar-modal-excluir').addEventListener('click', () => modalExcluir.hidden = true);
