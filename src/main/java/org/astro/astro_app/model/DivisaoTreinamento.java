@@ -13,8 +13,6 @@ public class DivisaoTreinamento {
 
 
     //Metodo construtor da classe
-
-
     public DivisaoTreinamento(int idDivisao, int idCronograma, int codigo, int idEmpresa, String nome) {
         this.idDivisao = idDivisao;
         this.idCronograma = idCronograma;

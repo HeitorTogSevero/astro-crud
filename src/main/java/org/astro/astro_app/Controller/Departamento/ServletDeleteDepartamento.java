@@ -23,16 +23,34 @@ public class ServletDeleteDepartamento extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String acao = request.getParameter("");
+        String idDepartamentoTexto = request.getParameter("id_departamento");
+        String mensagem = "";
 
-        if("excluir".equals(acao)){
 
-            String idTexto = request.getParameter("id");
-            int id = Integer.parseInt(idTexto);
+        if(idDepartamentoTexto == null || idDepartamentoTexto.isBlank()){
+            mensagem = "id não informado";
+            request.setAttribute("erro", mensagem);
+            request.getRequestDispatcher("/WEB-INF/DepartamentoJSP/Departamento.jsp").forward(request,response);
+            return;
+        }
+        try {
+            int idDepartamento = Integer.parseInt(idDepartamentoTexto);
 
-            departamentoDAO.remover(id);
+            if(idDepartamento<=0){
+                mensagem = "id do departamento deve ser > 0";
+                request.setAttribute("erro", mensagem);
+                request.getRequestDispatcher("/WEB-INF/DepartamentoJSP/Departamento.jsp").forward(request,response);
+                return;
+            }
 
-            response.sendRedirect(request.getContextPath() + "/departamento");
+            departamentoDAO.remover(idDepartamento);
+
+            response.sendRedirect(request.getContextPath() + "/listar-departamentos");
+
+        }catch (NumberFormatException e){
+            mensagem = "o id do departamento deve ser valido";
+            request.setAttribute("erro", mensagem);
+            request.getRequestDispatcher("/WEB-INF/DepartamentoJSP/Departamento.jsp").forward(request,response);
         }
     }
 }

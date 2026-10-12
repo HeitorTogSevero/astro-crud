@@ -2,37 +2,53 @@ package org.astro.astro_app.Controller.Empresa;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.*;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.astro.astro_app.dao.EmpresaDAO;
 
 import java.io.IOException;
 
-@WebServlet(name = "ServletEmpresa", value = "/excluir-empresa")
+@WebServlet(name = "ServletDeleteEmpresa", value = "/deletar-empresa")
 public class ServletDeleteEmpresa extends HttpServlet {
 
     private EmpresaDAO empresaDAO;
 
     @Override
-    public void init(){
+    public void init() {
         empresaDAO = new EmpresaDAO();
     }
 
     @Override
-    protected void doPost(
-            HttpServletRequest request,
-            HttpServletResponse response
-    )throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String acao = request.getParameter("");
+        String idEmpresaTexto = request.getParameter("id_empresa");
+        String mensagem = "";
 
-        if("excluir".equals(acao)){
+        if (idEmpresaTexto == null || idEmpresaTexto.isBlank()) {
+            mensagem = "id nao informado";
+            request.setAttribute("erro", mensagem);
+            request.getRequestDispatcher("/WEB-INF/EmpresaJSP/Empresa.jsp").forward(request, response);
+            return;
+        }
 
-            String idTexto = request.getParameter("id");
-            int id = Integer.parseInt(idTexto);
+        try {
+            int idEmpresa = Integer.parseInt(idEmpresaTexto);
 
-            empresaDAO.remover(id);
+            if (idEmpresa <= 0) {
+                mensagem = "id da empresa deve ser > 0";
+                request.setAttribute("erro", mensagem);
+                request.getRequestDispatcher("/WEB-INF/EmpresaJSP/Empresa.jsp").forward(request, response);
+                return;
+            }
 
-            response.sendRedirect(request.getContextPath() + "/empresas");
+            empresaDAO.remover(idEmpresa);
+            response.sendRedirect(request.getContextPath() + "/listar-empresas");
+
+        } catch (NumberFormatException e) {
+            mensagem = "o id da empresa deve ser valido";
+            request.setAttribute("erro", mensagem);
+            request.getRequestDispatcher("/WEB-INF/EmpresaJSP/Empresa.jsp").forward(request, response);
         }
     }
 }

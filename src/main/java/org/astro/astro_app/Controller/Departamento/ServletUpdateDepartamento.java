@@ -6,7 +6,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.astro.astro_app.dao.DepartamentoDAO;
-import org.astro.astro_app.model.Certificado;
 import org.astro.astro_app.model.Departamento;
 
 import java.io.IOException;
@@ -23,49 +22,79 @@ public class ServletUpdateDepartamento extends HttpServlet{
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String idTexto = request.getParameter("id");
-        int id = Integer.parseInt(idTexto);
-
-        Departamento departamento = departamentoDAO.buscarPorIdDepart(id);
-
-        if (departamento == null) {
-            response.sendRedirect(request.getContextPath() + "/departamentos");
-            return;
-        }
-
-        request.setAttribute("departamento", departamento);
-        request.getRequestDispatcher("/WEB-INF/DepartamentoJSP/UpdateDepartamento.jsp").forward(request,response);
-
-    }
-
-    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        //os dados chegam como bytes, tem que transformar em padrão :
         request.setCharacterEncoding("UTF-8");
 
         String idDepartamentoTexto = request.getParameter("id_departamento");
-        int idDepartamento = Integer.parseInt(idDepartamentoTexto);
         String idEmpresaTexto = request.getParameter("id_empresa");
-        int idEmpresa = Integer.parseInt(idEmpresaTexto);
         String grauRisco = request.getParameter("grau_risco");
         String nome = request.getParameter("nome");
         String descricao = request.getParameter("descricao");
         String atividade = request.getParameter("atividade");
 
-        Departamento departamento = new Departamento(
-                idDepartamento,
-                idEmpresa,
-                grauRisco,
-                nome,
-                descricao,
-                atividade
-        );
+        String mensagem = "";
 
-        departamentoDAO.alterarDepartamento(departamento);
+        if(idDepartamentoTexto == null || idDepartamentoTexto.isBlank()){
+            mensagem = "o id do departamento não informado";
+            request.setAttribute("erro", mensagem);
+        }else if(nome == null || nome.isBlank()){
+            mensagem = "o nome não pode ser vazio";
+            request.setAttribute("erro", mensagem);
+        }else if(nome.length() > 100){
+            mensagem = "o nome deve conter até 100 caracteres";
+            request.setAttribute("erro", mensagem);
+        }else if(descricao == null || descricao.isBlank()){
+            mensagem = "a descrição não pode ser vazia";
+            request.setAttribute("erro", mensagem);
+        }else if(descricao.length() > 250){
+            mensagem = "a descricao deve conter até 250 caracteres";
+            request.setAttribute("erro", mensagem);
+        }else if(grauRisco == null || grauRisco.isBlank()){
+            mensagem = "o grau de risco não pode ser vazio";
+            request.setAttribute("erro", mensagem);
+        }else if(!grauRisco.equals("1") && !grauRisco.equals("2") && !grauRisco.equals("3") && !grauRisco.equals("4")){
+            mensagem = "o grau de risco deve ser (1, 2, 3 ou 4)";
+            request.setAttribute("erro", mensagem);
+        }else if(atividade == null || atividade.isBlank()){
+            mensagem = "a atividade não pode ser vazia";
+            request.setAttribute("erro", mensagem);
+        }else if(atividade.length() > 15){
+            mensagem = "a atividade deve conter até 15 caracteres";
+            request.setAttribute("erro", mensagem);
+        }else if(idEmpresaTexto == null || idEmpresaTexto.isBlank()){
+            mensagem = "o id da empresa não pode ser nulo";
+            request.setAttribute("erro", mensagem);
+        }else{
+            try{
+                int idDepartamento = Integer.parseInt(idDepartamentoTexto);
+                int idEmpresa = Integer.parseInt(idEmpresaTexto);
 
-        response.sendRedirect(request.getContextPath() + "/departamentos");
+                if(idDepartamento <=0){
+                    mensagem = "o id do departamento é invalido";
+                    request.setAttribute("erro", mensagem);
+                }else if(idEmpresa <= 0){
+                    mensagem = "o id da empresa é invalido";
+                    request.setAttribute("erro", mensagem);
+                }else{
+                    Departamento departamento = new Departamento(
+                            idDepartamento,
+                            idEmpresa,
+                            grauRisco,
+                            nome,
+                            descricao,
+                            atividade
+                    );
 
+                    departamentoDAO.alterarDepartamento(departamento);
+                    response.sendRedirect(request.getContextPath() + "/listar-departamentos");
+                    return;
+                }
+            }catch (NumberFormatException e){
+                mensagem = "O id deve ser numero valido";
+                request.setAttribute("erro", mensagem);
+            }
+        }
+        request.getRequestDispatcher("/WEB-INF/DepartamentoJSP/Departamento.jsp").forward(request, response);
     }
 }

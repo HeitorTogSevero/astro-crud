@@ -71,6 +71,6 @@ public class ServletReadAlerta extends HttpServlet {
         request.setAttribute("filtroIdEmpresa", idEmpresaTexto);
 
         //encaminha pra o jsp
-        request.getRequestDispatcher("/WEB-INF/AlertaJSP/alertaJSP.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/AlertaJSP/alerta.jsp").forward(request, response);
     }
 }

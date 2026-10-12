@@ -11,7 +11,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.regex.Pattern;
 
-@WebServlet(name = "ServletEmpresa", value = "/adicionar-empresa")
+@WebServlet(name = "ServletCreateEmpresa", value = "/adicionar-empresa")
 public class ServletCreateEmpresa extends HttpServlet{
 
     private EmpresaDAO empresaDAO;
@@ -22,10 +22,10 @@ public class ServletCreateEmpresa extends HttpServlet{
     }
 
     @Override
-    protected void doPost(
-            HttpServletRequest request,
-            HttpServletResponse response
-    )throws ServletException, IOException{
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
+
+        request.setCharacterEncoding("UTF-8");
+
         final Pattern cepRegex =
                 Pattern.compile("^(\\d{5}-\\d{3}|\\d{8})$");
         final Pattern cnpjRegex =
@@ -44,104 +44,111 @@ public class ServletCreateEmpresa extends HttpServlet{
         String dataRegistroTexto = request.getParameter("dt_registro");
 
         Date dataRegistro = null;
-        LocalDate localDataRegistro = null;
+        String mensagem = "";
 
-        String mensagem;
-
-        if(dataRegistroTexto != null && !dataRegistroTexto.isBlank()){
-            dataRegistro = Date.valueOf(dataRegistroTexto);
-            localDataRegistro = dataRegistro.toLocalDate();
-        }
-        else if(dataRegistroTexto == null && dataRegistroTexto.isBlank()){
-            mensagem = "Erro: a data não poder ser vazia";
+        if(dataRegistroTexto == null || dataRegistroTexto.isBlank()){
+            mensagem = "a data não pode ser vazia";
             request.setAttribute("erro", mensagem);
         }
-        else if(nome == null || nome.equals(" ")){
-            mensagem = "Erro: o nome não pode ser vazio";
+        else if(nome == null || nome.isBlank()){
+            mensagem = "o nome não pode ser vazio";
             request.setAttribute("erro", mensagem);
         }
         else if(nome.length() > 100){
-            mensagem = "Erro: o nome pode conter até 100 caracteres";
+            mensagem = "o nome pode conter até 100 caracteres";
             request.setAttribute("erro", mensagem);
 
         }
-        else if(rua == null || rua.equals(" ")){
-            mensagem = "Erro: o nome rua não poder ser vazio";
+        else if(rua == null || rua.isBlank()){
+            mensagem = "o nome da rua não pode ser vazio";
             request.setAttribute("erro", mensagem);
 
         }
         else if(rua.length() > 100){
-            mensagem = "Erro: o nome da rua pode conter até 100 caracteres";
+            mensagem = "o nome da rua pode conter até 100 caracteres";
             request.setAttribute("erro", mensagem);
         }
-        else if(bairro == null || bairro.equals(" ")){
-            mensagem = "Erro: o nome do bairro não poder ser vazio";
+        else if(bairro == null || bairro.isBlank()){
+            mensagem = "o nome do bairro não pode ser vazio";
             request.setAttribute("erro", mensagem);
         }
         else if(bairro.length() > 100){
-            mensagem = "Erro: o nome do bairro pode conter até 100 caracteres";
+            mensagem = "o nome do bairro pode conter até 100 caracteres";
             request.setAttribute("erro", mensagem);
         }
 
-        else if(cidade == null || cidade.equals(" ")){
-            mensagem = "Erro: o nome da cidade não poder ser vazio";
+        else if(cidade == null || cidade.isBlank()){
+            mensagem = "o nome da cidade não pode ser vazio";
             request.setAttribute("erro", mensagem);
 
         }
 
         else if(cidade.length() > 100){
-            mensagem = "Erro: o nome da cidade pode conter até 100 caracteres";
+            mensagem = " nome da cidade pode conter até 100 caracteres";
             request.setAttribute("erro", mensagem);
         }
 
-        else if(estado == null || estado.equals(" ")){
-            mensagem = "Erro: o nome do estado não poder ser vazio";
+        else if(estado == null || estado.isBlank()){
+            mensagem = "o nome do estado não pode ser vazio";
             request.setAttribute("erro", mensagem);
 
         }
 
         else if(estado.length() > 100){
-            mensagem = "Erro: o nome do estado pode conter até 100 caracteres";
+            mensagem = "o nome do estado pode conter até 2 caracteres";
             request.setAttribute("erro", mensagem);
         }
 
-        else if(!cepRegex.matcher(cep).matches()){
-            mensagem = "Erro: o formato do cep não é aceito";
+        else if(cep == null || !cepRegex.matcher(cep).matches()){
+            mensagem = "o formato do cep não é aceito";
             request.setAttribute("erro", mensagem);
         }
 
-        else if(!cnpjRegex.matcher(cnpj).matches()){
-            mensagem = "Erro: o formato do cnpj não é aceito";
+        else if(cnpj == null || !cnpjRegex.matcher(cnpj).matches()){
+            mensagem = "o formato do cnpj não é aceito";
             request.setAttribute("erro", mensagem);
         }
 
-        else if(!cnaeRegex.matcher(cnae).matches()){
-            mensagem = "Erro: o formato do cnae não é aceito";
+        else if(cnae == null || !cnaeRegex.matcher(cnae).matches()){
+            mensagem = "o formato do cnae não é aceito";
             request.setAttribute("erro", mensagem);
         }
 
-        else if(localDataRegistro.isAfter(LocalDate.now())){
-            mensagem = "Erro: a data de registro deve ser antes ou no dia atual";
-            request.setAttribute("erro", mensagem);
+        else{
+            try{
+                dataRegistro = Date.valueOf(dataRegistroTexto);
+                LocalDate localDataRegistro = dataRegistro.toLocalDate();
+
+                if(localDataRegistro.isAfter(LocalDate.now())){
+                    mensagem = "Erro: a data de registro deve ser antes ou no dia atual";
+                    request.setAttribute("erro", mensagem);
+                }
+                else{
+                    Empresa empresa = new Empresa(
+                            cnae,
+                            nome,
+                            cep,
+                            cnpj,
+                            rua,
+                            estado,
+                            bairro,
+                            cidade,
+                            dataRegistro
+                    );
+
+                    empresaDAO.inserir(empresa);
+                    //depois manda o usuario pro ReadEmpresa
+                    response.sendRedirect(request.getContextPath() + "/listar-empresas");
+                    return;
+                }
+
+            }catch (IllegalArgumentException e){
+                mensagem = "data invalida, use o formato ano-mes-dia";
+                request.setAttribute("erro", mensagem);
+            }
         }
 
-        else {
-            Empresa novaEmpresa = new Empresa(
-                    cnae,
-                    nome,
-                    cep,
-                    cnpj,
-                    rua,
-                    estado,
-                    bairro,
-                    cidade,
-                    dataRegistro
-            );
-
-            empresaDAO.inserir(novaEmpresa);
-
-            response.sendRedirect(request.getContextPath() + "/empresas");
-
-        }
+        //teve erro, volta para a pagina
+        request.getRequestDispatcher("/WEB-INF/EmpresaJSP/Empresa.jsp").forward(request,response);
     }
 }

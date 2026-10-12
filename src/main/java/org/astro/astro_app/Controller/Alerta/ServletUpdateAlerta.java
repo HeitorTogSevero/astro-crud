@@ -95,7 +95,7 @@ public class ServletUpdateAlerta extends HttpServlet {
                     );
 
                     alertaDAO.alterarAlerta(alertaAtualizado);
-                    response.sendRedirect(request.getContextPath() + "/lista-alerta");
+                    response.sendRedirect(request.getContextPath() + "/listar-alerta");
                     return;
                 }
 
@@ -109,6 +109,6 @@ public class ServletUpdateAlerta extends HttpServlet {
         }
 
         //teve erro, volta pra pagina
-        request.getRequestDispatcher("/WEB-INF/AlertaJSP/alertaJSP.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/AlertaJSP/alerta.jsp").forward(request, response);
     }
 }

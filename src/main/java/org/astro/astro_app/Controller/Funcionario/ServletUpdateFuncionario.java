@@ -5,12 +5,11 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.astro.astro_app.dao.CertificadoDAO;
 import org.astro.astro_app.dao.FuncionarioDAO;
-import org.astro.astro_app.model.Departamento;
 import org.astro.astro_app.model.Funcionario;
 
 import java.io.IOException;
+import java.util.regex.Pattern;
 
 @WebServlet(name = "ServletUpdateFuncionario", value = "/alterar-funcionario")
 public class ServletUpdateFuncionario extends HttpServlet {
@@ -18,63 +17,102 @@ public class ServletUpdateFuncionario extends HttpServlet {
     private FuncionarioDAO funcionarioDAO;
 
     @Override
-    public void init(){
+    public void init() {
         funcionarioDAO = new FuncionarioDAO();
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String idTexto = request.getParameter("id");
-        int id = Integer.parseInt(idTexto);
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-        Funcionario funcionario= funcionarioDAO.buscarPorIdFunc(id);
-
-        if (funcionario == null) {
-            response.sendRedirect(request.getContextPath() + "/funcionarios");
-            return;
-        }
-
-        request.setAttribute("departamento", funcionario);
-        request.getRequestDispatcher("/WEB-INF/FuncionarioJSP/UpdateFuncionario.jsp").forward(request,response);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        //os dados chegam como bytes, tem que transformar em padrão :
         request.setCharacterEncoding("UTF-8");
 
-        String nome = request.getParameter("nome");
+        final Pattern cpfRegex =
+                Pattern.compile("^(\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}|\\d{11})$");
 
-        String cargo = request.getParameter("cargo");
-
-        String cpf = request.getParameter("cpf");
-
-        String email = request.getParameter("email");
-
-        String idEmpresaTexto = request.getParameter("id_empresa");
-        int idEmpresa = Integer.parseInt(idEmpresaTexto);
+        final Pattern emailRegex =
+                Pattern.compile("^[a-zA-Z0-9._%+#$!\\-]+@(gmail|hotmail|yahoo|outlook)\\.(com|com\\.br|org\\.br)$");
 
         String idFuncionarioTexto = request.getParameter("id_funcionario");
-        int idFuncionario = Integer.parseInt(idFuncionarioTexto);
-
+        String nome = request.getParameter("nome");
+        String cargo = request.getParameter("cargo");
+        String cpf = request.getParameter("cpf");
+        String email = request.getParameter("email");
+        String idEmpresaTexto = request.getParameter("id_empresa");
         String idDepartamentoTexto = request.getParameter("id_departamento");
-         int idDepartamento = Integer.parseInt(idDepartamentoTexto);
 
-         Funcionario funcionario = new Funcionario(
-                 nome,
-                 cargo,
-                 cpf,
-                 email,
-                 idEmpresa,
-                 idFuncionario,
-                 idDepartamento
-         );
+        String mensagem = "";
 
-         funcionarioDAO.alterarFuncionario(funcionario);
+        if (idFuncionarioTexto == null || idFuncionarioTexto.isBlank()) {
+            mensagem = "o id do funcionario nao informado";
+            request.setAttribute("erro", mensagem);
+        } else if (nome == null || nome.isBlank()) {
+            mensagem = "o nome nao pode ser vazio";
+            request.setAttribute("erro", mensagem);
+        } else if (nome.length() > 100) {
+            mensagem = "o nome deve ter no max. 100 caracteres";
+            request.setAttribute("erro", mensagem);
+        } else if (cargo == null || cargo.isBlank()) {
+            mensagem = "o cargo nao pode ser vazio";
+            request.setAttribute("erro", mensagem);
+        } else if (cargo.length() > 50) {
+            mensagem = "o cargo deve ter no max. 50 caracteres";
+            request.setAttribute("erro", mensagem);
+        } else if (cpf == null || cpf.isBlank() || !cpfRegex.matcher(cpf).matches()) {
+            mensagem = "formato do CPF invalido. Use 000.000.000-00";
+            request.setAttribute("erro", mensagem);
+        } else if (email == null || email.isBlank()) {
+            mensagem = "o email nao pode ser vazio";
+            request.setAttribute("erro", mensagem);
+        } else if (email.length() > 50) {
+            mensagem = "o email pode ter ate 50 caracteres";
+            request.setAttribute("erro", mensagem);
+        } else if (!emailRegex.matcher(email).matches()) {
+            mensagem = "o formato do email nao e aceito";
+            request.setAttribute("erro", mensagem);
+        } else if (idEmpresaTexto == null || idEmpresaTexto.isBlank()) {
+            mensagem = "o id da empresa nao pode ser nulo";
+            request.setAttribute("erro", mensagem);
+        } else if (idDepartamentoTexto == null || idDepartamentoTexto.isBlank()) {
+            mensagem = "o id do departamento nao pode ser nulo";
+            request.setAttribute("erro", mensagem);
+        } else {
+            try {
+                int idFuncionario = Integer.parseInt(idFuncionarioTexto);
+                int idEmpresa = Integer.parseInt(idEmpresaTexto);
+                int idDepartamento = Integer.parseInt(idDepartamentoTexto);
 
-         response.sendRedirect(request.getContextPath() + "/funcionarios");
+                if (idFuncionario <= 0) {
+                    mensagem = "o id do funcionario e invalido";
+                    request.setAttribute("erro", mensagem);
+                } else if (idEmpresa <= 0) {
+                    mensagem = "o id da empresa deve ser > 0";
+                    request.setAttribute("erro", mensagem);
+                } else if (idDepartamento <= 0) {
+                    mensagem = "o id do departamento deve ser > 0";
+                    request.setAttribute("erro", mensagem);
+                } else {
+                    Funcionario funcionario = new Funcionario(
+                            nome,
+                            cargo,
+                            cpf,
+                            email,
+                            idEmpresa,
+                            idFuncionario,
+                            idDepartamento
+                    );
 
+                    funcionarioDAO.alterarFuncionario(funcionario);
+                    response.sendRedirect(request.getContextPath() + "/listar-funcionarios");
+                    return;
+                }
 
+            } catch (NumberFormatException e) {
+                mensagem = "os ids devem ser numeros validos";
+                request.setAttribute("erro", mensagem);
+            }
+        }
+
+        request.getRequestDispatcher("/WEB-INF/FuncionarioJSP/Funcionario.jsp").forward(request, response);
     }
 }

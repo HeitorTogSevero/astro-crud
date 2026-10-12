@@ -21,12 +21,12 @@ public class ServletDeleteCertificado extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //pega o id alerta
-        String idAlertaTexto = request.getParameter("id_alerta");
+        //pega o id certificado
+        String idCertificadoTexto = request.getParameter("id_certificado");
         String mensagem = "";
 
         //validacao
-        if(idAlertaTexto == null || idAlertaTexto.isBlank()){
+        if(idCertificadoTexto == null || idCertificadoTexto.isBlank()){
             mensagem = "id nao inforamdo";
             request.setAttribute("erro", mensagem);
             request.getRequestDispatcher("/WEB-INF/CertificadoJSP/Certificado.jsp").forward(request,response);
@@ -34,16 +34,16 @@ public class ServletDeleteCertificado extends HttpServlet {
         }
 
         try{
-            int idAlerta = Integer.parseInt(idAlertaTexto);
-            if (idAlerta <=0){
+            int idCertificado = Integer.parseInt(idCertificadoTexto);
+            if (idCertificado <=0){
                 mensagem = "id invalido";
                 request.setAttribute("erro", mensagem);
                 request.getRequestDispatcher("/WEB-INF/CertificadoJSP/Certificado.jsp").forward(request,response);
                 return;
             }
 
-            certificadoDAO.remover(idAlerta);
-            response.sendRedirect(request.getContextPath() + "lista-alertas");
+            certificadoDAO.remover(idCertificado);
+            response.sendRedirect(request.getContextPath() + "/listar-certificados");
 
         }catch (NumberFormatException e) {
             mensagem = "o id do certificad deve ser valido";

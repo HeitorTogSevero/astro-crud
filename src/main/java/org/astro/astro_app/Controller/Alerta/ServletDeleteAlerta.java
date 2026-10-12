@@ -26,7 +26,7 @@ public class ServletDeleteAlerta extends HttpServlet {
         if (idAlertaTexto == null || idAlertaTexto.isBlank()) {
             mensagem = "o id do alerta não informado";
             request.setAttribute("erro", mensagem);
-            request.getRequestDispatcher("/WEB-INF/AlertaJSP/alertaJSP.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/AlertaJSP/alerta.jsp").forward(request, response);
             return;
         }
 
@@ -36,7 +36,7 @@ public class ServletDeleteAlerta extends HttpServlet {
             if (idAlerta <= 0) {
                 mensagem = "id do alerta invalido";
                 request.setAttribute("erro", mensagem);
-                request.getRequestDispatcher("/WEB-INF/AlertaJSP/alertaJSP.jsp").forward(request, response);
+                request.getRequestDispatcher("/WEB-INF/AlertaJSP/alerta.jsp").forward(request, response);
                 return;
             }
 
@@ -44,12 +44,12 @@ public class ServletDeleteAlerta extends HttpServlet {
             alertaDAO.remover(idAlerta);
 
             //volta pra a lista
-            response.sendRedirect(request.getContextPath() + "/lista-alerta");
+            response.sendRedirect(request.getContextPath() + "/listar-alerta");
 
         } catch (NumberFormatException e) {
             mensagem = "id do alerta deve ser uma numero valido";
             request.setAttribute("erro", mensagem);
-            request.getRequestDispatcher("/WEB-INF/AlertaJSP/alertaJSP.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/AlertaJSP/alerta.jsp").forward(request, response);
         }
     }
 }
