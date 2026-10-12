@@ -94,135 +94,13 @@
                 </tr>
                 </thead>
                 <tbody id="corpo-tabela-departamentos">
-                <tr id_departamento="" nome="" descricao="" grau_risco="" atividade="" qtd_funcionario="" id_empresa="">
-                    <td>1</td>
-                    <td>Elos</td>
-                    <td>62.248.660/0001-43</td>
-                    <td>2</td>
-                    <td>Elos</td>
-                    <td>3</td>
-                    <td>10</td>
-                    <td>
-                        <div class="celula-acoes">
-                            <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
-                            <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
-                        </div>
-                    </td>
-                </tr>
-                <tr id_departamento="" nome="" descricao="" grau_risco="" atividade="" qtd_funcionario="" id_empresa="">
-                    <td>2</td>
-                    <td>Inventra</td>
-                    <td>30.325.076/0001-58</td>
-                    <td>2</td>
-                    <td>Elos</td>
-                    <td>3</td>
-                    <td>10</td>
-                    <td>
-                        <div class="celula-acoes">
-                            <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
-                            <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
-                        </div>
-                    </td>
-                </tr>
-                <tr id_departamento="" nome="" descricao="" grau_risco="" atividade="" qtd_funcionario="" id_empresa="">
-                    <td>2</td>
-                    <td>Argos</td>
-                    <td>35.100.242/0001-31</td>
-                    <td>2</td>
-                    <td>Elos</td>
-                    <td>3</td>
-                    <td>10</td>
-                    <td>
-                        <div class="celula-acoes">
-                            <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
-                            <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
-                        </div>
-                    </td>
-                </tr>
-                <tr id_departamento="" nome="" descricao="" grau_risco="" atividade="" qtd_funcionario="" id_empresa="">
-                    <td>3</td>
-                    <td>Olius</td>
-                    <td>21.364.388/0001-80</td>
-                    <td>2</td>
-                    <td>Elos</td>
-                    <td>3</td>
-                    <td>10</td>
-                    <td>
-                        <div class="celula-acoes">
-                            <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
-                            <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
-                        </div>
-                    </td>
-                </tr>
-                <tr id_departamento="" nome="" descricao="" grau_risco="" atividade="" qtd_funcionario="" id_empresa="">
-                    <td>4</td>
-                    <td>Apollo</td>
-                    <td>55.987.920/0001-37</td>
-                    <td>2</td>
-                    <td>Elos</td>
-                    <td>3</td>
-                    <td>10</td>
-                    <td>
-                        <div class="celula-acoes">
-                            <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
-                            <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
-                        </div>
-                    </td>
-                </tr>
-                <tr id_departamento="" nome="" descricao="" grau_risco="" atividade="" qtd_funcionario="" id_empresa="">
-                    <td>5</td>
-                    <td>Cometa</td>
-                    <td>54.342.635/0001-04</td>
-                    <td>2</td>
-                    <td>Elos</td>
-                    <td>3</td>
-                    <td>10</td>
-                    <td>
-                        <div class="celula-acoes">
-                            <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
-                            <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
-                        </div>
-                    </td>
-                </tr>
-
-                <tr id_departamento="" nome="" descricao="" grau_risco="" atividade="" qtd_funcionario="" id_empresa="">
-                    <td>6</td>
-                    <td>Inventra</td>
-                    <td>30.325.076/0001-58</td>
-                    <td>2</td>
-                    <td>Elos</td>
-                    <td>3</td>
-                    <td>10</td>
-                    <td>
-                        <div class="celula-acoes">
-                            <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
-                            <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
-                        </div>
-                    </td>
-                </tr>
-                <tr id_departamento="" nome="" descricao="" grau_risco="" atividade="" qtd_funcionario="" id_empresa="">
-                    <td>7</td>
-                    <td>Inventra</td>
-                    <td>30.325.076/0001-58</td>
-                    <td>2</td>
-                    <td>Elos</td>
-                    <td>3</td>
-                    <td>10</td>
-                    <td>
-                        <div class="celula-acoes">
-                            <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
-                            <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
-                        </div>
-                    </td>
-                </tr>
-                <tr id_departamento="" nome="" descricao="" grau_risco="" atividade="" qtd_funcionario="" id_empresa="">
-                    <td>8</td>
-                    <td>Inventra</td>
-                    <td>30.325.076/0001-58</td>
-                    <td>2</td>
-                    <td>Elos</td>
-                    <td>3</td>
-                    <td>10</td>
+                <tr id_departamento="" nome="" descricao="" grau_risco="" atividade="" id_empresa="">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                     <td>
                         <div class="celula-acoes">
                             <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
@@ -253,11 +131,13 @@
             <div class="modal-campo">
                 <label for="campo-nome">nome</label>
                 <input type="text" id="campo-nome" name="nome" placeholder="Nome" required>
+                <span id="erroNome"> </span>
             </div>
 
             <div class="modal-campo">
                 <label for="campo-descricao">descricao</label>
                 <input type="text" id="campo-descricao" name="descricao" placeholder="Descrição" required>
+                <span id="erroDescr"> </span>
             </div>
 
             <div class="modal-campo">
@@ -265,18 +145,14 @@
                 <input type="number" id="campo-grau_risco" name="grau_risco"
                        min="1" max="4"
                        placeholder="Grau de risco" required>
+                <span id="erroRisco"> </span>
+
             </div>
 
             <div class="modal-campo">
                 <label for="campo-atividade">atividade</label>
                 <input type="text" id="campo-atividade" name="atividade" placeholder="Atividade" required>
-            </div>
-
-            <div class="modal-campo">
-                <label for="campo-qtd_funcionario">qtd_funcionario</label>
-                <input type="number" id="campo-qtd_funcionario" name="qtd_funcionario"
-                       min="0"
-                       placeholder="Quantidade de funcionários">
+                <span id="erroAtv"> </span>
             </div>
 
             <div class="modal-campo">
@@ -284,6 +160,7 @@
                 <input type="number" id="campo-id_empresa" name="id_empresa"
                        min="0"
                        placeholder="ID">
+                <span id="erroIdEmpresa"> </span>
             </div>
 
             <div class="modal-campo">
@@ -291,6 +168,7 @@
                 <input type="number" id="campo-id_departamento" name="id_departamento"
                        min="0"
                        placeholder="ID">
+                <span id="erroIdDepart"> </span>
             </div>
 
             <div class="modal-rodape">
@@ -369,11 +247,6 @@
             <div class="modal-campo">
                 <label for="editar-atividade">atividade</label>
                 <input type="text" id="editar-atividade" name="atividade" required>
-            </div>
-
-            <div class="modal-campo">
-                <label for="editar-qtd_funcionario">qtd_funcionario</label>
-                <input type="number" id="editar-qtd_funcionario" name="qtd_funcionario" min="0" required>
             </div>
 
             <div class="modal-campo">

@@ -362,8 +362,8 @@
         modalAdicionar.addEventListener('click', e => { if (e.target === modalAdicionar) modalAdicionar.hidden = true; });
     </script>
 
-    <script src="../../JS/create-alerta.js"></script>
-    <script src="../../JS/update-alerta.js"></script>
+    <script src="../../JS/Create/create-alerta.js"></script>
+    <script src="../../JS/Update/update-alerta.js"></script>
 
     </body>
     </html>
