@@ -21,7 +21,7 @@ public class ServletCreateAlerta extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        //os dados chegam como bits, aqui converte ele
         request.setCharacterEncoding("UTF-8");
 
         String codigoTexto = request.getParameter("codigo");
