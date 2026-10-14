@@ -3,23 +3,35 @@
 
 // Declarando as Variáveis //
 const form = document.getElementById("formulario-editar")
+
 const nome = document.getElementById("editar-nome")
+
 const cargo = document.getElementById("editar-cargo")
+
 const cpf = document.getElementById("editar-cpf")
+
 const email = document.getElementById("editar-email")
+
 const idEmpreas = document.getElementById("editar-id_empresa")
+
 const idDepart = document.getElementById("editar-id_departamento")
 
 // Variáveis de Erro //
 const erroNome = document.getElementById("editar-erroNome")
+
 const erroCargo = document.getElementById("editar-erroCargo")
+
 const erroCpf = document.getElementById("editar-erroCpf")
+
 const erroEmail = document.getElementById("editar-erroEmail")
+
 const erroIdEmpresa = document.getElementById("editar-erroIdEmpresa")
+
 const erroIdDepart = document.getElementById("editar-erroIdDepart")
 
 // REGEX //
 const regexCpf = /^(\d{3}\.\d{3}\.\d{3}-\d{2}|\d{11})$/
+
 const regexEmail = /^[a-zA-Z0-9._%+#$!\-]+@(gmail|hotmail|yahoo|outlook)\.(com|com\.br|org\.br)$/
 
 // Validações dos Dados - Nome //

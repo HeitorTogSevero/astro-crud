@@ -3,19 +3,30 @@
 
 // Declarando as Variáveis //
 const form = document.getElementById("formulario-adicionar")
+
 const nome = document.getElementById("campo-nome")
+
 const descricao = document.getElementById("campo-descricao")
+
 const grauRisco = document.getElementById("campo-grau_risco")
+
 const atividade = document.getElementById("campo-atividade")
+
 const idEmpresa = document.getElementById("campo-id_empresa")
+
 const idDepart = document.getElementById("campo-id_departamento")
 
 // Variaveis de Erro
 const erroNome = document.getElementById("erroNome");
+
 const erroDescr = document.getElementById("erroDescr");
+
 const erroRisco = document.getElementById("erroRisco")
+
 const erroIdEmpresa = document.getElementById("erroIdEmpresa")
+
 const erroIdDepart = document.getElementById("erroIdDepart")
+
 const erroAtv = document.getElementById("erroAtv")
 
 

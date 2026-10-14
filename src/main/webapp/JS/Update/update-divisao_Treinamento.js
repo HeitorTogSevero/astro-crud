@@ -3,15 +3,22 @@
 
 // Declarando as Variáveis //
 const form = document.getElementById("formulario-editar")
+
 const idCronograma = document.getElementById("editar-id_cronograma")
+
 const codigo = document.getElementById("editar-codigo")
+
 const idEmpresa = document.getElementById("editar-id_empresa")
+
 const nome = document.getElementById("editar-nome")
 
 // Variáveis de Erro //
 const erroIdCrono = document.getElementById("editar-erroIdCrono")
+
 const erroIdEmpresa = document.getElementById("editar-erroIdEmpresa")
+
 const erroCod = document.getElementById("editar-erroCod")
+
 const erroNome = document.getElementById("editar-erroNome")
 
 // Validações de Dados - Nome //

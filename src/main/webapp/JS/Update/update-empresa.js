@@ -3,33 +3,53 @@
 
 // Declarando as Variáveis //
 const form = document.getElementById("formulario-editar")
+
 const nome = document.getElementById("editar-nome")
+
 const cnae = document.getElementById("editar-cnae")
+
 const cnpj = document.getElementById("editar-cnpj")
+
 const cep = document.getElementById("editar-cep")
+
 const rua = document.getElementById("editar-rua")
+
 const bairro = document.getElementById("editar-bairro")
+
 const cidade = document.getElementById("editar-cidade")
+
 const estado = document.getElementById("editar-estado")
+
 const dataRegistro = document.getElementById("editar-dt_registro")
 
 // Variáveis de Erro //
 const erroNome = document.getElementById("editar-erroNome")
+
 const erroCnae = document.getElementById("editar-erroCnae")
+
 const erroCnpj = document.getElementById("editar-erroCnpj")
+
 const erroCep = document.getElementById("editar-erroCep")
+
 const erroRua = document.getElementById("editar-erroRua")
+
 const erroBairro = document.getElementById("editar-erroBairro")
+
 const erroCidade = document.getElementById("editar-erroCidade")
+
 const erroEstado = document.getElementById("editar-erroEstado")
+
 const erroDataRegistro= document.getElementById("editar-erroDataRegistro")
 
 // REGEX //
 const regexCnpj = /^(\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}|\d{14})$/ ;
+
 const regexCep = /^(\d{5}-\d{3}|\d{8})$/
+
 const regexCnae = /^\d{4}-\d{1}\/\d{2}$/
 
 const regexData = /^\d{4}\/(0?[1-9]|1[0-2])\/\d{2}$/;
+
 const data = new Date();
 const ano = data.getFullYear();
 const mes = String(data.getMonth() + 1).padStart(2, "0");

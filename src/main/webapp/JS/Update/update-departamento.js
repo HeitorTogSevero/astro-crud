@@ -3,19 +3,30 @@
 
 // Declarando as Variáveis //
 const form = document.getElementById("formulario-editar")
+
 const nome = document.getElementById("editar-nome")
+
 const descricao = document.getElementById("editar-descricao")
+
 const grauRisco = document.getElementById("editar-grau_risco")
+
 const atividade = document.getElementById("editar-atividade")
+
 const idEmpresa = document.getElementById("editar-id_empresa")
+
 const idDepart = document.getElementById("editar-id_departamento")
 
 // Variaveis de Erro
 const erroNome = document.getElementById("editar-erroNome");
+
 const erroDescr = document.getElementById("editar-erroDescr");
+
 const erroRisco = document.getElementById("editar-erroRisco")
+
 const erroIdEmpresa = document.getElementById("editar-erroIdEmpresa")
+
 const erroIdDepart = document.getElementById("editar-erroIdDepart")
+
 const erroAtv = document.getElementById("editar-erroAtv")
 
 
