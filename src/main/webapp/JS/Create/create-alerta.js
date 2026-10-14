@@ -164,7 +164,7 @@ form.addEventListener("submit", function(event) {
         event.preventDefault()
     }
 
-    else if (dtLimite <= dataAtual){
+    else if (dtLimite.value <= dataAtual){
         event.preventDefault()
     }
 
