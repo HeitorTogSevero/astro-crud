@@ -28,10 +28,15 @@ public class ServletUpdateCertificado extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
 
         String idCertificadoTexto = request.getParameter("id_certificado");
+
         String idFuncionarioTexto = request.getParameter("id_funcionario");
+
         String idNrFuncionarioTexto = request.getParameter("id_nrfuncionario");
+
         String idNrEmpresaTexto = request.getParameter("id_nrempresa");
+
         String dataEmissaoTexto = request.getParameter("dt_emissao");
+
         String validadeTexto = request.getParameter("validade");
 
         Date dataEmissao = null;
@@ -42,22 +47,27 @@ public class ServletUpdateCertificado extends HttpServlet {
             mensagem = "Erro: id do certificado não informado";
             request.setAttribute("erro", mensagem);
         }
+
         else if (dataEmissaoTexto == null || dataEmissaoTexto.isBlank()) {
             mensagem = "Erro: a data de emissão não pode ser vazia";
             request.setAttribute("erro", mensagem);
         }
+
         else if (validadeTexto == null || validadeTexto.isBlank()) {
             mensagem = "Erro: a validade não pode ser vazia";
             request.setAttribute("erro", mensagem);
         }
+
         else if (idFuncionarioTexto == null || idFuncionarioTexto.isBlank()) {
             mensagem = "Erro: o id do funcionário não pode ser nulo";
             request.setAttribute("erro", mensagem);
         }
+
         else if (idNrFuncionarioTexto == null || idNrFuncionarioTexto.isBlank()) {
             mensagem = "Erro: o id da NR do funcionário não pode ser nulo";
             request.setAttribute("erro", mensagem);
         }
+
         else if (idNrEmpresaTexto == null || idNrEmpresaTexto.isBlank()) {
             mensagem = "Erro: o id da NR da empresa não pode ser nulo";
             request.setAttribute("erro", mensagem);
@@ -65,12 +75,18 @@ public class ServletUpdateCertificado extends HttpServlet {
 
         else {
             try {
+
                 int idCertificado = Integer.parseInt(idCertificadoTexto);
+
                 int idFuncionario = Integer.parseInt(idFuncionarioTexto);
+
                 int idNrFuncionario = Integer.parseInt(idNrFuncionarioTexto);
+
                 int idNrEmpresa = Integer.parseInt(idNrEmpresaTexto);
+
                 dataEmissao = Date.valueOf(dataEmissaoTexto);
                 validade = Date.valueOf(validadeTexto);
+
                 LocalDate localDataEmissao = dataEmissao.toLocalDate();
                 LocalDate localValidade = validade.toLocalDate();
 
@@ -78,26 +94,32 @@ public class ServletUpdateCertificado extends HttpServlet {
                     mensagem = "o id do certificado é invalido";
                     request.setAttribute("erro", mensagem);
                 }
+
                 else if (idFuncionario <= 0) {
                     mensagem = "o id do funcionário deve ser > 0";
                     request.setAttribute("erro", mensagem);
                 }
+
                 else if (idNrFuncionario <= 0) {
                     mensagem = "o id da NR do funcionario deve ser > 0";
                     request.setAttribute("erro", mensagem);
                 }
+
                 else if (idNrEmpresa <= 0) {
                     mensagem = "o id da NR da empresa deve ser > 0";
                     request.setAttribute("erro", mensagem);
                 }
+
                 else if (localDataEmissao.isAfter(LocalDate.now())) {
                     mensagem = "a data deve ser anterior ou no dia atual";
                     request.setAttribute("erro", mensagem);
                 }
+
                 else if (localValidade.isBefore(LocalDate.now())) {
                     mensagem = "a validade deve ser a partir do dia atual";
                     request.setAttribute("erro", mensagem);
                 }
+
                 else {
 
                     Certificado certificadoAtualizado = new Certificado(
@@ -114,10 +136,12 @@ public class ServletUpdateCertificado extends HttpServlet {
                     return;
                 }
 
-            } catch (NumberFormatException e) {
+            }
+            catch (NumberFormatException e) {
                 mensagem = "os ids devem ser numeros validos";
                 request.setAttribute("erro", mensagem);
-            } catch (IllegalArgumentException e) {
+            }
+            catch (IllegalArgumentException e) {
                 mensagem = "data invalida, use o formato ano-mes-dia";
                 request.setAttribute("erro", mensagem);
             }

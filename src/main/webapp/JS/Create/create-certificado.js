@@ -3,21 +3,31 @@
 
 // Declarando as Variáveis //
 const form = document.getElementById("formulario-adicionar")
+
 const idFunc = document.getElementById("campo-id_funcionario")
+
 const idNrFunc = document.getElementById("campo-id_nrfuncionario")
+
 const idNrEmpresa = document.getElementById("campo-id_nrempresa")
+
 const dataEmissao = document.getElementById("campo-dt_emissao")
+
 const validade = document.getElementById("validade")
 
 //Variavéis de Erro//
 const erroIdFunc = document.getElementById("erroIdFunc")
+
 const erroIdNrFunc = document.getElementById("erroIdNrFunc")
+
 const erroIdNrEmp = document.getElementById("erroIdNrEmp")
+
 const erroDataEmissao = document.getElementById("erroDataEmissao")
+
 const erroValidade = document.getElementById("erroValidade")
 
 // Regex DATA:
 const regexData = /^\d{4}\/(0?[1-9]|1[0-2])\/\d{2}$/;
+
 const data = new Date();
 const ano = data.getFullYear();
 const mes = String(data.getMonth() + 1).padStart(2, "0");

@@ -26,9 +26,13 @@ public class ServletCreateDepartamento extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
 
         String idEmpresaTexto = request.getParameter("id_empresa");
+
         String grauRisco = request.getParameter("grau_risco");
+
         String nome = request.getParameter("nome");
+
         String descricao = request.getParameter("descricao");
+
         String atividade = request.getParameter("atividade");
 
         String mensagem = "";
@@ -36,35 +40,54 @@ public class ServletCreateDepartamento extends HttpServlet {
         if(nome == null || nome.isBlank()){
             mensagem = "o nome não pode ser vazio";
             request.setAttribute("erro", mensagem);
-        }else if(nome.length() > 100){
+        }
+
+        else if(nome.length() > 100){
             mensagem = "o nome deve conter até 100 caracteres";
             request.setAttribute("erro", mensagem);
-        }else if(descricao == null || descricao.isBlank()){
+        }
+
+        else if(descricao == null || descricao.isBlank()){
             mensagem = "a descrição não pode ser vazia";
             request.setAttribute("erro", mensagem);
-        }else if(descricao.length() > 250){
+        }
+
+        else if(descricao.length() > 250){
             mensagem = "a descricao deve conter até 250 caracteres";
             request.setAttribute("erro", mensagem);
-        }else if(grauRisco == null || grauRisco.isBlank()){
+        }
+
+        else if(grauRisco == null || grauRisco.isBlank()){
             mensagem = "o grau de risco não pode ser vazio";
             request.setAttribute("erro", mensagem);
-        }else if(!grauRisco.equals("1") && !grauRisco.equals("2") && !grauRisco.equals("3") && !grauRisco.equals("4")){
+        }
+
+        else if(!grauRisco.equals("1") && !grauRisco.equals("2") && !grauRisco.equals("3") && !grauRisco.equals("4")){
             mensagem = "o grau de risco deve ser (1, 2, 3 ou 4)";
             request.setAttribute("erro", mensagem);
-        }else if(atividade == null || atividade.isBlank()){
+        }
+
+        else if(atividade == null || atividade.isBlank()){
             mensagem = "a atividade não pode ser vazia";
             request.setAttribute("erro", mensagem);
-        }else if(atividade.length() > 15){
+        }
+
+        else if(atividade.length() > 15){
             mensagem = "a atividade deve conter até 15 caracteres";
             request.setAttribute("erro", mensagem);
-        }else{
+        }
+
+        else{
             try{
+
                 int idEmpresa = Integer.parseInt(idEmpresaTexto);
 
                 if(idEmpresa <= 0){
                     mensagem = "o id da empresa deve ser > 0";
                     request.setAttribute("erro", mensagem);
-                }else {
+                }
+
+                else {
                     Departamento departamento = new Departamento(
                             idEmpresa,
                             grauRisco,
@@ -78,7 +101,8 @@ public class ServletCreateDepartamento extends HttpServlet {
                     response.sendRedirect(request.getContextPath() + "/listar-departamentos");
                     return;
                 }
-            } catch (NumberFormatException e) {
+            }
+            catch (NumberFormatException e) {
                 mensagem = "o id deve ser numero valido";
                 request.setAttribute("erro", mensagem);
 

@@ -4,7 +4,7 @@
 // Declarando as Variáveis //
 const form = document.getElementById("formulario-adicionar");
 const codigo = document.getElementById("campo-codigo");
-const idEmpresa = document.getElementById("campo-id_empresa");
+const idEmpresa = document.getElementById("campo-id-empresa");
 const descricao = document.getElementById("campo-descricao");
 const dtLimite = document.getElementById("campo-dt_limite");
 

@@ -28,9 +28,13 @@ public class ServletCreateCertificado extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
 
         String idFuncionarioTexto = request.getParameter("id_funcionario");
+
         String idNrFuncionarioTexto = request.getParameter("id_nrfuncionario");
+
         String idNrEmpresaTexto = request.getParameter("id_nrempresa");
+
         String dataEmissaoTexto = request.getParameter("dt_emissao");
+
         String validadeTexto = request.getParameter("validade");
 
         Date dataEmissao = null;
@@ -41,18 +45,22 @@ public class ServletCreateCertificado extends HttpServlet {
             mensagem = "a data de emissao nao pode ser vazia";
             request.setAttribute("erro", mensagem);
         }
+
         else if (validadeTexto == null || validadeTexto.isBlank()) {
             mensagem = "a validade nao pode ser vazia";
             request.setAttribute("erro", mensagem);
         }
+
         else if (idFuncionarioTexto == null || idFuncionarioTexto.isBlank()) {
             mensagem = "o id do funcionario não pode ser nulo";
             request.setAttribute("erro", mensagem);
         }
+
         else if (idNrFuncionarioTexto == null || idNrFuncionarioTexto.isBlank()) {
             mensagem = "o id da NR do funcionario nao pode ser nulo";
             request.setAttribute("erro", mensagem);
         }
+
         else if (idNrEmpresaTexto == null || idNrEmpresaTexto.isBlank()) {
             mensagem = "o id da NR da empresa nao pode ser nulo";
             request.setAttribute("erro", mensagem);
@@ -61,27 +69,40 @@ public class ServletCreateCertificado extends HttpServlet {
         else {
             // apos os campos estar prenchidos, vai vir pra ca
             try {
+
                 int idFuncionario = Integer.parseInt(idFuncionarioTexto);
+
                 int idNrFuncionario = Integer.parseInt(idNrFuncionarioTexto);
+
                 int idNrEmpresa = Integer.parseInt(idNrEmpresaTexto);
+
                 dataEmissao = Date.valueOf(dataEmissaoTexto);
                 validade = Date.valueOf(validadeTexto);
+
                 LocalDate localDataEmissao = dataEmissao.toLocalDate();
                 LocalDate localValidade = validade.toLocalDate();
 
                 if (idFuncionario <= 0) {
                     mensagem = "o id do funcionario deve ser > 0";
                     request.setAttribute("erro", mensagem);
-                }else if (idNrFuncionario <= 0) {
+                }
+
+                else if (idNrFuncionario <= 0) {
                     mensagem = "o id da NR do funcionario deve ser > 0";
                     request.setAttribute("erro", mensagem);
-                }else if (idNrEmpresa <= 0) {
+                }
+
+                else if (idNrEmpresa <= 0) {
                     mensagem = "o id da NR da empresa deve ser > 0";
                     request.setAttribute("erro", mensagem);
-                }else if (localValidade.isBefore(LocalDate.now())) {
+                }
+
+                else if (localValidade.isBefore(LocalDate.now())) {
                     mensagem = "a validade deve ser a partir do dia atual";
                     request.setAttribute("erro", mensagem);
-                }else {
+                }
+
+                else {
                     Certificado certificado = new Certificado(
                             idFuncionario,
                             idNrFuncionario,
@@ -96,10 +117,12 @@ public class ServletCreateCertificado extends HttpServlet {
                     return;
                 }
 
-            } catch (NumberFormatException e) {
+            }
+            catch (NumberFormatException e) {
                 mensagem = "os ids devem ser numeros validos";
                 request.setAttribute("erro", mensagem);
-            } catch (IllegalArgumentException e) {
+            }
+            catch (IllegalArgumentException e) {
                 mensagem = "data invalida, use o formato ano-mes-dia";
                 request.setAttribute("erro", mensagem);
             }

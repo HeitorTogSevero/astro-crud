@@ -24,9 +24,13 @@ public class ServletUpdateDivisaoTreinamento extends HttpServlet{
         request.setCharacterEncoding("UTF-8");
 
         String idDivisaoTexto = request.getParameter("id_divisao");
+
         String idCronogramaTexto = request.getParameter("id_cronograma");
+
         String codigoTexto = request.getParameter("codigo");
+
         String idEmpresaTexto = request.getParameter("id_empresa");
+
         String nome = request.getParameter("nome");
 
         String mensagem = "";
@@ -34,41 +38,65 @@ public class ServletUpdateDivisaoTreinamento extends HttpServlet{
         if(idDivisaoTexto == null || idDivisaoTexto.isBlank()){
             mensagem = "o id da divisao não informado";
             request.setAttribute("erro", mensagem);
-        }else if(idCronogramaTexto == null || idCronogramaTexto.isBlank()){
+        }
+
+        else if(idCronogramaTexto == null || idCronogramaTexto.isBlank()){
             mensagem = "o id do cronograma não pode ser vazio";
             request.setAttribute("erro", mensagem);
-        }else if(codigoTexto == null || codigoTexto.isBlank()){
+        }
+
+        else if(codigoTexto == null || codigoTexto.isBlank()){
             mensagem = "o codigo não pode ser vazio";
             request.setAttribute("erro", mensagem);
-        }else if(idEmpresaTexto == null || idEmpresaTexto.isBlank()){
+        }
+
+        else if(idEmpresaTexto == null || idEmpresaTexto.isBlank()){
             mensagem = "o id da empresa não pode ser vazio";
             request.setAttribute("erro", mensagem);
-        }else if(nome == null || nome.isBlank()){
+        }
+
+        else if(nome == null || nome.isBlank()){
             mensagem = "o nome não pode ser vazio";
             request.setAttribute("erro", mensagem);
-        }else if(nome.length() > 50){
+        }
+
+        else if(nome.length() > 50){
             mensagem = "o nome deve conter até 50 caracteres";
             request.setAttribute("erro", mensagem);
-        }else{
+        }
+
+        else{
             try{
+
                 int idDivisao = Integer.parseInt(idDivisaoTexto);
+
                 int idCronograma = Integer.parseInt(idCronogramaTexto);
+
                 int codigo = Integer.parseInt(codigoTexto);
+
                 int idEmpresa = Integer.parseInt(idEmpresaTexto);
 
                 if(idDivisao <=0){
                     mensagem = "Id da divisao é invalido";
                     request.setAttribute("erro", mensagem);
-                }else if(idCronograma <=0){
+                }
+
+                else if(idCronograma <=0){
                     mensagem = "id do cronograma é inválido";
                     request.setAttribute("erro", mensagem);
-                }else if(codigo <= 0){
+                }
+
+                else if(codigo <= 0){
                     mensagem = "o codigo é inválido";
                     request.setAttribute("erro", mensagem);
-                }else if(idEmpresa <=0){
+                }
+
+                else if(idEmpresa <=0){
                     mensagem = "o id da empresa é inválido";
                     request.setAttribute("erro", mensagem);
-                }else{
+                }
+
+                else{
 
                     DivisaoTreinamento divisaoTreinamento = new DivisaoTreinamento(
                             idDivisao,
@@ -84,7 +112,8 @@ public class ServletUpdateDivisaoTreinamento extends HttpServlet{
 
                     return;
                 }
-            }catch (NumberFormatException e){
+            }
+            catch (NumberFormatException e){
                 mensagem = "Os ids devem ser numeros validos";
                 request.setAttribute("erro", mensagem);
             }

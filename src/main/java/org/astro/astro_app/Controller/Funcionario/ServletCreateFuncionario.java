@@ -34,10 +34,15 @@ public class ServletCreateFuncionario extends HttpServlet {
                 Pattern.compile("^[a-zA-Z0-9._%+#$!\\-]+@(gmail|hotmail|yahoo|outlook)\\.(com|com\\.br|org\\.br)$");
 
         String nome = request.getParameter("nome");
+
         String cargo = request.getParameter("cargo");
+
         String cpf = request.getParameter("cpf");
+
         String email = request.getParameter("email");
+
         String idEmpresaTexto = request.getParameter("id_empresa");
+
         String idDepartamentoTexto = request.getParameter("id_departamento");
 
         String mensagem = "";
@@ -45,45 +50,71 @@ public class ServletCreateFuncionario extends HttpServlet {
         if (nome == null || nome.isBlank()) {
             mensagem = "o nome nao pode ser vazio";
             request.setAttribute("erro", mensagem);
-        } else if (nome.length() > 100) {
+        }
+
+        else if (nome.length() > 100) {
             mensagem = "o nome deve ter no max. 100 caracteres";
             request.setAttribute("erro", mensagem);
-        } else if (cargo == null || cargo.isBlank()) {
+        }
+
+        else if (cargo == null || cargo.isBlank()) {
             mensagem = "o cargo nao pode ser vazio";
             request.setAttribute("erro", mensagem);
-        } else if (cargo.length() > 50) {
+        }
+
+        else if (cargo.length() > 50) {
             mensagem = "o cargo deve ter no max. 50 caracteres";
             request.setAttribute("erro", mensagem);
-        } else if (cpf == null || cpf.isBlank() || !cpfRegex.matcher(cpf).matches()) {
+        }
+
+        else if (cpf == null || cpf.isBlank() || !cpfRegex.matcher(cpf).matches()) {
             mensagem = "formato do CPF invalido. Use 000.000.000-00";
             request.setAttribute("erro", mensagem);
-        } else if (email == null || email.isBlank()) {
+        }
+
+        else if (email == null || email.isBlank()) {
             mensagem = "o email nao pode ser vazio";
             request.setAttribute("erro", mensagem);
-        } else if (email.length() > 50) {
+        }
+
+        else if (email.length() > 50) {
             mensagem = "o email pode ter ate 50 caracteres";
             request.setAttribute("erro", mensagem);
-        } else if (!emailRegex.matcher(email).matches()) {
+        }
+
+        else if (!emailRegex.matcher(email).matches()) {
             mensagem = "o formato do email nao e aceito";
             request.setAttribute("erro", mensagem);
-        } else if (idEmpresaTexto == null || idEmpresaTexto.isBlank()) {
+        }
+
+        else if (idEmpresaTexto == null || idEmpresaTexto.isBlank()) {
             mensagem = "o id da empresa nao pode ser nulo";
             request.setAttribute("erro", mensagem);
-        } else if (idDepartamentoTexto == null || idDepartamentoTexto.isBlank()) {
+        }
+
+        else if (idDepartamentoTexto == null || idDepartamentoTexto.isBlank()) {
             mensagem = "o id do departamento nao pode ser nulo";
             request.setAttribute("erro", mensagem);
-        } else {
+        }
+
+        else {
             try {
+
                 int idEmpresa = Integer.parseInt(idEmpresaTexto);
+
                 int idDepartamento = Integer.parseInt(idDepartamentoTexto);
 
                 if (idEmpresa <= 0) {
                     mensagem = "o id da empresa deve ser > 0";
                     request.setAttribute("erro", mensagem);
-                } else if (idDepartamento <= 0) {
+                }
+
+                else if (idDepartamento <= 0) {
                     mensagem = "o id do departamento deve ser > 0";
                     request.setAttribute("erro", mensagem);
-                } else {
+                }
+
+                else {
                     Funcionario funcionario = new Funcionario(
                             nome,
                             cargo,
@@ -98,7 +129,8 @@ public class ServletCreateFuncionario extends HttpServlet {
                     return;
                 }
 
-            } catch (NumberFormatException e) {
+            }
+            catch (NumberFormatException e) {
                 mensagem = "os ids devem ser numeros validos";
                 request.setAttribute("erro", mensagem);
             }

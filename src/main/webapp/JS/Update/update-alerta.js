@@ -2,19 +2,27 @@
 
 // Declarando as Variáveis //
 const form = document.getElementById("formulario-editar");
+
 const codigo = document.getElementById("editar-codigo");
+
 const idEmpresa = document.getElementById("editar-id-empresa");
+
 const descricao = document.getElementById("editar-descricao");
+
 const dtLimite = document.getElementById("editar-dt_limite");
 
 // Variaveis de Erro
 const erroCod = document.getElementById("editar-erroCod");
+
 const erroDescr = document.getElementById("editar-erroDescr");
+
 const erroData = document.getElementById("editar-erroData")
+
 const erroId = document.getElementById("editar-erroId")
 
 // Regex DATA:
 const regexData = /^\d{4}\/(0?[1-9]|1[0-2])\/\d{2}$/;
+
 const data = new Date();
 const ano = data.getFullYear();
 const mes = String(data.getMonth() + 1).padStart(2, "0");

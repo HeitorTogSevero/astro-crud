@@ -28,19 +28,29 @@ public class ServletCreateEmpresa extends HttpServlet{
 
         final Pattern cepRegex =
                 Pattern.compile("^(\\d{5}-\\d{3}|\\d{8})$");
+
         final Pattern cnpjRegex =
                 Pattern.compile("^(\\d{2}\\.\\d{3}\\.\\d{3}/\\d{4}-\\d{2}|\\d{14})$");
+
         final Pattern cnaeRegex =
                 Pattern.compile("^\\d{4}-\\d{1}/\\d{2}$");
 
         String cnae = request.getParameter("cnae");
+
         String nome = request.getParameter("nome");
+
         String cep = request.getParameter("cep");
+
         String cnpj = request.getParameter("cnpj");
+
         String rua = request.getParameter("rua");
+
         String bairro = request.getParameter("bairro");
+
         String cidade = request.getParameter("cidade");
+
         String estado = request.getParameter("estado");
+
         String dataRegistroTexto = request.getParameter("dt_registro");
 
         Date dataRegistro = null;
@@ -50,28 +60,34 @@ public class ServletCreateEmpresa extends HttpServlet{
             mensagem = "a data não pode ser vazia";
             request.setAttribute("erro", mensagem);
         }
+
         else if(nome == null || nome.isBlank()){
             mensagem = "o nome não pode ser vazio";
             request.setAttribute("erro", mensagem);
         }
+
         else if(nome.length() > 100){
             mensagem = "o nome pode conter até 100 caracteres";
             request.setAttribute("erro", mensagem);
 
         }
+
         else if(rua == null || rua.isBlank()){
             mensagem = "o nome da rua não pode ser vazio";
             request.setAttribute("erro", mensagem);
 
         }
+
         else if(rua.length() > 100){
             mensagem = "o nome da rua pode conter até 100 caracteres";
             request.setAttribute("erro", mensagem);
         }
+
         else if(bairro == null || bairro.isBlank()){
             mensagem = "o nome do bairro não pode ser vazio";
             request.setAttribute("erro", mensagem);
         }
+
         else if(bairro.length() > 100){
             mensagem = "o nome do bairro pode conter até 100 caracteres";
             request.setAttribute("erro", mensagem);
@@ -116,6 +132,7 @@ public class ServletCreateEmpresa extends HttpServlet{
 
         else{
             try{
+
                 dataRegistro = Date.valueOf(dataRegistroTexto);
                 LocalDate localDataRegistro = dataRegistro.toLocalDate();
 
@@ -123,7 +140,9 @@ public class ServletCreateEmpresa extends HttpServlet{
                     mensagem = "Erro: a data de registro deve ser antes ou no dia atual";
                     request.setAttribute("erro", mensagem);
                 }
+
                 else{
+
                     Empresa empresa = new Empresa(
                             cnae,
                             nome,
