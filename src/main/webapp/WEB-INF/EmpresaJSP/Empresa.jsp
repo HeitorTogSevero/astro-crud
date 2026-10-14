@@ -321,6 +321,7 @@ return s == null ? "" : s;
         return ano + '-' + mes.padStart(2, '0') + '-' + dia.padStart(2, '0');
     }
 
+    // ordem das colunas: id, nome, cnpj, cnae, bairro, cep, rua, estado, cidade, dt_registro
     const corpoTabela = document.getElementById('corpo-tabela-empresas');
     const modalEditar = document.getElementById('modal-editar');
 
