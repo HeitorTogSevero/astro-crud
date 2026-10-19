@@ -120,10 +120,10 @@ org.astro.astro_app.model.Certificado"
                 <tr data-id-certificado="<%= c.getIdCertificado() %>">
                     <td><%= c.getIdCertificado() %></td>
                     <td><%= c.getDtEmissao() != null ? formatoExibicao.format(c.getDtEmissao()) : "" %></td>
-                    <td><%= c.getValidade() != null ? formatoExibicao.format(c.getValidade()) : "" %></td>
+                    <td><%= c.getDtValidade() != null ? formatoExibicao.format(c.getDtValidade()) : "" %></td>
                     <td><%= c.getIdFuncionario() %></td>
-                    <td><%= c.getIdNrfuncionario() %></td>
-                    <td><%= c.getIdNrempresa() %></td>
+                    <td><%= c.getIdNrFuncionario() %></td>
+                    <td><%= c.getIdNrEmpresa() %></td>
                     <td>
                         <div class="celula-acoes">
                             <button class="btn-editar" type="button" data-acao="editar">

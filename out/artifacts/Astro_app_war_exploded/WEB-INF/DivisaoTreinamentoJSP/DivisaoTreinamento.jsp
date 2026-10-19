@@ -1,0 +1,358 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
+<%@ page import="java.util.List,
+java.util.ArrayList,
+org.astro.astro_app.model.DivisaoTreinamento"
+%>
+<%!private String v(String s) {
+return s == null ? "" : s;
+}%>
+<%  String caminho = request.getContextPath();
+    ArrayList<DivisaoTreinamento> divisoes = (ArrayList<DivisaoTreinamento>) request.getAttribute("divisoes");
+    //valores de filtro(pra nao ficar null
+    String fCodigo = v(request.getParameter("codigo"));
+    String fIdEmpresa = v(request.getParameter("id_empresa"));
+    String fNome = v(request.getParameter("nome"));%>
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astro - Divisão de Treinamento</title>
+
+    <link rel="stylesheet" href="<%=caminho%>/style/crud.css">
+    <link rel="stylesheet" href="<%=caminho%>/style/tabelas.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<aside class="sidebar">
+    <div class="logo">
+        <img src="<%=caminho%>/imagens/logotipo.png" alt="Logotipo" class="img-logo">
+    </div>
+
+    <nav class="nav-menu">
+        <a href="<%=caminho%>/crud.jsp" class="nav-item">
+            <i class="fa-solid fa-house"></i>Início
+        </a>
+        <a href="<%=caminho%>/listar-empresas" class="nav-item">
+            <i class="fa-regular fa-building"></i>empresa
+        </a>
+        <a href="<%=caminho%>/listar-funcionarios" class="nav-item">
+            <i class="fa-solid fa-users"></i>funcionario
+        </a>
+        <a href="<%=caminho%>/listar-departamentos" class="nav-item">
+            <i class="fa-solid fa-layer-group"></i>departamento
+        </a>
+        <a href="<%=caminho%>/listar-divisoes" class="nav-item active">
+            <i class="fa-regular fa-file-lines"></i>divisao_treinamento
+        </a>
+        <a href="<%=caminho%>/lista-alerta" class="nav-item">
+            <i class="fa-regular fa-calendar-check"></i>alerta
+        </a>
+        <a href="<%=caminho%>/listar-certificados" class="nav-item">
+            <i class="fa-solid fa-award"></i>certificado
+        </a>
+        <div class="sidebar-bottom">
+            <a href="#" class="nav-item" id="exit-bottom">
+                <i class="fa-solid fa-right-from-bracket"></i>Sair
+            </a>
+        </div>
+    </nav>
+</aside>
+
+<main class="main-content">
+
+    <header class="header cabecalho-pagina">
+        <div class="titulo-container">
+            <h1><strong>divisao_treinamento - </strong> <span id="periodo-titulo">Setembro 2026</span></h1>
+        </div>
+    </header>
+
+    <section class="barra-controles">
+        <div class="controle-esquerda">
+            <div class="search-bar">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="busca-divisao" name="busca-divisao" placeholder="Pesquisar divisão...">
+            </div>
+        </div>
+
+        <div class="controle-direita">
+            <button class="btn-filtrar" id="btn-filtrar-divisao" type="button">
+                <i class="fa-solid fa-filter"></i> Filtrar
+            </button>
+            <button class="btn-adicionar" id="btn-adicionar-divisao" type="button">
+                <i class="fa-solid fa-plus"></i> Adicionar divisao_treinamento
+            </button>
+        </div>
+    </section>
+
+    <%
+    String mensagem = (String) request.getAttribute("erro");
+    if (mensagem == null) {
+    mensagem = (String) request.getAttribute("mensagem");
+    }
+    if (mensagem != null) {
+    String cor = mensagem.toLowerCase().contains("sucesso") ? "green" : "red";
+    %>
+    <p style="color: <%= cor %>"><%= mensagem %></p>
+    <% } %>
+
+    <section class="panel painel-tabela">
+        <div class="tabela-rolavel">
+            <table class="data-table" id="tabela-divisao">
+                <thead class="data-cabecalho">
+                <tr>
+                    <th class="ordenavel" data-coluna="id_divisao"><strong>id_divisao</strong> <i class="fa-solid fa-sort"></i></th>
+                    <th class="ordenavel" data-coluna="nome">nome <i class="fa-solid fa-sort"></i></th>
+                    <th class="ordenavel" data-coluna="codigo">codigo <i class="fa-solid fa-sort"></i></th>
+                    <th class="ordenavel" data-coluna="id_empresa">id_empresa <i class="fa-solid fa-sort"></i></th>
+                    <th class="ordenavel" data-coluna="id_cronograma">id_cronograma <i class="fa-solid fa-sort"></i></th>
+                    <th>Ações</th>
+                </tr>
+                </thead>
+                <tbody id="corpo-tabela-divisao">
+                <%
+                if (divisoes != null && !divisoes.isEmpty()) {
+                for (DivisaoTreinamento d : divisoes) {
+                %>
+                <tr data-id-divisao="<%= d.getIdDivisao() %>">
+                    <td><%= d.getIdDivisao() %></td>
+                    <td><%= d.getNome() %></td>
+                    <td><%= d.getCodigo() %></td>
+                    <td><%= d.getIdEmpresa() %></td>
+                    <td><%= d.getIdCronograma() %></td>
+                    <td>
+                        <div class="celula-acoes">
+                            <button class="btn-editar" type="button">
+                                <i class="fa-solid fa-pen"></i> Editar
+                            </button>
+                            <button class="btn-remover" type="button">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                <%
+                }
+                } else {
+                %>
+                <tr>
+                    <td colspan="6">Nenhuma divisão encontrada.</td>
+                </tr>
+                <% } %>
+                </tbody>
+            </table>
+        </div>
+        <p class="rodape-tabela">
+            Mostrando <%= divisoes != null ? divisoes.size() : 0 %> divisões
+        </p>
+    </section>
+
+</main>
+
+<!-- MODAL ADICIONAR -->
+<div class="modal-fundo" id="modal-adicionar" hidden>
+    <div class="modal-caixa" role="dialog" aria-modal="true">
+        <div class="modal-cabecalho">
+            <h2>Adicionar em divisao_treinamento</h2>
+            <button type="button" class="modal-fechar" id="fechar-modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <form id="formulario-adicionar" class="modal-formulario"
+              action="<%=caminho%>/adicionar-divisao" method="post">
+
+            <div class="modal-campo">
+                <label for="campo-nome">Nome:</label>
+                <input type="text" id="campo-nome" name="nome" required>
+            </div>
+
+            <div class="modal-campo">
+                <label for="campo-codigo">Código:</label>
+                <input type="number" id="campo-codigo" name="codigo" min="0" required>
+            </div>
+
+            <div class="modal-campo">
+                <label for="campo-id_empresa">id_empresa:</label>
+                <input type="number" id="campo-id_empresa" name="id_empresa" min="0" required>
+            </div>
+
+            <div class="modal-campo">
+                <label for="campo-id_cronograma">id_cronograma:</label>
+                <input type="number" id="campo-id_cronograma" name="id_cronograma" min="0" required>
+            </div>
+
+            <div class="modal-rodape">
+                <button type="button" class="botao-cancelar" id="cancelar-modal">Cancelar</button>
+                <button type="submit" class="botao-salvar">Salvar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- MODAL FILTRO -->
+<div class="modal-fundo" id="modal-filtro" hidden>
+    <div class="modal-caixa" role="dialog" aria-modal="true">
+        <div class="modal-cabecalho">
+            <h2>Filtrar divisões de treinamento</h2>
+            <button type="button" class="modal-fechar" id="fechar-modal-filtro">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <form id="formulario-filtro" class="modal-formulario"
+              action="<%=caminho%>/listar-divisoes" method="get">
+
+            <div class="modal-campo">
+                <label for="filtro-codigo">Código</label>
+                <input type="number" id="filtro-codigo" name="codigo" min="0" value="<%= fCodigo %>">
+            </div>
+
+            <div class="modal-campo">
+                <label for="filtro-id_empresa">id_empresa</label>
+                <input type="number" id="filtro-id_empresa" name="id_empresa" min="0" value="<%= fIdEmpresa %>">
+            </div>
+
+            <div class="modal-campo">
+                <label for="filtro-nome">Nome</label>
+                <input type="text" id="filtro-nome" name="nome" value="<%= fNome %>">
+            </div>
+
+            <div class="modal-rodape">
+                <a href="<%=caminho%>/listar-divisoes" class="botao-cancelar">Limpar</a>
+                <button type="submit" class="botao-salvar">Aplicar filtro</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- MODAL EDITAR -->
+<div class="modal-fundo" id="modal-editar" hidden>
+    <div class="modal-caixa" role="dialog" aria-modal="true">
+        <div class="modal-cabecalho">
+            <h2>Editar divisao_treinamento</h2>
+            <button type="button" class="modal-fechar" id="fechar-modal-editar">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <form id="formulario-editar" class="modal-formulario"
+              action="<%=caminho%>/alterar-divisao" method="post">
+
+            <input type="hidden" id="editar-id-divisao" name="id_divisao">
+
+            <div class="modal-campo">
+                <label for="editar-nome">Nome:</label>
+                <input type="text" id="editar-nome" name="nome" required>
+            </div>
+
+            <div class="modal-campo">
+                <label for="editar-codigo">Código:</label>
+                <input type="number" id="editar-codigo" name="codigo" min="0" required>
+            </div>
+
+            <div class="modal-campo">
+                <label for="editar-id_empresa">id_empresa:</label>
+                <input type="number" id="editar-id_empresa" name="id_empresa" min="0" required>
+            </div>
+
+            <div class="modal-campo">
+                <label for="editar-id_cronograma">id_cronograma:</label>
+                <input type="number" id="editar-id_cronograma" name="id_cronograma" min="0" required>
+            </div>
+
+            <div class="modal-rodape">
+                <button type="button" class="botao-cancelar" id="cancelar-modal-editar">Cancelar</button>
+                <button type="submit" class="botao-salvar">Salvar alterações</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- MODAL EXCLUIR -->
+<div class="modal-fundo" id="modal-excluir" hidden>
+    <div class="modal-caixa modal-caixa-pequena" role="dialog" aria-modal="true">
+        <div class="modal-cabecalho">
+            <h2>Excluir registro</h2>
+            <button type="button" class="modal-fechar" id="fechar-modal-excluir">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <p class="modal-texto-confirmacao">
+            Tem certeza que deseja excluir
+            <strong id="excluir-nome"></strong>?
+            Essa ação não pode ser desfeita.
+        </p>
+
+        <form id="formulario-excluir" action="<%=caminho%>/deletar-divisao" method="post">
+            <input type="hidden" id="excluir-id" name="id_divisao">
+            <div class="modal-rodape">
+                <button type="button" class="botao-cancelar" id="cancelar-modal-excluir">Cancelar</button>
+                <button type="submit" class="botao-excluir">Excluir</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    // FILTRO
+    const modalFiltro = document.getElementById('modal-filtro');
+    document.querySelector('.btn-filtrar').addEventListener('click', () => modalFiltro.hidden = false);
+    document.getElementById('fechar-modal-filtro').addEventListener('click', () => modalFiltro.hidden = true);
+    modalFiltro.addEventListener('click', e => { if (e.target === modalFiltro) modalFiltro.hidden = true; });
+
+    // EDITAR
+    const corpoTabela = document.getElementById('corpo-tabela-divisao');
+    const modalEditar = document.getElementById('modal-editar');
+
+    corpoTabela.addEventListener('click', function (evento) {
+        const botao = evento.target.closest('.btn-editar');
+        if (!botao) return;
+
+        const c = botao.closest('tr').children;
+        const t = i => c[i].textContent.trim();
+
+        // ordem: id_divisao, nome, codigo, id_empresa, id_cronograma
+        document.getElementById('editar-id-divisao').value = t(0);
+        document.getElementById('editar-nome').value = t(1);
+        document.getElementById('editar-codigo').value = t(2);
+        document.getElementById('editar-id_empresa').value = t(3);
+        document.getElementById('editar-id_cronograma').value = t(4);
+
+        modalEditar.hidden = false;
+    });
+
+    document.getElementById('fechar-modal-editar').addEventListener('click', () => modalEditar.hidden = true);
+    document.getElementById('cancelar-modal-editar').addEventListener('click', () => modalEditar.hidden = true);
+    modalEditar.addEventListener('click', e => { if (e.target === modalEditar) modalEditar.hidden = true; });
+
+    // EXCLUIR
+    const modalExcluir = document.getElementById('modal-excluir');
+
+    corpoTabela.addEventListener('click', function (evento) {
+        const botao = evento.target.closest('.btn-remover');
+        if (!botao) return;
+
+        const linha = botao.closest('tr');
+        document.getElementById('excluir-id').value = linha.dataset.idDivisao;
+        document.getElementById('excluir-nome').textContent = linha.children[1].textContent.trim();
+        modalExcluir.hidden = false;
+    });
+
+    document.getElementById('fechar-modal-excluir').addEventListener('click', () => modalExcluir.hidden = true);
+    document.getElementById('cancelar-modal-excluir').addEventListener('click', () => modalExcluir.hidden = true);
+    modalExcluir.addEventListener('click', e => { if (e.target === modalExcluir) modalExcluir.hidden = true; });
+
+    // ADICIONAR
+    const modalAdicionar = document.getElementById('modal-adicionar');
+    document.querySelector('.btn-adicionar').addEventListener('click', () => modalAdicionar.hidden = false);
+    document.getElementById('fechar-modal').addEventListener('click', () => modalAdicionar.hidden = true);
+    document.getElementById('cancelar-modal').addEventListener('click', () => modalAdicionar.hidden = true);
+    modalAdicionar.addEventListener('click', e => { if (e.target === modalAdicionar) modalAdicionar.hidden = true; });
+</script>
+
+</body>
+        </html>
