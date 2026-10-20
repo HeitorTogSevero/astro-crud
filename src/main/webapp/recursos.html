@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astro – Recursos</title>
+    <link rel="stylesheet" href="style/recursos.css">
+    <link rel="stylesheet" href="style/glossario.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/@emailjs/browser@5/dist/email.min.js"></script>
+    <script defer src="JS/Paginas/glossario.js"></script>
+    <script defer src="JS/Paginas/glossarios_pop-ups.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="imagens/isotipo.png">
+</head>
+<body>
+<header class="barra-navegacao">
+    <div class="logo">
+        <a href="index.html">
+            <img src="imagens/isotipo.png" alt="Logo" class="icone-logo">
+        </a>
+    </div>
+    <nav class="links-navegacao">
+        <a href="produtos.html">Produto</a>
+        <a class="recursos">Recursos</a>
+        <a href="planos.html">Planos</a>
+        <a href="sobre.html">Sobre</a>
+    </nav>
+    <div class="acoes-navegacao">
+        <a href="tela_login/login.html" class="botao-entrar">Entrar</a>
+        <a href="tela_login/cadastro.html" class="botao-principal">Cadastre-se</a>
+    </div>
+</header>
+
+<main>
+    <section class="principal">
+        <div class="conteudo-principal">
+            <div class="etiqueta">
+                <img src="imagens/topico.png" class="icone-etiqueta" alt="Ícone"> RECURSOS
+            </div>
+            <h1>Conhecimento <br>que impulsiona <br><span class="destaque">conformidade.</span></h1>
+            <p>Conteúdos e ferramentas criados para ajudar <br>sua empresa a entender, aplicar e evoluir na <br>gestão de NRs.</p>
+        </div>
+        <div class="topicos">
+            <img src="imagens/conformidade 1.png" alt="conformidade">
+            <div>
+                <h4>Conteúdo confiável</h4>
+                <p>Produzido por especialistas <br>em SST e legislação.</p>
+            </div>
+        </div>
+        <div class="topicos">
+            <img src="imagens/usuarios 1.png" alt="usuarios">
+            <div>
+                <h4>Sempre atualizado</h4>
+                <p>Acompanhamos mudanças <br>na legislação em tempo real.</p>
+            </div>
+        </div>
+        <div class="topicos">
+            <img src="imagens/obrigacoes 1.png" alt="obrigacoes">
+            <div>
+                <h4>Fácil de aplicar</h4>
+                <p>Materiais práticos para <br>sua rotina.</p>
+            </div>
+        </div>
+        <div class="imagem-principal">
+            <img class="borrado" src="imagens/borrado.png" alt="borrado">
+            <img class="c-arco" src="imagens/c-arco.png" alt="c-arco">
+            <img class="c-arco2" src="imagens/c-arco2.png" alt="c-arco2">
+            <img class="c-estrelas" src="imagens/c-estrelas.gif" alt="c-estrelas">
+            <img class="cometa" src="imagens/cometa.gif" alt="cometa">
+        </div>
+    </section>
+    <hr class="linha">
+
+    <section class="materiais" id="materiais">
+        <div class="conteudo-materiais">
+            <div class="etiqueta">
+                <img src="imagens/topico.png" class="icone-etiqueta" alt="Ícone"> MATERIAIS
+            </div>
+            <h1>Guias e ferramentas <br>para o <span class="destaque">seu dia a dia</span></h1>
+            <p>Integrações nativas e via API para <br>um fluxo de dados mais eficiente e <br>sem retrabalho.</p>
+            <a href="tela_login/cadastro.html" class="botao-contorno">Começar minha jornada &rarr;</a>
+        </div>
+
+        <!-- CARD 1 -->
+        <div id="topicos2">
+            <a href="imagens/Guia_completo_das_NRs_ASTRO.pdf" target="_blank" rel="noopener noreferrer" style="display: block; width: 100%; height: 200px; margin-bottom: 18px; border-radius: 8px; border: 1px solid #8E00C3; overflow: hidden; background: #0f172a; position: relative;">
+                <canvas id="pdf-capa-1" style="display: block; width: 100%; height: 100%; object-fit: cover;"></canvas>
+            </a>
+            <div class="pdf">PDF</div>
+            <h4>Guia completo das NRs</h4>
+            <h3>Panorama das principais NRs e para que servem na prática.</h3>
+            <p>PDF • 456 KB</p>
+            <span onclick="window.open(this.parentElement.querySelector('a').href, '_blank', 'noopener,noreferrer')"></span>
+        </div>
+
+        <!-- CARD 2 -->
+        <div id="topicos2">
+            <a href="imagens/Qual_NR_se_aplica_a_minha_empresa_ASTRO.pdf" target="_blank" rel="noopener noreferrer" style="display: block; width: 100%; height: 200px; margin-bottom: 18px; border-radius: 8px; border: 1px solid #8E00C3; overflow: hidden; background: #0f172a; position: relative;">
+                <canvas id="pdf-capa-2" style="display: block; width: 100%; height: 100%; object-fit: cover;"></canvas>
+            </a>
+            <div class="pdf">PDF</div>
+            <h4>Qual NR se aplica à minha empresa?</h4>
+            <h3>Entenda como preparar sua empresa.</h3>
+            <p>PDF • 238 KB</p>
+            <span onclick="window.open(this.parentElement.querySelector('a').href, '_blank', 'noopener,noreferrer')"></span>
+        </div>
+
+        <!-- CARD 3 -->
+        <div id="topicos2">
+            <a href="imagens/15_erros_que_colocam_sua_empresa_em_risco_ASTRO.pdf" target="_blank" rel="noopener noreferrer" style="display: block; width: 100%; height: 200px; margin-bottom: 18px; border-radius: 8px; border: 1px solid #8E00C3; overflow: hidden; background: #0f172a; position: relative;">
+                <canvas id="pdf-capa-3" style="display: block; width: 100%; height: 100%; object-fit: cover;"></canvas>
+            </a>
+            <div class="pdf">PDF</div>
+            <h4>15 erros que colocam sua empresa em risco</h4>
+            <h3>Saiba os principais erros e como evitá-los.</h3>
+            <p>PDF • 194 KB</p>
+            <span onclick="window.open(this.parentElement.querySelector('a').href, '_blank', 'noopener,noreferrer')"></span>
+        </div>
+
+        <!-- CARD 4 -->
+        <div id="topicos2">
+            <a href="imagens/NRs_sem_juridiques_ASTRO.pdf" target="_blank" rel="noopener noreferrer" style="display: block; width: 100%; height: 200px; margin-bottom: 18px; border-radius: 8px; border: 1px solid #8E00C3; overflow: hidden; background: #0f172a; position: relative;">
+                <canvas id="pdf-capa-4" style="display: block; width: 100%; height: 100%; object-fit: cover;"></canvas>
+            </a>
+            <div class="pdf">PDF</div>
+            <h4>NRs sem juridiquês</h4>
+            <h3>Explicações diretas para você entender as NRs sem complicação.</h3>
+            <p>PDF • 447 KB</p>
+            <span onclick="window.open(this.parentElement.querySelector('a').href, '_blank', 'noopener,noreferrer')"></span>
+        </div>
+    </section>
+
+    <hr class="linha2">
+
+    <section class="blog" id="blog">
+        <div class="conteudo-blog">
+            <div class="etiqueta">
+                <img src="imagens/topico.png" class="icone-etiqueta" alt="Ícone"> BLOG
+            </div>
+            <h1>Artigos que <span class="destaque">informam, <br>atualizam</span> e inspiram</h1>
+            <p>Informações para entender o <br>presente, acompanhar mudanças e <br>descobrir novas perspectivas.</p>
+            <a href="tela_login/cadastro.html" class="botao-contorno">Começar minha jornada &rarr;</a>
+        </div>
+
+        <div class="todos-topicos3">
+            <a href="imagens/blog-legislacao.html" target="_blank" rel="noopener noreferrer">
+                <div class="topicos3">
+                        <span>
+                            <img src="imagens/Cometa Cósmico Violeta em Alta Velocidade.png" alt="Cometa">
+                        </span>
+                    <div>
+                        <h4>LEGISLAÇÃO</h4>
+                    </div>
+                    <h3>Nova NR-1: o que muda na <br>gestão de riscos psicossociais</h3>
+                    <p>Entenda as principais alterações e <br>como sua empresa deve se preparar.</p>
+                    <h5>12 min de leitura   •   XX/YY/ZZZZ</h5>
+                </div>
+            </a>
+            <a href="imagens/blog-gestao.html" target="_blank" rel="noopener noreferrer">
+                <div class="topicos3">
+                        <span>
+                            <img src="imagens/Aglomerado Cósmico em Tons de Magenta e Azul.png" alt="Aglomerado Cósmico">
+                        </span>
+                    <div>
+                        <h4>GESTÃO</h4>
+                    </div>
+                    <h3>Como automatizar o controle de vencimento de NRs e evitar multas</h3>
+                    <p>Descubra estratégias para monitorar reciclagens sem depender de planilhas.</p>
+                    <h5>6 min de leitura   •   XX/YY/ZZZZ</h5>
+                </div>
+            </a>
+            <a href="imagens/blog-compliance.html" target="_blank" rel="noopener noreferrer">
+                <div class="topicos3">
+                        <span>
+                            <img src="imagens/Constelação Azul no Céu Profundo.png" alt="Constelacao">
+                        </span>
+                    <div>
+                        <h4>COMPLIANCE</h4>
+                    </div>
+                    <h3>Matriz de Riscos e CBO: garantindo conformidade em fiscalizações</h3>
+                    <p>Veja como mapear as obrigações por cargo e zerar os passivos trabalhistas.</p>
+                    <h5>8 min de leitura   •   XX/YY/ZZZZ</h5>
+                </div>
+            </a>
+    </section>
+
+    <hr class="linha2">
+
+    <section class="glossario" id="glossario">
+        <div class="conteudo-glossario">
+            <div class="etiqueta">
+                <img src="imagens/topico.png" class="icone-etiqueta" alt="Ícone"> GLOSSÁRIO
+            </div>
+            <h1>Entenda os <span class="destaque">termos</span><br>que fazem parte da <br>SST</h1>
+            <p>Dúvidas sobre siglas ou definições? <br>Consulte nosso glossário e fique por <br>dentro da linguagem da segurança <br>do trabalho</p>
+        </div>
+
+        <!-- GLOSSÁRIO -->
+
+        <div class="dicionario">
+            <div class="glossario-dicionario__barra-busca">
+                <svg class="glossario-dicionario__icone-busca" viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="11" cy="11" r="6.5"></circle>
+                    <path d="m16 16 4.25 4.25"></path>
+                </svg>
+                <label class="glossario-dicionario__texto-oculto" for="busca-glossario">Buscar termo ou sigla</label>
+                <input id="busca-glossario" class="glossario-dicionario__campo-busca" type="search" placeholder="Buscar termo ou sigla..." autocomplete="off">
+            </div>
+
+            <div class="glossario-dicionario__alfabeto" role="tablist" aria-label="Filtrar termos por letra"></div>
+
+            <div class="glossario-dicionario__resultados" tabindex="0" aria-label="Lista de termos. Você pode arrastar para percorrer a lista.">
+                <div class="glossario-dicionario__lista" aria-live="polite"></div>
+                <p class="glossario-dicionario__vazio" hidden>Nenhum termo encontrado.</p>
+            </div>
+        </div>
+
+        <!-- GLOSSÁRIO -->
+
+        <div class="sugerir">
+            <img src="imagens/sugerir-termo.png" alt="sugerir-termo">
+            <a href="#" class="botao-sugerir">Sugerir termo</a>
+        </div>
+
+    </section>
+    <section class="secao-cta">
+        <div class="caixa-cta">
+
+            <img src="imagens/cta.png" class="imagem-cta" alt="CTA">
+
+            <a href="tela_login/cadastro.html" class="botao-principal botao-cta">
+                Começar minha jornada →
+            </a>
+
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="conteudo-rodape">
+
+        <div class="marca-rodape">
+            <img src="imagens/imagotipo.png" alt="Astro" class="logo-rodape">
+
+            <p>Conformidade em órbita,<br>sempre em vigência.</p>
+        </div>
+
+        <div class="links-rodape">
+
+            <div class="coluna-links">
+                <h4>Produto</h4>
+                <a href="produto.html#funcionalidades">Funcionalidades</a>
+                <a href="produto.html#integracoes">Integrações</a>
+                <a href="produto.html#seguranca">Segurança</a>
+            </div>
+
+            <div class="coluna-links">
+                <h4>Recursos</h4>
+                <a href="recursos.html#materiais">Materiais</a>
+                <a href="recursos.html#blog">Blog</a>
+                <a href="recursos.html#glossario">Glossário</a>
+            </div>
+
+            <div class="coluna-links">
+                <h4>Planos</h4>
+                <a href="planos.html">Mensal</a>
+                <a href="planos.html?periodo=anual">Anual</a>
+                <a href="planos.html#visao-geral">Visão geral</a>
+            </div>
+
+            <div class="coluna-links">
+                <h4>Sobre</h4>
+                <a href="sobre.html#equipe">Quem somos</a>
+                <a href="sobre.html#missao">Missão e valores</a>
+                <a href="sobre.html#contato">Contato</a>
+            </div>
+
+            <div class="coluna-links social">
+                <h4>
+                    Siga o <img id="siga" src="imagens/logotipo.png" alt="astro">
+                </h4>
+
+                <div class="icones-sociais">
+
+                    <div class="icone-social">
+                        <img src="imagens/linkedin.png" alt="LinkedIn">
+                    </div>
+
+                    <a href="https://www.instagram.com/astro.4pp/" target="_blank" rel="noopener noreferrer">
+                        <div class="icone-social">
+                            <img src="imagens/instagram.png" alt="Instagram">
+                        </div>
+                    </a>
+
+                    <div class="icone-social">
+                        <img src="imagens/youtube.png" alt="YouTube">
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="rodape-inferior">
+        <p>&copy; 2026 astro. Todos os direitos reservados.</p>
+
+        <div class="links-legais-rodape">
+            <a href="#">Privacidade</a>
+            <a href="#">Termos de uso</a>
+        </div>
+    </div>
+</footer>
+<script src="JS/Paginas/lp.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+    function carregarCapaPDF(urlPDF, canvasId) {
+        pdfjsLib.getDocument(urlPDF).promise.then(pdf => {
+            return pdf.getPage(1);
+        }).then(page => {
+            const canvas = document.getElementById(canvasId);
+            if (!canvas) return;
+
+            const context = canvas.getContext('2d');
+            const viewportInicial = page.getViewport({ scale: 1 });
+            const scale = (canvas.parentElement.clientWidth / viewportInicial.width) * 2;
+            const viewport = page.getViewport({ scale: scale });
+
+            canvas.height = viewport.height;
+            canvas.width = viewport.width;
+
+            page.render({
+                canvasContext: context,
+                viewport: viewport
+            });
+        }).catch(err => console.error("Erro ao carregar " + urlPDF, err));
+    }
+
+    // Chama a função para renderizar a capa dos 4 arquivos
+    carregarCapaPDF('imagens/Guia_completo_das_NRs_ASTRO.pdf', 'pdf-capa-1');
+    carregarCapaPDF('imagens/Qual_NR_se_aplica_a_minha_empresa_ASTRO.pdf', 'pdf-capa-2');
+    carregarCapaPDF('imagens/15_erros_que_colocam_sua_empresa_em_risco_ASTRO.pdf', 'pdf-capa-3');
+    carregarCapaPDF('imagens/NRs_sem_juridiques_ASTRO.pdf', 'pdf-capa-4');
+</script>
+</body>
+</html>

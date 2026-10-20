@@ -1,0 +1,757 @@
+/* Animação de Entrada (Suave dissolver) */
+body {
+    animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Animação de Saída */
+body.fade-out {
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-app: #000719;
+    --bg-card: #01091D;
+    --bg-input: #181D32;
+    --border-card: #0C153D;
+    --primary-color: #9300ff;
+    --input-border: #4963D7;
+    --text-main: #ffffff;
+    --text-muted: #c2c2c2;
+    --link-color: #31CCEE;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.5px;
+}
+
+body.pagina-login {
+    background-color: var(--bg-app);
+    color: var(--text-main);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.img-logo {
+    width: 190px;
+}
+
+.botao-voltar {
+    position: absolute;
+    top: 32px;
+    left: 32px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-main);
+    text-decoration: none;
+    font-size: 18px;
+    z-index: 10;
+    transition: 0.2s;
+}
+
+.botao-voltar:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.login-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.fundo-planeta {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-color: var(--bg-app);
+    background-image: url('imagens/planeta_login.png');
+    background-repeat: no-repeat;
+    background-position: 0px 0px;
+    background-size: 1390px auto;
+}
+
+.login-lado-imagem {
+    flex: 1.03;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 80px;
+    overflow: hidden;
+}
+
+.login-lado-conteudo {
+    z-index: 2;
+    max-width: 480px;
+    margin-top: -60px;
+}
+
+.login-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 40px;
+}
+
+.login-titulo1 {
+    font-size: 64px;
+    line-height: 1.15;
+    font-weight: 500;
+    letter-spacing: 0.1px;
+}
+
+.login-titulo2 {
+    font-size: 42px;
+    line-height: 1.35;
+    font-weight: 500;
+}
+
+.login-subtitulo {
+    margin-top: 37px;
+    font-size: 17px;
+    line-height: 1.4;
+    font-weight: 400;
+    color: var(--text-main);
+    max-width: 430px;
+}
+
+.login-lado-formulario {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 40px;
+}
+
+.cartao-login {
+    background-color: rgba(0, 8, 26, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 3px solid #0A1343;
+    border-radius: 30px;
+    padding: 40px;
+    width: 100%;
+    max-width: 480px;
+    height: 580px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 30px;
+}
+
+.cartao-login h2 {
+    font-size: 32px;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 18px;
+}
+
+.cartao-subtitulo {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 18px;
+    margin-bottom: 28px;
+}
+
+.formulario-login {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex: 1;
+}
+
+.campos-login {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: auto 0;
+}
+
+.campo-formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.campo-formulario label {
+    font-size: 16px;
+    font-weight: 600;
+    margin-left: 18px;
+}
+
+.campo-formulario input {
+    width: 100%;
+    min-width: 0;
+    height: 56px;
+    padding: 0 20px;
+    border: 1px solid var(--input-border);
+    border-radius: 28px;
+    background-color: var(--bg-input);
+    color: var(--text-main);
+    font-size: 15px;
+    font-weight: 400;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.campo-formulario input::placeholder {
+    color: #D0D0D0;
+    opacity: 1;
+}
+
+.campo-formulario input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 1px var(--primary-color);
+}
+
+.link-esqueci-senha {
+    align-self: flex-start;
+    font-size: 15px;
+    color: #31CCEE;
+    text-decoration: underline;
+    margin-left: 18px;
+    margin-top: 2px;
+    text-underline-offset: 2px;
+}
+
+.mensagem-erro {
+    color: #ff6b6b;
+    font-size: 13px;
+    text-align: center;
+}
+
+.botao-continuar {
+    background: linear-gradient(to right, #8F00C4, #73009E);
+    color: white;
+    border: none;
+    border-radius: 24px;
+    padding: 16px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.botao-continuar:hover {
+    opacity: 0.9;
+}
+
+.texto-criar-conta {
+    text-align: center;
+    font-size: 15px;
+    color: var(--text-muted);
+    margin-bottom: 18px;
+    text-underline-offset: 2px;
+}
+
+.texto-criar-conta a {
+    color: #31CCEE;
+    text-decoration: underline;
+}
+
+footer {
+    padding: 80px 120px 32px;
+}
+
+footer a {
+    text-decoration: none;
+}
+
+.conteudo-rodape {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 80px;
+}
+
+.marca-rodape p {
+    font-size: 14px;
+    color: #D0D0D0;
+}
+
+.links-rodape {
+    display: flex;
+    gap: 120px;
+}
+
+.coluna-links h4 {
+    font-size: 16px;
+    margin-bottom: 24px;
+}
+
+.coluna-links a {
+    display: block;
+    font-size: 14px;
+    color: #D0D0D0;
+    margin-bottom: 16px;
+}
+
+.coluna-links a:hover {
+    color: #ffffff;
+}
+
+#siga {
+    width: 43px;
+    height: auto;
+}
+
+.icones-sociais {
+    display: flex;
+    gap: 16px;
+}
+
+.icone-social {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.icone-social img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    border-radius: 6px;
+}
+
+.rodape-inferior {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 32px;
+    border-top: 1px solid #0C153D;
+    font-size: 14px;
+    color: #D0D0D0;
+}
+
+.links-legais-rodape a {
+    margin-left: 32px;
+    color: #D0D0D0;
+}
+
+.links-legais-rodape a:hover {
+    color: #ffffff;
+}
+
+.logo-rodape {
+    width: 160px;
+    height: auto;
+    margin-bottom: 24px;
+    display: block;
+}
+
+@media (max-width: 900px) {
+    .login-container {
+        flex-direction: column;
+    }
+
+    .login-lado-imagem {
+        padding: 100px 32px 48px;
+    }
+
+    .rodape-login {
+        padding: 40px 32px 24px;
+    }
+}
+
+
+/* ========================================
+   LOGIN — MONITORES MUITO GRANDES
+======================================== */
+
+@media (min-width: 1921px) {
+    .login-container,
+    footer {
+        max-width: 1920px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+
+/* ========================================
+   LOGIN — NOTEBOOKS
+======================================== */
+
+@media (max-width: 1320px) {
+    .login-lado-imagem {
+        padding: 72px 48px;
+    }
+
+    .login-lado-conteudo {
+        max-width: 460px;
+    }
+
+    .login-titulo1 {
+        font-size: 60px;
+    }
+
+    .login-titulo2 {
+        font-size: clamp(34px, 3.15vw, 40px);
+        line-height: 1.3;
+    }
+
+    .login-subtitulo {
+        margin-top: 28px;
+        font-size: 16px;
+    }
+
+    .login-lado-formulario {
+        padding: 32px;
+    }
+
+    .cartao-login {
+        max-width: 450px;
+        margin-left: 0;
+        padding: 36px;
+    }
+
+    footer {
+        padding-left: 64px;
+        padding-right: 64px;
+    }
+
+    .links-rodape {
+        gap: 48px;
+        flex-wrap: wrap;
+    }
+}
+
+
+/* ========================================
+   LOGIN — TELAS INTERMEDIÁRIAS
+======================================== */
+
+@media (max-width: 1100px) {
+    .login-lado-imagem {
+        padding: 64px 36px;
+    }
+
+    .login-titulo1 {
+        font-size: 58px;
+    }
+
+    .login-titulo2 {
+        font-size: 35px;
+        line-height: 1.3;
+    }
+
+    .login-subtitulo {
+        font-size: 15px;
+        line-height: 1.5;
+    }
+
+    .login-lado-formulario {
+        padding: 24px;
+    }
+
+    .cartao-login {
+        max-width: 420px;
+        padding: 32px;
+        height: 560px;
+    }
+
+    .cartao-login h2 {
+        font-size: 29px;
+    }
+
+    .cartao-subtitulo {
+        font-size: 16px;
+    }
+
+    .conteudo-rodape {
+        flex-direction: column;
+        gap: 48px;
+        margin-bottom: 56px;
+    }
+
+    .links-rodape {
+        gap: 40px;
+    }
+}
+
+
+/* ========================================
+   LOGIN — TABLETS E LAYOUT EMPILHADO
+======================================== */
+
+@media (max-width: 900px) {
+    .login-container {
+        flex-direction: column;
+        min-height: 0;
+    }
+
+    .login-lado-imagem {
+        flex: none;
+        width: 100%;
+        padding: 100px 48px 48px;
+        justify-content: center;
+    }
+
+    .login-lado-conteudo {
+        width: 100%;
+        max-width: 680px;
+        margin-top: 0;
+    }
+
+    .login-logo {
+        margin-bottom: 36px;
+    }
+
+    .login-titulo1 {
+        font-size: 64px;
+    }
+
+    .login-titulo2 {
+        font-size: clamp(34px, 5vw, 40px);
+        line-height: 1.3;
+    }
+
+    .login-subtitulo {
+        margin-top: 28px;
+        font-size: 16px;
+    }
+
+    .login-lado-formulario {
+        flex: none;
+        width: 100%;
+        justify-content: center;
+        padding: 0 32px 64px;
+    }
+
+    .cartao-login {
+        width: 100%;
+        max-width: 480px;
+        height: auto;
+        min-height: 560px;
+        margin-left: 0;
+        padding: 36px;
+    }
+
+    footer {
+        padding-left: clamp(32px, 6vw, 64px);
+        padding-right: clamp(32px, 6vw, 64px);
+    }
+
+    .rodape-inferior {
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .links-legais-rodape a:first-child {
+        margin-left: 0;
+    }
+}
+
+
+/* ========================================
+   LOGIN — CELULARES
+======================================== */
+
+@media (max-width: 600px) {
+    .login-lado-imagem {
+        padding: 86px 24px 40px;
+    }
+
+    .login-logo {
+        margin-bottom: 30px;
+    }
+
+    .img-logo {
+        width: 170px;
+    }
+
+    .login-titulo1 {
+        font-size: 52px;
+        line-height: 1.15;
+    }
+
+    .login-titulo2 {
+        font-size: clamp(30px, 8vw, 36px);
+        line-height: 1.15;
+    }
+
+    .login-subtitulo {
+        margin-top: 24px;
+        font-size: 15px;
+        line-height: 1.5;
+        max-width: 100%;
+    }
+
+    .login-lado-formulario {
+        padding: 0 14px 48px;
+    }
+
+    .cartao-login {
+        width: 100%;
+        min-height: 520px;
+        padding: 32px 22px 28px;
+        border-radius: 24px;
+    }
+
+    .cartao-login h2 {
+        margin-top: 0;
+        font-size: clamp(25px, 6.5vw, 29px);
+        line-height: 1.2;
+    }
+
+    .cartao-subtitulo {
+        margin-top: 8px;
+        margin-bottom: 24px;
+        font-size: 14px;
+        line-height: 1.4;
+    }
+
+    .formulario-login {
+        gap: 18px;
+    }
+
+    .campos-login {
+        gap: 20px;
+    }
+
+    .campo-formulario {
+        gap: 7px;
+    }
+
+    .campo-formulario label {
+        margin-left: 14px;
+        font-size: 14px;
+    }
+
+    .campo-formulario input {
+        height: 52px;
+        padding: 0 16px;
+        font-size: 14px;
+    }
+
+    .link-esqueci-senha {
+        margin-left: 14px;
+        font-size: 13px;
+    }
+
+    .botao-continuar {
+        padding: 15px;
+        font-size: 14px;
+    }
+
+    .texto-criar-conta {
+        margin-bottom: 8px;
+        font-size: 13px;
+        line-height: 1.5;
+    }
+
+    footer {
+        padding: 48px 24px 28px;
+    }
+
+    .conteudo-rodape {
+        gap: 40px;
+        margin-bottom: 48px;
+    }
+
+    .logo-rodape {
+        width: 140px;
+        margin-bottom: 18px;
+    }
+
+    .marca-rodape p {
+        font-size: 13px;
+        line-height: 1.6;
+    }
+
+    .links-rodape {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 32px 24px;
+    }
+
+    .links-rodape .social {
+        grid-column: 1 / -1;
+    }
+
+    .coluna-links h4 {
+        margin-bottom: 16px;
+        font-size: 15px;
+    }
+
+    .coluna-links a {
+        margin-bottom: 12px;
+        font-size: 13px;
+    }
+
+    .icones-sociais {
+        gap: 12px;
+    }
+
+    .rodape-inferior {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 16px;
+        padding-top: 24px;
+        font-size: 12px;
+        line-height: 1.6;
+    }
+
+    .links-legais-rodape {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+
+    .links-legais-rodape a {
+        margin-left: 0;
+    }
+}
+
+
+/* ========================================
+   LOGIN — CELULARES ESTREITOS
+======================================== */
+
+@media (max-width: 380px) {
+    .login-lado-imagem {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .login-titulo1 {
+        font-size: 48px;
+    }
+
+    .login-titulo2 {
+        font-size: 29px;
+    }
+
+    .cartao-login {
+        padding: 30px 18px 26px;
+    }
+
+    .links-rodape {
+        column-gap: 20px;
+    }
+}
