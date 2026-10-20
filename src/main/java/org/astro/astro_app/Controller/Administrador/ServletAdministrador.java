@@ -19,9 +19,13 @@ public class ServletAdministrador extends HttpServlet{
     @Override
     public void init(){
         administradorDAO = new AdministradorDAO();
+
         empresaDAO = new EmpresaDAO();
+
         funcionarioDAO = new FuncionarioDAO();
+
         certificadoDAO = new CertificadoDAO();
+
         departamentoDAO = new DepartamentoDAO();
     }
 
@@ -30,11 +34,16 @@ public class ServletAdministrador extends HttpServlet{
 
         request.setCharacterEncoding("UTF-8");
 
-        empresaDAO.contarEmpresas();
-        funcionarioDAO.contarFuncionarios();
-        certificadoDAO.contarCertificados();
-        departamentoDAO.contarDepartamentos();
+        request.setAttribute("totalEmpresas", empresaDAO.contarEmpresas());
 
-        empresaDAO.listarUltimasTresEmpresas();
+        request.setAttribute("totalFuncionarios", funcionarioDAO.contarFuncionarios());
+
+        request.setAttribute("totalDepartamentos", departamentoDAO.contarDepartamentos());
+
+        request.setAttribute("totalCertificados", certificadoDAO.contarCertificados());
+
+        request.setAttribute("ultimasTresEmpresas", empresaDAO.listarUltimasTresEmpresas());
+
+        request.getRequestDispatcher("/webapp/crud.jsp");
     }
 }
