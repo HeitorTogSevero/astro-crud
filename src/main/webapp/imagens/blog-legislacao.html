@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nova NR-1: o que muda na gestão de riscos psicossociais — Blog Astro</title>
+<meta name="description" content="Entenda as principais alterações da NR-1 sobre riscos psicossociais e como sua empresa deve se preparar.">
+<meta name="theme-color" content="#050507">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20width%3D%22132%22%20height%3D%22104%22%20viewBox%3D%220%200%20132%20104%22%20fill%3D%22none%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%0A%3Ccircle%20cx%3D%2264.6233%22%20cy%3D%2251.8521%22%20r%3D%2249.2595%22%20fill%3D%22url%28%23paint0_linear_206_633%29%22%20stroke%3D%22white%22%20stroke-width%3D%225.18521%22/%3E%0A%3Cpath%20d%3D%22M12.7714%2053.5805C2.83312%2053.5805%202.65567%2063.5388%204.13077%2068.7252C7.04234%2078.9622%2036.8216%2079.4624%2070.6446%2069.8426C104.468%2060.2227%20129.526%2044.1256%20126.615%2033.8886C125.128%2028.6605%20122.093%2026.4748%20114.162%2029.6591%22%20stroke%3D%22%238F00C4%22%20stroke-width%3D%226.91361%22/%3E%0A%3Cpath%20d%3D%22M13.4526%2059.9668C1.95691%2062.3846%203.36507%2071.0418%205.16912%2076.1231C8.72999%2086.1527%2038.4802%2084.7458%2071.618%2072.9807C104.756%2061.2155%20128.733%2043.5474%20125.172%2033.5178C123.353%2028.3957%20119.866%2026.9938%20112.155%2030.6793%22%20stroke%3D%22%238F00C4%22%20stroke-width%3D%226.91361%22/%3E%0A%3Cdefs%3E%0A%3ClinearGradient%20id%3D%22paint0_linear_206_633%22%20x1%3D%2248.1615%22%20y1%3D%222%22%20x2%3D%2262.4628%22%20y2%3D%2242.3459%22%20gradientUnits%3D%22userSpaceOnUse%22%3E%0A%3Cstop%20stop-color%3D%22%238F00C4%22/%3E%0A%3Cstop%20offset%3D%220.658654%22%20stop-color%3D%22%23081F8B%22/%3E%0A%3C/linearGradient%3E%0A%3C/defs%3E%0A%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#050507;
+  --bg2:#0a0a0d;
+  --ink:#f5f4f7;
+  --body:#d6d4dc;
+  --mut:#9b99a5;
+  --dim:#6d6b77;
+  --line:#19181e;
+  --line2:#26252d;
+  --brand:#8f00c4;
+  --purple:#b100f0;
+  --navy:#081f8b;
+  --font:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:88px;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--body);font-family:var(--font);font-size:18px;line-height:1.72;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
+a{color:inherit}
+::selection{background:var(--brand);color:#fff}
+
+/* faixa lateral e progresso */
+.stripe{position:fixed;left:0;top:0;bottom:0;width:4px;background:var(--brand);z-index:80}
+.progress{position:fixed;top:0;left:4px;right:0;height:2px;z-index:79;background:transparent}
+.progress i{display:block;height:100%;width:100%;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--brand),var(--purple))}
+
+/* estrelas */
+.star{position:absolute;width:var(--s,18px);height:var(--s,18px);color:#34323c;pointer-events:none;animation:tw var(--d,5s) ease-in-out infinite;animation-delay:var(--dl,0s)}
+@keyframes tw{0%,100%{opacity:.25;transform:scale(.85) rotate(0)}50%{opacity:1;transform:scale(1.08) rotate(12deg)}}
+
+/* topo */
+.top{position:sticky;top:0;z-index:70;background:rgba(5,5,7,.92);border-bottom:1px solid var(--line)}
+.top-in{max-width:1180px;margin:0 auto;padding:0 32px 0 36px;height:64px;display:flex;align-items:center;justify-content:space-between}
+.top svg.logo{height:26px;width:auto;display:block}
+.top nav{display:flex;gap:28px;font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase}
+.top nav a{text-decoration:none;color:var(--mut);transition:color .2s}
+.top nav a:hover,.top nav a.on{color:var(--ink)}
+.top nav a.on{color:var(--purple)}
+
+/* hero */
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+.hero-in{position:relative;z-index:2;max-width:1180px;margin:0 auto;padding:120px 32px 96px 36px}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--purple)}
+.hero h1{margin-top:26px;font-size:clamp(40px,6.6vw,88px);line-height:1.01;letter-spacing:-.042em;font-weight:800;color:#fff;max-width:13.5em;text-wrap:balance}
+.hero h1 em{font-style:normal;color:var(--purple)}
+.hero .sub{margin-top:30px;max-width:30em;font-size:clamp(18px,2vw,23px);line-height:1.5;color:var(--mut);font-weight:400}
+.meta{margin-top:54px;display:flex;flex-wrap:wrap;gap:0;border-top:1px solid var(--line);max-width:640px}
+.meta div{padding:16px 36px 0 0;margin-right:36px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;color:var(--mut)}
+.meta div b{display:block;margin-top:6px;font-size:14px;letter-spacing:.01em;text-transform:none;font-weight:600;color:var(--ink)}
+.orbit{position:absolute;right:-120px;top:50%;width:min(980px,90vw);transform:translateY(-50%);z-index:1;pointer-events:none;opacity:.9;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 40%);mask-image:linear-gradient(90deg,transparent 0,#000 40%)}
+.orbit svg{width:100%;height:auto;display:block;overflow:visible}
+.orbit .spin{transform-origin:400px 300px;animation:drift 90s linear infinite}
+@keyframes drift{to{transform:rotate(360deg)}}
+.in{opacity:0;transform:translateY(18px);animation:rise .9s cubic-bezier(.2,.7,.2,1) forwards}
+@keyframes rise{to{opacity:1;transform:none}}
+
+/* layout */
+.wrap{max-width:1180px;margin:0 auto;padding:0 32px 0 36px;display:grid;grid-template-columns:210px minmax(0,740px);gap:84px;justify-content:space-between}
+.toc{position:sticky;top:112px;align-self:start;padding-top:72px}
+.toc .eyebrow{color:var(--dim);font-size:10.5px}
+.toc ol{list-style:none;margin-top:20px;border-left:1px solid var(--line2)}
+.toc li a{display:block;position:relative;padding:7px 0 7px 18px;font-size:13.5px;line-height:1.35;color:var(--mut);text-decoration:none;transition:color .2s,padding .25s}
+.toc li a::before{content:"";position:absolute;left:-1px;top:6px;bottom:6px;width:2px;background:var(--purple);transform:scaleY(0);transition:transform .25s}
+.toc li a:hover{color:var(--ink)}
+.toc li a.on{color:var(--ink);padding-left:22px}
+.toc li a.on::before{transform:scaleY(1)}
+.toc .pct{margin-top:28px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;color:var(--dim)}
+.toc .pct b{color:var(--ink);font-weight:700;font-variant-numeric:tabular-nums}
+
+article{padding-bottom:40px}
+.lead{padding-top:72px;font-size:clamp(20px,2.3vw,24px);line-height:1.55;color:var(--ink);font-weight:500;letter-spacing:-.012em}
+.lead strong{font-weight:700}
+article p{margin-top:22px}
+article p strong{color:var(--ink);font-weight:600}
+article a{color:var(--ink);text-decoration-color:var(--brand);text-decoration-thickness:1.5px;text-underline-offset:3px}
+article a:hover{text-decoration-color:var(--purple)}
+section.s{padding-top:88px}
+section.s>.eyebrow{display:block}
+section.s h2{margin-top:16px;font-size:clamp(28px,3.6vw,42px);line-height:1.08;letter-spacing:-.035em;font-weight:800;color:#fff;text-wrap:balance}
+.s h3{margin-top:36px;font-size:19px;line-height:1.35;letter-spacing:-.01em;font-weight:700;color:var(--ink)}
+.s h3+p{margin-top:8px}
+
+.stmt{margin:44px 0 0;padding:4px 0 4px 26px;border-left:2px solid var(--brand);font-size:clamp(20px,2.4vw,25px);line-height:1.4;font-weight:700;color:var(--ink);letter-spacing:-.018em}
+.note{margin-top:40px;padding-top:22px;border-top:1px solid var(--line)}
+.note .eyebrow{font-size:10.5px}
+.note p{margin-top:10px;font-size:14.5px;line-height:1.65;color:var(--mut)}
+
+/* números */
+.stats{margin-top:64px;display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.stats div{padding:28px 20px 26px 0}
+.stats div+div{padding-left:22px;border-left:1px solid var(--line)}
+.stats b{display:block;font-size:clamp(46px,6vw,76px);line-height:.95;letter-spacing:-.05em;font-weight:800;color:var(--purple);font-variant-numeric:tabular-nums}
+.stats span{display:block;margin-top:12px;font-size:12.5px;line-height:1.45;color:var(--mut)}
+
+/* linha do tempo */
+.tl{--p:0px;list-style:none;position:relative;margin-top:44px;padding-left:34px}
+.tl::before,.tl::after{content:"";position:absolute;left:5px;top:10px;width:1px}
+.tl::before{bottom:10px;background:var(--line2)}
+.tl::after{height:var(--p);background:linear-gradient(var(--brand),var(--purple));max-height:calc(100% - 20px)}
+.tl li{position:relative;padding:0 0 36px}
+.tl li:last-child{padding-bottom:0}
+.tl li::before{content:"";position:absolute;left:-34px;top:9px;width:11px;height:11px;border-radius:50%;background:var(--bg);border:1px solid var(--dim);transition:background .4s,border-color .4s,box-shadow .4s}
+.tl li.on::before{background:var(--purple);border-color:var(--purple);box-shadow:0 0 0 5px rgba(177,0,240,.16)}
+.tl time{display:block;font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--purple)}
+.tl h3{margin-top:6px}
+.tl p{margin-top:6px;font-size:16px;line-height:1.6;color:var(--mut)}
+.tl li.now::before{animation:pulse 2.4s ease-out infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(177,0,240,.55)}100%{box-shadow:0 0 0 14px rgba(177,0,240,0)}}
+
+/* 13 fatores */
+.fx{list-style:none;margin-top:40px;border-top:1px solid var(--line)}
+.fx li{display:grid;grid-template-columns:38px 270px 1fr;gap:0 14px;align-items:baseline;padding:15px 0 15px 0;border-bottom:1px solid var(--line);transition:padding-left .3s,background .3s}
+.fx li:hover{padding-left:12px;background:linear-gradient(90deg,rgba(143,0,196,.1),transparent 70%)}
+.fx .n{font-size:11.5px;font-weight:700;letter-spacing:.08em;color:var(--purple);font-variant-numeric:tabular-nums}
+.fx .t{font-size:16.5px;font-weight:700;line-height:1.35;color:var(--ink);letter-spacing:-.008em}
+.fx .e{font-size:14.5px;line-height:1.5;color:var(--mut)}
+
+/* duas colunas */
+.cmp{margin-top:44px;display:grid;grid-template-columns:1fr 1fr;gap:0 44px}
+.cmp h4{font-size:10.5px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--purple);padding-bottom:14px;border-bottom:1px solid var(--line2)}
+.cmp ul{list-style:none}
+.cmp li{padding:15px 0;border-bottom:1px solid var(--line);font-size:15.5px;line-height:1.55;color:var(--body)}
+.cmp li b{display:block;color:var(--ink);font-weight:700;margin-bottom:2px}
+
+/* passos */
+.steps{list-style:none;margin-top:40px;counter-reset:st;border-top:1px solid var(--line)}
+.steps li{display:grid;grid-template-columns:56px 1fr;padding:22px 0;border-bottom:1px solid var(--line);counter-increment:st}
+.steps li::before{content:counter(st,decimal-leading-zero);font-size:12px;font-weight:700;letter-spacing:.1em;color:var(--purple);padding-top:5px;transition:transform .3s}
+.steps li:hover::before{transform:translateX(4px)}
+.steps b{display:block;font-size:18px;line-height:1.35;font-weight:700;color:var(--ink);letter-spacing:-.01em}
+.steps span{display:block;margin-top:6px;font-size:16px;line-height:1.65;color:var(--mut)}
+
+/* checklist */
+.ck{margin-top:40px}
+.ck-head{display:flex;align-items:center;justify-content:space-between;gap:20px;font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--mut)}
+.ck-head b{color:var(--ink);font-variant-numeric:tabular-nums}
+.ck-head button{all:unset;cursor:pointer;color:var(--dim);transition:color .2s}
+.ck-head button:hover{color:var(--ink)}
+.ck-bar{margin-top:14px;height:2px;background:var(--line2);position:relative;overflow:hidden}
+.ck-bar i{position:absolute;inset:0;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--brand),var(--purple));transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.ck ul{list-style:none;margin-top:6px}
+.ck li{border-bottom:1px solid var(--line)}
+.ck button.it{all:unset;box-sizing:border-box;width:100%;cursor:pointer;display:grid;grid-template-columns:34px 1fr;gap:0 6px;padding:18px 0;align-items:start}
+.ck button.it:focus-visible{outline:2px solid var(--purple);outline-offset:2px}
+.box{width:20px;height:20px;margin-top:3px;border:1.5px solid var(--dim);display:grid;place-items:center;transition:background .25s,border-color .25s}
+.box svg{width:12px;height:12px;stroke:#fff;stroke-width:2.6;fill:none;stroke-linecap:square;stroke-dasharray:18;stroke-dashoffset:18;transition:stroke-dashoffset .3s .05s}
+.it:hover .box{border-color:var(--purple)}
+.it[aria-checked=true] .box{background:var(--brand);border-color:var(--brand)}
+.it[aria-checked=true] .box svg{stroke-dashoffset:0}
+.it b{display:block;font-size:17px;line-height:1.4;font-weight:700;color:var(--ink);transition:color .25s}
+.it span{display:block;margin-top:3px;font-size:15px;line-height:1.55;color:var(--mut)}
+.it[aria-checked=true] b{color:var(--mut)}
+.ck-done{margin-top:22px;font-size:15px;color:var(--mut);min-height:24px}
+.ck-done strong{color:var(--ink)}
+
+/* revelar */
+.js .rv{opacity:0;transform:translateY(20px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1);transition-delay:var(--rd,0s)}
+.js .rv.vis{opacity:1;transform:none}
+
+/* rodapé */
+footer{margin-top:96px;border-top:1px solid var(--line);position:relative;overflow:hidden}
+.ft{max-width:1180px;margin:0 auto;padding:64px 32px 48px 36px;display:grid;grid-template-columns:210px minmax(0,740px);gap:84px;justify-content:space-between}
+.ft .brand svg{height:34px;width:auto;display:block}
+.ft .brand p{margin-top:14px;font-size:13px;line-height:1.6;color:var(--dim)}
+.ft h4{font-size:10.5px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--purple)}
+.ft ul{list-style:none;margin-top:16px}
+.ft li{padding:10px 0;border-bottom:1px solid var(--line);font-size:14px;line-height:1.5}
+.ft li a{color:var(--ink);text-decoration:none;font-weight:600;transition:color .2s}
+.ft li a:hover{color:var(--purple)}
+.ft li small{display:block;margin-top:2px;font-size:12px;color:var(--dim);font-weight:400}
+.ft .decl{margin-top:36px;font-size:13px;line-height:1.7;color:var(--mut)}
+.ft .copy{margin-top:26px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim)}
+
+@media (max-width:1020px){
+  .wrap,.ft{grid-template-columns:minmax(0,1fr);gap:0}
+  .toc{display:none}
+  .ft .brand{margin-bottom:44px}
+  .lead{padding-top:56px}
+  .orbit{opacity:.45;right:-260px}
+}
+@media (max-width:720px){
+  body{font-size:17px}
+  .top nav{display:none}
+  .top-in,.hero-in,.wrap,.ft{padding-left:24px;padding-right:20px}
+  .hero-in{padding-top:84px;padding-bottom:68px}
+  .meta div{margin-right:22px;padding-right:0}
+  .stats{grid-template-columns:1fr 1fr}
+  .stats div:nth-child(3){padding-left:0;border-left:0}
+  .stats div:nth-child(n+3){border-top:1px solid var(--line)}
+  .cmp{grid-template-columns:1fr;gap:36px}
+  .fx li{grid-template-columns:34px 1fr}
+  .fx .e{grid-column:2}
+  .steps li{grid-template-columns:44px 1fr}
+  section.s{padding-top:72px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .in{opacity:1;transform:none}
+  .js .rv{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+<div class="stripe"></div>
+<div class="progress"><i id="bar"></i></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="st" viewBox="0 0 24 24"><path fill="currentColor" d="M12 0C12 8 16 12 24 12C16 12 12 16 12 24C12 16 8 12 0 12C8 12 12 8 12 0Z"/></symbol>
+  </defs>
+</svg>
+
+<header class="top">
+  <div class="top-in">
+    <a href="#topo" aria-label="Astro"><svg class="logo" viewBox="0 0 236 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="35.9531" cy="28.8476" r="27.4052" fill="url(#paint0_linear_206_624)" stroke="white" stroke-width="2.88476"/>
+<path d="M7.10538 29.809C1.57627 29.809 1.47754 35.3493 2.29821 38.2347C3.91804 43.9299 20.4856 44.2083 39.3028 38.8563C58.12 33.5043 72.0613 24.5488 70.4414 18.8535C69.6142 15.9449 67.9257 14.7289 63.5132 16.5005" stroke="#8F00C4" stroke-width="3.84635"/>
+<path d="M7.48444 33.3622C1.08887 34.7073 1.87229 39.5237 2.87597 42.3507C4.85704 47.9306 21.4084 47.1479 39.8445 40.6024C58.2805 34.0569 71.6199 24.2274 69.6389 18.6475C68.6271 15.7978 66.6868 15.0178 62.3967 17.0683" stroke="#8F00C4" stroke-width="3.84635"/>
+<path d="M96.0701 49.6159C92.9336 49.6159 90.0846 48.9624 87.5231 47.6556C85.0139 46.3487 83.0274 44.4145 81.5637 41.853C80.1 39.2393 79.3682 36.0243 79.3682 32.2083C79.3682 28.4444 80.1262 25.2295 81.6421 22.5635C83.2104 19.8452 85.2491 17.7542 87.7583 16.2905C90.3198 14.8268 93.0904 14.0949 96.0701 14.0949C99.2589 14.0949 101.82 14.7222 103.755 15.9768C105.741 17.2314 107.283 18.7213 108.381 20.4463L107.91 21.701L108.773 15.5848H116.849V48.7533H108.067V40.6768L108.93 42.794C108.721 43.1076 108.302 43.6304 107.675 44.3622C107.048 45.0418 106.185 45.7998 105.088 46.6362C103.99 47.4726 102.683 48.1783 101.167 48.7533C99.7032 49.3284 98.0042 49.6159 96.0701 49.6159ZM98.5009 42.4019C100.069 42.4019 101.481 42.1144 102.735 41.5394C104.042 40.9643 105.14 40.1541 106.028 39.1086C106.969 38.0631 107.649 36.8085 108.067 35.3448V28.1308C107.649 26.7716 106.969 25.5955 106.028 24.6022C105.088 23.5567 103.937 22.7465 102.578 22.1714C101.271 21.5964 99.8077 21.3089 98.1872 21.3089C96.4099 21.3089 94.7632 21.7532 93.2472 22.6419C91.7312 23.5306 90.5028 24.759 89.5618 26.3273C88.6731 27.8956 88.2288 29.699 88.2288 31.7378C88.2288 33.7242 88.6993 35.5277 89.6402 37.1483C90.5812 38.7688 91.8358 40.0495 93.404 40.9905C94.9723 41.9314 96.6712 42.4019 98.5009 42.4019Z" fill="white"/>
+<path d="M134.23 49.459C131.721 49.459 129.316 49.0147 127.016 48.126C124.768 47.2374 122.86 45.9305 121.292 44.2054L125.056 39.2654C126.52 40.6768 127.957 41.7223 129.369 42.4019C130.832 43.0292 132.218 43.3429 133.524 43.3429C134.518 43.3429 135.406 43.2383 136.19 43.0292C137.027 42.7678 137.68 42.3758 138.151 41.853C138.673 41.3303 138.935 40.6245 138.935 39.7359C138.935 38.6904 138.569 37.8801 137.837 37.3051C137.105 36.6778 136.164 36.1812 135.014 35.8152C133.864 35.397 132.662 35.005 131.407 34.639C128.532 33.7504 126.389 32.4435 124.977 30.7184C123.566 28.9933 122.86 27.0069 122.86 24.759C122.86 23.034 123.305 21.3873 124.193 19.819C125.082 18.1985 126.441 16.8655 128.271 15.82C130.1 14.7745 132.4 14.2517 135.171 14.2517C137.68 14.2517 139.85 14.5393 141.679 15.1143C143.561 15.637 145.312 16.5519 146.933 17.8587L143.561 23.1124C142.62 22.2237 141.496 21.5441 140.189 21.0737C138.935 20.5509 137.785 20.2634 136.739 20.2111C135.798 20.1588 134.962 20.2895 134.23 20.6032C133.498 20.8646 132.897 21.2566 132.427 21.7794C132.008 22.3021 131.799 22.9033 131.799 23.5829C131.747 24.6284 132.087 25.4648 132.819 26.0921C133.603 26.7194 134.596 27.216 135.798 27.5819C137.001 27.9478 138.203 28.3399 139.405 28.7581C141.026 29.2286 142.463 29.882 143.718 30.7184C144.973 31.5548 145.94 32.5742 146.619 33.7765C147.351 34.9266 147.717 36.3641 147.717 38.0892C147.717 40.0757 147.22 41.9576 146.227 43.7349C145.234 45.46 143.744 46.8453 141.758 47.8908C139.771 48.9363 137.262 49.459 134.23 49.459Z" fill="white"/>
+<path d="M155.86 1H164.721V15.5848H178.346V22.4851H164.721V48.7533H155.86V22.4851H150.215V15.5848H155.86V1Z" fill="white"/>
+<path d="M185.19 15.5848L185.975 24.9943L185.661 23.6613C186.602 21.6748 187.883 19.9759 189.503 18.5644C191.176 17.1007 192.875 16.003 194.6 15.2711C196.325 14.487 197.736 14.0949 198.834 14.0949L198.442 22.8771C195.933 22.668 193.737 23.1385 191.855 24.2886C190.026 25.3864 188.588 26.8501 187.543 28.6797C186.55 30.5093 186.053 32.4435 186.053 34.4822V48.7533H177.271V15.5848H185.19Z" fill="white"/>
+<path d="M198.92 31.8162C198.92 28.4706 199.704 25.4648 201.272 22.7987C202.841 20.0804 205.036 17.9633 207.859 16.4473C210.734 14.879 213.975 14.0949 217.582 14.0949C221.294 14.0949 224.509 14.879 227.227 16.4473C229.998 17.9633 232.141 20.0804 233.657 22.7987C235.173 25.4648 235.931 28.4706 235.931 31.8162C235.931 35.1618 235.173 38.1938 233.657 40.9121C232.141 43.5781 229.998 45.6952 227.227 47.2635C224.509 48.8317 221.268 49.6159 217.504 49.6159C213.949 49.6159 210.76 48.9102 207.937 47.4987C205.115 46.035 202.893 43.9702 201.272 41.3041C199.704 38.6381 198.92 35.4754 198.92 31.8162ZM207.781 31.8946C207.781 33.8288 208.199 35.6061 209.035 37.2267C209.872 38.7949 211.022 40.0495 212.485 40.9905C213.949 41.9314 215.57 42.4019 217.347 42.4019C219.281 42.4019 220.954 41.9314 222.365 40.9905C223.829 40.0495 224.953 38.7949 225.737 37.2267C226.574 35.6061 226.992 33.8288 226.992 31.8946C226.992 29.9081 226.574 28.1308 225.737 26.5625C224.953 24.942 223.829 23.6613 222.365 22.7203C220.954 21.7794 219.281 21.3089 217.347 21.3089C215.517 21.3089 213.871 21.8055 212.407 22.7987C210.996 23.7397 209.872 24.9943 209.035 26.5625C208.199 28.1308 207.781 29.9081 207.781 31.8946Z" fill="white"/>
+<defs>
+<linearGradient id="paint0_linear_206_624" x1="25.3683" y1="3" x2="34.7511" y2="23.5589" gradientUnits="userSpaceOnUse">
+<stop stop-color="#8F00C4"/>
+<stop offset="0.658654" stop-color="#081F8B"/>
+</linearGradient>
+</defs>
+</svg></a>
+    <nav aria-label="Blog">
+      <a href="#topo">Blog</a>
+      <a href="#topo" class="on">Legislação</a>
+    </nav>
+  </div>
+</header>
+
+<div id="topo" class="hero">
+  <svg class="star" style="left:6%;top:16%;--s:16px;--d:6s"><use href="#st"/></svg>
+  <svg class="star" style="left:48%;top:10%;--s:12px;--d:4.5s;--dl:1.2s"><use href="#st"/></svg>
+  <svg class="star" style="left:31%;bottom:12%;--s:22px;--d:7s;--dl:2s"><use href="#st"/></svg>
+  <svg class="star" style="right:7%;top:14%;--s:20px;--d:5.5s;--dl:.6s"><use href="#st"/></svg>
+  <svg class="star" style="right:12%;bottom:10%;--s:12px;--d:4s;--dl:2.6s"><use href="#st"/></svg>
+
+  <div class="orbit" aria-hidden="true">
+    <svg viewBox="0 0 800 600" fill="none">
+      <g transform="rotate(-16 400 300)">
+        <path id="orb" d="M 30,300 a 370,118 0 1,0 740,0 a 370,118 0 1,0 -740,0" stroke="#ffffff" stroke-opacity=".09" stroke-width="1.2"/>
+        <path d="M 70,300 a 330,96 0 1,0 660,0 a 330,96 0 1,0 -660,0" stroke="#8f00c4" stroke-opacity=".28" stroke-width="1.2" stroke-dasharray="2 9"/>
+        <circle r="5" fill="#b100f0"><animateMotion dur="26s" repeatCount="indefinite" rotate="0"><mpath href="#orb"/></animateMotion></circle>
+        <circle r="2.5" fill="#fff" fill-opacity=".7"><animateMotion dur="40s" begin="-12s" repeatCount="indefinite" rotate="0"><mpath href="#orb"/></animateMotion></circle>
+      </g>
+      <circle cx="400" cy="300" r="64" stroke="#ffffff" stroke-opacity=".14" stroke-width="1.2"/>
+      <circle cx="400" cy="300" r="64" fill="url(#pg)" fill-opacity=".22"/>
+      <defs><linearGradient id="pg" x1="360" y1="236" x2="400" y2="340" gradientUnits="userSpaceOnUse"><stop stop-color="#8F00C4"/><stop offset=".66" stop-color="#081F8B"/></linearGradient></defs>
+    </svg>
+  </div>
+
+  <div class="hero-in">
+    <div class="eyebrow in" style="animation-delay:.05s">Legislação · NR-1 · Gestão de riscos</div>
+    <h1 class="in" style="animation-delay:.18s">Nova NR-1: o que muda na gestão de riscos <em>psicossociais</em></h1>
+    <p class="sub in" style="animation-delay:.34s">Entenda as principais alterações e como sua empresa deve se preparar.</p>
+    <div class="meta in" style="animation-delay:.5s">
+      <div>Publicado<b>14.10.2026</b></div>
+      <div>Leitura<b>15 minutos</b></div>
+      <div>Consulta normativa<b>até 14.10.2026</b></div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <aside class="toc" aria-label="Neste artigo">
+    <div class="eyebrow">Neste artigo</div>
+    <ol id="tocList"></ol>
+    <div class="pct"><b id="pct">0</b>% lido</div>
+  </aside>
+
+  <article>
+    <p class="lead rv">Desde <strong>26 de maio de 2026</strong>, a NR-1 exige que as empresas tratem os fatores psicossociais do trabalho do mesmo jeito que tratam ruído, produto químico ou risco de queda: identificados, avaliados, controlados e registrados no gerenciamento de riscos ocupacionais. A data foi adiada uma vez, o período de adaptação acabou e a fiscalização já pode autuar. Neste texto você vê o que mudou, o que a norma pede de fato (e o que ela não pede) e por onde começar.</p>
+
+    <div class="stats rv">
+      <div><b data-count="13">13</b><span>fatores de risco listados no guia do MTE, em lista exemplificativa</span></div>
+      <div><b data-count="90">90</b><span>dias de dupla visita orientativa após a vigência</span></div>
+      <div><b data-count="2">2</b><span>anos, no máximo, entre revisões da avaliação de riscos</span></div>
+      <div><b data-count="20">20</b><span>anos de guarda do histórico do inventário</span></div>
+    </div>
+
+    <!-- 01 -->
+    <section class="s" id="mudou" data-toc="O que mudou">
+      <span class="eyebrow rv">01 · O que mudou</span>
+      <h2 class="rv">Uma frase nova dentro de uma norma que já existia</h2>
+      <p class="rv">A Portaria MTE nº 1.419, de 27 de agosto de 2024, reescreveu partes do capítulo 1.5 da NR-1, aquele que organiza o Gerenciamento de Riscos Ocupacionais, o GRO. Até então, o gerenciamento falava de agentes físicos, químicos e biológicos, de riscos de acidentes e de fatores ergonômicos. O item 1.5.3.1.4 passou a dizer, de forma expressa, que entre os fatores ergonômicos estão os <strong>fatores de risco psicossociais relacionados ao trabalho</strong>.</p>
+      <p class="rv">Na mesma linha, o item 1.5.3.2.1 manda considerar as condições de trabalho nos termos da NR-17. Na prática, isso amarra a NR-1 à análise ergonômica da organização do trabalho: metas, ritmo, jornada, relação com chefias, clareza do que cada pessoa deve fazer.</p>
+      <p class="rv">Outra coisa que não mudou: a lógica. Identificar o perigo, avaliar o risco, definir medidas, acompanhar se elas funcionam. A novidade é que um grupo inteiro de perigos, que muita empresa tratava como assunto de clima ou de RH, agora entra nessa engrenagem com a mesma exigência dos demais.</p>
+      <p class="stmt rv">Não existe um “PGR psicossocial” separado. Existe um PGR que precisa enxergar o trabalho inteiro.</p>
+    </section>
+
+    <!-- 02 -->
+    <section class="s" id="linha" data-toc="Linha do tempo">
+      <span class="eyebrow rv">02 · Linha do tempo</span>
+      <h2 class="rv">Da publicação à fiscalização, quase dois anos</h2>
+      <p class="rv">O texto foi publicado em 2024, mas só virou exigível em 2026. Entre uma data e outra houve um adiamento, um guia, um manual e um documento de perguntas e respostas. Vale conhecer a ordem das coisas, porque ela explica por que muita empresa ainda se sente “dentro do prazo”.</p>
+
+      <ol class="tl" id="tl">
+        <li><time>27.08.2024</time><h3>Portaria MTE nº 1.419/2024</h3><p>Publica a nova redação do capítulo 1.5 da NR-1, incluindo os fatores psicossociais no GRO.</p></li>
+        <li><time>24.04.2025</time><h3>Guia do MTE sobre fatores psicossociais</h3><p>O ministério lista 13 fatores de risco, de forma exemplificativa, e dá orientações de gestão.</p></li>
+        <li><time>15.05.2025</time><h3>Portaria MTE nº 765/2025</h3><p>Adia a vigência das novas disposições para 26 de maio de 2026. O ano que se segue é de adaptação, com caráter orientativo.</p></li>
+        <li><time>Março de 2026</time><h3>Manual de interpretação do capítulo 1.5</h3><p>O MTE publica o manual de interpretação e aplicação do GRO e do PGR, com orientações para a leitura da norma.</p></li>
+        <li><time>30.04.2026</time><h3>Perguntas e respostas sobre GRO e PGR</h3><p>O ministério esclarece pontos práticos e confirma que as novas disposições seriam fiscalizadas com dupla visita nos primeiros 90 dias.</p></li>
+        <li><time>26.05.2026</time><h3>A norma passa a valer</h3><p>A gestão dos riscos psicossociais se torna exigível. Não houve segunda prorrogação.</p></li>
+        <li><time>Fim de agosto de 2026</time><h3>Terminam os 90 dias da dupla visita</h3><p>A partir daí, a autuação já não depende de uma primeira visita só para orientar.</p></li>
+        <li class="now"><time>Hoje · 14.10.2026</time><h3>Sem período de tolerância</h3><p>A fiscalização pode pedir o inventário, o plano de ação e as evidências de qualquer empresa sujeita à norma.</p></li>
+      </ol>
+
+      <div class="note rv">
+        <div class="eyebrow">Por que adiar a vigência, e não só a fiscalização</div>
+        <p>Segundo a leitura jurídica corrente, uma norma em vigor não pode ter a fiscalização suspensa por portaria por mais de 90 dias. Por isso o caminho escolhido foi empurrar a própria data de vigência por um ano.</p>
+      </div>
+    </section>
+
+    <!-- 03 -->
+    <section class="s" id="conceito" data-toc="O que são riscos psicossociais">
+      <span class="eyebrow rv">03 · O conceito</span>
+      <h2 class="rv">O problema é o trabalho, não a pessoa</h2>
+      <p class="rv">Risco psicossocial é o risco para a saúde física e mental que nasce da forma como o trabalho é organizado, gerido e vivido: pressão por metas, assédio, falta de apoio, insegurança sobre o próprio papel. Repare que o foco está nas <strong>condições de trabalho</strong>. A norma não pede que a empresa descubra quem está ansioso ou deprimido.</p>
+      <p class="rv">A NR-1 faz uma distinção que ajuda aqui. O <strong>perigo</strong> é a condição capaz de causar dano, por exemplo uma meta incompatível com a jornada. O <strong>risco</strong> é a combinação entre a chance de esse dano acontecer e a gravidade dele, medida no contexto real da empresa. Dois setores podem ter o mesmo perigo e riscos bem diferentes.</p>
+      <p class="rv">Os danos possíveis incluem ansiedade, depressão, esgotamento profissional e reações de estresse. Mas também problemas físicos, como os osteomusculares, e é por isso que o tema conversa tanto com a ergonomia, as LER/DORT e a NR-17.</p>
+      <p class="rv">Um detalhe importante: palestra sobre saúde mental, ginástica laboral e canal de apoio psicológico são boas iniciativas, mas não substituem a gestão. A norma quer ver a empresa agindo sobre as <strong>causas organizacionais</strong>, não só oferecendo suporte depois que a pessoa já adoeceu.</p>
+    </section>
+
+    <!-- 04 -->
+    <section class="s" id="fatores" data-toc="Os 13 fatores do MTE">
+      <span class="eyebrow rv">04 · Os fatores</span>
+      <h2 class="rv">Os 13 fatores que o MTE colocou na mesa</h2>
+      <p class="rv">O guia do ministério traz uma lista de 13 fatores. Ela é <strong>exemplificativa</strong>: serve de ponto de partida, não de limite. A coluna da direita traz exemplos de situações reais, escritos por nós para ilustrar; o texto oficial do guia deve ser consultado na fonte.</p>
+
+      <ol class="fx rv">
+        <li><span class="n">01</span><span class="t">Assédio de qualquer natureza</span><span class="e">Humilhação, isolamento, cobrança vexatória, assédio sexual.</span></li>
+        <li><span class="n">02</span><span class="t">Má gestão de mudanças organizacionais</span><span class="e">Reestruturação sem comunicação, troca brusca de sistema, fusões.</span></li>
+        <li><span class="n">03</span><span class="t">Baixa clareza de papel ou função</span><span class="e">Atribuições indefinidas, ordens contraditórias de chefias diferentes.</span></li>
+        <li><span class="n">04</span><span class="t">Baixas recompensas e reconhecimento</span><span class="e">Esforço sem retorno, critérios de promoção que ninguém entende.</span></li>
+        <li><span class="n">05</span><span class="t">Falta de suporte ou apoio no trabalho</span><span class="e">Pouca orientação, falta de recursos, liderança ausente.</span></li>
+        <li><span class="n">06</span><span class="t">Baixo controle ou falta de autonomia</span><span class="e">Ritmo imposto, monitoramento constante, nenhuma margem de decisão.</span></li>
+        <li><span class="n">07</span><span class="t">Baixa justiça organizacional</span><span class="e">Decisões arbitrárias, tratamento desigual, punição sem critério.</span></li>
+        <li><span class="n">08</span><span class="t">Eventos violentos ou traumáticos</span><span class="e">Assalto, agressão por cliente, acidente grave presenciado.</span></li>
+        <li><span class="n">09</span><span class="t">Baixa demanda no trabalho (subcarga)</span><span class="e">Ociosidade forçada, esvaziamento de funções.</span></li>
+        <li><span class="n">10</span><span class="t">Excesso de demandas no trabalho (sobrecarga)</span><span class="e">Meta inatingível, jornada longa, acúmulo de funções.</span></li>
+        <li><span class="n">11</span><span class="t">Maus relacionamentos no local de trabalho</span><span class="e">Conflito recorrente, hostilidade entre equipes.</span></li>
+        <li><span class="n">12</span><span class="t">Trabalho em condições de difícil comunicação</span><span class="e">Equipes dispersas, barreira de idioma, informação insuficiente.</span></li>
+        <li><span class="n">13</span><span class="t">Trabalho remoto e isolado</span><span class="e">Teletrabalho sem contato com a equipe, conexão o tempo todo.</span></li>
+      </ol>
+
+      <p class="rv">Na prática, a empresa verifica quais desses fatores aparecem em cada setor ou função e acrescenta os que identificar por conta própria. Uma lista copiada do guia, sem relação com a realidade, é exatamente o tipo de documento que o próprio ministério diz não querer ver.</p>
+    </section>
+
+    <!-- 05 -->
+    <section class="s" id="exige" data-toc="O que a norma exige">
+      <span class="eyebrow rv">05 · O que a norma pede</span>
+      <h2 class="rv">O que a NR-1 não exige, e o que ela exige mesmo</h2>
+      <p class="rv">Boa parte da confusão em torno do tema vem de achar que a norma impõe um método. Não impõe. O que o Ministério do Trabalho e Emprego deixou claro nos documentos de orientação pode ser resumido em duas colunas.</p>
+
+      <div class="cmp rv">
+        <div>
+          <h4>A norma não exige</h4>
+          <ul>
+            <li><b>Questionário</b>Ele pode ajudar, mas não é obrigatório. E, sozinho, não comprova gestão: o resultado precisa ser analisado tecnicamente e integrado ao inventário de riscos ou à avaliação ergonômica preliminar.</li>
+            <li><b>Ferramenta ou metodologia específica</b>A empresa escolhe a que for tecnicamente adequada à sua realidade e sabe explicar por quê.</li>
+            <li><b>Diagnóstico de cada empregado</b>A análise é do trabalho. A avaliação clínica individual não substitui a identificação de perigos, e dados de saúde pedem cautela por serem sensíveis (LGPD).</li>
+          </ul>
+        </div>
+        <div>
+          <h4>A norma exige</h4>
+          <ul>
+            <li><b>Identificação dos fatores</b>A partir do trabalho real, não só da descrição de cargo.</li>
+            <li><b>Avaliação e priorização</b>Quanto cada fator pesa, em qual setor, com qual gravidade.</li>
+            <li><b>Plano de ação</b>Medidas sobre as causas, com responsável, prazo e forma de acompanhar.</li>
+            <li><b>Participação dos trabalhadores</b>Consulta sobre a percepção de riscos e comunicação dos riscos consolidados.</li>
+            <li><b>Registro</b>No mesmo inventário e no mesmo plano de ação do PGR.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 -->
+    <section class="s" id="pgr" data-toc="Como incluir no PGR">
+      <span class="eyebrow rv">06 · Na prática</span>
+      <h2 class="rv">Como colocar os fatores psicossociais no PGR</h2>
+      <p class="rv">Não há um caminho único, mas há uma sequência que costuma funcionar e que respeita o que a norma pede. Ela percorre as mesmas etapas dos demais riscos.</p>
+
+      <ol class="steps rv">
+        <li><div><b>Comece pelo trabalho que realmente acontece</b><span>Descrição de cargo diz o que deveria acontecer. Converse com quem executa, observe o setor, veja como as metas chegam e como as decisões são tomadas.</span></div></li>
+        <li><div><b>Junte os indicadores que a empresa já tem</b><span>Afastamentos por transtornos mentais, rotatividade, absenteísmo, horas extras, queixas na ouvidoria, denúncias de assédio. Eles costumam mostrar onde os fatores se concentram.</span></div></li>
+        <li><div><b>Consulte os trabalhadores e guarde o registro</b><span>O item 1.5.3.3 pede mecanismos de participação e consulta. Em fatores psicossociais, a percepção de quem faz o trabalho é central. Consulta sem registro quase não existe.</span></div></li>
+        <li><div><b>Avalie e priorize</b><span>Nem todo fator pesa igual em todo setor. Decida o que é mais grave e mais provável e justifique o critério.</span></div></li>
+        <li><div><b>Monte o plano de ação sobre as causas</b><span>Revisão de metas e de dimensionamento de equipe, atribuições claras, preparo de lideranças, canal de denúncia com apuração de verdade, regras de desconexão no remoto. Cada medida com responsável e prazo.</span></div></li>
+        <li><div><b>Defina quando revisar</b><span>No mínimo a cada dois anos e sempre que algo mudar: processo, acidente, adoecimento relacionado ao trabalho, pedido justificado dos trabalhadores ou da CIPA. O histórico das atualizações do inventário fica guardado por 20 anos.</span></div></li>
+      </ol>
+    </section>
+
+    <!-- 07 -->
+    <section class="s" id="pequenas" data-toc="Pequenas empresas e MEI">
+      <span class="eyebrow rv">07 · Porte da empresa</span>
+      <h2 class="rv">E as empresas pequenas?</h2>
+      <p class="rv">Microempresas e empresas de pequeno porte de graus de risco 1 e 2, que não identifiquem exposição a agentes físicos, químicos e biológicos e que prestem as informações digitais exigidas, podem ficar dispensadas de elaborar o PGR (item 1.8.4). Mas a dispensa tem um limite claro: ela <strong>não alcança</strong> a gestão dos riscos ergonômicos e psicossociais.</p>
+      <p class="rv">Segundo as orientações do MTE, essas empresas devem manter a <strong>avaliação ergonômica preliminar</strong> como o registro obrigatório dessa gestão. O microempreendedor individual também é dispensado do PGR (item 1.8.1), sem prejuízo das demais regras das NRs.</p>
+      <p class="rv">Em resumo: ser pequena muda o tamanho do documento, não a obrigação de olhar para o assunto.</p>
+    </section>
+
+    <!-- 08 -->
+    <section class="s" id="assedio" data-toc="Assédio, CIPA e denúncias">
+      <span class="eyebrow rv">08 · Assédio</span>
+      <h2 class="rv">Assédio: um fator de risco e uma obrigação própria</h2>
+      <p class="rv">O assédio aparece duas vezes no radar. Primeiro como fator psicossocial, na lista do guia. Depois como tema de uma lei específica: a Lei nº 14.457/2022 determinou que as empresas obrigadas a ter CIPA adotem regras de conduta sobre assédio sexual e outras formas de violência, procedimentos para receber e acompanhar denúncias, inclusão do tema nas atividades da comissão e ações de capacitação de todos os níveis hierárquicos, no mínimo a cada 12 meses.</p>
+      <p class="rv">O erro mais comum é manter dois sistemas paralelos: um canal de denúncia que funciona de um lado e um PGR que nunca ouviu falar dele do outro. O ideal é que o que o canal revela alimente o inventário e o plano de ação. É assim que a empresa mostra que a informação gera medida.</p>
+    </section>
+
+    <!-- 09 -->
+    <section class="s" id="fiscalizacao" data-toc="Fiscalização e multa">
+      <span class="eyebrow rv">09 · Fiscalização</span>
+      <h2 class="rv">Como a fiscalização olha para isso</h2>
+      <p class="rv">A Inspeção do Trabalho verifica se a empresa identificou, avaliou e controlou os riscos psicossociais e se consegue <strong>demonstrar</strong> esse processo. O descumprimento pode gerar auto de infração, e a multa é calculada conforme a NR-28, que classifica as infrações por código e nível de gravidade. O valor varia de acordo com esse nível e com o número de empregados.</p>
+      <h3 class="rv">A dupla visita já não protege como antes</h3>
+      <p class="rv">O critério da dupla visita, previsto na CLT e no Regulamento da Inspeção do Trabalho, determina que, depois de novos regulamentos, a primeira visita seja de instrução e não de autuação. Esse benefício vale por 90 dias a partir da vigência. Com o fim de agosto de 2026, a constatação de irregularidade pode resultar direto em auto de infração.</p>
+      <p class="rv">O critério continua valendo em outras situações, como para estabelecimentos com até dez trabalhadores e para micro e pequenas empresas, que têm direito a fiscalização prioritariamente orientadora, salvo reincidência, fraude ou embaraço à fiscalização.</p>
+      <h3 class="rv">O que o auditor tende a examinar</h3>
+      <p class="rv">O inventário de riscos e o plano de ação, as evidências de que as medidas saíram do papel, os registros de participação dos trabalhadores e, principalmente, a <strong>coerência</strong> entre o que está escrito e o que se vê no local, inclusive por meio de entrevistas. Um PGR que só repete a lista do guia, sem relação com a empresa, não demonstra gestão.</p>
+    </section>
+
+    <!-- 10 -->
+    <section class="s" id="alem" data-toc="Além da multa">
+      <span class="eyebrow rv">10 · Consequências</span>
+      <h2 class="rv">O custo que vem depois da multa</h2>
+      <p class="rv">A multa é só a parte mais visível. A mudança mais profunda está no terreno da responsabilidade civil e previdenciária.</p>
+      <h3 class="rv">Na Justiça do Trabalho</h3>
+      <p class="rv">A indenização por doença do trabalho depende, em regra, de dolo ou culpa do empregador. Antes da alteração, o dever de prevenir o adoecimento mental era extraído de normas gerais, como o art. 157 da CLT e a NR-17. Agora ele está escrito no gerenciamento de riscos. Não identificar os fatores psicossociais, ou identificá-los e não fazer nada, tende a ser examinado como <strong>indício de culpa</strong>. O inventário funciona nos dois sentidos: registrar um risco conhecido e deixá-lo sem tratamento prova que a empresa sabia.</p>
+      <p class="rv">O trabalhador, em uma ação por burnout, depressão ou ansiedade ligados ao trabalho, pode pedir a exibição do PGR, do inventário, do plano de ação e da avaliação ergonômica. É com esses papéis que se discute se a empresa tratou o que sabia.</p>
+      <h3 class="rv">No INSS</h3>
+      <p class="rv">Transtornos mentais e comportamentais podem ser reconhecidos como doença do trabalho pela perícia, inclusive pelo nexo técnico epidemiológico, quando há associação estatística entre o diagnóstico e a atividade econômica da empresa. O benefício acidentário repercute no Fator Acidentário de Prevenção, e a negligência com normas de segurança e saúde autoriza o INSS a propor ação regressiva para recuperar o que pagou. Ter documentação técnica anterior é também o que permite contestar um nexo aplicado de forma indevida.</p>
+      <p class="rv">Para dar uma dimensão do tamanho do problema: o Ministério da Previdência Social informou que foram concedidos <a href="https://agenciagov.ebc.com.br/noticias/202601/previdencia-social-concede-546-254-beneficios-por-incapacidade-temporaria-por-transtornos-mentais-e-comportamentais" target="_blank" rel="noopener">546.254 benefícios por incapacidade temporária por transtornos mentais e comportamentais em 2025</a>. Nem todos são relacionados ao trabalho, mas o número mostra o peso do tema.</p>
+      <h3 class="rv">Outros caminhos</h3>
+      <p class="rv">O descumprimento reiterado das normas de saúde e segurança pode fundamentar rescisão indireta do contrato (art. 483 da CLT) e ações civis públicas do Ministério Público do Trabalho, com pedidos de obrigação de fazer e de indenização por dano moral coletivo.</p>
+      <p class="stmt rv">Quando o adoecimento vira processo, a pergunta é quase sempre a mesma: o que a empresa fez para prevenir?</p>
+    </section>
+
+    <!-- 11 -->
+    <section class="s" id="erros" data-toc="Erros que aparecem cedo">
+      <span class="eyebrow rv">11 · Armadilhas</span>
+      <h2 class="rv">Seis erros que costumam aparecer logo no começo</h2>
+      <ol class="steps rv">
+        <li><div><b>Copiar a lista do guia</b><span>Colar os 13 fatores no inventário e dar o trabalho por concluído. Sem análise do setor, a lista não diz nada sobre a empresa.</span></div></li>
+        <li><div><b>Apostar tudo em palestras e ações de bem-estar</b><span>Elas podem complementar. Mas a norma pede ação sobre a organização do trabalho, e isso quase nunca cabe em um evento.</span></div></li>
+        <li><div><b>Aplicar um questionário e parar nele</b><span>O próprio MTE diz que ele não basta sozinho. O resultado precisa ser analisado e entrar no inventário.</span></div></li>
+        <li><div><b>Deixar o assunto só com o RH</b><span>Metas, escalas, dimensionamento e liderança são decisões de operação e de diretoria. Se elas não entram na conversa, o plano de ação fica sem poder de mudar nada.</span></div></li>
+        <li><div><b>Esquecer a consulta aos trabalhadores</b><span>É requisito, não cortesia. E precisa deixar rastro: quem foi ouvido, quando, sobre o quê.</span></div></li>
+        <li><div><b>Registrar o risco e não agir</b><span>Identificar um fator sem medida correspondente cria um documento que prova o conhecimento e não prova a prevenção.</span></div></li>
+      </ol>
+    </section>
+
+    <!-- 12 -->
+    <section class="s" id="checklist" data-toc="Checklist de preparação">
+      <span class="eyebrow rv">12 · Para fazer agora</span>
+      <h2 class="rv">Oito perguntas para testar a sua empresa</h2>
+      <p class="rv">Marque o que já está resolvido. Se alguma resposta for “não sei”, ela conta como pendente: em fiscalização, o que não se consegue demonstrar pesa como se não existisse.</p>
+
+      <div class="ck rv" id="ck">
+        <div class="ck-head"><span><b id="ckN">0</b> de 8 resolvidas</span><button type="button" id="ckReset">Limpar</button></div>
+        <div class="ck-bar"><i id="ckBar"></i></div>
+        <ul>
+          <li><button class="it" type="button" role="checkbox" aria-checked="false"><span class="box"><svg viewBox="0 0 12 12"><path d="M1.5 6.4 4.8 9.6 10.5 2.6"/></svg></span><span><b>Sabemos quais fatores existem em cada setor?</b><span>O levantamento partiu do trabalho real, não só do organograma.</span></span></button></li>
+          <li><button class="it" type="button" role="checkbox" aria-checked="false"><span class="box"><svg viewBox="0 0 12 12"><path d="M1.5 6.4 4.8 9.6 10.5 2.6"/></svg></span><span><b>Os fatores estão no inventário de riscos?</b><span>No PGR ou, nos casos de dispensa, na avaliação ergonômica preliminar.</span></span></button></li>
+          <li><button class="it" type="button" role="checkbox" aria-checked="false"><span class="box"><svg viewBox="0 0 12 12"><path d="M1.5 6.4 4.8 9.6 10.5 2.6"/></svg></span><span><b>Existe registro de consulta aos trabalhadores?</b><span>Quem participou, quando e sobre o quê.</span></span></button></li>
+          <li><button class="it" type="button" role="checkbox" aria-checked="false"><span class="box"><svg viewBox="0 0 12 12"><path d="M1.5 6.4 4.8 9.6 10.5 2.6"/></svg></span><span><b>Se aplicamos questionário, alguém analisou o resultado?</b><span>A análise técnica entrou no inventário, não ficou em uma planilha solta.</span></span></button></li>
+          <li><button class="it" type="button" role="checkbox" aria-checked="false"><span class="box"><svg viewBox="0 0 12 12"><path d="M1.5 6.4 4.8 9.6 10.5 2.6"/></svg></span><span><b>O plano de ação tem responsável e prazo?</b><span>E uma forma definida de acompanhar se a medida funcionou.</span></span></button></li>
+          <li><button class="it" type="button" role="checkbox" aria-checked="false"><span class="box"><svg viewBox="0 0 12 12"><path d="M1.5 6.4 4.8 9.6 10.5 2.6"/></svg></span><span><b>O canal de denúncia de assédio apura de verdade?</b><span>Com procedimento, retorno e capacitação periódica.</span></span></button></li>
+          <li><button class="it" type="button" role="checkbox" aria-checked="false"><span class="box"><svg viewBox="0 0 12 12"><path d="M1.5 6.4 4.8 9.6 10.5 2.6"/></svg></span><span><b>Está definido quando o inventário é revisto?</b><span>Mudança de processo, adoecimento relacionado ao trabalho, pedido da CIPA ou dos trabalhadores, e no máximo a cada dois anos.</span></span></button></li>
+          <li><button class="it" type="button" role="checkbox" aria-checked="false"><span class="box"><svg viewBox="0 0 12 12"><path d="M1.5 6.4 4.8 9.6 10.5 2.6"/></svg></span><span><b>Alguém de fora entenderia tudo isso só pelos registros?</b><span>Sem depender da memória de uma pessoa específica.</span></span></button></li>
+        </ul>
+        <p class="ck-done" id="ckDone"></p>
+      </div>
+    </section>
+
+    <section class="s" id="fecho" data-toc="Para fechar">
+      <span class="eyebrow rv">Para fechar</span>
+      <h2 class="rv">Gestão real, registrada e revisada</h2>
+      <p class="rv">A inclusão dos riscos psicossociais na NR-1 transformou a prevenção do adoecimento mental em obrigação escrita, com fiscalização e consequências definidas. O ponto decisivo não é ter mais um documento: é que a gestão seja <strong>real e demonstrável</strong>. Identificar a partir do trabalho que existe, ouvir quem executa, agir sobre as causas, registrar e rever.</p>
+      <p class="stmt rv">Um PGR genérico não protege nem diante do auditor nem diante do juiz.</p>
+    </section>
+  </article>
+</div>
+
+<footer>
+  <svg class="star" style="right:8%;top:30px;--s:18px;--d:6s"><use href="#st"/></svg>
+  <svg class="star" style="left:5%;bottom:30px;--s:12px;--d:5s;--dl:1.4s"><use href="#st"/></svg>
+  <div class="ft">
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 132 104" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="64.6233" cy="51.8521" r="49.2595" fill="url(#paint0_linear_206_633)" stroke="white" stroke-width="5.18521"/>
+<path d="M12.7714 53.5805C2.83312 53.5805 2.65567 63.5388 4.13077 68.7252C7.04234 78.9622 36.8216 79.4624 70.6446 69.8426C104.468 60.2227 129.526 44.1256 126.615 33.8886C125.128 28.6605 122.093 26.4748 114.162 29.6591" stroke="#8F00C4" stroke-width="6.91361"/>
+<path d="M13.4526 59.9668C1.95691 62.3846 3.36507 71.0418 5.16912 76.1231C8.72999 86.1527 38.4802 84.7458 71.618 72.9807C104.756 61.2155 128.733 43.5474 125.172 33.5178C123.353 28.3957 119.866 26.9938 112.155 30.6793" stroke="#8F00C4" stroke-width="6.91361"/>
+<defs>
+<linearGradient id="paint0_linear_206_633" x1="48.1615" y1="2" x2="62.4628" y2="42.3459" gradientUnits="userSpaceOnUse">
+<stop stop-color="#8F00C4"/>
+<stop offset="0.658654" stop-color="#081F8B"/>
+</linearGradient>
+</defs>
+</svg>
+      <p>Blog Astro<br>Legislação e SST</p>
+    </div>
+    <div>
+      <h4>Declaração</h4>
+      <p class="decl">Este conteúdo é informativo e de referência. Ele não constitui parecer jurídico, laudo, avaliação de risco ou diagnóstico de conformidade, nem substitui a atuação de profissionais legalmente habilitados. A aplicação concreta da NR-1 deve considerar o texto vigente, seus anexos, os atos de alteração e as circunstâncias reais do trabalho de cada empresa.</p>
+
+      <h4 style="margin-top:44px">Fontes oficiais</h4>
+      <ul>
+        <li><a href="https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/nr-01-atualizada-2025-i-1.pdf" target="_blank" rel="noopener">NR-1 atualizada</a><small>Ministério do Trabalho e Emprego</small></li>
+        <li><a href="https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/guia-nr-01-revisado.pdf" target="_blank" rel="noopener">Guia de fatores de riscos psicossociais relacionados ao trabalho</a><small>MTE, 2025</small></li>
+        <li><a href="https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/inspecao-do-trabalho/manuais-e-publicacoes/2026/manual_gro_pgr_da_nr_1.pdf/view" target="_blank" rel="noopener">Manual de interpretação e aplicação do capítulo 1.5 da NR-1</a><small>MTE, 2026</small></li>
+        <li><a href="https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/inspecao-do-trabalho/manuais-e-publicacoes/2026/perguntas-e-respostas-gro-pgr-maio-2026" target="_blank" rel="noopener">Perguntas e respostas sobre o GRO e o PGR</a><small>MTE, 30.04.2026</small></li>
+        <li><a href="https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/inspecao-do-trabalho/seguranca-e-saude-no-trabalho/fiscalizacao" target="_blank" rel="noopener">Fiscalização de Segurança e Saúde no Trabalho</a><small>MTE</small></li>
+      </ul>
+      <p class="copy">© 2026 Astro</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var d=document, root=d.documentElement;
+  root.classList.add('js');
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* sumário gerado a partir das seções */
+  var secs=[].slice.call(d.querySelectorAll('section.s[data-toc]'));
+  var toc=d.getElementById('tocList');
+  secs.forEach(function(s){
+    var li=d.createElement('li'), a=d.createElement('a');
+    a.href='#'+s.id; a.textContent=s.getAttribute('data-toc'); a.setAttribute('data-id',s.id);
+    li.appendChild(a); toc.appendChild(li);
+  });
+  var links=[].slice.call(toc.querySelectorAll('a'));
+
+  /* revelar ao rolar */
+  var rv=[].slice.call(d.querySelectorAll('.rv'));
+  if('IntersectionObserver' in window && !reduce){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('vis'); io.unobserve(e.target); } });
+    },{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+    rv.forEach(function(el,i){ el.style.setProperty('--rd',((i%3)*0.06)+'s'); io.observe(el); });
+  } else { rv.forEach(function(el){el.classList.add('vis')}); }
+
+  /* números que contam */
+  function count(el){
+    var to=parseInt(el.getAttribute('data-count'),10), t0=null, dur=1300;
+    function step(t){
+      if(!t0)t0=t; var p=Math.min((t-t0)/dur,1), e=1-Math.pow(1-p,3);
+      el.textContent=Math.round(to*e); if(p<1)requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  var nums=[].slice.call(d.querySelectorAll('[data-count]'));
+  if('IntersectionObserver' in window && !reduce){
+    nums.forEach(function(n){n.textContent='0'});
+    var io2=new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ count(e.target); io2.unobserve(e.target); } });
+    },{threshold:.6});
+    nums.forEach(function(n){io2.observe(n)});
+  }
+
+  /* scroll: progresso, % lido, sumário ativo, linha do tempo */
+  var bar=d.getElementById('bar'), pct=d.getElementById('pct');
+  var art=d.querySelector('article'), tl=d.getElementById('tl'), tlItems=[].slice.call(tl.children);
+  var ticking=false;
+  function onScroll(){
+    var h=root.scrollHeight-window.innerHeight, y=window.scrollY;
+    var r=h>0?Math.min(Math.max(y/h,0),1):0;
+    bar.style.transform='scaleX('+r+')';
+    var ar=art.getBoundingClientRect(), total=ar.height-window.innerHeight*.6;
+    var read=Math.min(Math.max((window.innerHeight*.3-ar.top)/total,0),1);
+    pct.textContent=Math.round(read*100);
+
+    var cur=null, line=window.innerHeight*.35;
+    secs.forEach(function(s){ if(s.getBoundingClientRect().top<=line) cur=s.id; });
+    links.forEach(function(a){ a.classList.toggle('on',a.getAttribute('data-id')===cur); });
+
+    var tr=tl.getBoundingClientRect(), mark=window.innerHeight*.62;
+    var fill=Math.min(Math.max(mark-tr.top-10,0),tr.height-20);
+    tl.style.setProperty('--p',fill+'px');
+    tlItems.forEach(function(li){
+      var top=li.getBoundingClientRect().top;
+      li.classList.toggle('on',top+9<mark);
+    });
+    ticking=false;
+  }
+  window.addEventListener('scroll',function(){ if(!ticking){ticking=true;requestAnimationFrame(onScroll)} },{passive:true});
+  window.addEventListener('resize',onScroll);
+  onScroll();
+
+  /* checklist */
+  var KEY='astro-blog-nr1-checklist';
+  var items=[].slice.call(d.querySelectorAll('#ck .it'));
+  var n=d.getElementById('ckN'), cb=d.getElementById('ckBar'), done=d.getElementById('ckDone');
+  var saved=[];
+  try{ saved=JSON.parse(localStorage.getItem(KEY)||'[]'); }catch(e){}
+  items.forEach(function(b,i){ if(saved.indexOf(i)>-1) b.setAttribute('aria-checked','true'); });
+  function refresh(){
+    var on=items.filter(function(b){return b.getAttribute('aria-checked')==='true'});
+    n.textContent=on.length; cb.style.transform='scaleX('+(on.length/items.length)+')';
+    var msg='';
+    if(on.length===items.length) msg='<strong>Base montada.</strong> Agora o trabalho é manter: revisar quando algo mudar e guardar as evidências.';
+    else if(on.length>=5) msg='Já passou da metade. Olhe com atenção para o que ficou pendente: é onde a fiscalização costuma perguntar.';
+    else if(on.length>0) msg='Um bom começo. As pendências que sobraram viram o seu plano das próximas semanas.';
+    done.innerHTML=msg;
+    try{ localStorage.setItem(KEY,JSON.stringify(items.map(function(b,i){return b.getAttribute('aria-checked')==='true'?i:-1}).filter(function(x){return x>-1}))); }catch(e){}
+  }
+  items.forEach(function(b){
+    b.addEventListener('click',function(){
+      b.setAttribute('aria-checked',b.getAttribute('aria-checked')==='true'?'false':'true'); refresh();
+    });
+    b.addEventListener('keydown',function(e){ if(e.key===' '){ e.preventDefault(); b.click(); } });
+  });
+  d.getElementById('ckReset').addEventListener('click',function(){
+    items.forEach(function(b){b.setAttribute('aria-checked','false')}); refresh();
+  });
+  refresh();
+})();
+</script>
+</body>
+</html>
