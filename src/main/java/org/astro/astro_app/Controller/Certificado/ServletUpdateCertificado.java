@@ -132,7 +132,7 @@ public class ServletUpdateCertificado extends HttpServlet {
                     );
 
                     certificadoDAO.alterarCertificado(certificadoAtualizado);
-                    response.sendRedirect(request.getContextPath() + "/lista-certificados");
+                    response.sendRedirect(request.getContextPath() + "/listar-certificados");
                     return;
                 }
 

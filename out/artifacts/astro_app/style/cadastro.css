@@ -1,0 +1,1283 @@
+/* Animação de Entrada (Suave dissolver) */
+body {
+    animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Animação de Saída */
+body.fade-out {
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-app: #000719;
+    --bg-card: #01091D;
+    --bg-input: #181D32;
+    --border-card: #0C153D;
+    --primary-color: #9300ff;
+    --input-border: #4963D7;
+    --text-main: #ffffff;
+    --text-muted: #c2c2c2;
+    --link-color: #31CCEE;
+    --texto-claro: #FFFFFF;
+    --cor-borda: #0C153D;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.1px;
+}
+
+html {
+    min-width: 320px;
+    background: var(--bg-app);
+}
+
+body.pagina-cadastro {
+    background-color: var(--bg-app);
+    color: var(--text-main);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.fundo-planeta {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-color: var(--bg-app);
+    background-image: url('imagens/planeta_login.png');
+    background-repeat: no-repeat;
+    background-position: 0px 0px;
+    background-size: 1390px auto;
+}
+
+.botao-voltar {
+    position: absolute;
+    top: 32px;
+    left: 32px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-main);
+    text-decoration: none;
+    font-size: 18px;
+    z-index: 10;
+    transition: background-color 0.2s ease;
+}
+
+.botao-voltar:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.cadastro-container {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    width: 100%;
+    min-height: 1145px;
+}
+
+.cadastro-lado-imagem {
+    flex: 1 1 auto;
+    min-width: 0;
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    padding: 127px 0 0 80px;
+}
+
+.cadastro-lado-conteudo {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 650px;
+}
+
+.cadastro-logo {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 61px;
+    line-height: 0;
+}
+
+.img-logo {
+    display: block;
+    width: 200px;
+    height: auto;
+}
+
+.cadastro-titulo1 {
+    font-size: 64px;
+    line-height: 1.15;
+    font-weight: 500;
+    letter-spacing: 0.1px;
+}
+
+.cadastro-titulo2 {
+    font-size: 42px;
+    line-height: 1.35;
+    font-weight: 500;
+}
+
+.cadastro-subtitulo {
+    margin-top: 37px;
+    font-size: 17px;
+    line-height: 1.4;
+    font-weight: 400;
+    color: var(--text-main);
+    max-width: 430px;
+}
+
+.cadastro-como-funciona {
+    margin-top: 290px;
+    max-width: 650px;
+}
+
+.cadastro-como-funciona > h3 {
+    margin-bottom: 30px;
+    font-size: 20px;
+    line-height: 1.2;
+    font-weight: 600;
+}
+
+.cadastro-passos {
+    display: flex;
+    flex-direction: column;
+}
+
+.cadastro-passo {
+    position: relative;
+    display: grid;
+    grid-template-columns: 38px minmax(0, 1fr);
+    column-gap: 16px;
+    min-height: 84px;
+}
+
+.cadastro-passo:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    left: 18px;
+    top: 38px;
+    width: 1.6px;
+    height: 46px;
+    background: rgba(52, 67, 232, 0.45);
+}
+
+.numero-passo,
+.numero-secao {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background: linear-gradient(135deg, #a000ed 0%, #192fd0 100%);
+    border: 1.7px solid #ffffff;
+    color: #ffffff;
+    border-radius: 50%;
+    font-weight: 500;
+}
+
+.numero-passo {
+    position: relative;
+    z-index: 1;
+    width: 38px;
+    height: 38px;
+    font-size: 16px;
+}
+
+.texto-passo {
+    padding-top: 0;
+}
+
+.texto-passo h4 {
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.25;
+    margin-bottom: 4px;
+}
+
+.texto-passo p {
+    color: #D0D0D0;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.4;
+    max-width: 390px;
+}
+
+.cadastro-lado-formulario {
+    flex: 0 0 591px;
+    width: 591px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 68px 0 0 0;
+    transform: translateX(-90px);
+}
+
+.cartao-cadastro {
+    background-color: rgba(0, 8, 26, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 3px solid #0A1343;
+    border-radius: 30px;
+    padding: 40px;
+    width: 100%;
+    max-width: 480px;
+    height: 750px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 30px;
+}
+
+.cabecalho-cartao-cadastro {
+    flex: 0 0 auto;
+    text-align: center;
+    margin-top: 22px;
+}
+
+.cabecalho-cartao-cadastro h2 {
+    font-size: 32px;
+    line-height: 1.2;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.cartao-subtitulo {
+    color: #D0D0D0;
+    font-size: 18px;
+    line-height: 1.35;
+    font-weight: 400;
+    margin-top: 8px;
+}
+
+.formulario-cadastro {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-height: 0;
+    margin-top: 30px;
+}
+
+.secao-cadastro {
+    display: flex;
+    flex-direction: column;
+}
+
+.titulo-secao-cadastro {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    height: 22px;
+}
+
+.numero-secao {
+    width: 23px;
+    height: 23px;
+    font-size: 12px;
+    margin-right: 8px;
+    border-width: 1.2px;
+}
+
+.titulo-secao-cadastro h3 {
+    flex: 0 0 auto;
+    color: #ffffff;
+    font-size: 16px;
+    line-height: 1.2;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.linha-secao {
+    flex: 1 1 auto;
+    min-width: 12px;
+    height: 1.5px;
+    margin-left: 12px;
+    background: rgba(52, 67, 232, 0.22);
+}
+
+.campo-formulario {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    gap: 7px;
+}
+
+.campo-formulario label {
+    margin-left: 20px;
+    color: #ffffff;
+    font-size: 16px;
+    line-height: 1.2;
+    font-weight: 600;
+}
+
+.campo-formulario input {
+    width: 100%;
+    min-width: 0;
+    height: 56px;
+    padding: 0 20px;
+    border: 1px solid var(--input-border);
+    border-radius: 28px;
+    background-color: var(--bg-input);
+    color: var(--text-main);
+    font-size: 15px;
+    font-weight: 400;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.campo-formulario input::placeholder {
+    color: #D0D0D0;
+    opacity: 1;
+}
+
+.campo-formulario input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 1px var(--primary-color);
+}
+
+.campo-empresa {
+    margin-top: 17px;
+}
+
+.linha-campos {
+    display: grid;
+    gap: 16px;
+    min-width: 0;
+}
+
+.linha-cnpj-licenca {
+    grid-template-columns: 1.34fr 1fr;
+    margin-top: 18px;
+}
+
+.secao-gestor {
+    margin-top: 32px;
+}
+
+.campo-nome-gestor {
+    margin-top: 18px;
+}
+
+.campo-email-gestor {
+    margin-top: 18px;
+}
+
+.linha-cpf-senha {
+    grid-template-columns: 1fr 1fr;
+    margin-top: 18px;
+}
+
+.termos-cadastro {
+    align-self: center;
+    margin-top: 17px;
+    color: #D0D0D0;
+    font-size: 14px;
+    line-height: 1.45;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.termos-cadastro a,
+.texto-entrar-conta a {
+    color: var(--link-color);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.botao-continuar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 57px;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 28px;
+    background: linear-gradient(to right, #A000D8 0%, #7900A9 100%);
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.botao-criar-workspace {
+    margin-top: 25px;
+}
+
+.botao-continuar:hover {
+    opacity: 0.92;
+}
+
+.botao-continuar:active {
+    transform: scale(0.995);
+}
+
+.texto-entrar-conta {
+    color: #D0D0D0;
+    margin-top: 9px;
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.35;
+}
+
+footer {
+    padding: 80px 120px 32px;
+}
+
+footer a {
+    text-decoration: none;
+}
+
+.conteudo-rodape {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 80px;
+}
+
+.marca-rodape p {
+    font-size: 14px;
+    color: #D0D0D0;
+}
+
+.links-rodape {
+    display: flex;
+    gap: 120px;
+}
+
+.coluna-links h4 {
+    font-size: 16px;
+    margin-bottom: 24px;
+}
+
+.coluna-links a {
+    display: block;
+    font-size: 14px;
+    color: #D0D0D0;
+    margin-bottom: 16px;
+}
+
+.coluna-links a:hover {
+    color: var(--texto-claro);
+}
+
+#siga {
+    width: 43px;
+    height: auto;
+}
+
+.icones-sociais {
+    display: flex;
+    gap: 16px;
+}
+
+.icone-social {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.icone-social img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    border-radius: 6px;
+}
+
+.rodape-inferior {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 32px;
+    border-top: 1px solid var(--cor-borda);
+    font-size: 14px;
+    color: #D0D0D0;
+}
+
+.links-legais-rodape a {
+    margin-left: 32px;
+    color: #D0D0D0;
+}
+
+.links-legais-rodape a:hover {
+    color: var(--texto-claro);
+}
+
+.logo-rodape {
+    width: 160px;
+    height: auto;
+    margin-bottom: 24px;
+    display: block;
+}
+
+@media (max-width: 1250px) {
+    .cadastro-lado-imagem {
+        padding-left: 48px;
+    }
+
+    .cadastro-lado-formulario {
+        flex-basis: 535px;
+        width: 535px;
+        padding-right: 42px;
+    }
+
+    .cartao-cadastro {
+        width: 493px;
+        padding-right: 40px;
+        padding-left: 40px;
+    }
+
+    .rodape-cadastro {
+        padding-right: 48px;
+        padding-left: 48px;
+    }
+
+    .rodape-topo {
+        grid-template-columns: minmax(250px, 1.45fr) repeat(3, minmax(130px, 1fr)) 130px;
+    }
+}
+
+@media (max-width: 1050px) {
+    .cadastro-container {
+        flex-direction: column;
+        min-height: 0;
+        padding-bottom: 64px;
+    }
+
+    .cadastro-lado-imagem {
+        flex: none;
+        min-height: 760px;
+        padding: 105px 40px 0;
+    }
+
+    .cadastro-lado-conteudo {
+        max-width: 680px;
+    }
+
+    .cadastro-logo {
+        margin-bottom: 48px;
+    }
+
+    .cadastro-como-funciona {
+        margin-top: 110px;
+    }
+
+    .cadastro-lado-formulario {
+        flex: none;
+        width: 100%;
+        justify-content: center;
+        padding: 0 24px;
+    }
+
+    .cartao-cadastro {
+        width: min(492px, 100%);
+    }
+
+    .rodape-topo {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        row-gap: 36px;
+    }
+
+    .rodape-marca {
+        grid-column: 1 / -1;
+    }
+
+    .rodape-marca p {
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .botao-voltar {
+        top: 20px;
+        left: 16px;
+    }
+
+    .cadastro-lado-imagem {
+        min-height: 700px;
+        padding: 82px 24px 0;
+    }
+
+    .img-logo {
+        width: 170px;
+    }
+
+    .cadastro-logo {
+        margin-bottom: 42px;
+    }
+
+    .cadastro-titulo1 {
+        font-size: 48px;
+    }
+
+    .cadastro-titulo2 {
+        font-size: clamp(29px, 8vw, 38px);
+        line-height: 1.08;
+    }
+
+    .cadastro-subtitulo {
+        font-size: 15px;
+    }
+
+    .quebra-desktop {
+        display: none;
+    }
+
+    .cadastro-como-funciona {
+        margin-top: 92px;
+    }
+
+    .cadastro-como-funciona > h3 {
+        font-size: 18px;
+    }
+
+    .cadastro-passo {
+        grid-template-columns: 34px minmax(0, 1fr);
+        column-gap: 13px;
+        min-height: 78px;
+    }
+
+    .numero-passo {
+        width: 34px;
+        height: 34px;
+        font-size: 14px;
+    }
+
+    .cadastro-passo:not(:last-child)::after {
+        left: 16px;
+        top: 34px;
+        height: 44px;
+    }
+
+    .texto-passo h4 {
+        font-size: 15px;
+    }
+
+    .texto-passo p {
+        font-size: 13px;
+    }
+
+    .cadastro-lado-formulario {
+        padding: 0 14px;
+    }
+
+    .cartao-cadastro {
+        height: auto;
+        min-height: 0;
+        padding: 34px 22px 28px;
+        border-radius: 24px;
+    }
+
+    .cabecalho-cartao-cadastro {
+        margin-top: 0;
+    }
+
+    .cabecalho-cartao-cadastro h2 {
+        font-size: clamp(23px, 6vw, 29px);
+        white-space: normal;
+    }
+
+    .cartao-subtitulo {
+        font-size: 14px;
+    }
+
+    .formulario-cadastro {
+        margin-top: 28px;
+    }
+
+    .titulo-secao-cadastro h3 {
+        font-size: 14px;
+    }
+
+    .numero-secao {
+        width: 21px;
+        height: 21px;
+        font-size: 11px;
+        margin-right: 7px;
+    }
+
+    .linha-secao {
+        margin-left: 8px;
+    }
+
+    .campo-formulario label {
+        margin-left: 13px;
+        font-size: 14px;
+    }
+
+    .campo-formulario input {
+        height: 50px;
+        padding: 0 15px;
+        font-size: 13px;
+    }
+
+    .linha-campos {
+        gap: 12px;
+    }
+
+    .linha-cnpj-licenca {
+        grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    }
+
+    .linha-cpf-senha {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .termos-cadastro {
+        white-space: normal;
+        font-size: 11px;
+    }
+
+    .botao-continuar {
+        min-height: 52px;
+        font-size: 14px;
+    }
+
+    .texto-entrar-conta {
+        font-size: 12px;
+    }
+
+    .rodape-cadastro {
+        padding: 30px 24px 24px;
+    }
+
+    .rodape-topo {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 30px 20px;
+        padding-bottom: 28px;
+    }
+
+    .rodape-marca {
+        grid-column: 1 / -1;
+    }
+
+    .img-logo-rodape {
+        width: 120px;
+    }
+
+    .rodape-coluna h3,
+    .rodape-coluna > a {
+        font-size: 12px;
+    }
+
+    .rodape-base {
+        align-items: flex-start;
+        flex-direction: column;
+        padding-top: 22px;
+        font-size: 11px;
+    }
+
+    .rodape-links-legais {
+        gap: 24px;
+    }
+}
+
+
+/* ========================================
+   CADASTRO — MONITORES MUITO GRANDES
+======================================== */
+
+@media (min-width: 1921px) {
+    .cadastro-container,
+    footer {
+        max-width: 1920px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+
+/* ========================================
+   CADASTRO — NOTEBOOKS
+======================================== */
+
+@media (max-width: 1320px) {
+    .cadastro-lado-imagem {
+        padding: 110px 24px 0 48px;
+    }
+
+    .cadastro-lado-conteudo {
+        max-width: 600px;
+    }
+
+    .cadastro-logo {
+        margin-bottom: 50px;
+    }
+
+    .cadastro-titulo1 {
+        font-size: 60px;
+    }
+
+    .cadastro-titulo2 {
+        font-size: clamp(34px, 3.4vw, 40px);
+        line-height: 1.3;
+    }
+
+    .cadastro-subtitulo {
+        margin-top: 28px;
+        font-size: 16px;
+    }
+
+    .cadastro-como-funciona {
+        margin-top: 220px;
+    }
+
+    .cadastro-lado-formulario {
+        flex: 0 0 48%;
+        width: 48%;
+        padding: 68px 40px 0 0;
+        transform: none;
+    }
+
+    .cartao-cadastro {
+        width: 100%;
+        max-width: 480px;
+        margin-left: 0;
+    }
+
+    footer {
+        padding-left: 64px;
+        padding-right: 64px;
+    }
+
+    .links-rodape {
+        gap: 48px;
+        flex-wrap: wrap;
+    }
+}
+
+
+/* ========================================
+   CADASTRO — TABLETS E LAYOUT EMPILHADO
+======================================== */
+
+@media (max-width: 1100px) {
+    .cadastro-container {
+        flex-direction: column;
+        min-height: 0;
+        padding-bottom: 64px;
+    }
+
+    .cadastro-lado-imagem {
+        flex: none;
+        width: 100%;
+        min-height: 0;
+        padding: 100px 48px 0;
+    }
+
+    .cadastro-lado-conteudo {
+        width: 100%;
+        max-width: 680px;
+    }
+
+    .cadastro-logo {
+        margin-bottom: 42px;
+    }
+
+    .cadastro-titulo1 {
+        font-size: 64px;
+    }
+
+    .cadastro-titulo2 {
+        font-size: clamp(34px, 4.5vw, 40px);
+        line-height: 1.25;
+    }
+
+    .cadastro-subtitulo {
+        margin-top: 28px;
+        font-size: 16px;
+    }
+
+    .cadastro-como-funciona {
+        margin-top: 90px;
+        max-width: 680px;
+    }
+
+    .cadastro-lado-formulario {
+        flex: none;
+        width: 100%;
+        justify-content: center;
+        padding: 0 32px;
+        transform: none;
+    }
+
+    .cartao-cadastro {
+        width: 100%;
+        max-width: 492px;
+        height: auto;
+        min-height: 750px;
+        margin-left: 0;
+    }
+
+    footer {
+        padding-left: clamp(32px, 6vw, 64px);
+        padding-right: clamp(32px, 6vw, 64px);
+    }
+
+    .conteudo-rodape {
+        flex-direction: column;
+        gap: 48px;
+        margin-bottom: 56px;
+    }
+
+    .links-rodape {
+        gap: 40px;
+        flex-wrap: wrap;
+    }
+
+    .rodape-inferior {
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .links-legais-rodape a:first-child {
+        margin-left: 0;
+    }
+}
+
+
+/* ========================================
+   CADASTRO — TABLETS ESTREITOS
+======================================== */
+
+@media (max-width: 800px) {
+    .cadastro-lado-imagem {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+
+    .cadastro-como-funciona {
+        margin-top: 80px;
+    }
+
+    .cadastro-lado-formulario {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+
+    footer {
+        padding-left: clamp(32px, 8vw, 64px);
+        padding-right: clamp(32px, 8vw, 64px);
+    }
+}
+
+
+/* ========================================
+   CADASTRO — CELULARES
+======================================== */
+
+@media (max-width: 600px) {
+    .cadastro-container {
+        padding-bottom: 48px;
+    }
+
+    .cadastro-lado-imagem {
+        padding: 82px 24px 0;
+    }
+
+    .img-logo {
+        width: 170px;
+    }
+
+    .cadastro-logo {
+        margin-bottom: 42px;
+    }
+
+    .cadastro-titulo1 {
+        font-size: 52px;
+        line-height: 1.15;
+    }
+
+    .cadastro-titulo2 {
+        font-size: clamp(29px, 8vw, 36px);
+        line-height: 1.12;
+    }
+
+    .cadastro-subtitulo {
+        margin-top: 24px;
+        font-size: 15px;
+        line-height: 1.5;
+        max-width: 100%;
+    }
+
+    .quebra-desktop {
+        display: none;
+    }
+
+    .cadastro-como-funciona {
+        margin-top: 72px;
+    }
+
+    .cadastro-como-funciona > h3 {
+        margin-bottom: 24px;
+        font-size: 18px;
+    }
+
+    .cadastro-passo {
+        grid-template-columns: 34px minmax(0, 1fr);
+        column-gap: 13px;
+        min-height: 78px;
+    }
+
+    .numero-passo {
+        width: 34px;
+        height: 34px;
+        font-size: 14px;
+    }
+
+    .cadastro-passo:not(:last-child)::after {
+        left: 16px;
+        top: 34px;
+        height: 44px;
+    }
+
+    .texto-passo h4 {
+        font-size: 15px;
+    }
+
+    .texto-passo p {
+        font-size: 13px;
+        line-height: 1.5;
+    }
+
+    .cadastro-lado-formulario {
+        padding: 0 14px;
+    }
+
+    .cartao-cadastro {
+        width: 100%;
+        height: auto;
+        min-height: 0;
+        padding: 34px 22px 28px;
+        border-radius: 24px;
+    }
+
+    .cabecalho-cartao-cadastro {
+        margin-top: 0;
+    }
+
+    .cabecalho-cartao-cadastro h2 {
+        font-size: clamp(23px, 6vw, 29px);
+        line-height: 1.2;
+        white-space: normal;
+    }
+
+    .cartao-subtitulo {
+        margin-top: 8px;
+        font-size: 14px;
+        line-height: 1.4;
+    }
+
+    .formulario-cadastro {
+        margin-top: 28px;
+    }
+
+    .secao-gestor {
+        margin-top: 24px;
+    }
+
+    .titulo-secao-cadastro h3 {
+        font-size: 14px;
+    }
+
+    .numero-secao {
+        width: 21px;
+        height: 21px;
+        margin-right: 7px;
+        font-size: 11px;
+    }
+
+    .linha-secao {
+        min-width: 8px;
+        margin-left: 8px;
+    }
+
+    .campo-formulario {
+        gap: 7px;
+    }
+
+    .campo-formulario label {
+        margin-left: 13px;
+        font-size: 14px;
+    }
+
+    .campo-formulario input {
+        height: 50px;
+        padding: 0 15px;
+        font-size: 13px;
+    }
+
+    .campo-nome-gestor,
+    .campo-email-gestor {
+        margin-top: 14px;
+    }
+
+    .linha-campos {
+        gap: 12px;
+    }
+
+    .linha-cpf-senha {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 14px;
+    }
+
+    .termos-cadastro {
+        margin-top: 16px;
+        font-size: 11px;
+        line-height: 1.5;
+        white-space: normal;
+    }
+
+    .botao-continuar {
+        min-height: 52px;
+        font-size: 14px;
+    }
+
+    .botao-criar-workspace {
+        margin-top: 20px;
+    }
+
+    .texto-entrar-conta {
+        margin-top: 10px;
+        font-size: 12px;
+        line-height: 1.5;
+    }
+
+    footer {
+        padding: 48px 24px 28px;
+    }
+
+    .conteudo-rodape {
+        gap: 40px;
+        margin-bottom: 48px;
+    }
+
+    .logo-rodape {
+        width: 140px;
+        margin-bottom: 18px;
+    }
+
+    .marca-rodape p {
+        font-size: 13px;
+        line-height: 1.6;
+    }
+
+    .links-rodape {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 32px 24px;
+    }
+
+    .links-rodape .social {
+        grid-column: 1 / -1;
+    }
+
+    .coluna-links h4 {
+        margin-bottom: 16px;
+        font-size: 15px;
+    }
+
+    .coluna-links a {
+        margin-bottom: 12px;
+        font-size: 13px;
+    }
+
+    .icones-sociais {
+        gap: 12px;
+    }
+
+    .rodape-inferior {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 16px;
+        padding-top: 24px;
+        font-size: 12px;
+        line-height: 1.6;
+    }
+
+    .links-legais-rodape {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+
+    .links-legais-rodape a {
+        margin-left: 0;
+    }
+}
+
+
+/* ========================================
+   CADASTRO — CELULARES ESTREITOS
+======================================== */
+
+@media (max-width: 400px) {
+    .cadastro-lado-imagem {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .cadastro-titulo1 {
+        font-size: 48px;
+    }
+
+    .cadastro-titulo2 {
+        font-size: 29px;
+    }
+
+    .cadastro-como-funciona {
+        margin-top: 60px;
+    }
+
+    .cadastro-lado-formulario {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .cartao-cadastro {
+        padding: 30px 18px 26px;
+    }
+
+    .cabecalho-cartao-cadastro h2 {
+        font-size: 24px;
+    }
+
+    .linha-cpf-senha {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 14px;
+    }
+
+    .links-rodape {
+        column-gap: 20px;
+    }
+}
+    
