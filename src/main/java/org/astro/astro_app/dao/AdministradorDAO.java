@@ -88,7 +88,7 @@ public class AdministradorDAO {
                         rs.getString("email"),
                         rs.getString("senha"));
             }
-            return null; // não encontrou
+            return null;
 
         } catch (SQLException sqlE) {
             System.out.println(sqlE.getMessage());
