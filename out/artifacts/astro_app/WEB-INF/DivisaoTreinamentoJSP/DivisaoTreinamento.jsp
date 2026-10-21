@@ -32,7 +32,7 @@ return s == null ? "" : s;
     </div>
 
     <nav class="nav-menu">
-        <a href="<%=caminho%>/crud.jsp" class="nav-item">
+        <a href="<%=caminho%>/tela-inicial" class="nav-item">
             <i class="fa-solid fa-house"></i>Início
         </a>
         <a href="<%=caminho%>/listar-empresas" class="nav-item">

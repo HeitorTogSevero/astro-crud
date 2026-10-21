@@ -26,14 +26,14 @@ const erroDataEmissao = document.getElementById("erroDataEmissao")
 const erroValidade = document.getElementById("erroValidade")
 
 // Regex DATA:
-const regexData = /^\d{4}\/(0?[1-9]|1[0-2])\/\d{2}$/;
+const regexData = /^\d{4}-(0[1-9]|1[0-2])-\d{2}$/;
 
 const data = new Date();
 const ano = data.getFullYear();
 const mes = String(data.getMonth() + 1).padStart(2, "0");
 const dia = String(data.getDate()).padStart(2, "0");
 
-const dataAtual = `${dia}/${mes}/${ano}`;
+const dataAtual = `${ano}-${mes}-${dia}`;
 
 
 
@@ -65,7 +65,7 @@ form.addEventListener("input", function (){
 
 // Validações de Dados - Id NR_Funcionario//
 form.addEventListener("input", function (){
-    console.log(dataEmissao.value)
+
     if (idNrFunc.value.trim() === "") {
 
         erroIdNrFunc.textContent = "";
@@ -123,7 +123,6 @@ form.addEventListener("input", function (){
         erroDataEmissao.textContent = "";
         erroDataEmissao.classList.remove("invalido", "valido");
     }
-
 
     else if (!regexData.test(dataEmissao.value)){
 
@@ -204,7 +203,7 @@ form.addEventListener("submit", function (event){
         event.preventDefault()
     }
 
-    else if (dataEmissao >= dataAtual){
+    else if (dataEmissao.value >= dataAtual){
         event.preventDefault()
     }
 
@@ -212,7 +211,7 @@ form.addEventListener("submit", function (event){
         event.preventDefault()
     }
 
-    else if (validade <= dataAtual){
+    else if (validade.value <= dataAtual){
         event.preventDefault()
     }
 })

@@ -26,8 +26,12 @@ public class ServletReadCertificado extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 
+
+        //pega os filtros
         String dataEmissaoMinimaTexto = request.getParameter("dt_emissao_min");
+
         String dataEmissaoMaximaTexto = request.getParameter("dt_emissao_max");
+
         String idFuncionarioTexto = request.getParameter("id_funcionario");
 
 
@@ -57,16 +61,19 @@ public class ServletReadCertificado extends HttpServlet {
         }
         sql.append(" ORDER BY id_certificado");
 
+
         //execta no bd
         ArrayList<Certificado> certificados= certificadoDAO.buscar(sql.toString());
 
-
+        //envia a lista e filtros de volta para o jsp
         request.setAttribute("certificados", certificados);
 
+        //coloquei isso mas é opcional(é só p manter os valores no filtro)
         request.setAttribute("filtroDtEmissaoMin", dataEmissaoMinimaTexto);
         request.setAttribute("filtroDtEmissaoMax", dataEmissaoMaximaTexto);
         request.setAttribute("filtroIdFuncionario", idFuncionarioTexto);
 
+        //encaminha pra o jsp
         request.getRequestDispatcher("/WEB-INF/CertificadoJSP/Certificado.jsp").forward(request,response);
 
     }

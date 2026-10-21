@@ -37,9 +37,8 @@ org.astro.astro_app.model.Empresa"%>
     <div class="logo">
         <img src="<%=caminho%>/imagens/logotipo.png" alt="Logotipo" class="img-logo">
     </div>
-
     <nav class="nav-menu">
-        <a href="<%=caminho%>/WEB-INF/crud.jsp" class="nav-item active">
+        <a href="<%=caminho%>/tela-inicial" class="nav-item active">
             <i class="fa-solid fa-house"></i>Início
         </a>
         <a href="<%=caminho%>/listar-empresas" class="nav-item">

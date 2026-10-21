@@ -2,13 +2,19 @@ package org.astro.astro_app.Controller.Administrador;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.*;
-import org.astro.astro_app.dao.*;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import org.astro.astro_app.dao.AdministradorDAO;
+import org.astro.astro_app.dao.CertificadoDAO;
+import org.astro.astro_app.dao.DepartamentoDAO;
+import org.astro.astro_app.dao.EmpresaDAO;
+import org.astro.astro_app.dao.FuncionarioDAO;
 
 import java.io.IOException;
 
-@WebServlet(name = "ServletReadAdministrador", value = "/tela-inicial")
-public class ServletReadAdministrador extends HttpServlet{
+@WebServlet(name = "ServletAdministrador", value = "/tela-inicial")
+public class ServletReadAdministrador extends HttpServlet {
 
     private AdministradorDAO administradorDAO;
     private EmpresaDAO empresaDAO;
@@ -17,7 +23,7 @@ public class ServletReadAdministrador extends HttpServlet{
     private DepartamentoDAO departamentoDAO;
 
     @Override
-    public void init(){
+    public void init() {
         administradorDAO = new AdministradorDAO();
 
         empresaDAO = new EmpresaDAO();
@@ -30,7 +36,7 @@ public class ServletReadAdministrador extends HttpServlet{
     }
 
     @Override
-    protected void doGet( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         request.setCharacterEncoding("UTF-8");
 
@@ -42,8 +48,9 @@ public class ServletReadAdministrador extends HttpServlet{
 
         request.setAttribute("totalCertificados", certificadoDAO.contarCertificados());
 
-        request.setAttribute("ultimasTresEmpresas", empresaDAO.listarUltimasTresEmpresas());
+        request.setAttribute("ultimasEmpresas", empresaDAO.listarUltimasTresEmpresas());
 
-        request.getRequestDispatcher("/webapp/crud.jsp");
+
+        request.getRequestDispatcher("/crud.jsp").forward(request, response);
     }
 }
