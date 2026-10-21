@@ -32,7 +32,7 @@ public class ServletReadFuncionario extends HttpServlet {
         String idEmpresaTexto = request.getParameter("id_empresa");
         String idDepartamentoTexto = request.getParameter("id_departamento");
 
-        StringBuilder sql = new StringBuilder("SELECT * FROM funcionario WHERE 1=1");
+        StringBuilder sql = new StringBuilder("SELECT id_funcionario, nome, cargo, email, id_empresa, id_departamento, convert_from(pgp_sym_decrypt(cpf, 'funcionariosAstro'), 'UTF8') as cpf FROM funcionario WHERE 1=1");
 
         try {
             // filtro nome
@@ -47,7 +47,7 @@ public class ServletReadFuncionario extends HttpServlet {
 
             // filtro cpf
             if (cpf != null && !cpf.isBlank()) {
-                sql.append(" AND cpf ILIKE '%").append(cpf.trim().replace("'", "''")).append("%'");
+                sql.append(" AND convert_from(pgp_sym_decrypt(cpf, 'funcionariosAstro'), 'UTF8') ILIKE '%").append(cpf.trim().replace("'", "''")).append("%'");
             }
 
             // filtro email
@@ -66,7 +66,7 @@ public class ServletReadFuncionario extends HttpServlet {
             }
 
         } catch (NumberFormatException e) {
-            sql = new StringBuilder("SELECT * FROM funcionario WHERE 1=1");
+            sql = new StringBuilder("SELECT id_funcionario, nome, cargo, email, id_empresa, id_departamento, convert_from(pgp_sym_decrypt(cpf, 'funcionariosAstro'), 'UTF8') as cpf FROM funcionario WHERE 1=1");
             request.setAttribute("erro", "filtro invalido");
         }
 

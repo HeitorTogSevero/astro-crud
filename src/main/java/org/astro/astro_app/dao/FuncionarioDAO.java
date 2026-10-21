@@ -17,7 +17,7 @@ public class FuncionarioDAO {
 
         try{
             conn = conexao.conectar();
-            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO funcionario (nome, cargo, cpf, id_empresa, id_departamento, email) VALUES (?, ?, ?, ?, ?, ?)");
+            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO funcionario (nome, cargo, cpf, id_empresa, id_departamento, email) VALUES (?, ?, pgp_sym_encrypt(?, 'funcionariosAstro'), ?, ?, ?)");
 
             pstmt.setString(1, f.getNome());
             pstmt.setString(2, f.getCargo());
@@ -38,6 +38,7 @@ public class FuncionarioDAO {
             conexao.desconectar(conn);
         }
     }
+
 
     // Metodo Read | Select - CRUD
     public ArrayList<Funcionario> buscar(String sql) {
@@ -69,6 +70,7 @@ public class FuncionarioDAO {
         return vet;
     }
 
+
     // Metodo Read | Select - CRUD, mas baseado no Id do funcionario
     public Funcionario buscarPorIdFunc(int idFunc) {
 
@@ -78,14 +80,16 @@ public class FuncionarioDAO {
         try {
             conn = conexao.conectar();
 
-            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM funcionario WHERE id_funcionario = ?");
+            PreparedStatement pstmt = conn.prepareStatement("SELECT id_funcionario, nome, cargo, email, id_empresa, id_departamento, convert_from(pgp_sym_decrypt(cpf, 'funcionariosAstro'), 'UTF8') as cpf FROM funcionario WHERE id_funcionario = ?");
 
             pstmt.setInt(1, idFunc);
 
             ResultSet rs = pstmt.executeQuery();
+
             if (rs.next()) {
                 return new Funcionario(rs.getString("nome"), rs.getString("cargo"), rs.getString("cpf"), rs.getString("email"), rs.getInt("id_empresa"), rs.getInt("id_funcionario"), rs.getInt("id_departamento"));
             }
+
             return null;
 
         } catch (SQLException sqlE) {
@@ -96,18 +100,18 @@ public class FuncionarioDAO {
         }
     }
 
+
     // Metodo Read | Select - CRUD, mas baseado no Id da empresa
     public ArrayList<Funcionario> buscarPorIdEmpresa(int idEmpresa) {
 
         Conexao conexao = new Conexao();
         Connection conn = null;
-
         ArrayList<Funcionario> vet = new ArrayList<>();
 
         try {
             conn = conexao.conectar();
 
-            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM funcionario WHERE id_empresa = ? ORDER BY id_funcionario");
+            PreparedStatement pstmt = conn.prepareStatement("SELECT id_funcionario, nome, cargo, email, id_empresa, id_departamento, convert_from(pgp_sym_decrypt(cpf, 'funcionariosAstro'), 'UTF8') as cpf FROM funcionario WHERE id_empresa = ? ORDER BY id_funcionario");
 
             pstmt.setInt(1, idEmpresa);
 
@@ -119,6 +123,7 @@ public class FuncionarioDAO {
 
         } catch (SQLException sqlE) {
             System.out.println(sqlE.getMessage());
+
         } finally {
             conexao.desconectar(conn);
         }
@@ -126,18 +131,18 @@ public class FuncionarioDAO {
         return vet;
     }
 
+
     // Metodo Read | Select - CRUD, mas baseado no Id do departamento
     public ArrayList<Funcionario> buscarPorIdDepart(int idDepart) {
 
         Conexao conexao = new Conexao();
         Connection conn = null;
-
         ArrayList<Funcionario> vet = new ArrayList<>();
 
         try {
             conn = conexao.conectar();
 
-            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM funcionario WHERE id_departamento = ? ORDER BY id_funcionario");
+            PreparedStatement pstmt = conn.prepareStatement("SELECT id_funcionario, nome, cargo, email, id_empresa, id_departamento, convert_from(pgp_sym_decrypt(cpf, 'funcionariosAstro'), 'UTF8') as cpf FROM funcionario WHERE id_departamento = ? ORDER BY id_funcionario");
 
             pstmt.setInt(1, idDepart);
 
@@ -155,6 +160,7 @@ public class FuncionarioDAO {
 
         return vet;
     }
+
 
     //metodo contar funcionarios
     public int contarFuncionarios(){
@@ -179,8 +185,9 @@ public class FuncionarioDAO {
         return total;
     }
 
+
     // Metodo Update - CRUD
-    public int alterarFuncionario(Funcionario f){
+    public int alterarFuncionario(Funcionario f) {
 
         Conexao conexao = new Conexao();
         Connection conn = null;
@@ -188,7 +195,7 @@ public class FuncionarioDAO {
         try {
             conn = conexao.conectar();
 
-            PreparedStatement pstmt = conn.prepareStatement("UPDATE funcionario set nome = ?, cargo = ?, cpf = ?, id_empresa = ?, id_departamento = ? WHERE id_funcionario = ?");
+            PreparedStatement pstmt = conn.prepareStatement("UPDATE funcionario SET nome = ?, cargo = ?, cpf = pgp_sym_encrypt(?, 'funcionariosAstro'), id_empresa = ?, id_departamento = ? WHERE id_funcionario = ?");
 
             pstmt.setString(1, f.getNome());
             pstmt.setString(2, f.getCargo());
@@ -197,18 +204,19 @@ public class FuncionarioDAO {
             pstmt.setInt(5, f.getIdDepartamento());
             pstmt.setInt(6, f.getIdFuncionario());
 
-            if (pstmt.executeUpdate() > 0){
+            if (pstmt.executeUpdate() > 0) {
                 return 1;
             }
             return 0;
 
-        }catch (SQLException sqlE){
+        }catch (SQLException sqlE) {
             System.out.println(sqlE.getMessage());
             return -1;
         }finally {
             conexao.desconectar(conn);
         }
     }
+
 
     // Metodo Delete | Remove - CRUD
     public int remover(int idFuncionario){
