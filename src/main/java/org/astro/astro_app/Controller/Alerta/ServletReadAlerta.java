@@ -25,8 +25,11 @@ public class ServletReadAlerta extends HttpServlet {
 
         //pega os filtros
         String codigoTexto = request.getParameter("codigo");
+
         String dtLimiteMin = request.getParameter("dt_limite_min");
+
         String dtLimiteMax = request.getParameter("dt_limite_max");
+
         String idEmpresaTexto = request.getParameter("id_empresa");
 
         //monta a query

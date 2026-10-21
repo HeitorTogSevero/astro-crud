@@ -110,7 +110,6 @@ return s == null ? "" : s;}%>
                 </tr>
                 </thead>
                 <tbody id="corpo-tabela-departamentos">
-<<<<<<< HEAD
                 <%
                 if (departamentos != null && !departamentos.isEmpty()) {
                 for (Departamento d : departamentos) {
@@ -139,7 +138,6 @@ return s == null ? "" : s;}%>
                 %>
                 <tr>
                     <td colspan="7">Nenhum departamento encontrado.</td>
-=======
                 <tr id_departamento="" nome="" descricao="" grau_risco="" atividade="" id_empresa="">
                     <td></td>
                     <td></td>
@@ -153,7 +151,6 @@ return s == null ? "" : s;}%>
                             <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
                         </div>
                     </td>
->>>>>>> da0f446578970a5337882feb04739ca403e58456
                 </tr>
                 <% } %>
                 </tbody>
@@ -180,7 +177,6 @@ return s == null ? "" : s;}%>
               action="<%=caminho%>/adicionar-departamento" method="post">
 
             <div class="modal-campo">
-<<<<<<< HEAD
                 <label for="campo-nome">Nome:</label>
                 <input type="text" id="campo-nome" name="nome" required>
             </div>
@@ -203,7 +199,7 @@ return s == null ? "" : s;}%>
             <div class="modal-campo">
                 <label for="campo-id_empresa">id_empresa:</label>
                 <input type="number" id="campo-id_empresa" name="id_empresa" min="0" required>
-=======
+
                 <label for="campo-nome">nome</label>
                 <input type="text" id="campo-nome" name="nome" placeholder="Nome" required>
                 <span id="erroNome"> </span>
@@ -244,7 +240,6 @@ return s == null ? "" : s;}%>
                        min="0"
                        placeholder="ID">
                 <span id="erroIdDepart"> </span>
->>>>>>> da0f446578970a5337882feb04739ca403e58456
             </div>
 
             <div class="modal-rodape">
@@ -330,11 +325,8 @@ return s == null ? "" : s;}%>
             </div>
 
             <div class="modal-campo">
-<<<<<<< HEAD
                 <label for="editar-id_empresa">id_empresa:</label>
-=======
                 <label for="editar-id_empresa">id_empresa</label>
->>>>>>> da0f446578970a5337882feb04739ca403e58456
                 <input type="number" id="editar-id_empresa" name="id_empresa" min="0" required>
             </div>
 

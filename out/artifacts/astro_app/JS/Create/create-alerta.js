@@ -15,13 +15,13 @@ const erroData = document.getElementById("erroData")
 const erroId = document.getElementById("erroId")
 
 // Regex DATA:
-const regexData = /^\d{4}\/(0?[1-9]|1[0-2])\/\d{2}$/;
+const regexData = /^\d{4}-(0[1-9]|1[0-2])-\d{2}$/;
 const data = new Date();
 const ano = data.getFullYear();
 const mes = String(data.getMonth() + 1).padStart(2, "0");
 const dia = String(data.getDate()).padStart(2, "0");
 
-const dataAtual = `${ano}/${mes}/${dia}`;
+const dataAtual = `${ano}-${mes}-${dia}`;
 
 
 // Validações dos Dados - codigo //
