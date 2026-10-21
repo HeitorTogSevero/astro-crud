@@ -19,7 +19,7 @@ public class AdministradorDAO {
         try {
             conn = conexao.conectar();
 
-            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO administrador (nome, email, senha) VALUES (?, ?, ?)");
+            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO administrador (nome, email, senha) VALUES (?, ?, crypt(?, gen_salt('bf',12)))");
 
             pstmt.setString(1, admin.getNome());
             pstmt.setString(2, admin.getEmail());
@@ -88,7 +88,7 @@ public class AdministradorDAO {
                         rs.getString("email"),
                         rs.getString("senha"));
             }
-            return null; // não encontrou
+            return null;
 
         } catch (SQLException sqlE) {
             System.out.println(sqlE.getMessage());
