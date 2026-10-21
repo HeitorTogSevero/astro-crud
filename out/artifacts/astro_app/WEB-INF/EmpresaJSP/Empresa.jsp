@@ -39,7 +39,7 @@ return s == null ? "" : s;
         <img src="<%=caminho%>/imagens/logotipo.png" alt="Logotipo" class="img-logo">
     </div>
     <nav class="nav-menu">
-        <a href="<%=caminho%>/crud.jsp" class="nav-item"><i class="fa-solid fa-house"></i>Início</a>
+        <a href="<%=caminho%>/tela-inicial" class="nav-item"><i class="fa-solid fa-house"></i>Início</a>
         <a href="<%=caminho%>/listar-empresas" class="nav-item active"><i class="fa-regular fa-building"></i>empresa</a>
         <a href="<%=caminho%>/listar-funcionarios" class="nav-item"><i class="fa-solid fa-users"></i>funcionario</a>
         <a href="<%=caminho%>/listar-departamentos" class="nav-item"><i class="fa-solid fa-layer-group"></i>departamento</a>
