@@ -60,7 +60,7 @@ org.astro.astro_app.model.Empresa"%>
             <i class="fa-solid fa-award"></i>certificado
         </a>
         <div class="sidebar-bottom">
-            <a href="#" class="nav-item" id="exit-bottom">
+            <a href="<%=request.getContextPath()%>/lading-page.html" class="nav-item" id="exit-bottom">
                 <i class="fa-solid fa-right-from-bracket"></i>Sair
             </a>
         </div>
@@ -109,16 +109,16 @@ org.astro.astro_app.model.Empresa"%>
                 <table class="data-table" id="tabela-empresas">
                     <thead class="data-cabecalho">
                     <tr>
-                        <th>id_empresa</th>
-                        <th>cnpj</th>
-                        <th>nome</th>
-                        <th>cnae</th>
-                        <th>bairro</th>
-                        <th>cep</th>
-                        <th>rua</th>
-                        <th>estado</th>
-                        <th>cidade</th>
-                        <th>dt_registro</th>
+                        <th>Numero Empresa</th>
+                        <th>CNPJ</th>
+                        <th>Nome</th>
+                        <th>CNAE</th>
+                        <th>Bairro</th>
+                        <th>CEP</th>
+                        <th>Rua</th>
+                        <th>Estado</th>
+                        <th>Cidade</th>
+                        <th>Data de Registro</th>
                     </tr>
                     </thead>
                     <tbody id="corpo-tabela-empresas">

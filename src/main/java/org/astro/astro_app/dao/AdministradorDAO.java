@@ -6,7 +6,7 @@ import org.astro.astro_app.model.Administrador;
 import java.sql.*;
 import java.util.ArrayList;
 
-// Classe DAO ServletAdministrador - CRUD
+// Classe DAO ServletReadAdministrador - CRUD
 public class AdministradorDAO {
 
     // Metodo Create | Insert - CRUD

@@ -32,15 +32,37 @@ return s == null ? "" : s;
         <img src="<%=caminho%>/imagens/logotipo.png" alt="Logotipo" class="img-logo">
     </div>
     <nav class="nav-menu">
-        <a href="<%=caminho%>/tela-inicial" class="nav-item"><i class="fa-solid fa-house"></i>Início</a>
-        <a href="<%=caminho%>/listar-empresas" class="nav-item"><i class="fa-regular fa-building"></i>empresa</a>
-        <a href="<%=caminho%>/listar-funcionarios" class="nav-item active"><i class="fa-solid fa-users"></i>funcionario</a>
-        <a href="<%=caminho%>/listar-departamentos" class="nav-item"><i class="fa-solid fa-layer-group"></i>departamento</a>
-        <a href="<%=caminho%>/listar-divisoes" class="nav-item"><i class="fa-regular fa-file-lines"></i>divisao_treinamento</a>
-        <a href="<%=caminho%>/lista-alerta" class="nav-item"><i class="fa-regular fa-calendar-check"></i>alerta</a>
-        <a href="<%=caminho%>/listar-certificados" class="nav-item"><i class="fa-solid fa-award"></i>certificado</a>
+        <a href="<%=caminho%>/crud.jsp" class="nav-item">
+            <i class="fa-solid fa-house"></i>Início
+        </a>
+
+        <a href="<%=caminho%>/listar-empresas" class="nav-item">
+            <i class="fa-regular fa-building"></i>empresa
+
+        </a>
+
+        <a href="<%=caminho%>/listar-funcionarios" class="nav-item active">
+            <i class="fa-solid fa-users"></i>funcionario
+        </a>
+
+        <a href="<%=caminho%>/listar-departamentos" class="nav-item">
+            <i class="fa-solid fa-layer-group"></i>departamento
+        </a>
+
+        <a href="<%=caminho%>/listar-divisoes" class="nav-item">
+            <i class="fa-regular fa-file-lines"></i>divisao_treinamento
+        </a>
+
+        <a href="<%=caminho%>/lista-alerta" class="nav-item">
+            <i class="fa-regular fa-calendar-check"></i>alerta
+        </a>
+
+        <a href="<%=caminho%>/listar-certificados" class="nav-item">
+            <i class="fa-solid fa-award"></i>certificado
+        </a>
+
         <div class="sidebar-bottom">
-            <a href="#" class="nav-item" id="exit-bottom"><i class="fa-solid fa-right-from-bracket"></i>Sair</a>
+            <a href="<%=request.getContextPath()%>/lading-page.html" class="nav-item" id="exit-bottom"><i class="fa-solid fa-right-from-bracket"></i>Sair</a>
         </div>
     </nav>
 </aside>
