@@ -28,7 +28,6 @@ public class Conexao{
 
             conn = DriverManager.getConnection(url, usuario, senha);
 
-            System.out.println("DEU BOMM");
         }
 
         // Mensagem de Erro na Conexão:
@@ -45,8 +44,6 @@ public class Conexao{
         try{
             if (conn != null && !conn.isClosed()) {
                 conn.close(); // Fechando a Conexão
-
-                System.out.println("Desconectou"); // Mensagem de desconexão
             }
         } catch (SQLException sqle) {
             sqle.printStackTrace();

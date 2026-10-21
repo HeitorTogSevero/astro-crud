@@ -33,7 +33,7 @@ const ano = data.getFullYear();
 const mes = String(data.getMonth() + 1).padStart(2, "0");
 const dia = String(data.getDate()).padStart(2, "0");
 
-const dataAtual = `${ano}/${mes}/${dia}`;
+const dataAtual = `${dia}/${mes}/${ano}`;
 
 
 
@@ -65,7 +65,7 @@ form.addEventListener("input", function (){
 
 // Validações de Dados - Id NR_Funcionario//
 form.addEventListener("input", function (){
-
+    console.log(dataEmissao.value)
     if (idNrFunc.value.trim() === "") {
 
         erroIdNrFunc.textContent = "";
@@ -123,6 +123,7 @@ form.addEventListener("input", function (){
         erroDataEmissao.textContent = "";
         erroDataEmissao.classList.remove("invalido", "valido");
     }
+
 
     else if (!regexData.test(dataEmissao.value)){
 

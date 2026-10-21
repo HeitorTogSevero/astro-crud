@@ -7,8 +7,8 @@ import org.astro.astro_app.dao.*;
 
 import java.io.IOException;
 
-@WebServlet(name = "ServletAdministrador", value = "/tela-inicial")
-public class ServletAdministrador extends HttpServlet{
+@WebServlet(name = "ServletReadAdministrador", value = "/tela-inicial")
+public class ServletReadAdministrador extends HttpServlet{
 
     private AdministradorDAO administradorDAO;
     private EmpresaDAO empresaDAO;

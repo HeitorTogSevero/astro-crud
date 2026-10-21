@@ -52,7 +52,7 @@ return s == null ? "" : s;}%>
             <i class="fa-solid fa-award"></i>certificado
         </a>
         <div class="sidebar-bottom">
-            <a href="#" class="nav-item" id="exit-bottom">
+            <a href="<%=request.getContextPath()%>/lading-page.html" class="nav-item" id="exit-bottom">
                 <i class="fa-solid fa-right-from-bracket"></i>Sair
             </a>
         </div>
@@ -110,7 +110,6 @@ return s == null ? "" : s;}%>
                 </tr>
                 </thead>
                 <tbody id="corpo-tabela-departamentos">
-<<<<<<< HEAD
                 <%
                 if (departamentos != null && !departamentos.isEmpty()) {
                 for (Departamento d : departamentos) {
@@ -139,7 +138,7 @@ return s == null ? "" : s;}%>
                 %>
                 <tr>
                     <td colspan="7">Nenhum departamento encontrado.</td>
-=======
+
                 <tr id_departamento="" nome="" descricao="" grau_risco="" atividade="" id_empresa="">
                     <td></td>
                     <td></td>
@@ -153,7 +152,6 @@ return s == null ? "" : s;}%>
                             <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
                         </div>
                     </td>
->>>>>>> da0f446578970a5337882feb04739ca403e58456
                 </tr>
                 <% } %>
                 </tbody>

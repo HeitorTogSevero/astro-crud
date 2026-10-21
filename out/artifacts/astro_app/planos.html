@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astro – Planos</title>
+    <link rel="stylesheet" href="style/planos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="imagens/isotipo.png">
+</head>
+<body>
+<header class="barra-navegacao">
+    <div class="logo">
+        <a href="lading-page.html">
+            <img src="imagens/isotipo.png" alt="Logo" class="icone-logo">
+        </a>
+    </div>
+
+    <nav class="links-navegacao">
+        <a href="produtos.html">Produto</a>
+        <a href="recursos.html">Recursos</a>
+        <a class="planos">Planos</a>
+        <a href="sobre.html">Sobre</a>
+    </nav>
+
+    <div class="acoes-navegacao">
+        <a href="tela_login/login.html" class="botao-entrar">Entrar</a>
+        <a href="tela_login/cadastro.html" class="botao-principal">Cadastre-se</a>
+    </div>
+</header>
+
+<main>
+    <section class="principal">
+
+        <div class="conteudo-principal">
+            <div class="etiqueta">
+                <img src="imagens/topico.png" class="icone-etiqueta" alt="Ícone"> PLANOS
+            </div>
+
+            <h1>
+                Escolha o plano ideal <br>
+                para <span class="destaque">sua empresa.</span>
+            </h1>
+
+            <p>
+                Planos simples, transparentes e escaláveis <br>
+                para empresas de todos os tamanhos.
+            </p>
+        </div>
+
+        <div class="mensal-anual">
+            <h4>Mensal</h4>
+
+            <label class="switch">
+                <input type="checkbox" id="switch-plano">
+                <span class="slider"></span>
+            </label>
+
+            <h4>Anual</h4>
+
+            <div class="economize">
+                <p>Economize 10%</p>
+            </div>
+        </div>
+
+        <div class="os-planos">
+
+            <div class="o-plano">
+                <div class="plano-titulo">
+                    <img src="imagens/plutao.png" alt="plutao">
+                    <h1>Plutão</h1>
+                </div>
+
+                <h2>
+                    Para pequenas empresas <br>
+                    <div class="fraco">que estão começando.</div>
+                </h2>
+
+                <h3>
+                    R$ <span class="grande" id="preco-plutao">48,73</span><span id="periodo-plutao">/mês</span>
+                </h3>
+
+                <h4 id="cobranca-plutao">Cobrança mensal</h4>
+
+                <a href="tela_login/cadastro.html">
+                    <button class="botao-plano">Começar agora</button>
+                </a>
+
+                <div class="topicos">
+                    <div class="topico">
+                        <span class="check-beneficio">✓</span>
+                        <p>Até 25 Colaboradores</p>
+                    </div>
+
+                    <div class="topico">
+                        <span class="check-beneficio">✓</span>
+                        <p>Até 2 Gestores</p>
+                    </div>
+
+                    <div class="topico">
+                        <span class="check-beneficio">✓</span>
+                        <p>Até 10 Eventos ativos</p>
+                    </div>
+
+                    <div class="topico">
+                        <span class="check-beneficio">✓</span>
+                        <p>Suporte por e-mail</p>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="o-plano2">
+
+                <div class="mais-escolhido">
+                    MAIS ESCOLHIDO
+                </div>
+
+                <div class="plano-titulo2">
+                    <img src="imagens/terra.png" alt="terra">
+                    <h1>Terra</h1>
+                </div>
+
+                <h2>
+                    Para empresas crescendo <br>
+                    <div class="fraco">que buscam eficiência.</div>
+                </h2>
+
+                <h3>
+                    R$ <span class="grande" id="preco-terra">113,71</span><span id="periodo-terra">/mês</span>
+                </h3>
+
+                <h4 id="cobranca-terra">Cobrança mensal</h4>
+
+                <a href="tela_login/cadastro.html">
+                    <button class="botao-plano2">Começar agora</button>
+                </a>
+
+                <div class="topicos">
+                    <div class="topico">
+                        <span class="check-beneficio">✓</span>
+                        <p>Até 100 Colaboradores</p>
+                    </div>
+
+                    <div class="topico">
+                        <span class="check-beneficio">✓</span>
+                        <p>Até 5 Gestores</p>
+                    </div>
+
+                    <div class="topico">
+                        <span class="check-beneficio">✓</span>
+                        <p>Eventos ilimitados</p>
+                    </div>
+
+                    <div class="topico">
+                        <span class="check-beneficio">✓</span>
+                        <p>Unidades ilimitadas</p>
+                    </div>
+
+                    <div class="topico">
+                        <span class="check-beneficio">✓</span>
+                        <p>50 análises de IA/mês</p>
+                    </div>
+
+                    <div class="topico">
+                        <span class="check-beneficio">✓</span>
+                        <p>Suporte por chat</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="o-plano">
+
+                <div class="plano-titulo">
+                    <img src="imagens/jupiter.png" alt="jupiter">
+                    <h1>Júpiter</h1>
+                </div>
+
+                <h2>
+                    Para grandes empresas que <br>
+                    <div class="fraco">precisam de controle total.</div>
+                </h2>
+
+                <h3>
+                    R$ <span class="grande" id="preco-jupiter">259,91</span><span id="periodo-jupiter">/mês</span>
+                </h3>
+
+                <h4 id="cobranca-jupiter">Cobrança mensal</h4>
+
+                <a href="tela_login/cadastro.html">
+                    <button class="botao-plano">Começar agora</button>
+                </a>
+
+                <div class="topicos">
+                    <div class="topico">
+                        <span class="check-beneficio">✓</span>
+                        <p>Até 500 Colaboradores</p>
+                    </div>
+
+                    <div class="topico">
+                        <span class="check-beneficio">✓</span>
+                        <p>Até 15 Gestores</p>
+                    </div>
+
+                    <div class="topico">
+                        <span class="check-beneficio">✓</span>
+                        <p>Eventos ilimitados</p>
+                    </div>
+
+                    <div class="topico">
+                        <span class="check-beneficio">✓</span>
+                        <p>Unidades ilimitadas</p>
+                    </div>
+
+                    <div class="topico">
+                        <span class="check-beneficio">✓</span>
+                        <p>200 análises de IA/mês</p>
+                    </div>
+
+                    <div class="topico">
+                        <span class="check-beneficio">✓</span>
+                        <p>Importações ilimitadas</p>
+                    </div>
+
+                    <div class="topico">
+                        <span class="check-beneficio">✓</span>
+                        <p>Suporte prioritário</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div class="beneficios-planos">
+        <img class="icone-beneficios" src="imagens/planos_constelacao 1.png" alt="planos">
+
+        <div class="conteudo-beneficios">
+            <h2>Todos os planos incluem:</h2>
+
+            <div class="lista-beneficios">
+                <div class="beneficio">
+                    <span class="check-beneficio">✓</span>
+                    <span>LGPD Compliant</span>
+                </div>
+
+                <span class="separador-beneficio">•</span>
+
+                <div class="beneficio">
+                    <span class="check-beneficio">✓</span>
+                    <span>Segurança de dados</span>
+                </div>
+
+                <span class="separador-beneficio">•</span>
+
+                <div class="beneficio">
+                    <span class="check-beneficio">✓</span>
+                    <span>Backups automáticos</span>
+                </div>
+
+                <span class="separador-beneficio">•</span>
+
+                <div class="beneficio">
+                    <span class="check-beneficio">✓</span>
+                    <span>Disponibilidade 99,9%</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="visao-geral" id="visao-geral">
+
+        <div class="conteudo-visao">
+            <div class="etiqueta">
+                <img src="imagens/topico.png" class="icone-etiqueta" alt="Ícone"> VISÃO GERAL
+            </div>
+            <h2>Compare <span class="destaque">todos os recursos</span></h2>
+            <p>Encontre o plano perfeito para as necessidades da sua empresa.</p>
+        </div>
+        <div class="tabela-container">
+            <table class="tabela-recursos">
+                <thead>
+                <tr>
+                    <th>Recursos</th>
+                    <th>Plutão</th>
+                    <th>Terra</th>
+                    <th>Júpiter</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr>
+                    <td>Colaboradores</td>
+                    <td>Até 25</td>
+                    <td>Até 100</td>
+                    <td>Até 500</td>
+                </tr>
+                <tr>
+                    <td>Gestores</td>
+                    <td>Até 2</td>
+                    <td>Até 5</td>
+                    <td>Até 15</td>
+                </tr>
+                <tr>
+                    <td>Eventos ativos</td>
+                    <td>Até 10</td>
+                    <td>Ilimitados</td>
+                    <td>Ilimitados</td>
+                </tr>
+                <tr>
+                    <td>Unidades ilimitadas</td>
+                    <td>-</td>
+                    <td><span class="marcado" aria-label="Incluído"></span></td>
+                    <td><span class="marcado" aria-label="Incluído"></span></td>
+                </tr>
+                <tr>
+                    <td>Análises de IA por mês</td>
+                    <td>-</td>
+                    <td>50</td>
+                    <td>200</td>
+                </tr>
+                <tr>
+                    <td>Importações ilimitadas</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td><span class="marcado" aria-label="Incluído"></span></td>
+                </tr>
+                <tr>
+                    <td>Suporte</td>
+                    <td>E-mail</td>
+                    <td>Chat</td>
+                    <td>Prioritário</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <section class="secao-cta">
+        <div class="caixa-cta">
+
+            <img src="imagens/cta.png" class="imagem-cta" alt="CTA">
+
+            <a href="tela_login/cadastro.html" class="botao-principal botao-cta">
+                Começar minha jornada →
+            </a>
+
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="conteudo-rodape">
+
+        <div class="marca-rodape">
+            <img src="imagens/imagotipo.png" alt="Astro" class="logo-rodape">
+
+            <p>Conformidade em órbita,<br>sempre em vigência.</p>
+        </div>
+
+        <div class="links-rodape">
+
+            <div class="coluna-links">
+                <h4>Produto</h4>
+                <a href="produtos.html#funcionalidades">Funcionalidades</a>
+                <a href="produtos.html#integracoes">Integrações</a>
+                <a href="produtos.html#seguranca">Segurança</a>
+            </div>
+
+            <div class="coluna-links">
+                <h4>Recursos</h4>
+                <a href="recursos.html#materiais">Materiais</a>
+                <a href="recursos.html#blog">Blog</a>
+                <a href="recursos.html#glossario">Glossário</a>
+            </div>
+
+            <div class="coluna-links">
+                <h4>Planos</h4>
+                <a href="planos.html">Mensal</a>
+                <a href="planos.html?periodo=anual">Anual</a>
+                <a href="planos.html#visao-geral">Visão geral</a>
+            </div>
+
+            <div class="coluna-links">
+                <h4>Sobre</h4>
+                <a href="sobre.html#equipe">Quem somos</a>
+                <a href="sobre.html#missao">Missão e valores</a>
+                <a href="sobre.html#contato">Contato</a>
+            </div>
+
+            <div class="coluna-links social">
+                <h4>
+                    Siga o <img id="siga" src="imagens/logotipo.png" alt="astro">
+                </h4>
+
+                <div class="icones-sociais">
+
+                    <div class="icone-social">
+                        <img src="imagens/linkedin.png" alt="LinkedIn">
+                    </div>
+
+                    <a href="https://www.instagram.com/astro.4pp/" target="_blank" rel="noopener noreferrer">
+                        <div class="icone-social">
+                            <img src="imagens/instagram.png" alt="Instagram">
+                        </div>
+                    </a>
+
+                    <div class="icone-social">
+                        <img src="imagens/youtube.png" alt="YouTube">
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="rodape-inferior">
+        <p>&copy; 2026 astro. Todos os direitos reservados.</p>
+
+        <div class="links-legais-rodape">
+            <a href="#">Privacidade</a>
+            <a href="#">Termos de uso</a>
+        </div>
+    </div>
+</footer>
+
+<script src="JS/Paginas/planos.js"></script>
+
+</body>
+</html>
