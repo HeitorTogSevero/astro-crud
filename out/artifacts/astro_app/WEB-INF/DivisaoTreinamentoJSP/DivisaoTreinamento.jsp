@@ -166,22 +166,26 @@ org.astro.astro_app.model.DivisaoTreinamento"
 
             <div class="modal-campo">
                 <label for="campo-nome">Nome:</label>
-                <input type="text" id="campo-nome" name="nome" required>
+                <input type="text" id="campo-nome" name="nome" placeholder="Nome" required>
+                <span id="erroNome"></span>
             </div>
 
             <div class="modal-campo">
                 <label for="campo-codigo">Código:</label>
-                <input type="number" id="campo-codigo" name="codigo" min="0" required>
+                <input type="number" id="campo-codigo" name="codigo" min="0" placeholder="ID" required>
+                <span id="erroCod"></span>
             </div>
 
             <div class="modal-campo">
-                <label for="campo-id_empresa">id_empresa:</label>
-                <input type="number" id="campo-id_empresa" name="id_empresa" min="0" required>
+                <label for="campo-id_empresa">Empresa (id):</label>
+                <input type="number" id="campo-id_empresa" name="id_empresa" min="0" placeholder="ID" required>
+                <span id="erroIdEmpresa"></span>
             </div>
 
             <div class="modal-campo">
-                <label for="campo-id_cronograma">id_cronograma:</label>
-                <input type="number" id="campo-id_cronograma" name="id_cronograma" min="0" required>
+                <label for="campo-id_cronograma">Cronograma (id):</label>
+                <input type="number" id="campo-id_cronograma" name="id_cronograma" min="0" placeholder="ID" required>
+                <span id="erroIdCrono"></span>
             </div>
 
             <div class="modal-rodape">
@@ -207,17 +211,17 @@ org.astro.astro_app.model.DivisaoTreinamento"
 
             <div class="modal-campo">
                 <label for="filtro-codigo">Código</label>
-                <input type="number" id="filtro-codigo" name="codigo" min="0" value="<%= fCodigo %>">
+                <input type="number" id="filtro-codigo" name="codigo" min="0" placeholder="ID" value="<%= fCodigo %>">
             </div>
 
             <div class="modal-campo">
-                <label for="filtro-id_empresa">id_empresa</label>
-                <input type="number" id="filtro-id_empresa" name="id_empresa" min="0" value="<%= fIdEmpresa %>">
+                <label for="filtro-id_empresa">Empresa (id)</label>
+                <input type="number" id="filtro-id_empresa" name="id_empresa" min="0" placeholder="ID value="<%= fIdEmpresa %>">
             </div>
 
             <div class="modal-campo">
                 <label for="filtro-nome">Nome</label>
-                <input type="text" id="filtro-nome" name="nome" value="<%= fNome %>">
+                <input type="text" id="filtro-nome" name="nome" placeholder="ID" value="<%= fNome %>">
             </div>
 
             <div class="modal-rodape">
@@ -245,22 +249,25 @@ org.astro.astro_app.model.DivisaoTreinamento"
 
             <div class="modal-campo">
                 <label for="editar-nome">Nome:</label>
-                <input type="text" id="editar-nome" name="nome" required>
+                <input type="text" id="editar-nome" name="nome" placeholder="Nome" required>
+                <span id="editar-erroNome"></span>
             </div>
 
             <div class="modal-campo">
                 <label for="editar-codigo">Código:</label>
-                <input type="number" id="editar-codigo" name="codigo" min="0" required>
+                <input type="number" id="editar-codigo" name="codigo" min="0" placeholder="ID" required>
+                <span id="editar-erroCod"></span>
             </div>
 
             <div class="modal-campo">
-                <label for="editar-id_empresa">id_empresa:</label>
+                <label for="editar-id_empresa">Empresa (id):</label>
                 <input type="number" id="editar-id_empresa" name="id_empresa" min="0" required>
+                <span id="editar-erroIdEmpresa"></span>
             </div>
 
             <div class="modal-campo">
-                <label for="editar-id_cronograma">id_cronograma:</label>
-                <input type="number" id="editar-id_cronograma" name="id_cronograma" min="0" required>
+                <label for="editar-id_cronograma">Cronograma (id):</label>
+                <input type="number" id="editar-id_cronograma" name="id_cronograma" min="0" placeholder="ID" required>
             </div>
 
             <div class="modal-rodape">
@@ -353,6 +360,8 @@ org.astro.astro_app.model.DivisaoTreinamento"
     document.getElementById('cancelar-modal').addEventListener('click', () => modalAdicionar.hidden = true);
     modalAdicionar.addEventListener('click', e => { if (e.target === modalAdicionar) modalAdicionar.hidden = true; });
 </script>
+<script src="<%=caminho%>/JS/Create/create-divisao_treinamento.js"></script>
+<script src="<%=caminho%>/JS/Update/update-divisao_Treinamento.js"></script>
 
 </body>
 </html>

@@ -184,7 +184,7 @@ org.astro.astro_app.model.Alerta"
 
             <div class="modal-campo">
                 <label for="campo-dt_limite">Data Limite:</label>
-                <input type="date" id="campo-dt_limite" name="dt_limite" required>
+                <input type="date" id="campo-dt_limite" name="Data Limite" required>
                 <span id="erroData"></span>
             </div>
 
@@ -230,8 +230,8 @@ org.astro.astro_app.model.Alerta"
             </div>
 
             <div class="modal-campo">
-                <label for="filtro-id_empresa">Empresa (id)</label>
-                <input type="number" id="filtro-id_empresa" name="id_empresa" min="0" placeholder="0" value="<%= fIdEmpresa %>">
+                <label for="filtro-id_empresa">Empresa (id): </label>
+                <input type="number" id="filtro-id_empresa" name="id_empresa" min="0" placeholder="ID" value="<%= fIdEmpresa %>">
             </div>
 
             <div class="modal-rodape">
@@ -271,13 +271,13 @@ org.astro.astro_app.model.Alerta"
 
             <div class="modal-campo">
                 <label for="editar-dt_limite">Data Limite: </label>
-                <input type="date" id="editar-dt_limite" name="dt_limite" required>
+                <input type="date" id="editar-dt_limite" name="dd/mm/aaaa" required>
                 <span id="editar-erroData"></span>
             </div>
 
             <div class="modal-campo">
                 <label for="editar-id-empresa">Empresa (id): </label>
-                <input type="number" id="editar-id-empresa" name="id_empresa" min="0" required>
+                <input type="number" id="editar-id-empresa" name="ID" min="0" required>
                 <span id="editar-erroId"></span>
             </div>
 
