@@ -185,4 +185,29 @@ public class AdministradorDAO {
         }
     }
 
+    public boolean emailExiste(String email) {
+
+        Conexao conexao = new Conexao();
+        Connection conn = null;
+
+        try {
+            conn = conexao.conectar();
+
+            PreparedStatement pstmt = conn.prepareStatement("SELECT 1 FROM administrador WHERE email = ?");
+
+            pstmt.setString(1, email);
+
+            ResultSet rs = pstmt.executeQuery();
+
+            return rs.next();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return true; // na dúvida, bloqueia o cadastro
+        } finally {
+            conexao.desconectar(conn);
+        }
+    }
+
+
 }
