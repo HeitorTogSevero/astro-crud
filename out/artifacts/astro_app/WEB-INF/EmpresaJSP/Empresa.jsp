@@ -215,6 +215,8 @@ org.astro.astro_app.model.Empresa"
 
             <div class="modal-campo">
                 <label for="campo-dt_registro">Data de Registro: </label>
+                <input type="date" id="campo-dt_registro" name="dd/mm/aaaa" required>
+
                 <input type="date" id="campo-dt_registro" name="dt_registro" required>
                 <span id="erroDataRegistro" ></span>
             </div>
