@@ -4,9 +4,9 @@ java.text.SimpleDateFormat,
 org.astro.astro_app.model.Empresa"
 %>
 <%!
-private String v(String s) {
-return s == null ? "" : s;
-}
+    private String v(String s) {
+        return s == null ? "" : s;
+    }
 %>
 <%  String caminho = request.getContextPath();
     ArrayList<Empresa> empresas = (ArrayList<Empresa>) request.getAttribute("empresas");
@@ -20,7 +20,7 @@ return s == null ? "" : s;
     String fNome   = v(request.getParameter("nome"));
     String fDtMin  = v(request.getParameter("dt_registro_min"));
     String fDtMax  = v(request.getParameter("dt_registro_max"));
-    %>
+%>
 <!DOCTYPE html>
 <html lang="pt">
 <head>
@@ -40,7 +40,7 @@ return s == null ? "" : s;
     </div>
     <nav class="nav-menu">
         <a href="<%=caminho%>/tela-inicial" class="nav-item">
-                <i class="fa-solid fa-house"></i>Início
+            <i class="fa-solid fa-house"></i>Início
         </a>
 
         <a href="<%=caminho%>/listar-empresas" class="nav-item active">
@@ -94,10 +94,10 @@ return s == null ? "" : s;
     </section>
 
     <%
-    String mensagem = (String) request.getAttribute("erro");
-    if (mensagem == null) mensagem = (String) request.getAttribute("mensagem");
-    if (mensagem != null) {
-    String cor = mensagem.toLowerCase().contains("sucesso") ? "green" : "red";
+        String mensagem = (String) request.getAttribute("erro");
+        if (mensagem == null) mensagem = (String) request.getAttribute("mensagem");
+        if (mensagem != null) {
+            String cor = mensagem.toLowerCase().contains("sucesso") ? "green" : "red";
     %>
     <p style="color: <%= cor %>"><%= mensagem %></p>
     <% } %>
@@ -122,8 +122,8 @@ return s == null ? "" : s;
                 </thead>
                 <tbody id="corpo-tabela-empresas">
                 <%
-                if (empresas != null && !empresas.isEmpty()) {
-                for (Empresa e : empresas) {
+                    if (empresas != null && !empresas.isEmpty()) {
+                        for (Empresa e : empresas) {
                 %>
                 <tr data-id-empresa="<%= e.getIdEmpresa() %>">
                     <td><%= e.getIdEmpresa() %></td>
@@ -144,7 +144,7 @@ return s == null ? "" : s;
                     </td>
                 </tr>
                 <%
-                }
+                    }
                 } else {
                 %>
                 <tr><td colspan="11">Nenhuma empresa encontrada.</td></tr>

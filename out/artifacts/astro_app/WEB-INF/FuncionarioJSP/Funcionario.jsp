@@ -3,9 +3,9 @@
 org.astro.astro_app.model.Funcionario"
 %>
 <%!
-private String v(String s) {
-return s == null ? "" : s;
-}
+    private String v(String s) {
+        return s == null ? "" : s;
+    }
 %>
 <%  String caminho = request.getContextPath();
     ArrayList<Funcionario> funcionarios = (ArrayList<Funcionario>) request.getAttribute("funcionarios");
@@ -13,7 +13,7 @@ return s == null ? "" : s;
     String fCargo = v(request.getParameter("cargo"));
     String fIdEmpresa = v(request.getParameter("id_empresa"));
     String fIdDepartamento = v(request.getParameter("id_departamento"));
-    %>
+%>
 <!DOCTYPE html>
 <html lang="pt">
 <head>
@@ -88,10 +88,10 @@ return s == null ? "" : s;
     </section>
 
     <%
-    String mensagem = (String) request.getAttribute("erro");
-    if (mensagem == null) mensagem = (String) request.getAttribute("mensagem");
-    if (mensagem != null) {
-    String cor = mensagem.toLowerCase().contains("sucesso") ? "green" : "red";
+        String mensagem = (String) request.getAttribute("erro");
+        if (mensagem == null) mensagem = (String) request.getAttribute("mensagem");
+        if (mensagem != null) {
+            String cor = mensagem.toLowerCase().contains("sucesso") ? "green" : "red";
     %>
     <p style="color: <%= cor %>"><%= mensagem %></p>
     <% } %>
@@ -113,8 +113,8 @@ return s == null ? "" : s;
                 </thead>
                 <tbody id="corpo-tabela-funcionarios">
                 <%
-                if (funcionarios != null && !funcionarios.isEmpty()) {
-                for (Funcionario f : funcionarios) {
+                    if (funcionarios != null && !funcionarios.isEmpty()) {
+                        for (Funcionario f : funcionarios) {
                 %>
                 <tr data-id-funcionario="<%= f.getIdFuncionario() %>">
                     <td><%= f.getIdFuncionario() %></td>
@@ -132,7 +132,7 @@ return s == null ? "" : s;
                     </td>
                 </tr>
                 <%
-                }
+                    }
                 } else {
                 %>
                 <tr>

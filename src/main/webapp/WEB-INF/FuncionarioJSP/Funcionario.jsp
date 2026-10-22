@@ -3,9 +3,9 @@
 org.astro.astro_app.model.Funcionario"
 %>
 <%!
-private String v(String s) {
-return s == null ? "" : s;
-}
+    private String v(String s) {
+        return s == null ? "" : s;
+    }
 %>
 <%  String caminho = request.getContextPath();
     ArrayList<Funcionario> funcionarios = (ArrayList<Funcionario>) request.getAttribute("funcionarios");
@@ -13,7 +13,7 @@ return s == null ? "" : s;
     String fCargo = v(request.getParameter("cargo"));
     String fIdEmpresa = v(request.getParameter("id_empresa"));
     String fIdDepartamento = v(request.getParameter("id_departamento"));
-    %>
+%>
 <!DOCTYPE html>
 <html lang="pt">
 <head>
@@ -88,10 +88,10 @@ return s == null ? "" : s;
     </section>
 
     <%
-    String mensagem = (String) request.getAttribute("erro");
-    if (mensagem == null) mensagem = (String) request.getAttribute("mensagem");
-    if (mensagem != null) {
-    String cor = mensagem.toLowerCase().contains("sucesso") ? "green" : "red";
+        String mensagem = (String) request.getAttribute("erro");
+        if (mensagem == null) mensagem = (String) request.getAttribute("mensagem");
+        if (mensagem != null) {
+            String cor = mensagem.toLowerCase().contains("sucesso") ? "green" : "red";
     %>
     <p style="color: <%= cor %>"><%= mensagem %></p>
     <% } %>
@@ -113,8 +113,8 @@ return s == null ? "" : s;
                 </thead>
                 <tbody id="corpo-tabela-funcionarios">
                 <%
-                if (funcionarios != null && !funcionarios.isEmpty()) {
-                for (Funcionario f : funcionarios) {
+                    if (funcionarios != null && !funcionarios.isEmpty()) {
+                        for (Funcionario f : funcionarios) {
                 %>
                 <tr data-id-funcionario="<%= f.getIdFuncionario() %>">
                     <td><%= f.getIdFuncionario() %></td>
@@ -132,7 +132,7 @@ return s == null ? "" : s;
                     </td>
                 </tr>
                 <%
-                }
+                    }
                 } else {
                 %>
                 <tr>
@@ -156,30 +156,40 @@ return s == null ? "" : s;
             <button type="button" class="modal-fechar" id="fechar-modal"><i class="fa-solid fa-xmark"></i></button>
         </div>
         <form class="modal-formulario" action="<%=caminho%>/adicionar-funcionario" method="post">
+
             <div class="modal-campo">
-                <label for="campo-cpf">cpf</label>
+                <label for="campo-cpf">CPF: </label>
                 <input type="text" id="campo-cpf" name="cpf" placeholder="000.000.000-00" required>
+                <span id="erroCpf"></span>
             </div>
+
             <div class="modal-campo">
-                <label for="campo-nome">nome</label>
-                <input type="text" id="campo-nome" name="nome" required>
+                <label for="campo-nome">Nome: </label>
+                <input type="text" id="campo-nome" name="nome" placeholder="Nome" required>
+                <span id="erroNome"></span>
             </div>
+
             <div class="modal-campo">
-                <label for="campo-cargo">cargo</label>
-                <input type="text" id="campo-cargo" name="cargo" required>
+                <label for="campo-cargo">Cargo: </label>
+                <input type="text" id="campo-cargo" name="cargo" placeholder="Ex: Professor" required>
             </div>
+
             <div class="modal-campo">
-                <label for="campo-email">email</label>
-                <input type="text" id="campo-email" name="email" required>
+                <label for="campo-email">Email: </label>
+                <input type="text" id="campo-email" name="email" placeholder="exemplo@gmail.com" required>
+                <span id="erroEmail"></span>
             </div>
+
             <div class="modal-campo">
-                <label for="campo-id_empresa">id_empresa</label>
-                <input type="number" id="campo-id_empresa" name="id_empresa" min="0" required>
+                <label for="campo-id_empresa">Empresa (id)</label>
+                <input type="number" id="campo-id_empresa" name="id_empresa" min="0" placeholder="ID" required>
             </div>
+
             <div class="modal-campo">
-                <label for="campo-id_departamento">id_departamento</label>
-                <input type="number" id="campo-id_departamento" name="id_departamento" min="0" required>
+                <label for="campo-id_departamento">Departamento (id): </label>
+                <input type="number" id="campo-id_departamento" name="id_departamento" min="0" placeholder="ID" required>
             </div>
+
             <div class="modal-rodape">
                 <button type="button" class="botao-cancelar" id="cancelar-modal">Cancelar</button>
                 <button type="submit" class="botao-salvar">Salvar</button>
@@ -196,18 +206,22 @@ return s == null ? "" : s;
             <button type="button" class="modal-fechar" id="fechar-modal-filtro"><i class="fa-solid fa-xmark"></i></button>
         </div>
         <form class="modal-formulario" action="<%=caminho%>/listar-funcionarios" method="get">
+
             <div class="modal-campo">
-                <label for="filtro-cargo">Cargo</label>
-                <input type="text" id="filtro-cargo" name="cargo" value="<%= fCargo %>">
+                <label for="filtro-cargo">Cargo: </label>
+                <input type="text" id="filtro-cargo" name="cargo" placeholder="Ex. Professor" value="<%= fCargo %>">
             </div>
+
             <div class="modal-campo">
-                <label for="filtro-id_empresa">id_empresa</label>
-                <input type="number" id="filtro-id_empresa" name="id_empresa" min="0" value="<%= fIdEmpresa %>">
+                <label for="filtro-id_empresa">Empresa (id): </label>
+                <input type="number" id="filtro-id_empresa" name="id_empresa" min="0" placeholder="ID" value="<%= fIdEmpresa %>">
             </div>
+
             <div class="modal-campo">
-                <label for="filtro-id_departamento">id_departamento</label>
-                <input type="number" id="filtro-id_departamento" name="id_departamento" min="0" value="<%= fIdDepartamento %>">
+                <label for="filtro-id_departamento">Departamento (id)</label>
+                <input type="number" id="filtro-id_departamento" name="id_departamento" min="0" placeholder="ID" value="<%= fIdDepartamento %>">
             </div>
+
             <div class="modal-rodape">
                 <a href="<%=caminho%>/listar-funcionarios" class="botao-cancelar">Limpar</a>
                 <button type="submit" class="botao-salvar">Aplicar filtro</button>
@@ -225,29 +239,41 @@ return s == null ? "" : s;
         </div>
         <form class="modal-formulario" action="<%=caminho%>/alterar-funcionario" method="post">
             <input type="hidden" id="editar-id-funcionario" name="id_funcionario">
+
             <div class="modal-campo">
-                <label for="editar-cpf">cpf</label>
+                <label for="editar-cpf">CPF: </label>
                 <input type="text" id="editar-cpf" name="cpf" placeholder="000.000.000-00" required>
+                <span id="editar-erroCpf"></span>
             </div>
+
             <div class="modal-campo">
-                <label for="editar-nome">nome</label>
-                <input type="text" id="editar-nome" name="nome" required>
+                <label for="editar-nome">Nome: </label>
+                <input type="text" id="editar-nome" name="nome" placeholder="Nome" required>
+                <span id="editar-erroNome"></span>
             </div>
+
             <div class="modal-campo">
-                <label for="editar-cargo">cargo</label>
-                <input type="text" id="editar-cargo" name="cargo" required>
+                <label for="editar-cargo">Cargo: </label>
+                <input type="text" id="editar-cargo" name="cargo" placeholder="Ex. Professor" required>
+                <span id="editar-erroCargo"></span>
             </div>
+
             <div class="modal-campo">
-                <label for="editar-email">email</label>
-                <input type="text" id="editar-email" name="email" required>
+                <label for="editar-email">Email: </label>
+                <input type="text" id="editar-email" name="email" placeholder="exemplo@gmail.com" required>
+                <span id="editar-erroEmail"></span>
             </div>
+
             <div class="modal-campo">
-                <label for="editar-id_empresa">id_empresa</label>
-                <input type="number" id="editar-id_empresa" name="id_empresa" min="0" required>
+                <label for="editar-id_empresa">Empresa (id): </label>
+                <input type="number" id="editar-id_empresa" name="id_empresa" min="0" placeholder="ID" required>
+                <span id="editar-erroIdEmpresa"></span>
             </div>
+
             <div class="modal-campo">
-                <label for="editar-id_departamento">id_departamento</label>
-                <input type="number" id="editar-id_departamento" name="id_departamento" min="0" required>
+                <label for="editar-id_departamento">Departamento (id)</label>
+                <input type="number" id="editar-id_departamento" name="id_departamento" min="0" placeholder="ID" required>
+                <span id="editar-erroIdDepart"></span>
             </div>
             <div class="modal-rodape">
                 <button type="button" class="botao-cancelar" id="cancelar-modal-editar">Cancelar</button>
@@ -327,5 +353,8 @@ return s == null ? "" : s;
     document.getElementById('cancelar-modal').addEventListener('click', () => modalAdicionar.hidden = true);
     modalAdicionar.addEventListener('click', e => { if (e.target === modalAdicionar) modalAdicionar.hidden = true; });
 </script>
+<script src="<%=caminho%>/JS/Create/create-funcionario.js"></script>
+<script src="<%=caminho%>/JS/Update/update-funcionario.js"></script>
+
 </body>
 </html>
