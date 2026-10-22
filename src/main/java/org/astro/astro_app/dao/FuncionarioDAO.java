@@ -80,7 +80,7 @@ public class FuncionarioDAO {
         try {
             conn = conexao.conectar();
 
-            PreparedStatement pstmt = conn.prepareStatement("SELECT id_funcionario, nome, cargo, email, id_empresa, id_departamento, convert_from(pgp_sym_decrypt(cpf, 'funcionariosAstro'), 'UTF8') as cpf FROM funcionario WHERE id_funcionario = ?");
+            PreparedStatement pstmt = conn.prepareStatement("SELECT id_funcionario, nome, cargo, email, id_empresa, id_departamento, pgp_sym_decrypt(cpf, 'funcionariosAstro') as cpf FROM funcionario WHERE id_funcionario = ?");
 
             pstmt.setInt(1, idFunc);
 
@@ -111,7 +111,7 @@ public class FuncionarioDAO {
         try {
             conn = conexao.conectar();
 
-            PreparedStatement pstmt = conn.prepareStatement("SELECT id_funcionario, nome, cargo, email, id_empresa, id_departamento, convert_from(pgp_sym_decrypt(cpf, 'funcionariosAstro'), 'UTF8') as cpf FROM funcionario WHERE id_empresa = ? ORDER BY id_funcionario");
+            PreparedStatement pstmt = conn.prepareStatement("SELECT id_funcionario, nome, cargo, email, id_empresa, id_departamento, pgp_sym_decrypt(cpf, 'funcionariosAstro') as cpf FROM funcionario WHERE id_empresa = ? ORDER BY id_funcionario");
 
             pstmt.setInt(1, idEmpresa);
 
@@ -142,7 +142,7 @@ public class FuncionarioDAO {
         try {
             conn = conexao.conectar();
 
-            PreparedStatement pstmt = conn.prepareStatement("SELECT id_funcionario, nome, cargo, email, id_empresa, id_departamento, convert_from(pgp_sym_decrypt(cpf, 'funcionariosAstro'), 'UTF8') as cpf FROM funcionario WHERE id_departamento = ? ORDER BY id_funcionario");
+            PreparedStatement pstmt = conn.prepareStatement("SELECT id_funcionario, nome, cargo, email, id_empresa, id_departamento, pgp_sym_decrypt(cpf, 'funcionariosAstro') AS cpf FROM funcionario WHERE id_departamento = ? ORDER BY id_funcionario");
 
             pstmt.setInt(1, idDepart);
 

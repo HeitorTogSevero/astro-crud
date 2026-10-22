@@ -97,6 +97,6 @@ public class ServletCreateAdministrador extends HttpServlet{
             }
         }
 
-        request.getRequestDispatcher("/crud.jsp").forward(request, response);
+        request.getRequestDispatcher("/tela_login/cadastro.jsp").forward(request, response);
     }
 }

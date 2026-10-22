@@ -121,13 +121,9 @@
                     e a <a href="#privacidade">Política de privacidade</a>.
                 </p>
 
-                <a href="../crud.jsp">
-                    <button type="submit" class="botao-continuar botao-criar-workspace" id="botao-criar-workspace">
-                        Criar workspace
-                    </button>
-                </a>
+                <button type="submit" class="botao-continuar botao-criar-workspace" id="botao-criar-workspace">Criar workspace</button>
 
-                <p class="texto-entrar-conta">Já tem uma conta? <a href="login.html">Entrar</a></p>
+                <p class="texto-entrar-conta">Já tem uma conta? <a href="login.jsp">Entrar</a></p>
             </form>
         </div>
     </section>

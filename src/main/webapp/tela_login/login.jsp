@@ -1,19 +1,28 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
+<%
+String caminho = request.getContextPath();
+String erro = (String) request.getAttribute("erro");
+%>
 <!DOCTYPE html>
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Astro – Entrar</title>
-    <link rel="stylesheet" href="../style/login.css">
+    <link rel="stylesheet" href="<%=caminho%>/style/login.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="icon" type="image/png" href="imagens/isotipo.png">
+    <link rel="icon" type="image/png" href="<%=caminho%>/imagens/isotipo.png">
 </head>
 <body class="pagina-login">
 
 <div class="fundo-planeta" aria-hidden="true"></div>
 
-<a href="../index.html" onclick="if(document.referrer) {history.back(); return false;}" class="botao-voltar" id="botao-voltar" aria-label="Voltar">
+<a href="<%=caminho%>/lading-page.html"
+   onclick="if(document.referrer) { history.back(); return false; }"
+   class="botao-voltar"
+   id="botao-voltar"
+   aria-label="Voltar">
     <i class="fa-solid fa-arrow-left"></i>
 </a>
 
@@ -22,7 +31,7 @@
     <section class="login-lado-imagem">
         <div class="login-lado-conteudo">
             <div class="login-logo">
-                <img src="imagens/imagotipo.png" alt="Logotipo" class="img-logo">
+                <img src="<%=caminho%>/imagens/imagotipo.png" alt="Logotipo" class="img-logo">
             </div>
 
             <h1 class="login-titulo1">Olá!<br></h1>
@@ -31,57 +40,51 @@
         </div>
     </section>
 
-    <!-- Lado direito: formulário de login -->
     <section class="login-lado-formulario">
         <div class="cartao-login">
             <h2>Acesse sua conta</h2>
             <p class="cartao-subtitulo">Acesse sua conta para continuar</p>
 
-            <!-- back-end: método/rota reais de autenticação entram no
-                 "action" e "method" abaixo. Os campos já usam os
-                 mesmos nomes das colunas da tabela "admin"
-                 (email, senha) pra facilitar o bind no back-end. -->
-            <form id="formulario-login" class="formulario-login" action="" method="post">
+            <form id="formulario-login"
+                  class="formulario-login"
+                  action="<%=caminho%>/login"
+                  method="post">
 
                 <div class="campos-login">
                     <div class="campo-formulario">
                         <label for="email-login">Email</label>
-                        <input
-                                type="email"
-                                id="email-login"
-                                name="email"
-                                placeholder="exemplo@gmail.com"
-                                autocomplete="email"
-                                required
-                        >
+                        <input type="email"
+                               id="email-login"
+                               name="email"
+                               placeholder="exemplo@gmail.com"
+                               autocomplete="email"
+                               required>
                     </div>
 
                     <div class="campo-formulario">
                         <label for="senha-login">Senha</label>
-                        <input
-                                type="password"
-                                id="senha-login"
-                                name="senha"
-                                placeholder="Inserir senha"
-                                autocomplete="current-password"
-                                required
-                        >
+                        <input type="password"
+                               id="senha-login"
+                               name="senha"
+                               placeholder="Inserir senha"
+                               autocomplete="current-password"
+                               required>
 
                         <a href="#" class="link-esqueci-senha" id="link-esqueci-senha">Esqueci minha senha</a>
                     </div>
                 </div>
 
-                <!-- back-end: mostrar aqui a mensagem de erro (ex: "email ou senha
-                     incorretos"), tirando o atributo "hidden" via JavaScript -->
+                <% if (erro != null) { %>
+                <p class="mensagem-erro" id="mensagem-erro-login"><%= erro %></p>
+                <% } else { %>
                 <p class="mensagem-erro" id="mensagem-erro-login" hidden>Email ou senha incorretos.</p>
+                <% } %>
 
-                <!-- back-end: ao confirmar o login, redirecionar o admin
-                     para o crud.html (Início do painel) -->
                 <button type="submit" class="botao-continuar" id="botao-continuar-login">Continuar</button>
 
                 <p class="texto-criar-conta">
                     Não tem uma conta?
-                    <a href="cadastro.html" id="link-criar-workspace">Criar workspace</a>
+                    <a href="<%=caminho%>/tela_login/cadastro.jsp" id="link-criar-workspace">Criar workspace</a>
                 </p>
             </form>
         </div>
@@ -92,8 +95,7 @@
     <div class="conteudo-rodape">
 
         <div class="marca-rodape">
-            <img src="../imagens/imagotipo.png" alt="Astro" class="logo-rodape">
-
+            <img src="<%=caminho%>/imagens/imagotipo.png" alt="Astro" class="logo-rodape">
             <p>Conformidade em órbita,<br>sempre em vigência.</p>
         </div>
 
@@ -101,53 +103,51 @@
 
             <div class="coluna-links">
                 <h4>Produto</h4>
-                <a href="../produtos.html#funcionalidades">Funcionalidades</a>
-                <a href="../produtos.html#integracoes">Integrações</a>
-                <a href="../produtos.html#seguranca">Segurança</a>
+                <a href="<%=caminho%>/produtos.html#funcionalidades">Funcionalidades</a>
+                <a href="<%=caminho%>/produtos.html#integracoes">Integrações</a>
+                <a href="<%=caminho%>/produtos.html#seguranca">Segurança</a>
             </div>
 
             <div class="coluna-links">
                 <h4>Recursos</h4>
-                <a href="../recursos.html#materiais">Materiais</a>
-                <a href="../recursos.html#blog">Blog</a>
-                <a href="../recursos.html#glossario">Glossário</a>
+                <a href="<%=caminho%>/recursos.html#materiais">Materiais</a>
+                <a href="<%=caminho%>/recursos.html#blog">Blog</a>
+                <a href="<%=caminho%>/recursos.html#glossario">Glossário</a>
             </div>
 
             <div class="coluna-links">
                 <h4>Planos</h4>
-                <a href="../planos.html">Mensal</a>
-                <a href="../planos.html?periodo=anual">Anual</a>
-                <a href="../planos.html#visao-geral">Visão geral</a>
+                <a href="<%=caminho%>/planos.html">Mensal</a>
+                <a href="<%=caminho%>/planos.html?periodo=anual">Anual</a>
+                <a href="<%=caminho%>/planos.html#visao-geral">Visão geral</a>
             </div>
 
             <div class="coluna-links">
                 <h4>Sobre</h4>
-                <a href="../sobre.html#equipe">Quem somos</a>
-                <a href="../sobre.html#missao">Missão e valores</a>
-                <a href="../sobre.html#contato">Contato</a>
+                <a href="<%=caminho%>/sobre.html#equipe">Quem somos</a>
+                <a href="<%=caminho%>/sobre.html#missao">Missão e valores</a>
+                <a href="<%=caminho%>/sobre.html#contato">Contato</a>
             </div>
 
             <div class="coluna-links social">
                 <h4>
-                    Siga o <img id="siga" src="../imagens/logotipo.png" alt="astro">
+                    Siga o <img id="siga" src="<%=caminho%>/imagens/logotipo.png" alt="astro">
                 </h4>
 
                 <div class="icones-sociais">
-
                     <div class="icone-social">
-                        <img src="../imagens/linkedin.png" alt="LinkedIn">
+                        <img src="<%=caminho%>/imagens/linkedin.png" alt="LinkedIn">
                     </div>
 
                     <a href="https://www.instagram.com/astro.4pp/" target="_blank" rel="noopener noreferrer">
                         <div class="icone-social">
-                            <img src="../imagens/instagram.png" alt="Instagram">
+                            <img src="<%=caminho%>/imagens/instagram.png" alt="Instagram">
                         </div>
                     </a>
 
                     <div class="icone-social">
-                        <img src="../imagens/youtube.png" alt="YouTube">
+                        <img src="<%=caminho%>/imagens/youtube.png" alt="YouTube">
                     </div>
-
                 </div>
             </div>
 
@@ -156,7 +156,6 @@
 
     <div class="rodape-inferior">
         <p>© 2026 astro. Todos os direitos reservados.</p>
-
         <div class="links-legais-rodape">
             <a href="#">Privacidade</a>
             <a href="#">Termos de uso</a>
