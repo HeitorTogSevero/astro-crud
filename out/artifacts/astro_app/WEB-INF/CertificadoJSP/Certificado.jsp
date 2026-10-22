@@ -88,12 +88,12 @@ org.astro.astro_app.model.Certificado"
     </section>
 
     <%
-    String mensagem = (String) request.getAttribute("erro");
-    if (mensagem == null) {
-    mensagem = (String) request.getAttribute("mensagem");
-    }
-    if (mensagem != null) {
-    String cor = mensagem.toLowerCase().contains("sucesso") ? "green" : "red";
+        String mensagem = (String) request.getAttribute("erro");
+        if (mensagem == null) {
+            mensagem = (String) request.getAttribute("mensagem");
+        }
+        if (mensagem != null) {
+            String cor = mensagem.toLowerCase().contains("sucesso") ? "green" : "red";
     %>
     <p style="color: <%= cor %>"><%= mensagem %></p>
     <% } %>
@@ -114,8 +114,8 @@ org.astro.astro_app.model.Certificado"
                 </thead>
                 <tbody id="corpo-tabela-certificado">
                 <%
-                if (certificados != null && !certificados.isEmpty()) {
-                for (Certificado c : certificados) {
+                    if (certificados != null && !certificados.isEmpty()) {
+                        for (Certificado c : certificados) {
                 %>
                 <tr data-id-certificado="<%= c.getIdCertificado() %>">
                     <td><%= c.getIdCertificado() %></td>
@@ -136,7 +136,7 @@ org.astro.astro_app.model.Certificado"
                     </td>
                 </tr>
                 <%
-                }
+                    }
                 } else {
                 %>
                 <tr>

@@ -191,19 +191,19 @@ return s == null ? "" : s;}%>
 
             <div class="modal-campo">
                 <label for="campo-grau_risco">Grau de risco:</label>
-                <input type="number" id="campo-grau_risco" name="grau_risco" min="1" max="4" required>
+                <input type="number" id="campo-grau_risco" name="grau_risco" min="1" max="4" placeholder="Risco" required>
                 <span id="erroRisco"></span>
             </div>
 
             <div class="modal-campo">
                 <label for="campo-atividade">Atividade:</label>
-                <input type="text" id="campo-atividade" name="atividade" required>
+                <input type="text" id="campo-atividade" name="atividade" placeholder="Digite um texto" required>
                 <span id="erroAtv"></span>
             </div>
 
             <div class="modal-campo">
-                <label for="campo-id_empresa">id_empresa:</label>
-                <input type="number" id="campo-id_empresa" name="id_empresa" min="0" required>
+                <label for="campo-id_empresa">Empresa (id):</label>
+                <input type="number" id="campo-id_empresa" name="id_empresa" min="0" placeholder="ID" required>
                 <span id="erroIdEmpresa"></span>
             </div>
 
@@ -229,19 +229,19 @@ return s == null ? "" : s;}%>
               action="<%=caminho%>/listar-departamentos" method="get">
 
             <div class="modal-campo">
-                <label for="filtro-grau_risco">grau_risco</label>
-                <input type="number" id="filtro-grau_risco" name="grau_risco" min="1" max="4"
+                <label for="filtro-grau_risco">Grau de Risco</label>
+                <input type="number" id="filtro-grau_risco" name="grau_risco" placeholder="Risco" min="1" max="4"
                        value="<%= fGrauRisco %>">
             </div>
 
             <div class="modal-campo">
-                <label for="filtro-atividade">atividade</label>
-                <input type="text" id="filtro-atividade" name="atividade"
+                <label for="filtro-atividade">Atividade</label>
+                <input type="text" id="filtro-atividade" name="atividade" placeholder="Digite um texto"
                        value="<%= fAtividade %>">
             </div>
 
             <div class="modal-campo">
-                <label for="filtro-id_empresa">id_empresa</label>
+                <label for="filtro-id_empresa">Empresa (id)</label>
                 <input type="number" id="filtro-id_empresa" name="id_empresa" min="0"
                        value="<%= fIdEmpresa %>">
             </div>
@@ -271,31 +271,31 @@ return s == null ? "" : s;}%>
 
             <div class="modal-campo">
                 <label for="editar-nome">Nome:</label>
-                <input type="text" id="editar-nome" name="nome" required>
+                <input type="text" id="editar-nome" name="nome" placeholder="Nome" required>
                 <span id="editar-erroNome"></span>
             </div>
 
             <div class="modal-campo">
                 <label for="editar-descricao">Descricao:</label>
-                <input type="text" id="editar-descricao" name="descricao" required>
+                <input type="text" id="editar-descricao" name="descricao" placeholder="Digite um texto" required>
                 <span id="editar-erroDescr"></span>
             </div>
 
             <div class="modal-campo">
                 <label for="editar-grau_risco">Grau de risco:</label>
-                <input type="number" id="editar-grau_risco" name="grau_risco" min="1" max="4" required>
+                <input type="number" id="editar-grau_risco" name="grau_risco" min="1" max="4" placeholder="Risco" required>
                 <span id="editar-erroRisco"></span>
             </div>
 
             <div class="modal-campo">
                 <label for="editar-atividade">Atividade:</label>
-                <input type="text" id="editar-atividade" name="atividade" required>
+                <input type="text" id="editar-atividade" name="atividade" placeholder="Digite um texto: " required>
                 <span id="editar-erroAtv"></span>
             </div>
 
             <div class="modal-campo">
-                <label for="editar-id_empresa">id_empresa</label>
-                <input type="number" id="editar-id_empresa" name="id_empresa" min="0" required>
+                <label for="editar-id_empresa">Empresa (id): </label>
+                <input type="number" id="editar-id_empresa" name="id_empresa" min="0" placeholder="ID" required>
                 <span id="editar-erroIdEmpresa"></span>
             </div>
 
@@ -389,6 +389,8 @@ return s == null ? "" : s;}%>
     document.getElementById('cancelar-modal').addEventListener('click', () => modalAdicionar.hidden = true);
     modalAdicionar.addEventListener('click', e => { if (e.target === modalAdicionar) modalAdicionar.hidden = true; });
 </script>
+<script src="<%=caminho%>/JS/Create/create-Departamento.js"></script>
+<script src="<%=caminho%>/JS/Update/update-departamento.js"></script>
 
 </body>
 </html>

@@ -4,7 +4,7 @@ java.util.ArrayList,
 org.astro.astro_app.model.DivisaoTreinamento"
 %>
 <%!private String v(String s) {
-return s == null ? "" : s;
+    return s == null ? "" : s;
 }%>
 <%  String caminho = request.getContextPath();
     ArrayList<DivisaoTreinamento> divisoes = (ArrayList<DivisaoTreinamento>) request.getAttribute("divisoes");
@@ -88,12 +88,12 @@ return s == null ? "" : s;
     </section>
 
     <%
-    String mensagem = (String) request.getAttribute("erro");
-    if (mensagem == null) {
-    mensagem = (String) request.getAttribute("mensagem");
-    }
-    if (mensagem != null) {
-    String cor = mensagem.toLowerCase().contains("sucesso") ? "green" : "red";
+        String mensagem = (String) request.getAttribute("erro");
+        if (mensagem == null) {
+            mensagem = (String) request.getAttribute("mensagem");
+        }
+        if (mensagem != null) {
+            String cor = mensagem.toLowerCase().contains("sucesso") ? "green" : "red";
     %>
     <p style="color: <%= cor %>"><%= mensagem %></p>
     <% } %>
@@ -113,8 +113,8 @@ return s == null ? "" : s;
                 </thead>
                 <tbody id="corpo-tabela-divisao">
                 <%
-                if (divisoes != null && !divisoes.isEmpty()) {
-                for (DivisaoTreinamento d : divisoes) {
+                    if (divisoes != null && !divisoes.isEmpty()) {
+                        for (DivisaoTreinamento d : divisoes) {
                 %>
                 <tr data-id-divisao="<%= d.getIdDivisao() %>">
                     <td><%= d.getIdDivisao() %></td>
@@ -134,7 +134,7 @@ return s == null ? "" : s;
                     </td>
                 </tr>
                 <%
-                }
+                    }
                 } else {
                 %>
                 <tr>
@@ -355,4 +355,4 @@ return s == null ? "" : s;
 </script>
 
 </body>
-        </html>
+</html>
