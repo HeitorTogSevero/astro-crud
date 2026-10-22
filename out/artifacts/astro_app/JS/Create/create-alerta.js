@@ -12,7 +12,7 @@ const dtLimite = document.getElementById("campo-dt_limite");
 const erroCod = document.getElementById("erroCod");
 const erroDescr = document.getElementById("erroDescr");
 const erroData = document.getElementById("erroData")
-const erroId = document.getElementById("erroId")
+const erroId = document.getElementById("erroIdEmpresa")
 
 // Regex DATA:
 const regexData = /^\d{4}-(0[1-9]|1[0-2])-\d{2}$/;

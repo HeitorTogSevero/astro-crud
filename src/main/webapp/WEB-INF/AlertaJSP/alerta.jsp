@@ -178,19 +178,19 @@ return s == null ? "" : s;
 
                 <div class="modal-campo">
                     <label for="campo-codigo">Código:</label>
-                    <input type="number" id="campo-codigo" name="codigo" placeholder="ID" required>
+                    <input type="number" id="campo-codigo" name="codigo" placeholder="Código" required>
                     <span id="erroCod"></span>
                 </div>
 
                 <div class="modal-campo">
                     <label for="campo-dt_limite">Data Limite:</label>
-                    <input type="date" id="campo-dt_limite" name="dt_limite" required>
+                    <input type="date" id="campo-dt_limite" name="dt_limite" placeholder="dd/mm/aaaa" required>
                     <span id="erroData"></span>
                 </div>
 
                 <div class="modal-campo">
                     <label for="campo-id_empresa">Empresa (id): </label>
-                    <input type="number" id="campo-id_empresa" name="id_empresa" placeholder="ID" required>
+                    <input type="number" id="campo-id_empresa" name="id_empresa" placeholder="Empresa" required>
                     <span id="erroIdEmpresa"></span>
                 </div>
 

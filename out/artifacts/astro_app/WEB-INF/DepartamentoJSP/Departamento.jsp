@@ -180,26 +180,31 @@ return s == null ? "" : s;}%>
             <div class="modal-campo">
                 <label for="campo-nome">Nome:</label>
                 <input type="text" id="campo-nome" name="nome" required>
+                <span id="erroNome"></span>
             </div>
 
             <div class="modal-campo">
                 <label for="campo-descricao">Descricao:</label>
                 <input type="text" id="campo-descricao" name="descricao" required>
+                <span id="erroDescr"></span>
             </div>
 
             <div class="modal-campo">
                 <label for="campo-grau_risco">Grau de risco:</label>
                 <input type="number" id="campo-grau_risco" name="grau_risco" min="1" max="4" required>
+                <span id="erroRisco"></span>
             </div>
 
             <div class="modal-campo">
                 <label for="campo-atividade">Atividade:</label>
                 <input type="text" id="campo-atividade" name="atividade" required>
+                <span id="erroAtv"></span>
             </div>
 
             <div class="modal-campo">
                 <label for="campo-id_empresa">id_empresa:</label>
                 <input type="number" id="campo-id_empresa" name="id_empresa" min="0" required>
+                <span id="erroIdEmpresa"></span>
             </div>
 
             <div class="modal-rodape">
@@ -267,26 +272,31 @@ return s == null ? "" : s;}%>
             <div class="modal-campo">
                 <label for="editar-nome">Nome:</label>
                 <input type="text" id="editar-nome" name="nome" required>
+                <span id="editar-erroNome"></span>
             </div>
 
             <div class="modal-campo">
                 <label for="editar-descricao">Descricao:</label>
                 <input type="text" id="editar-descricao" name="descricao" required>
+                <span id="editar-erroDescr"></span>
             </div>
 
             <div class="modal-campo">
                 <label for="editar-grau_risco">Grau de risco:</label>
                 <input type="number" id="editar-grau_risco" name="grau_risco" min="1" max="4" required>
+                <span id="editar-erroRisco"></span>
             </div>
 
             <div class="modal-campo">
                 <label for="editar-atividade">Atividade:</label>
                 <input type="text" id="editar-atividade" name="atividade" required>
+                <span id="editar-erroAtv"></span>
             </div>
 
             <div class="modal-campo">
                 <label for="editar-id_empresa">id_empresa</label>
                 <input type="number" id="editar-id_empresa" name="id_empresa" min="0" required>
+                <span id="editar-erroIdEmpresa"></span>
             </div>
 
             <div class="modal-rodape">
