@@ -26,7 +26,7 @@ public class ServletCreateAdministrador extends HttpServlet{
         request.setCharacterEncoding("UTF-8");
 
         final Pattern emailRegex =
-                Pattern.compile("^[a-zA-Z0-9._%+#$!\\-]+@(gmail|hotmail|yahoo|outlook)\\.(com|com\\.br|org\\.br)$");
+                Pattern.compile("^[a-zA-Z0-9._%+#$!\\-]+@(gmail|hotmail|yahoo|outlook|institutojef)\\.(com|com\\.br|org\\.br)$");
 
         final Pattern senhaRegex =
                 Pattern.compile("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$");

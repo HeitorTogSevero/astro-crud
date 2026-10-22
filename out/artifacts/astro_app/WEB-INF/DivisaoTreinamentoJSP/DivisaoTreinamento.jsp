@@ -47,7 +47,7 @@ return s == null ? "" : s;
         <a href="<%=caminho%>/listar-divisoes" class="nav-item active">
             <i class="fa-regular fa-file-lines"></i>divisao_treinamento
         </a>
-        <a href="<%=caminho%>/lista-alerta" class="nav-item">
+        <a href="<%=caminho%>/listar-alerta" class="nav-item">
             <i class="fa-regular fa-calendar-check"></i>alerta
         </a>
         <a href="<%=caminho%>/listar-certificados" class="nav-item">
@@ -82,7 +82,7 @@ return s == null ? "" : s;
                 <i class="fa-solid fa-filter"></i> Filtrar
             </button>
             <button class="btn-adicionar" id="btn-adicionar-divisao" type="button">
-                <i class="fa-solid fa-plus"></i> Adicionar divisao_treinamento
+                <i class="fa-solid fa-plus"></i> Adicionar Divisao Treinamento
             </button>
         </div>
     </section>

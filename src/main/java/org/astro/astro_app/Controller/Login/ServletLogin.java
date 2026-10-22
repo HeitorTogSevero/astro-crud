@@ -32,7 +32,7 @@ public class ServletLogin extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
 
         final Pattern emailRegex =
-                Pattern.compile("^[a-zA-Z0-9._%+#$!\\-]+@(gmail|hotmail|yahoo|outlook)\\.(com|com\\.br|org\\.br)$");
+                Pattern.compile("^[a-zA-Z0-9._%+#$!\\-]+@(gmail|hotmail|yahoo|outlook|institutojef)\\.(com|com\\.br|org\\.br)$");
 
         String email = request.getParameter("email");
 

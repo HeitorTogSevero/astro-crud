@@ -1,7 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
-<%
-String caminho = request.getContextPath();
-String erro = (String) request.getAttribute("erro");
+<%  String caminho = request.getContextPath();
+    String erro = (String) request.getAttribute("erro");
 %>
 <!DOCTYPE html>
 <html lang="pt">
