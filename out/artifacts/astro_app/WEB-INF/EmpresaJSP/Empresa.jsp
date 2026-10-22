@@ -107,16 +107,16 @@ return s == null ? "" : s;
             <table class="data-table" id="tabela-empresas">
                 <thead class="data-cabecalho">
                 <tr>
-                    <th class="ordenavel" data-coluna="id_empresa"><strong>id_empresa</strong> <i class="fa-solid fa-sort"></i></th>
-                    <th class="ordenavel" data-coluna="nome">nome <i class="fa-solid fa-sort"></i></th>
-                    <th data-coluna="cnpj">cnpj</th>
-                    <th data-coluna="cnae">cnae</th>
-                    <th class="ordenavel" data-coluna="bairro">bairro <i class="fa-solid fa-sort"></i></th>
-                    <th data-coluna="cep">cep</th>
-                    <th class="ordenavel" data-coluna="rua">rua <i class="fa-solid fa-sort"></i></th>
-                    <th class="ordenavel" data-coluna="estado">estado <i class="fa-solid fa-sort"></i></th>
-                    <th class="ordenavel" data-coluna="cidade">cidade <i class="fa-solid fa-sort"></i></th>
-                    <th class="ordenavel" data-coluna="dt_registro">dt_registro <i class="fa-solid fa-sort"></i></th>
+                    <th class="ordenavel" data-coluna="id_empresa"><strong>ID da Empresa</strong> <i class="fa-solid fa-sort"></i></th>
+                    <th class="ordenavel" data-coluna="nome">Nome <i class="fa-solid fa-sort"></i></th>
+                    <th data-coluna="cnpj">CNPJ</th>
+                    <th data-coluna="cnae">CNAE</th>
+                    <th class="ordenavel" data-coluna="bairro">Bairro <i class="fa-solid fa-sort"></i></th>
+                    <th data-coluna="cep">CEP</th>
+                    <th class="ordenavel" data-coluna="rua">Rua <i class="fa-solid fa-sort"></i></th>
+                    <th class="ordenavel" data-coluna="estado">Estado <i class="fa-solid fa-sort"></i></th>
+                    <th class="ordenavel" data-coluna="cidade">Cidade <i class="fa-solid fa-sort"></i></th>
+                    <th class="ordenavel" data-coluna="dt_registro">Data de Registro<i class="fa-solid fa-sort"></i></th>
                     <th>Ações</th>
                 </tr>
                 </thead>

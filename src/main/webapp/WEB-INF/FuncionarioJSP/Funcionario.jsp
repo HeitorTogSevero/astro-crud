@@ -101,13 +101,13 @@ return s == null ? "" : s;
             <table class="data-table" id="tabela-funcionarios">
                 <thead class="data-cabecalho">
                 <tr>
-                    <th class="ordenavel" data-coluna="id_funcionario"><strong>id_funcionario</strong> <i class="fa-solid fa-sort"></i></th>
-                    <th data-coluna="cpf">cpf</th>
-                    <th class="ordenavel" data-coluna="nome">nome <i class="fa-solid fa-sort"></i></th>
-                    <th class="ordenavel" data-coluna="cargo">cargo <i class="fa-solid fa-sort"></i></th>
-                    <th class="ordenavel" data-coluna="email">email <i class="fa-solid fa-sort"></i></th>
-                    <th class="ordenavel" data-coluna="id_empresa">id_empresa <i class="fa-solid fa-sort"></i></th>
-                    <th class="ordenavel" data-coluna="id_departamento">id_departamento <i class="fa-solid fa-sort"></i></th>
+                    <th class="ordenavel" data-coluna="id_funcionario"><strong>ID do Funcionário</strong> <i class="fa-solid fa-sort"></i></th>
+                    <th data-coluna="cpf">CPF</th>
+                    <th class="ordenavel" data-coluna="nome">Nome <i class="fa-solid fa-sort"></i></th>
+                    <th class="ordenavel" data-coluna="cargo">Cargo <i class="fa-solid fa-sort"></i></th>
+                    <th class="ordenavel" data-coluna="email">Email <i class="fa-solid fa-sort"></i></th>
+                    <th class="ordenavel" data-coluna="id_empresa">Empresa <i class="fa-solid fa-sort"></i></th>
+                    <th class="ordenavel" data-coluna="id_departamento">Departamento <i class="fa-solid fa-sort"></i></th>
                     <th>Ações</th>
                 </tr>
                 </thead>

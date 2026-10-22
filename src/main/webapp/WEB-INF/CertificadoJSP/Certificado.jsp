@@ -103,12 +103,12 @@ org.astro.astro_app.model.Certificado"
             <table class="data-table" id="tabela-certificado">
                 <thead class="data-cabecalho">
                 <tr>
-                    <th class="ordenavel" data-coluna="id_certificado"><strong>id_certificado</strong> <i class="fa-solid fa-sort"></i></th>
-                    <th class="ordenavel" data-coluna="dt_emissao">dt_emissao <i class="fa-solid fa-sort"></i></th>
-                    <th class="ordenavel" data-coluna="validade">validade <i class="fa-solid fa-sort"></i></th>
-                    <th class="ordenavel" data-coluna="id_funcionario">id_funcionario <i class="fa-solid fa-sort"></i></th>
-                    <th class="ordenavel" data-coluna="id_nrfuncionario">id_nrfuncionario <i class="fa-solid fa-sort"></i></th>
-                    <th class="ordenavel" data-coluna="id_nrempresa">id_nrempresa <i class="fa-solid fa-sort"></i></th>
+                    <th class="ordenavel" data-coluna="id_certificado"><strong>ID do Certificado</strong> <i class="fa-solid fa-sort"></i></th>
+                    <th class="ordenavel" data-coluna="dt_emissao">Data de Emissão<i class="fa-solid fa-sort"></i></th>
+                    <th class="ordenavel" data-coluna="validade">Validade <i class="fa-solid fa-sort"></i></th>
+                    <th class="ordenavel" data-coluna="id_funcionario">Funcionário<i class="fa-solid fa-sort"></i></th>
+                    <th class="ordenavel" data-coluna="id_nrfuncionario">NR Funcionário<i class="fa-solid fa-sort"></i></th>
+                    <th class="ordenavel" data-coluna="id_nrempresa">NR Empresa <i class="fa-solid fa-sort"></i></th>
                     <th>Ações</th>
                 </tr>
                 </thead>

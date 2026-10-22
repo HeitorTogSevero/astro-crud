@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../style/cadastro.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="icon" type="image/png" href="imagens/isotipo.png">
+    <link rel="icon" type="image/png" href="../imagens/isotipo.png">
 </head>
 <body class="pagina-cadastro">
 
@@ -69,7 +69,7 @@
             </header>
 
             <!-- Os nomes dos campos estão preparados para a integração com o back-end. -->
-            <form id="formulario-cadastro" class="formulario-cadastro" action="" method="post">
+            <form id="formulario-cadastro" class="formulario-cadastro" action="../crud.jsp" method="post">
                 <section class="secao-cadastro secao-gestor" aria-labelledby="titulo-gestor-workspace">
                     <div class="titulo-secao-cadastro">
                         <span class="numero-secao">1</span>
