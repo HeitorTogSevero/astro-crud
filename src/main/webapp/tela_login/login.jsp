@@ -17,7 +17,7 @@
 
 <div class="fundo-planeta" aria-hidden="true"></div>
 
-<a href="<%=caminho%>/lading-page.html"
+<a href="<%=caminho%>/landing-page.html"
    onclick="if(document.referrer) { history.back(); return false; }"
    class="botao-voltar"
    id="botao-voltar"
