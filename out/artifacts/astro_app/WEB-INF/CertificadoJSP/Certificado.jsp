@@ -167,32 +167,32 @@ org.astro.astro_app.model.Certificado"
               action="<%=caminho%>/adicionar-certificado" method="post">
 
             <div class="modal-campo">
-                <label for="campo-dt_emissao">dt_emissao: </label>
-                <input type="date" id="campo-dt_emissao" name="dt_emissao" required>
+                <label for="campo-dt_emissao">Data de Emissão</label>
+                <input type="date" id="campo-dt_emissao" name="dt_emissao" placeholder="dd/mm/aaaa" required>
                 <span id="erroDataEmissao"></span>
             </div>
 
             <div class="modal-campo">
-                <label for="validade">validade: </label>
-                <input type="date" id="validade" name="validade" required>
+                <label for="validade">Validade: </label>
+                <input type="date" id="validade" name="validade" placeholder="dd/mm/aaaa" required>
                 <span id="erroValidade"></span>
             </div>
 
             <div class="modal-campo">
-                <label for="campo-id_funcionario">id_funcionario: </label>
-                <input type="number" id="campo-id_funcionario" name="id_funcionario" placeholder="ID" min="0" required>
+                <label for="campo-id_funcionario">Funcionario (id): </label>
+                <input type="number" id="campo-id_funcionario" name="id_funcionario" placeholder="Funcionario" min="0" required>
                 <span id="erroIdFunc"></span>
             </div>
 
             <div class="modal-campo">
-                <label for="campo-id_nrfuncionario">id_nrfuncionario: </label>
-                <input type="number" id="campo-id_nrfuncionario" name="id_nrfuncionario" placeholder="ID" min="0" required>
+                <label for="campo-id_nrfuncionario">NR Funcionario (id): </label>
+                <input type="number" id="campo-id_nrfuncionario" name="id_nrfuncionario" placeholder="NR Funcionario" min="0" required>
                 <span id="erroIdNrFunc"></span>
             </div>
 
             <div class="modal-campo">
-                <label for="campo-id_nrempresa">id_nrempresa: </label>
-                <input type="number" id="campo-id_nrempresa" name="id_nrempresa" placeholder="ID" min="0" required>
+                <label for="campo-id_nrempresa">NR Empresa (id ): </label>
+                <input type="number" id="campo-id_nrempresa" name="id_nrempresa" placeholder="NR Empresa" min="0" required>
                 <span id="erroIdNrEmp"></span>
             </div>
 
@@ -255,14 +255,14 @@ org.astro.astro_app.model.Certificado"
             <input type="hidden" id="editar-id-certificado" name="id_certificado">
 
             <div class="modal-campo">
-                <label for="editar-dt_emissao">dt_emissao: </label>
-                <input type="date" id="editar-dt_emissao" name="dt_emissao" required>
+                <label for="editar-dt_emissao">Data de Emissão: </label>
+                <input type="date" id="editar-dt_emissao" name="dt_emissao" placeholder="dd/mm/aaaa" required>
                 <span id="editar-erroDataEmissao"></span>
             </div>
 
             <div class="modal-campo">
-                <label for="editar-validade">validade: </label>
-                <input type="date" id="editar-validade" name="validade" required>
+                <label for="editar-validade">Validade: </label>
+                <input type="date" id="editar-validade" name="validade" placeholder="dd/mm/aaaa" required>
                 <span id="editar-erroValidade"></span>
             </div>
 

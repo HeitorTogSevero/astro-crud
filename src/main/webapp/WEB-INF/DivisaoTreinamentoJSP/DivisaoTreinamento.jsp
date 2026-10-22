@@ -167,21 +167,25 @@ return s == null ? "" : s;
             <div class="modal-campo">
                 <label for="campo-nome">Nome:</label>
                 <input type="text" id="campo-nome" name="nome" required>
+                <span id="erroNome"></span>
             </div>
 
             <div class="modal-campo">
                 <label for="campo-codigo">Código:</label>
                 <input type="number" id="campo-codigo" name="codigo" min="0" required>
+                <span id="erroCod"></span>
             </div>
 
             <div class="modal-campo">
                 <label for="campo-id_empresa">id_empresa:</label>
                 <input type="number" id="campo-id_empresa" name="id_empresa" min="0" required>
+                <span id="erroIdEmpresa"></span>
             </div>
 
             <div class="modal-campo">
                 <label for="campo-id_cronograma">id_cronograma:</label>
                 <input type="number" id="campo-id_cronograma" name="id_cronograma" min="0" required>
+                <span id="erroIdCrono"></span>
             </div>
 
             <div class="modal-rodape">

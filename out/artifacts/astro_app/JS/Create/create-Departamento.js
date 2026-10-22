@@ -14,8 +14,6 @@ const atividade = document.getElementById("campo-atividade")
 
 const idEmpresa = document.getElementById("campo-id_empresa")
 
-const idDepart = document.getElementById("campo-id_departamento")
-
 // Variaveis de Erro
 const erroNome = document.getElementById("erroNome");
 
@@ -24,8 +22,6 @@ const erroDescr = document.getElementById("erroDescr");
 const erroRisco = document.getElementById("erroRisco")
 
 const erroIdEmpresa = document.getElementById("erroIdEmpresa")
-
-const erroIdDepart = document.getElementById("erroIdDepart")
 
 const erroAtv = document.getElementById("erroAtv")
 
