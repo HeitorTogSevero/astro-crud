@@ -154,4 +154,35 @@ public class AdministradorDAO {
             conexao.desconectar(conn);
         }
     }
+
+    // Metodo de autenticar o login: compara a senha digitada com o hash salvo
+    public Administrador autenticar(String email, String senha) {
+
+        Conexao conexao = new Conexao();
+        Connection conn = null;
+
+        try {
+            conn = conexao.conectar();
+
+            PreparedStatement pstmt = conn.prepareStatement("SELECT id_admin, nome, email FROM administrador WHERE email = ? AND senha = crypt(?, senha)");
+
+            pstmt.setString(1, email);
+
+            pstmt.setString(2, senha);
+
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                return new Administrador(rs.getInt("id_admin"), rs.getString("nome"), rs.getString("email"), null); // O null serve para não devolver a senha
+            }
+            return null;
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return null;
+        } finally {
+            conexao.desconectar(conn);
+        }
+    }
+
 }

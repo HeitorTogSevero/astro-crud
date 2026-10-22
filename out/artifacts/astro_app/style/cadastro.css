@@ -1280,4 +1280,16 @@ footer a {
         column-gap: 20px;
     }
 }
-    
+
+.mensagem-erro {
+    color: #ff6b6b;
+    font-size: 13px;
+    text-align: center;
+    margin-top: 12px;
+}
+
+.dica-senha {
+    color: var(--text-muted, #d1d1d1);
+    font-size: 12px;
+    margin-top: 8px;
+}

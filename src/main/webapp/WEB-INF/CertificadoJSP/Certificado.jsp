@@ -47,7 +47,7 @@ org.astro.astro_app.model.Certificado"
         <a href="<%=caminho%>/listar-divisoes" class="nav-item">
             <i class="fa-regular fa-file-lines"></i>divisao_treinamento
         </a>
-        <a href="<%=caminho%>/lista-alerta" class="nav-item">
+        <a href="<%=caminho%>/listar-alerta" class="nav-item">
             <i class="fa-regular fa-calendar-check"></i>alerta
         </a>
         <a href="<%=caminho%>/listar-certificados" class="nav-item active">
