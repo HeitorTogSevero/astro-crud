@@ -191,7 +191,7 @@ return s == null ? "" : s;
                 <div class="modal-campo">
                     <label for="campo-id_empresa">Empresa (id): </label>
                     <input type="number" id="campo-id_empresa" name="id_empresa" placeholder="ID" required>
-                    <span id="erroId"></span>
+                    <span id="erroIdEmpresa"></span>
                 </div>
 
                 <div class="modal-rodape">
