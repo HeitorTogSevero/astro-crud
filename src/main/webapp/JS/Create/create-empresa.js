@@ -43,11 +43,11 @@ const erroDataRegistro= document.getElementById("erroDataRegistro")
 
 // REGEX //
 
-const regexCnpj = /^(\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}|\d{14})$/ ;
+const regexCnpj = /^(\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}|\d{14})$/;
 
-const regexCep = /^(\d{5}-\d{3}|\d{8})$/
+const regexCep = /^(\d{5}-\d{3}|\d{8})$/;
 
-const regexCnae = /^\d{4}-\d{1}\/\d{2}$/
+const regexCnae = /^(\d{4}-\d\/\d{2}|\d{7})$/;
 
 const regexData = /^\d{4}-(0[1-9]|1[0-2])-\d{2}$/;
 
@@ -94,7 +94,7 @@ form.addEventListener("input", function (){
         erroCnae.classList.remove("invalido", "valido");
     }
 
-    else if(!regexCnae.test(cnae)){
+    else if(!regexCnae.test(cnae.value.trim())){
 
         erroCnae.textContent = "Formato Inválido, o correto é 0000-0/00"
 
@@ -120,7 +120,7 @@ form.addEventListener("input", function (){
         erroCep.classList.remove("invalido", "valido");
     }
 
-    else if(!regexCep.test(cep)){
+    else if(!regexCep.test(cep.value.trim())){
 
         erroCep.textContent = "Formato Inválido, o correto é 00000-000"
 
@@ -146,9 +146,9 @@ form.addEventListener("input", function (){
         erroCnpj.classList.remove("invalido", "valido");
     }
 
-    else if(!regexCnpj.test(cnpj)){
+    else if(!regexCnpj.test(cnpj.value.trim())){
 
-        erroCnpj.textContent = "Formato Inválido, o correto é 0000-0/00"
+        erroCnpj.textContent = "Formato Inválido, o correto é 00.000.000/0000-00"
 
         erroCnpj.classList.remove("valido")
         erroCnpj.classList.add("invalido")
@@ -217,7 +217,7 @@ form.addEventListener("input", function (){
     }
 })
 
-// Validações dos Dados - Bairro //
+// Validações dos Dados - Cidade //
 form.addEventListener("input", function (){
 
     if (cidade.value.trim() === "") {
@@ -244,7 +244,7 @@ form.addEventListener("input", function (){
     }
 })
 
-// Validações dos Dados - Bairro //
+// Validações dos Dados - Estado //
 form.addEventListener("input", function (){
 
     if (estado.value.trim() === "") {
@@ -253,9 +253,9 @@ form.addEventListener("input", function (){
         erroEstado.classList.remove("invalido", "valido");
     }
 
-    else if (estado.value.length > 100){
+    else if (estado.value.trim().length > 2){
 
-        erroEstado.textContent = "máximo 100 caracteres"
+        erroEstado.textContent = "máximo 2 caracteres"
 
         erroEstado.classList.add("invalido")
         erroEstado.classList.remove("valido")
@@ -277,25 +277,24 @@ form.addEventListener("input", function (){
     if (dataRegistro.value.trim() === "") {
 
         erroDataRegistro.textContent = "";
-        erroDataEmissao.classList.remove("invalido", "valido");
+        erroDataRegistro.classList.remove("invalido", "valido");
     }
 
     else if (!regexData.test(dataRegistro.value)){
 
-        erroDataRegistro.textContent = "Formato Inválido, o correto é: AAAA/MM/DD";
+        erroDataRegistro.textContent = "Formato Inválido, o correto é: AAAA-MM-DD";
 
         erroDataRegistro.classList.add("invalido");
         erroDataRegistro.classList.remove("valido")
     }
 
-    else if (dataRegistro.value >= dataAtual){
+    else if (dataRegistro.value > dataAtual){
 
         erroDataRegistro.textContent = "A data deve ser <= a data atual";
 
         erroDataRegistro.classList.add("invalido");
         erroDataRegistro.classList.remove("valido")
     }
-
 
     else{
 
@@ -309,43 +308,43 @@ form.addEventListener("input", function (){
 // SUBMETER FORMULÁRIO //
 form.addEventListener("submit", function (event){
 
-    if (rua.value.length > 100){
+    if (nome.value.trim() === "" || nome.value.length > 100){
         event.preventDefault();
     }
 
-    else if (bairro.value.length > 100){
+    else if (rua.value.trim() === "" || rua.value.length > 100){
         event.preventDefault();
     }
 
-    else if (cidade.value.length > 100){
+    else if (bairro.value.trim() === "" || bairro.value.length > 100){
         event.preventDefault();
     }
 
-    else if (estado.value.length > 100){
+    else if (cidade.value.trim() === "" || cidade.value.length > 100){
         event.preventDefault();
     }
 
-    else if (nome.value.length > 100){
+    else if (estado.value.trim() === "" || estado.value.trim().length > 2){
         event.preventDefault();
     }
 
-    else if(!regexCep.test(cep)){
+    else if(!regexCep.test(cep.value.trim())){
         event.preventDefault()
     }
 
-    else if(!regexCnae.test(cnae)){
+    else if(!regexCnae.test(cnae.value.trim())){
         event.preventDefault()
     }
 
-    else if(!regexCnpj.test(cnpj)){
+    else if(!regexCnpj.test(cnpj.value.trim())){
         event.preventDefault()
     }
 
-    else if (!regexData.test(dataRegistro)){
+    else if (!regexData.test(dataRegistro.value)){
         event.preventDefault()
     }
 
-    else if (dataEmissao.value >= dataAtual){
+    else if (dataRegistro.value > dataAtual){
         event.preventDefault()
     }
 })

@@ -108,7 +108,7 @@ public class AdministradorDAO {
         try {
             conn = conexao.conectar();
 
-            PreparedStatement pstmt = conn.prepareStatement("UPDATE administrador SET nome = ?, email = ?, senha = ? WHERE id_admin = ?");
+            PreparedStatement pstmt = conn.prepareStatement("UPDATE administrador SET nome = ?, email = ?, senha = crypt(?, gen_salt('bf', 12)) WHERE id_admin = ?");
 
             pstmt.setString(1, admin.getNome());
             pstmt.setString(2, admin.getEmail());

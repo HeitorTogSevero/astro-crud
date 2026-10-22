@@ -31,6 +31,7 @@ org.astro.astro_app.model.Empresa"
     <link rel="stylesheet" href="<%=caminho%>/style/tabelas.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="imagens/isotipo.png">
 </head>
 <body>
 
@@ -163,7 +164,7 @@ org.astro.astro_app.model.Empresa"
             <h2>Adicionar em empresa</h2>
             <button type="button" class="modal-fechar" id="fechar-modal"><i class="fa-solid fa-xmark"></i></button>
         </div>
-        <form class="modal-formulario" action="<%=caminho%>/adicionar-empresa" method="post">
+        <form class="formulario-adicionar" action="<%=caminho%>/adicionar-empresa" method="post">
             <div class="modal-campo">
                 <label for="campo-cnpj">CNPJ: </label>
                 <input type="text" id="campo-cnpj" name="cnpj" placeholder="00.000.000/0000-00" required>
@@ -215,6 +216,8 @@ org.astro.astro_app.model.Empresa"
             <div class="modal-campo">
                 <label for="campo-dt_registro">Data de Registro: </label>
                 <input type="date" id="campo-dt_registro" name="dd/mm/aaaa" required>
+
+                <input type="date" id="campo-dt_registro" name="dt_registro" required>
                 <span id="erroDataRegistro" ></span>
             </div>
 
