@@ -31,6 +31,7 @@ org.astro.astro_app.model.Empresa"
     <link rel="stylesheet" href="<%=caminho%>/style/tabelas.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="imagens/isotipo.png">
 </head>
 <body>
 
@@ -163,43 +164,61 @@ org.astro.astro_app.model.Empresa"
             <h2>Adicionar em empresa</h2>
             <button type="button" class="modal-fechar" id="fechar-modal"><i class="fa-solid fa-xmark"></i></button>
         </div>
-        <form class="modal-formulario" action="<%=caminho%>/adicionar-empresa" method="post">
+        <form class="formulario-adicionar" action="<%=caminho%>/adicionar-empresa" method="post">
             <div class="modal-campo">
-                <label for="campo-cnpj">cnpj</label>
+                <label for="campo-cnpj">CNPJ: </label>
                 <input type="text" id="campo-cnpj" name="cnpj" placeholder="00.000.000/0000-00" required>
+                <span id="erroCnpj" ></span>
             </div>
+
             <div class="modal-campo">
-                <label for="campo-nome">nome</label>
-                <input type="text" id="campo-nome" name="nome" required>
+                <label for="campo-nome">Nome: </label>
+                <input type="text" id="campo-nome" name="nome" placeholder="Nome" required>
+                <span id="erroNome" ></span>
             </div>
+
             <div class="modal-campo">
-                <label for="campo-cnae">cnae</label>
-                <input type="text" id="campo-cnae" name="cnae" required>
+                <label for="campo-cnae">CNAE: </label>
+                <input type="text" id="campo-cnae" name="cnae" placeholder="0000-0/00" required>
+                <span id="erroCnae" ></span>
             </div>
+
             <div class="modal-campo">
-                <label for="campo-bairro">bairro</label>
-                <input type="text" id="campo-bairro" name="bairro" required>
+                <label for="campo-bairro">Bairro: </label>
+                <input type="text" id="campo-bairro" name="bairro" placeholder="Bairro" required>
+                <span id="erroBairro" ></span>
             </div>
+
             <div class="modal-campo">
-                <label for="campo-cep">cep</label>
+                <label for="campo-cep">CEP: </label>
                 <input type="text" id="campo-cep" name="cep" placeholder="00000-000" required>
+                <span id="erroCep" ></span>
             </div>
+
             <div class="modal-campo">
-                <label for="campo-rua">rua</label>
-                <input type="text" id="campo-rua" name="rua" required>
+                <label for="campo-rua">Rua: </label>
+                <input type="text" id="campo-rua" name="rua" placeholder="Rua" required>
+                <span id="erroRua" ></span>
             </div>
+
             <div class="modal-campo">
-                <label for="campo-estado">estado</label>
-                <input type="text" id="campo-estado" name="estado" maxlength="2" required>
+                <label for="campo-estado">Estado: </label>
+                <input type="text" id="campo-estado" name="estado" maxlength="2" placeholder="Ex: SP" required>
+                <span id="erroEstado"></span>
             </div>
+
             <div class="modal-campo">
-                <label for="campo-cidade">cidade</label>
-                <input type="text" id="campo-cidade" name="cidade" required>
+                <label for="campo-cidade">Cidade: </label>
+                <input type="text" id="campo-cidade" name="cidade" placeholder="Cidade" required>
+                <span id="erroCidade" ></span>
             </div>
+
             <div class="modal-campo">
-                <label for="campo-dt_registro">dt_registro</label>
+                <label for="campo-dt_registro">Data de Registro: </label>
                 <input type="date" id="campo-dt_registro" name="dt_registro" required>
+                <span id="erroDataRegistro" ></span>
             </div>
+
             <div class="modal-rodape">
                 <button type="button" class="botao-cancelar" id="cancelar-modal">Cancelar</button>
                 <button type="submit" class="botao-salvar">Salvar</button>
@@ -217,7 +236,7 @@ org.astro.astro_app.model.Empresa"
         </div>
         <form class="modal-formulario" action="<%=caminho%>/listar-empresas" method="get">
             <div class="modal-campo">
-                <label for="filtro-estado">estado</label>
+                <label for="filtro-estado">Estado</label>
                 <select id="filtro-estado" name="estado">
                     <option value="" <%= fEstado.isEmpty() ? "selected" : "" %>>Todos</option>
                     <% for (String uf : estados) { %>
@@ -226,19 +245,19 @@ org.astro.astro_app.model.Empresa"
                 </select>
             </div>
             <div class="modal-campo">
-                <label for="filtro-cidade">cidade</label>
-                <input type="text" id="filtro-cidade" name="cidade" value="<%= fCidade %>">
+                <label for="filtro-cidade">Cidade: </label>
+                <input type="text" id="filtro-cidade" name="cidade" placeholder="Cidade" value="<%= fCidade %>">
             </div>
             <div class="modal-campo">
-                <label for="filtro-cnae">cnae</label>
-                <input type="text" id="filtro-cnae" name="cnae" value="<%= fCnae %>">
+                <label for="filtro-cnae">CNAE</label>
+                <input type="text" id="filtro-cnae" name="cnae" placeholder="0000-0/00" value="<%= fCnae %>">
             </div>
             <div class="modal-campo">
                 <label for="filtro-nome">Nome</label>
-                <input type="text" id="filtro-nome" name="nome" value="<%= fNome %>">
+                <input type="text" id="filtro-nome" name="nome" placeholder="Nome" value="<%= fNome %>">
             </div>
             <div class="modal-campo">
-                <label>dt_registro</label>
+                <label>Data de Registro</label>
                 <div class="modal-campo-faixa">
                     <input type="date" name="dt_registro_min" value="<%= fDtMin %>">
                     <span>até</span>
@@ -262,41 +281,53 @@ org.astro.astro_app.model.Empresa"
         </div>
         <form class="modal-formulario" action="<%=caminho%>/editar-empresa" method="post">
             <input type="hidden" id="editar-id-empresa" name="id_empresa">
+
             <div class="modal-campo">
-                <label for="editar-nome">nome</label>
-                <input type="text" id="editar-nome" name="nome" required>
+                <label for="editar-nome">Nome: </label>
+                <input type="text" id="editar-nome" name="nome" placeholder="Nome" required>
+                <span id="editar-erroNome" ></span>
+            </div>
+
+            <div class="modal-campo">
+                <label for="editar-cnpj">CNPJ: </label>
+                <input type="text" id="editar-cnpj" name="cnpj" placeholder="00.000.000/0000-00" required>
+                <span id="editar-erroCnpj" ></span>
+            </div>
+
+            <div class="modal-campo">
+                <label for="editar-cnae">CNAE: </label>
+                <input type="text" id="editar-cnae" name="cnae" placeholder="0000-0/00" required>
+            </div>
+
+            <div class="modal-campo">
+                <label for="editar-bairro">Bairro: </label>
+                <input type="text" id="editar-bairro" name="bairro" placeholder="Bairro" required>
+                <span id="editar-erroBairro" ></span>
+            </div>
+
+            <div class="modal-campo">
+                <label for="editar-cep">CEP: </label>
+                <input type="text" id="editar-cep" name="cep" placeholder="000.000-00" required>
+            </div>
+
+            <div class="modal-campo">
+                <label for="editar-rua">Rua: </label>
+                <input type="text" id="editar-rua" name="rua" placeholder="Rua" required>
+                <span id="editar-erroRua" ></span>
             </div>
             <div class="modal-campo">
-                <label for="editar-cnpj">cnpj</label>
-                <input type="text" id="editar-cnpj" name="cnpj" required>
+                <label for="editar-estado">Estado: </label>
+                <input type="text" id="editar-estado" name="estado" maxlength="2" placeholder="Ex: SP" required>
+                <span id="editar-erroEstado" ></span>
             </div>
             <div class="modal-campo">
-                <label for="editar-cnae">cnae</label>
-                <input type="text" id="editar-cnae" name="cnae" required>
+                <label for="editar-cidade">Cidade: </label>
+                <input type="text" id="editar-cidade" name="cidade" placeholder="Cidade" required>
+                <span id="editar-erroCidade"></span>
             </div>
             <div class="modal-campo">
-                <label for="editar-bairro">bairro</label>
-                <input type="text" id="editar-bairro" name="bairro" required>
-            </div>
-            <div class="modal-campo">
-                <label for="editar-cep">cep</label>
-                <input type="text" id="editar-cep" name="cep" required>
-            </div>
-            <div class="modal-campo">
-                <label for="editar-rua">rua</label>
-                <input type="text" id="editar-rua" name="rua" required>
-            </div>
-            <div class="modal-campo">
-                <label for="editar-estado">estado</label>
-                <input type="text" id="editar-estado" name="estado" maxlength="2" required>
-            </div>
-            <div class="modal-campo">
-                <label for="editar-cidade">cidade</label>
-                <input type="text" id="editar-cidade" name="cidade" required>
-            </div>
-            <div class="modal-campo">
-                <label for="editar-dt-registro">dt_registro</label>
-                <input type="date" id="editar-dt-registro" name="dt_registro" required>
+                <label for="editar-dt-registro">Data de Registro: </label>
+                <input type="date" id="editar-dt-registro" name="dt_registro" placeholder="dd/mm/aaaa" required>
             </div>
             <div class="modal-rodape">
                 <button type="button" class="botao-cancelar" id="cancelar-modal-editar">Cancelar</button>
@@ -388,5 +419,8 @@ org.astro.astro_app.model.Empresa"
     document.getElementById('cancelar-modal').addEventListener('click', () => modalAdicionar.hidden = true);
     modalAdicionar.addEventListener('click', e => { if (e.target === modalAdicionar) modalAdicionar.hidden = true; });
 </script>
+<script src="<%=caminho%>/JS/Create/create-empresa.js"></script>
+<script src="<%=caminho%>/JS/Update/update-empresa.js"></script>
+
 </body>
 </html>

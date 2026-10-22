@@ -33,7 +33,7 @@ public class ServletCreateEmpresa extends HttpServlet{
                 Pattern.compile("^(\\d{2}\\.\\d{3}\\.\\d{3}/\\d{4}-\\d{2}|\\d{14})$");
 
         final Pattern cnaeRegex =
-                Pattern.compile("^\\d{4}-\\d{1}/\\d{2}$ | \\d{7}");
+                Pattern.compile("^(\\d{4}-\\d/\\d{2}|\\d{7})$");
 
         String cnae = request.getParameter("cnae");
 

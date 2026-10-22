@@ -21,14 +21,14 @@
 
 <div class="fundo-planeta" aria-hidden="true"></div>
 
-<a href="<%=caminho%>/lading-page.html" onclick="if (document.referrer) { history.back(); return false; }" class="botao-voltar" id="botao-voltar" aria-label="Voltar">
+<a href="<%=caminho%>/landing-page.html" onclick="if (document.referrer) { history.back(); return false; }" class="botao-voltar" id="botao-voltar" aria-label="Voltar">
     <i class="fa-solid fa-arrow-left"></i>
 </a>
 
 <main class="cadastro-container">
     <section class="cadastro-lado-imagem" aria-labelledby="titulo-cadastro">
         <div class="cadastro-lado-conteudo">
-            <a href="<%=caminho%>/lading-page.html" class="cadastro-logo" aria-label="Astro - página inicial">
+            <a href="<%=caminho%>/landing-page.html" class="cadastro-logo" aria-label="Astro - página inicial">
                 <img src="<%=caminho%>/imagens/imagotipo.png" alt="Astro" class="img-logo">
             </a>
 

@@ -24,6 +24,8 @@ org.astro.astro_app.model.Funcionario"
     <link rel="stylesheet" href="<%=caminho%>/style/tabelas.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="imagens/isotipo.png">
+
 </head>
 <body>
 
@@ -156,30 +158,40 @@ org.astro.astro_app.model.Funcionario"
             <button type="button" class="modal-fechar" id="fechar-modal"><i class="fa-solid fa-xmark"></i></button>
         </div>
         <form class="modal-formulario" action="<%=caminho%>/adicionar-funcionario" method="post">
+
             <div class="modal-campo">
-                <label for="campo-cpf">cpf</label>
+                <label for="campo-cpf">CPF: </label>
                 <input type="text" id="campo-cpf" name="cpf" placeholder="000.000.000-00" required>
+                <span id="erroCpf"></span>
             </div>
+
             <div class="modal-campo">
-                <label for="campo-nome">nome</label>
-                <input type="text" id="campo-nome" name="nome" required>
+                <label for="campo-nome">Nome: </label>
+                <input type="text" id="campo-nome" name="nome" placeholder="Nome" required>
+                <span id="erroNome"></span>
             </div>
+
             <div class="modal-campo">
-                <label for="campo-cargo">cargo</label>
-                <input type="text" id="campo-cargo" name="cargo" required>
+                <label for="campo-cargo">Cargo: </label>
+                <input type="text" id="campo-cargo" name="cargo" placeholder="Ex: Professor" required>
             </div>
+
             <div class="modal-campo">
-                <label for="campo-email">email</label>
-                <input type="text" id="campo-email" name="email" required>
+                <label for="campo-email">Email: </label>
+                <input type="text" id="campo-email" name="email" placeholder="exemplo@gmail.com" required>
+                <span id="erroEmail"></span>
             </div>
+
             <div class="modal-campo">
-                <label for="campo-id_empresa">id_empresa</label>
-                <input type="number" id="campo-id_empresa" name="id_empresa" min="0" required>
+                <label for="campo-id_empresa">Empresa (id)</label>
+                <input type="number" id="campo-id_empresa" name="id_empresa" min="0" placeholder="ID" required>
             </div>
+
             <div class="modal-campo">
-                <label for="campo-id_departamento">id_departamento</label>
-                <input type="number" id="campo-id_departamento" name="id_departamento" min="0" required>
+                <label for="campo-id_departamento">Departamento (id): </label>
+                <input type="number" id="campo-id_departamento" name="id_departamento" min="0" placeholder="ID" required>
             </div>
+
             <div class="modal-rodape">
                 <button type="button" class="botao-cancelar" id="cancelar-modal">Cancelar</button>
                 <button type="submit" class="botao-salvar">Salvar</button>
@@ -196,18 +208,22 @@ org.astro.astro_app.model.Funcionario"
             <button type="button" class="modal-fechar" id="fechar-modal-filtro"><i class="fa-solid fa-xmark"></i></button>
         </div>
         <form class="modal-formulario" action="<%=caminho%>/listar-funcionarios" method="get">
+
             <div class="modal-campo">
-                <label for="filtro-cargo">Cargo</label>
-                <input type="text" id="filtro-cargo" name="cargo" value="<%= fCargo %>">
+                <label for="filtro-cargo">Cargo: </label>
+                <input type="text" id="filtro-cargo" name="cargo" placeholder="Ex. Professor" value="<%= fCargo %>">
             </div>
+
             <div class="modal-campo">
-                <label for="filtro-id_empresa">id_empresa</label>
-                <input type="number" id="filtro-id_empresa" name="id_empresa" min="0" value="<%= fIdEmpresa %>">
+                <label for="filtro-id_empresa">Empresa (id): </label>
+                <input type="number" id="filtro-id_empresa" name="id_empresa" min="0" placeholder="ID" value="<%= fIdEmpresa %>">
             </div>
+
             <div class="modal-campo">
-                <label for="filtro-id_departamento">id_departamento</label>
-                <input type="number" id="filtro-id_departamento" name="id_departamento" min="0" value="<%= fIdDepartamento %>">
+                <label for="filtro-id_departamento">Departamento (id)</label>
+                <input type="number" id="filtro-id_departamento" name="id_departamento" min="0" placeholder="ID" value="<%= fIdDepartamento %>">
             </div>
+
             <div class="modal-rodape">
                 <a href="<%=caminho%>/listar-funcionarios" class="botao-cancelar">Limpar</a>
                 <button type="submit" class="botao-salvar">Aplicar filtro</button>
@@ -225,29 +241,41 @@ org.astro.astro_app.model.Funcionario"
         </div>
         <form class="modal-formulario" action="<%=caminho%>/alterar-funcionario" method="post">
             <input type="hidden" id="editar-id-funcionario" name="id_funcionario">
+
             <div class="modal-campo">
-                <label for="editar-cpf">cpf</label>
+                <label for="editar-cpf">CPF: </label>
                 <input type="text" id="editar-cpf" name="cpf" placeholder="000.000.000-00" required>
+                <span id="editar-erroCpf"></span>
             </div>
+
             <div class="modal-campo">
-                <label for="editar-nome">nome</label>
-                <input type="text" id="editar-nome" name="nome" required>
+                <label for="editar-nome">Nome: </label>
+                <input type="text" id="editar-nome" name="nome" placeholder="Nome" required>
+                <span id="editar-erroNome"></span>
             </div>
+
             <div class="modal-campo">
-                <label for="editar-cargo">cargo</label>
-                <input type="text" id="editar-cargo" name="cargo" required>
+                <label for="editar-cargo">Cargo: </label>
+                <input type="text" id="editar-cargo" name="cargo" placeholder="Ex. Professor" required>
+                <span id="editar-erroCargo"></span>
             </div>
+
             <div class="modal-campo">
-                <label for="editar-email">email</label>
-                <input type="text" id="editar-email" name="email" required>
+                <label for="editar-email">Email: </label>
+                <input type="text" id="editar-email" name="email" placeholder="exemplo@gmail.com" required>
+                <span id="editar-erroEmail"></span>
             </div>
+
             <div class="modal-campo">
-                <label for="editar-id_empresa">id_empresa</label>
-                <input type="number" id="editar-id_empresa" name="id_empresa" min="0" required>
+                <label for="editar-id_empresa">Empresa (id): </label>
+                <input type="number" id="editar-id_empresa" name="id_empresa" min="0" placeholder="ID" required>
+                <span id="editar-erroIdEmpresa"></span>
             </div>
+
             <div class="modal-campo">
-                <label for="editar-id_departamento">id_departamento</label>
-                <input type="number" id="editar-id_departamento" name="id_departamento" min="0" required>
+                <label for="editar-id_departamento">Departamento (id)</label>
+                <input type="number" id="editar-id_departamento" name="id_departamento" min="0" placeholder="ID" required>
+                <span id="editar-erroIdDepart"></span>
             </div>
             <div class="modal-rodape">
                 <button type="button" class="botao-cancelar" id="cancelar-modal-editar">Cancelar</button>
@@ -327,5 +355,8 @@ org.astro.astro_app.model.Funcionario"
     document.getElementById('cancelar-modal').addEventListener('click', () => modalAdicionar.hidden = true);
     modalAdicionar.addEventListener('click', e => { if (e.target === modalAdicionar) modalAdicionar.hidden = true; });
 </script>
+<script src="<%=caminho%>/JS/Create/create-funcionario.js"></script>
+<script src="<%=caminho%>/JS/Update/update-funcionario.js"></script>
+
 </body>
 </html>

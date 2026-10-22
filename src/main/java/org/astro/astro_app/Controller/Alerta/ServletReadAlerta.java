@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.sql.Date;
 import java.util.ArrayList;
 
-@WebServlet(name = "ServletReadAlerta", value = "/lista-alerta")
+@WebServlet(name = "ServletReadAlerta", value = "/listar-alerta")
 public class ServletReadAlerta extends HttpServlet {
 
     private AlertaDAO alertaDAO;
