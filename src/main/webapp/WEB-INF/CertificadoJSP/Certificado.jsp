@@ -88,12 +88,12 @@ org.astro.astro_app.model.Certificado"
     </section>
 
     <%
-    String mensagem = (String) request.getAttribute("erro");
-    if (mensagem == null) {
-    mensagem = (String) request.getAttribute("mensagem");
-    }
-    if (mensagem != null) {
-    String cor = mensagem.toLowerCase().contains("sucesso") ? "green" : "red";
+        String mensagem = (String) request.getAttribute("erro");
+        if (mensagem == null) {
+            mensagem = (String) request.getAttribute("mensagem");
+        }
+        if (mensagem != null) {
+            String cor = mensagem.toLowerCase().contains("sucesso") ? "green" : "red";
     %>
     <p style="color: <%= cor %>"><%= mensagem %></p>
     <% } %>
@@ -114,8 +114,8 @@ org.astro.astro_app.model.Certificado"
                 </thead>
                 <tbody id="corpo-tabela-certificado">
                 <%
-                if (certificados != null && !certificados.isEmpty()) {
-                for (Certificado c : certificados) {
+                    if (certificados != null && !certificados.isEmpty()) {
+                        for (Certificado c : certificados) {
                 %>
                 <tr data-id-certificado="<%= c.getIdCertificado() %>">
                     <td><%= c.getIdCertificado() %></td>
@@ -136,7 +136,7 @@ org.astro.astro_app.model.Certificado"
                     </td>
                 </tr>
                 <%
-                }
+                    }
                 } else {
                 %>
                 <tr>
@@ -167,32 +167,32 @@ org.astro.astro_app.model.Certificado"
               action="<%=caminho%>/adicionar-certificado" method="post">
 
             <div class="modal-campo">
-                <label for="campo-dt_emissao">Data de Emissão</label>
-                <input type="date" id="campo-dt_emissao" name="dt_emissao" placeholder="dd/mm/aaaa" required>
+                <label for="campo-dt_emissao">Data de Emissao: </label>
+                <input type="date" id="campo-dt_emissao" name="dd/mm/aaaa" required>
                 <span id="erroDataEmissao"></span>
             </div>
 
             <div class="modal-campo">
                 <label for="validade">Validade: </label>
-                <input type="date" id="validade" name="validade" placeholder="dd/mm/aaaa" required>
+                <input type="date" id="validade" name="dd/mm/aaaa" required>
                 <span id="erroValidade"></span>
             </div>
 
             <div class="modal-campo">
-                <label for="campo-id_funcionario">Funcionario (id): </label>
-                <input type="number" id="campo-id_funcionario" name="id_funcionario" placeholder="Funcionario" min="0" required>
+                <label for="campo-id_funcionario">Funcionário (id): </label>
+                <input type="number" id="campo-id_funcionario" name="id_funcionario" placeholder="ID" min="0" required>
                 <span id="erroIdFunc"></span>
             </div>
 
             <div class="modal-campo">
-                <label for="campo-id_nrfuncionario">NR Funcionario (id): </label>
-                <input type="number" id="campo-id_nrfuncionario" name="id_nrfuncionario" placeholder="NR Funcionario" min="0" required>
+                <label for="campo-id_nrfuncionario">NR Funcionário (id): </label>
+                <input type="number" id="campo-id_nrfuncionario" name="id_nrfuncionario" placeholder="ID" min="0" required>
                 <span id="erroIdNrFunc"></span>
             </div>
 
             <div class="modal-campo">
-                <label for="campo-id_nrempresa">NR Empresa (id ): </label>
-                <input type="number" id="campo-id_nrempresa" name="id_nrempresa" placeholder="NR Empresa" min="0" required>
+                <label for="campo-id_nrempresa">NR Empresa (id): </label>
+                <input type="number" id="campo-id_nrempresa" name="id_nrempresa" placeholder="ID" min="0" required>
                 <span id="erroIdNrEmp"></span>
             </div>
 
@@ -218,7 +218,7 @@ org.astro.astro_app.model.Certificado"
               action="<%=caminho%>/listar-certificados" method="get">
 
             <div class="modal-campo">
-                <label>dt_emissao:</label>
+                <label>Data de Emissão:</label>
                 <div class="modal-campo-faixa">
                     <input type="date" id="filtro-dt-emissao-min" name="dt_emissao_min" value="<%= fDtMin %>">
                     <span>até</span>
@@ -227,7 +227,7 @@ org.astro.astro_app.model.Certificado"
             </div>
 
             <div class="modal-campo">
-                <label for="filtro-id_funcionario">id_funcionario</label>
+                <label for="filtro-id_funcionario">Funcionario (id): </label>
                 <input type="number" id="filtro-id_funcionario" name="id_funcionario" min="0" placeholder="0" value="<%= fIdFuncionario %>">
             </div>
 
@@ -267,20 +267,20 @@ org.astro.astro_app.model.Certificado"
             </div>
 
             <div class="modal-campo">
-                <label for="editar-id_funcionario">id_funcionario: </label>
-                <input type="number" id="editar-id_funcionario" name="id_funcionario" min="0" required>
+                <label for="editar-id_funcionario">Funcionario (id): </label>
+                <input type="number" id="editar-id_funcionario" name="id_funcionario" min="0" placeholder="ID" required>
                 <span id="editar-erroIdFunc"></span>
             </div>
 
             <div class="modal-campo">
-                <label for="editar-id_nrfuncionario">id_nrfuncionario: </label>
-                <input type="number" id="editar-id_nrfuncionario" name="id_nrfuncionario" min="0" required>
+                <label for="editar-id_nrfuncionario">NR Funcionario (id): </label>
+                <input type="number" id="editar-id_nrfuncionario" name="id_nrfuncionario" min="0" placeholder="ID" required>
                 <span id="editar-erroIdNrFunc"></span>
             </div>
 
             <div class="modal-campo">
-                <label for="editar-id_nrempresa">id_nrempresa: </label>
-                <input type="number" id="editar-id_nrempresa" name="id_nrempresa" min="0" required>
+                <label for="editar-id_nrempresa">NR Empresa (id): </label>
+                <input type="number" id="editar-id_nrempresa" name="id_nrempresa" min="0" placeholder="ID" required>
                 <span id="editar-erroIdNrEmp"></span>
             </div>
 
