@@ -103,11 +103,11 @@ return s == null ? "" : s;
             <table class="data-table" id="tabela-divisao">
                 <thead class="data-cabecalho">
                 <tr>
-                    <th class="ordenavel" data-coluna="id_divisao"><strong>id_divisao</strong> <i class="fa-solid fa-sort"></i></th>
-                    <th class="ordenavel" data-coluna="nome">nome <i class="fa-solid fa-sort"></i></th>
-                    <th class="ordenavel" data-coluna="codigo">codigo <i class="fa-solid fa-sort"></i></th>
-                    <th class="ordenavel" data-coluna="id_empresa">id_empresa <i class="fa-solid fa-sort"></i></th>
-                    <th class="ordenavel" data-coluna="id_cronograma">id_cronograma <i class="fa-solid fa-sort"></i></th>
+                    <th class="ordenavel" data-coluna="id_divisao"><strong>ID da Divisão</strong> <i class="fa-solid fa-sort"></i></th>
+                    <th class="ordenavel" data-coluna="nome">Nome <i class="fa-solid fa-sort"></i></th>
+                    <th class="ordenavel" data-coluna="codigo">Código <i class="fa-solid fa-sort"></i></th>
+                    <th class="ordenavel" data-coluna="id_empresa">Empresa <i class="fa-solid fa-sort"></i></th>
+                    <th class="ordenavel" data-coluna="id_cronograma">Cronograma <i class="fa-solid fa-sort"></i></th>
                     <th>Ações</th>
                 </tr>
                 </thead>
