@@ -344,7 +344,5 @@ form.addEventListener("submit", function (event){
         event.preventDefault()
     }
 
-    else if (dataEmissao.value >= dataAtual){
-        event.preventDefault()
-    }
+
 })
