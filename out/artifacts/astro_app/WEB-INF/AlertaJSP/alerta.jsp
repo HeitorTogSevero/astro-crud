@@ -216,7 +216,7 @@ org.astro.astro_app.model.Alerta"
         </div>
 
         <form id="formulario-filtro" class="modal-formulario"
-              action="<%=caminho%>/lista-alerta" method="get">
+              action="<%=caminho%>/listar-alerta" method="get">
 
             <div class="modal-campo">
                 <label for="filtro-codigo">Código</label>
