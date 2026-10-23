@@ -93,7 +93,9 @@ return s == null ? "" : s;}%>
     if (mensagem != null) {
     String cor = mensagem.toLowerCase().contains("sucesso") ? "green" : "red";
     %>
-    <p style="color: <%= cor %>"><%= mensagem %></p>
+    <div id="pop-up-erro" style="">
+        <p><%= mensagem %></p>
+    </div>
     <% } %>
 
     <section class="panel painel-tabela">
@@ -175,7 +177,7 @@ return s == null ? "" : s;}%>
             </button>
         </div>
 
-        <form id="formulario-adicionar" class="modal-formulario"
+        <form id="formulario-adicionar-departamento" class="modal-formulario"
               action="<%=caminho%>/adicionar-departamento" method="post">
 
             <div class="modal-campo">

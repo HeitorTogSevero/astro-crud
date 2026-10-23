@@ -100,7 +100,9 @@ org.astro.astro_app.model.Empresa"
         if (mensagem != null) {
             String cor = mensagem.toLowerCase().contains("sucesso") ? "green" : "red";
     %>
-    <p style="color: <%= cor %>"><%= mensagem %></p>
+    <div id="pop-up-erro" style="">
+        <p><%= mensagem %></p>
+    </div>
     <% } %>
 
     <section class="panel painel-tabela">
@@ -164,7 +166,7 @@ org.astro.astro_app.model.Empresa"
             <h2>Adicionar em empresa</h2>
             <button type="button" class="modal-fechar" id="fechar-modal"><i class="fa-solid fa-xmark"></i></button>
         </div>
-        <form class="formulario-adicionar" action="<%=caminho%>/adicionar-empresa" method="post">
+        <form class="formulario-adicionar"  id="formulario-adicionar-empresa" action="<%=caminho%>/adicionar-empresa" method="post">
             <div class="modal-campo">
                 <label for="campo-cnpj">CNPJ: </label>
                 <input type="text" id="campo-cnpj" name="cnpj" placeholder="00.000.000/0000-00" required>
@@ -215,8 +217,6 @@ org.astro.astro_app.model.Empresa"
 
             <div class="modal-campo">
                 <label for="campo-dt_registro">Data de Registro: </label>
-                <input type="date" id="campo-dt_registro" name="dd/mm/aaaa" required>
-
                 <input type="date" id="campo-dt_registro" name="dt_registro" required>
                 <span id="erroDataRegistro" ></span>
             </div>

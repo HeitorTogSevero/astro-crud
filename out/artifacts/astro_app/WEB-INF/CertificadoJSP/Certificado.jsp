@@ -96,7 +96,9 @@ org.astro.astro_app.model.Certificado"
         if (mensagem != null) {
             String cor = mensagem.toLowerCase().contains("sucesso") ? "green" : "red";
     %>
-    <p style="color: <%= cor %>"><%= mensagem %></p>
+    <div id="pop-up-erro" style="">
+        <p><%= mensagem %></p>
+    </div>
     <% } %>
 
     <section class="panel painel-tabela">
@@ -164,7 +166,7 @@ org.astro.astro_app.model.Certificado"
             </button>
         </div>
 
-        <form id="formulario-adicionar" class="modal-formulario"
+        <form id="formulario-adicionar-certificado" class="modal-formulario"
               action="<%=caminho%>/adicionar-certificado" method="post">
 
             <div class="modal-campo">

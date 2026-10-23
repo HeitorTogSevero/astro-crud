@@ -2,7 +2,7 @@
 
 
 // Declarando as Variáveis //
-const form = document.getElementById("formulario-adicionar")
+const form = document.getElementById("formulario-adicionar-certificado")
 
 const idFunc = document.getElementById("campo-id_funcionario")
 

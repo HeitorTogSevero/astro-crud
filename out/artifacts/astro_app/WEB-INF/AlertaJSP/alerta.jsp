@@ -102,7 +102,9 @@ org.astro.astro_app.model.Alerta"
         if (mensagem != null) {
             String cor = mensagem.toLowerCase().contains("sucesso") ? "green" : "red";
     %>
-    <p style="color: <%= cor %>"><%= mensagem %></p>
+    <div id="pop-up-erro" onclick="fecharErro()">
+        <p><%= mensagem %></p>
+    </div>
     <% } %>
 
     <section class="panel painel-tabela">
@@ -168,7 +170,7 @@ org.astro.astro_app.model.Alerta"
             </button>
         </div>
 
-        <form id="formulario-adicionar" class="modal-formulario"
+        <form id="formulario-adicionar-alerta" class="modal-formulario"
               action="<%=caminho%>/adicionar-alerta" method="post">
 
             <div class="modal-campo">
@@ -430,6 +432,22 @@ org.astro.astro_app.model.Alerta"
     modal.addEventListener('click', function (evento) {
         if (evento.target === modal) fecharModal();
     });
+
+    function fecharErro() {
+        const erro = document.getElementById("pop-up-erro");
+
+        if (erro) {
+            erro.style.opacity = "0";
+            erro.style.transform = "translateY(20px)";
+
+            setTimeout(function () {
+                erro.remove();
+            }, 300);
+        }
+    }
+
+    // Desaparece automaticamente depois de 5 segundos
+    setTimeout(fecharErro, 5000);
 </script>
 
 <script src="<%=caminho%>/JS/Create/create-alerta.js"></script>
