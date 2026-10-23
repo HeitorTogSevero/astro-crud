@@ -96,8 +96,9 @@ org.astro.astro_app.model.DivisaoTreinamento"
         if (mensagem != null) {
             String cor = mensagem.toLowerCase().contains("sucesso") ? "green" : "red";
     %>
-    <p style="color: <%= cor %>"><%= mensagem %></p>
-    <% } %>
+    <div id="pop-up-erro" style="">
+        <p><%= mensagem %></p>
+    </div>    <% } %>
 
     <section class="panel painel-tabela">
         <div class="tabela-rolavel">
@@ -162,7 +163,7 @@ org.astro.astro_app.model.DivisaoTreinamento"
             </button>
         </div>
 
-        <form id="formulario-adicionar" class="modal-formulario"
+        <form id="formulario-adicionar-divisao" class="modal-formulario"
               action="<%=caminho%>/adicionar-divisao" method="post">
 
             <div class="modal-campo">

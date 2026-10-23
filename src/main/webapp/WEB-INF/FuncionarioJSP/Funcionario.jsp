@@ -95,7 +95,9 @@ org.astro.astro_app.model.Funcionario"
         if (mensagem != null) {
             String cor = mensagem.toLowerCase().contains("sucesso") ? "green" : "red";
     %>
-    <p style="color: <%= cor %>"><%= mensagem %></p>
+    <div id="pop-up-erro" style="">
+        <p><%= mensagem %></p>
+    </div>
     <% } %>
 
     <section class="panel painel-tabela">
@@ -157,7 +159,7 @@ org.astro.astro_app.model.Funcionario"
             <h2>Adicionar em funcionario</h2>
             <button type="button" class="modal-fechar" id="fechar-modal"><i class="fa-solid fa-xmark"></i></button>
         </div>
-        <form class="modal-formulario" action="<%=caminho%>/adicionar-funcionario" method="post">
+        <form  id="formulario-adicionar-funcionario" class="modal-formulario" action="<%=caminho%>/adicionar-funcionario" method="post">
 
             <div class="modal-campo">
                 <label for="campo-cpf">CPF: </label>
