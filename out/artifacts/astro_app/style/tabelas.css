@@ -105,12 +105,16 @@
 .painel-tabela {
     padding: 0;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
 }
 
 .tabela-rolavel {
-    max-height: 510px;
-    max-width: 1050px;
-    width: 1020px;
+    flex: 1;
+    min-height: 220px;
+    width: 100%;
     overflow-y: auto;
 }
 
@@ -410,8 +414,6 @@
     background-color: #9011BE;
 }
 
-/* Modal de confirmar exclusão — mais estreito que o padrão (600px),
-   já que só tem uma pergunta e dois botões*/
 .modal-caixa-pequena {
     max-width: 420px;
 }
@@ -439,14 +441,152 @@
     background-color: #c7373c;
 }
 
-.valido{
+@media (max-width: 1024px) {
+    .controle-esquerda,
+    .controle-direita {
+        width: 100%;
+    }
 
-    font-size: 12px;
-    color: rgb(105, 238, 105);
+    .controle-esquerda .search-bar {
+        width: 100%;
+    }
+
+    .controle-direita {
+        justify-content: flex-end;
+        flex-wrap: wrap;
+    }
+
+    .barra-controles {
+        padding: 14px 16px;
+    }
 }
 
-.invalido{
+@media (max-width: 680px) {
+    .cabecalho-pagina .titulo-container h1 {
+        font-size: 18px;
+    }
 
-    font-size: 10px;
-    color: rgb(229, 79, 79);
+    .data-table th:last-child,
+    .data-table td:last-child {
+        min-width: 90px;
+        width: 90px;
+    }
+
+    .celula-acoes {
+        gap: 6px;
+    }
+
+    .btn-editar,
+    .btn-remover {
+        font-size: 0;
+        padding: 10px;
+        gap: 0;
+        width: 36px;
+        height: 36px;
+        justify-content: center;
+    }
+
+    .btn-editar i,
+    .btn-remover i {
+        font-size: 14px;
+    }
+
+    .btn-adicionar,
+    .btn-filtrar {
+        flex: 1;
+        justify-content: center;
+    }
+
+    .controle-direita {
+        width: 100%;
+        gap: 10px;
+    }
+
+    .controle-direita .controle-periodo {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .modal-caixa {
+        padding: 20px;
+        max-height: 85vh;
+    }
+
+    .modal-cabecalho h2 {
+        font-size: 18px;
+    }
+
+    .modal-campo-faixa {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 6px;
+    }
+
+    .modal-campo-faixa span {
+        text-align: center;
+    }
+
+    .modal-rodape {
+        flex-direction: column-reverse;
+    }
+
+    .modal-rodape button {
+        width: 100%;
+    }
+
+    .rodape-tabela {
+        padding: 12px 4px;
+    }
+}
+
+@media (max-width: 380px) {
+    .modal-caixa {
+        padding: 16px;
+    }
+
+    .modal-campo input,
+    .modal-campo select {
+        font-size: 13px;
+        padding: 10px 12px;
+    }
+}
+
+@media (min-width: 2200px) {
+    .cabecalho-pagina h1 {
+        font-size: 28px;
+    }
+
+    .btn-adicionar,
+    .btn-filtrar,
+    .controle-periodo,
+    .controle-mostrar {
+        font-size: 16px;
+    }
+
+    .data-table th {
+        font-size: 16px;
+    }
+
+    .data-table td {
+        font-size: 15px;
+    }
+
+    .btn-editar,
+    .btn-remover {
+        font-size: 15px;
+        padding: 10px 20px;
+    }
+
+    .modal-cabecalho h2 {
+        font-size: 23px;
+    }
+
+    .modal-campo label {
+        font-size: 15px;
+    }
+
+    .modal-campo input,
+    .modal-campo select {
+        font-size: 16px;
+    }
 }
