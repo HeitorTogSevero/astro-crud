@@ -72,10 +72,12 @@ org.astro.astro_app.model.Certificado"
 
     <section class="barra-controles">
         <div class="controle-esquerda">
-            <div class="search-bar">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" id="busca-certificado" name="busca-certificado" placeholder="Pesquisar certificado...">
-            </div>
+            <form action="<%=caminho%>/listar-certificados" method="get" style="display:contents">
+                <div class="search-bar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="number" id="busca-certificado" name="id_funcionario" placeholder="pesquisar ID do funcionário..." value="<%= request.getParameter("id_funcionario") != null ? request.getParameter("id_funcionario") : "" %>">
+                </div>
+            </form>
         </div>
 
         <div class="controle-direita">

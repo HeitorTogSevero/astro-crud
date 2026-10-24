@@ -25,11 +25,17 @@ public class ServletReadEmpresa extends HttpServlet {
             throws ServletException, IOException {
 
         String estado = request.getParameter("estado");
+
         String cidade = request.getParameter("cidade");
+
         String cnae = request.getParameter("cnae");
+
         String nome = request.getParameter("nome");
+
         String dataMin = request.getParameter("dt_registro_min");
+
         String dataMax    = request.getParameter("dt_registro_max");
+
 
         StringBuilder sql = new StringBuilder("SELECT * FROM empresa WHERE 1=1");
 

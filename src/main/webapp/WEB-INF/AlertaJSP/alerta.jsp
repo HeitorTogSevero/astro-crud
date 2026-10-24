@@ -78,10 +78,14 @@ org.astro.astro_app.model.Alerta"
 
     <section class="barra-controles">
         <div class="controle-esquerda">
-            <div class="search-bar">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" id="busca-alerta" name="busca-alerta" placeholder="Pesquisar alerta...">
-            </div>
+            <form action="<%=caminho%>/listar-alerta" method="get" style="display:contents">
+                <div class="search-bar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="busca-alerta" name="descricao"
+                           placeholder="Pesquisar descricao do alerta..."
+                           value="<%= request.getParameter("descricao") != null ? request.getParameter("descricao") : "" %>">
+                </div>
+            </form>
         </div>
 
         <div class="controle-direita">

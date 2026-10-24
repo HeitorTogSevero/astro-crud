@@ -441,14 +441,15 @@
     background-color: #c7373c;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 10000px) {
     .controle-esquerda,
     .controle-direita {
         width: 100%;
     }
 
     .controle-esquerda .search-bar {
-        width: 100%;
+        width: 150%;
+        max-width: 150%;
     }
 
     .controle-direita {

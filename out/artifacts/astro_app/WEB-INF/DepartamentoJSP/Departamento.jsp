@@ -70,10 +70,14 @@ org.astro.astro_app.model.Departamento"%>
 
     <section class="barra-controles">
         <div class="controle-esquerda">
-            <div class="search-bar">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" id="busca-departamento" name="busca-departamento" placeholder="Pesquisar departamento...">
-            </div>
+            <form action="<%=caminho%>/listar-departamentos" method="get" style="display:contents">
+                <div class="search-bar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="busca-departamento" name="nome"
+                           placeholder="Pesquisar nome do departamento..."
+                           value="<%= request.getParameter("nome") != null ? request.getParameter("nome") : "" %>">
+                </div>
+            </form>
         </div>
 
         <div class="controle-direita">
