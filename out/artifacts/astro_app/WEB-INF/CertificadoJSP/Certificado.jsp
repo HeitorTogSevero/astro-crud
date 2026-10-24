@@ -171,13 +171,13 @@ org.astro.astro_app.model.Certificado"
 
             <div class="modal-campo">
                 <label for="campo-dt_emissao">Data de Emissao: </label>
-                <input type="date" id="campo-dt_emissao" name="dd/mm/aaaa" required>
+                <input type="date" id="campo-dt_emissao" name="dt_emissao" required>
                 <span id="erroDataEmissao"></span>
             </div>
 
             <div class="modal-campo">
                 <label for="validade">Validade: </label>
-                <input type="date" id="validade" name="dd/mm/aaaa" required>
+                <input type="date" id="validade" name="validade" required>
                 <span id="erroValidade"></span>
             </div>
 
@@ -440,6 +440,7 @@ org.astro.astro_app.model.Certificado"
 
 <script src="<%=caminho%>/JS/Create/create-certificado.js"></script>
 <script src="<%=caminho%>/JS/Update/update-certificado.js"></script>
+<script src="<%=caminho%>/JS/Paginas/carregamento.js"></script>
 
 </body>
 </html>

@@ -17,13 +17,14 @@ public class ServletReadAlerta extends HttpServlet {
 
     @Override
     public void init() {
+        //concede o acesso ao DAO de alertas quando o servlet e iniciado
         alertaDAO = new AlertaDAO();
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        //pega os filtros
+        //le os filtros opcionais enviados pela tela de listagem
         String codigoTexto = request.getParameter("codigo");
 
         String dtLimiteMin = request.getParameter("dt_limite_min");
@@ -32,12 +33,12 @@ public class ServletReadAlerta extends HttpServlet {
 
         String idEmpresaTexto = request.getParameter("id_empresa");
 
-        //monta a query
+        //inicia a consulta e adiciona somente os filtros preenchidos
         StringBuilder sql = new StringBuilder("SELECT * FROM alerta WHERE 1=1");
 
-        //filtros
+        //valida os valores dos filtros antes de incluir eles na consulta
         try {
-            //filtro por código
+            //filtro por codigo
             if (codigoTexto != null && !codigoTexto.isBlank() && !codigoTexto.equals("0")) {
                 sql.append(" AND codigo = ").append(Integer.parseInt(codigoTexto));
             }
@@ -56,15 +57,16 @@ public class ServletReadAlerta extends HttpServlet {
                 sql.append(" AND id_empresa = ").append(Integer.parseInt(idEmpresaTexto));
             }
         } catch (IllegalArgumentException e) {
+            //se algum filtro for invalido, consulta todos os alertas e informa o erro
             sql = new StringBuilder("SELECT * FROM alerta WHERE 1=1");
             request.setAttribute("erro", "Filtro invalido");
         }
         sql.append(" ORDER BY id_alerta");
 
-        //executa no banco
+        //executa a consulta e guarda os resultados para a pagina JSP
         ArrayList<Alerta> alertas = alertaDAO.buscar(sql.toString());
 
-        //envia a lista e filtros de volta para o jsp
+        //disponibiliza resultados e filtros para manter a tela preenchida
         request.setAttribute("alertas", alertas);
 
         //coloquei isso mas é opcional(é só p manter os valores no filtro)
@@ -73,7 +75,7 @@ public class ServletReadAlerta extends HttpServlet {
         request.setAttribute("filtroDtMax", dtLimiteMax);
         request.setAttribute("filtroIdEmpresa", idEmpresaTexto);
 
-        //encaminha pra o jsp
+        //encaminha internamente para a tela que apresenta a listagem
         request.getRequestDispatcher("/WEB-INF/AlertaJSP/alerta.jsp").forward(request, response);
     }
 }

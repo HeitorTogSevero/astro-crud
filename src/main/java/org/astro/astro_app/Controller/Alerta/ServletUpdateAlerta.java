@@ -17,6 +17,7 @@ public class ServletUpdateAlerta extends HttpServlet {
 
     @Override
     public void init() {
+        //concede o acesso ao DAO de alertas quando o servlet e iniciado
         alertaDAO = new AlertaDAO();
     }
 
@@ -25,7 +26,7 @@ public class ServletUpdateAlerta extends HttpServlet {
 
         request.setCharacterEncoding("UTF-8");
 
-        //pega os parametros do formulario de editar
+        // Le o identificador e os novos valores enviados pelo formulario de edicao
         String idAlertaTexto = request.getParameter("id_alerta");
 
         String codigoTexto = request.getParameter("codigo");
@@ -36,10 +37,11 @@ public class ServletUpdateAlerta extends HttpServlet {
 
         String dtLimiteTexto = request.getParameter("dt_limite");
 
+        // Guarda a data convertida e a mensagem de erro, se houver
         Date dataLimite = null;
         String mensagem = null;
 
-
+        // Valida campos obrigatorios e o tamanho da descricao antes da conversao
         if (idAlertaTexto == null || idAlertaTexto.isBlank()) {
             mensagem = "id do alerta não informado";
             request.setAttribute("erro", mensagem);
@@ -73,6 +75,7 @@ public class ServletUpdateAlerta extends HttpServlet {
         else {
             try {
 
+                //converte identificadores, codigo e data para os tipos esperados
                 int idAlerta = Integer.parseInt(idAlertaTexto);
 
                 int codigo = Integer.parseInt(codigoTexto);
@@ -82,6 +85,7 @@ public class ServletUpdateAlerta extends HttpServlet {
                 dataLimite = Date.valueOf(dtLimiteTexto);
                 LocalDate localDataLimite = dataLimite.toLocalDate();
 
+                //aplica as regras de negocio antes de atualizar o registro
                 if (idAlerta <= 0) {
                     mensagem = "O id do alerta invalido";
                     request.setAttribute("erro", mensagem);
@@ -103,6 +107,7 @@ public class ServletUpdateAlerta extends HttpServlet {
                 }
 
                 else {
+                    //monta o modelo atualizado e envia os dados ao DAO
                     Alerta alertaAtualizado = new Alerta(
                             idAlerta,
                             codigo,
@@ -112,11 +117,13 @@ public class ServletUpdateAlerta extends HttpServlet {
                     );
 
                     alertaDAO.alterarAlerta(alertaAtualizado);
+                    // Redireciona para a lista apos concluir a atualizacao.
                     response.sendRedirect(request.getContextPath() + "/listar-alerta");
                     return;
                 }
 
             }
+            //trata identificadores invalidos e datas fora do formato esperado
             catch (NumberFormatException e) {
                 mensagem = "Codigo ou id da empresa devem ser numeros validos";
                 request.setAttribute("erro", mensagem);
@@ -127,7 +134,7 @@ public class ServletUpdateAlerta extends HttpServlet {
             }
         }
 
-        //teve erro, volta pra pagina
+        //em caso de erro, retorna ao formulario com a mensagem de validacao
         request.getRequestDispatcher("/WEB-INF/AlertaJSP/alerta.jsp").forward(request, response);
     }
 }

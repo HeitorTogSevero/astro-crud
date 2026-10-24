@@ -26,25 +26,41 @@ public class ServletReadDepartamento extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String grauRiscoTexto = request.getParameter("grau_risco");
+
         String atividade = request.getParameter("atividade");
+
         String idEmpresaTexto = request.getParameter("id_empresa");
 
         StringBuilder sql = new StringBuilder("SELECT * FROM departamento WHERE 1=1");
 
         try {
-            //filtro grau risco
-            if (grauRiscoTexto != null && !grauRiscoTexto.isBlank() && !grauRiscoTexto.equals("0")){
-                sql.append(" AND grau_risco = '").append(Integer.parseInt(grauRiscoTexto)).append("'");
+            Integer grauRisco = null;
+            Integer idEmpresa = null;
+
+            if (grauRiscoTexto != null && !grauRiscoTexto.isBlank()) {
+                grauRisco = Integer.parseInt(grauRiscoTexto);
+                if (grauRisco < 1 || grauRisco > 4) {
+                    throw new IllegalArgumentException("Grau de risco deve estar entre 1 e 4");
+                }
+            }
+            if (idEmpresaTexto != null && !idEmpresaTexto.isBlank() && !idEmpresaTexto.equals("0")) {
+                idEmpresa = Integer.parseInt(idEmpresaTexto);
+                if (idEmpresa < 0) {
+                    throw new IllegalArgumentException("ID da empresa deve ser positivo");
+                }
+            }
+
+            if (grauRisco != null) {
+                sql.append(" AND grau_risco = 'Grau ").append(grauRisco).append("'");
             }
             if (atividade != null && !atividade.isBlank()) {
                 sql.append(" AND atividade ILIKE '%").append(atividade.trim().replace("'", "''")).append("%'");
             }
-            //filtro id empresa
-            if(idEmpresaTexto != null && !idEmpresaTexto.isBlank() && !idEmpresaTexto.equals("0")){
-                sql.append(" AND id_empresa = ").append(Integer.parseInt(idEmpresaTexto));
+            if (idEmpresa != null && idEmpresa > 0) {
+                sql.append(" AND id_empresa = ").append(idEmpresa);
             }
         }catch (IllegalArgumentException e) {
-            sql = new StringBuilder("SELECT * FROM departamento WHERE 1=1");
+            sql = new StringBuilder("SELECT * FROM departamento WHERE 1=0");
             request.setAttribute("erro", "filtro invalido");
         }
         sql.append(" ORDER BY 1");

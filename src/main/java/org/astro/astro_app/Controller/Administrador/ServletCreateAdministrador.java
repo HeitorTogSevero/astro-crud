@@ -28,14 +28,17 @@ public class ServletCreateAdministrador extends HttpServlet{
     @Override
     protected void doPost( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 
+        // Os dados chegam em bits, aqui converte ele para linguagem normal
         request.setCharacterEncoding("UTF-8");
 
+        // define os formatos permitidos para email e senha
         final Pattern emailRegex =
                 Pattern.compile("^[a-zA-Z0-9._%+#$!\\-]+@(gmail|hotmail|yahoo|outlook|institutojef)\\.(com|com\\.br|org\\.br)$");
 
         final Pattern senhaRegex =
                 Pattern.compile("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$");
 
+        // pega os campos enviados pelo formulario de cadastro
         String nome = request.getParameter("nome");
 
         String email = request.getParameter("email");
@@ -46,10 +49,11 @@ public class ServletCreateAdministrador extends HttpServlet{
 
         String mensagem = "";
 
-        //fica na tela após ser digitado
+        // fica na tela após ser digitado
         request.setAttribute("nomeDigitado", nome != null ? nome : "");
         request.setAttribute("emailDigitado", email != null ? email : "");
 
+        // valida campos obrigatorios, limites de tamanho e formatos informados.
         if(nome == null || nome.isBlank()){
             mensagem = "Este campo não pode ser vazio";
             request.setAttribute("erro", mensagem);
@@ -95,6 +99,7 @@ public class ServletCreateAdministrador extends HttpServlet{
 
 
         else{
+            // com os dados validos, cria o administrador e solicita a insercao no banco
             try{
                 Administrador administrador = new Administrador(
                         nome.trim(),
@@ -105,6 +110,7 @@ public class ServletCreateAdministrador extends HttpServlet{
                 boolean verificarInsersao = administradorDAO.inserirAdmin(administrador);
 
                 if (verificarInsersao){
+                    // ao concluir o cadastro, encaminha o usuario para a tela de login
                     response.sendRedirect(request.getContextPath() + "/login");
                     return;
                 }else{
@@ -113,12 +119,14 @@ public class ServletCreateAdministrador extends HttpServlet{
                 }
 
             }catch (Exception e) {
+                // exibe uma mensagem para o usuario e mostra o erro no terminal
                 mensagem = "Erro ao cadastrar. Tente novamente.";
                 request.setAttribute("erro", mensagem);
                 System.out.println(e.getMessage());
             }
         }
 
+        // Se houver erro, retorna ao formulario com a mensagem e os dados preservados
         request.getRequestDispatcher("/tela_login/cadastro.jsp").forward(request, response);
     }
 }
