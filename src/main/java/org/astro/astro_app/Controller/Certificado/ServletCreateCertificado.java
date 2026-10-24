@@ -97,6 +97,11 @@ public class ServletCreateCertificado extends HttpServlet {
                     request.setAttribute("erro", mensagem);
                 }
 
+                else if (localDataEmissao.isAfter(LocalDate.now())) {
+                    mensagem = "a data de emissao nao pode ser futura";
+                    request.setAttribute("erro", mensagem);
+                }
+
                 else if (localValidade.isBefore(LocalDate.now())) {
                     mensagem = "a validade deve ser a partir do dia atual";
                     request.setAttribute("erro", mensagem);
@@ -111,10 +116,13 @@ public class ServletCreateCertificado extends HttpServlet {
                             idNrEmpresa
                     );
 
-                    certificadoDAO.inserir(certificado);
-                    //depois manda o usuario pro servletReadCertificado
-                    response.sendRedirect(request.getContextPath() + "/listar-certificados");
-                    return;
+                    if (certificadoDAO.inserir(certificado)) {
+                        response.sendRedirect(request.getContextPath() + "/listar-certificados");
+                        return;
+                    }
+
+                    mensagem = "Nao foi possivel cadastrar o certificado. Confira os dados e tente novamente.";
+                    request.setAttribute("erro", mensagem);
                 }
 
             }

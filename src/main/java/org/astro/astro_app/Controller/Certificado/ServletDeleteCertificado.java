@@ -27,7 +27,7 @@ public class ServletDeleteCertificado extends HttpServlet {
 
         //validacao
         if(idCertificadoTexto == null || idCertificadoTexto.isBlank()){
-            mensagem = "id nao inforamdo";
+            mensagem = "id nao informado";
             request.setAttribute("erro", mensagem);
             request.getRequestDispatcher("/WEB-INF/CertificadoJSP/Certificado.jsp").forward(request,response);
             return;
@@ -42,11 +42,18 @@ public class ServletDeleteCertificado extends HttpServlet {
                 return;
             }
 
-            certificadoDAO.remover(idCertificado);
-            response.sendRedirect(request.getContextPath() + "/listar-certificados");
+            int resultado = certificadoDAO.remover(idCertificado);
+            if (resultado > 0) {
+                response.sendRedirect(request.getContextPath() + "/listar-certificados");
+                return;
+            }
+
+            mensagem = "Nao foi possivel excluir o certificado. Confira o ID e tente novamente.";
+            request.setAttribute("erro", mensagem);
+            request.getRequestDispatcher("/WEB-INF/CertificadoJSP/Certificado.jsp").forward(request,response);
 
         }catch (NumberFormatException e) {
-            mensagem = "o id do certificad deve ser valido";
+            mensagem = "o id do certificado deve ser valido";
             request.setAttribute("erro", mensagem);
             request.getRequestDispatcher("/WEB-INF/CertificadoJSP/Certificado.jsp").forward(request,response);
         }
