@@ -1,3 +1,4 @@
+(() => {
 // FORMULÁRIO PARA EDITAR//
 
 
@@ -32,7 +33,7 @@ form.addEventListener("input", function (){
 
     else if (nome.value.length > 50){
 
-        erroNome.textContent = "máximo 100 caracteres"
+        erroNome.textContent = "máximo 50 caracteres"
 
         erroNome.classList.add("invalido")
         erroNome.classList.remove("valido")
@@ -84,7 +85,7 @@ form.addEventListener("input", function (){
         erroIdCrono.classList.remove("invalido", "valido");
     }
 
-    else if (Number(idEmpresa.value) <= 0) {
+    else if (Number(idCronograma.value) <= 0) {
 
         erroIdCrono.textContent = "O id deve ser maior que 0";
 
@@ -146,3 +147,4 @@ form.addEventListener("submit", function (event){
         event.preventDefault();
     }
 })
+})();

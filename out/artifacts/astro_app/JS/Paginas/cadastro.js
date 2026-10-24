@@ -38,10 +38,10 @@ form.addEventListener("input", function (){
 
 form.addEventListener("input", function (){
 
-    if (email.value.trim() === "") {
+    if (senha.value.trim() === "") {
 
-        erroNome.textContent = "";
-        erroNome.classList.remove("invalido", "valido");
+        erroSenha.textContent = "";
+        erroSenha.classList.remove("invalido", "valido");
     }
 
     else if (!regexSenha.test(senha.value)){
@@ -57,7 +57,7 @@ form.addEventListener("input", function (){
         erroSenha.textContent = "Opção válida";
 
         erroSenha.classList.add("valido")
-        erroEmail.classList.remove("invalido")
+        erroSenha.classList.remove("invalido")
     }
 
 
@@ -65,13 +65,13 @@ form.addEventListener("input", function (){
 
 form.addEventListener("input", function (){
 
-    if (email.value.trim() === "") {
+    if (nome.value.trim() === "") {
 
         erroNome.textContent = "";
         erroNome.classList.remove("invalido", "valido");
     }
 
-    else if(nome.length.value > 100) {
+    else if(nome.value.length > 100) {
 
         erroNome.textContent = "Máx. de caracteres de 100";
 
@@ -90,7 +90,7 @@ form.addEventListener("input", function (){
 
 form.addEventListener("submit", function (event){
 
-    if(nome.length.value > 100){
+    if(nome.value.trim() === "" || nome.value.length > 100){
         event.preventDefault();
     }
 

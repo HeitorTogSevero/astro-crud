@@ -187,7 +187,7 @@ org.astro.astro_app.model.Alerta"
 
             <div class="modal-campo">
                 <label for="campo-dt_limite">Data Limite:</label>
-                <input type="date" id="campo-dt_limite" name="Data Limite" required>
+                <input type="date" id="campo-dt_limite" name="dt_limite" required>
                 <span id="erroData"></span>
             </div>
 
@@ -238,7 +238,7 @@ org.astro.astro_app.model.Alerta"
             </div>
 
             <div class="modal-rodape">
-                <a href="<%=caminho%>/lista-alerta" class="botao-cancelar" id="limpar-filtro">Limpar</a>
+                <a href="<%=caminho%>/listar-alerta" class="botao-cancelar" id="limpar-filtro">Limpar</a>
                 <button type="submit" class="botao-salvar">Aplicar filtro</button>
             </div>
         </form>
@@ -274,13 +274,13 @@ org.astro.astro_app.model.Alerta"
 
             <div class="modal-campo">
                 <label for="editar-dt_limite">Data Limite: </label>
-                <input type="date" id="editar-dt_limite" name="dd/mm/aaaa" required>
+                <input type="date" id="editar-dt_limite" name="dt_limite" required>
                 <span id="editar-erroData"></span>
             </div>
 
             <div class="modal-campo">
                 <label for="editar-id-empresa">Empresa (id): </label>
-                <input type="number" id="editar-id-empresa" name="ID" min="0" required>
+                <input type="number" id="editar-id-empresa" name="id_empresa" min="0" required>
                 <span id="editar-erroId"></span>
             </div>
 
@@ -385,7 +385,7 @@ org.astro.astro_app.model.Alerta"
         document.getElementById('editar-descricao').value = linha.children[1].textContent.trim();
         document.getElementById('editar-codigo').value = linha.children[2].textContent.trim();
         document.getElementById('editar-dt_limite').value = converterDataBrParaIso(linha.children[3].textContent.trim());
-        document.getElementById('editar-id_empresa').value = linha.children[4].textContent.trim();
+        document.getElementById('editar-id-empresa').value = linha.children[4].textContent.trim();
         abrirEditar();
     });
 
@@ -452,6 +452,7 @@ org.astro.astro_app.model.Alerta"
 
 <script src="<%=caminho%>/JS/Create/create-alerta.js"></script>
 <script src="<%=caminho%>/JS/Update/update-alerta.js"></script>
+<script src="<%=caminho%>/JS/Paginas/carregamento.js"></script>
 
 </body>
 </html>

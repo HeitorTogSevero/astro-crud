@@ -281,7 +281,7 @@ org.astro.astro_app.model.Empresa"
             <h2>Editar empresa</h2>
             <button type="button" class="modal-fechar" id="fechar-modal-editar"><i class="fa-solid fa-xmark"></i></button>
         </div>
-        <form class="modal-formulario" action="<%=caminho%>/editar-empresa" method="post">
+        <form id="formulario-editar" class="modal-formulario" action="<%=caminho%>/editar-empresa" method="post">
             <input type="hidden" id="editar-id-empresa" name="id_empresa">
 
             <div class="modal-campo">
@@ -299,6 +299,7 @@ org.astro.astro_app.model.Empresa"
             <div class="modal-campo">
                 <label for="editar-cnae">CNAE: </label>
                 <input type="text" id="editar-cnae" name="cnae" placeholder="0000-0/00" required>
+                <span id="editar-erroCnae"></span>
             </div>
 
             <div class="modal-campo">
@@ -310,6 +311,7 @@ org.astro.astro_app.model.Empresa"
             <div class="modal-campo">
                 <label for="editar-cep">CEP: </label>
                 <input type="text" id="editar-cep" name="cep" placeholder="000.000-00" required>
+                <span id="editar-erroCep"></span>
             </div>
 
             <div class="modal-campo">
@@ -330,6 +332,7 @@ org.astro.astro_app.model.Empresa"
             <div class="modal-campo">
                 <label for="editar-dt-registro">Data de Registro: </label>
                 <input type="date" id="editar-dt-registro" name="dt_registro" placeholder="dd/mm/aaaa" required>
+                <span id="editar-erroDataRegistro"></span>
             </div>
             <div class="modal-rodape">
                 <button type="button" class="botao-cancelar" id="cancelar-modal-editar">Cancelar</button>
@@ -423,6 +426,7 @@ org.astro.astro_app.model.Empresa"
 </script>
 <script src="<%=caminho%>/JS/Create/create-empresa.js"></script>
 <script src="<%=caminho%>/JS/Update/update-empresa.js"></script>
+<script src="<%=caminho%>/JS/Paginas/carregamento.js"></script>
 
 </body>
 </html>

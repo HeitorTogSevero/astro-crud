@@ -147,7 +147,7 @@ public class ServletUpdateCertificado extends HttpServlet {
             }
         }
 
-        //teve erro, volta pra pagina
+        //se teve erro, volta pra pagina
         request.getRequestDispatcher("/WEB-INF/CertificadoJSP/Certificado.jsp").forward(request, response);
     }
 }

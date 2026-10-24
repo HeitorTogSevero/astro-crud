@@ -218,12 +218,12 @@ org.astro.astro_app.model.DivisaoTreinamento"
 
             <div class="modal-campo">
                 <label for="filtro-id_empresa">Empresa (id)</label>
-                <input type="number" id="filtro-id_empresa" name="id_empresa" min="0" placeholder="ID value="<%= fIdEmpresa %>">
+                <input type="number" id="filtro-id_empresa" name="id_empresa" min="0" placeholder="ID" value="<%= fIdEmpresa %>">
             </div>
 
             <div class="modal-campo">
                 <label for="filtro-nome">Nome</label>
-                <input type="text" id="filtro-nome" name="nome" placeholder="ID" value="<%= fNome %>">
+                <input type="text" id="filtro-nome" name="nome" placeholder="Nome" value="<%= fNome %>">
             </div>
 
             <div class="modal-rodape">
@@ -270,6 +270,7 @@ org.astro.astro_app.model.DivisaoTreinamento"
             <div class="modal-campo">
                 <label for="editar-id_cronograma">Cronograma (id):</label>
                 <input type="number" id="editar-id_cronograma" name="id_cronograma" min="0" placeholder="ID" required>
+                <span id="editar-erroIdCrono"></span>
             </div>
 
             <div class="modal-rodape">
@@ -364,6 +365,7 @@ org.astro.astro_app.model.DivisaoTreinamento"
 </script>
 <script src="<%=caminho%>/JS/Create/create-divisao_treinamento.js"></script>
 <script src="<%=caminho%>/JS/Update/update-divisao_Treinamento.js"></script>
+<script src="<%=caminho%>/JS/Paginas/carregamento.js"></script>
 
 </body>
 </html>

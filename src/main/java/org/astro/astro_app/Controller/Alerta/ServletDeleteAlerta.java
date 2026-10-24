@@ -13,16 +13,17 @@ public class ServletDeleteAlerta extends HttpServlet {
     private AlertaDAO alertaDAO;
 
     public void init() {
+    // concede o acesso ao DAO de alertas quando o servlet e iniciado
         alertaDAO = new AlertaDAO();
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        //pega o id alerta
+        // le o identificador do alerta enviado pelo formulario de exclusao
         String idAlertaTexto = request.getParameter("id_alerta");
         String mensagem = null;
 
-        //validacao
+        //impede a exclusao quando o identificador nao foi informado
         if (idAlertaTexto == null || idAlertaTexto.isBlank()) {
             mensagem = "o id do alerta não informado";
             request.setAttribute("erro", mensagem);
@@ -31,6 +32,7 @@ public class ServletDeleteAlerta extends HttpServlet {
         }
 
         try {
+            //converte e valida o identificador antes de chamar o DAO
             int idAlerta = Integer.parseInt(idAlertaTexto);
 
             if (idAlerta <= 0) {
@@ -40,13 +42,14 @@ public class ServletDeleteAlerta extends HttpServlet {
                 return;
             }
 
-            //removendo do bd
+            // remove o alerta do banco de dados
             alertaDAO.remover(idAlerta);
 
-            //volta pra a lista
+            //redireciona para a listagem apos a exclusao
             response.sendRedirect(request.getContextPath() + "/listar-alerta");
 
         } catch (NumberFormatException e) {
+            //Se o identificador nao for numerico, informa o erro no formulario
             mensagem = "id do alerta deve ser uma numero valido";
             request.setAttribute("erro", mensagem);
             request.getRequestDispatcher("/WEB-INF/AlertaJSP/alerta.jsp").forward(request, response);
