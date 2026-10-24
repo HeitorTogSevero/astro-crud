@@ -78,10 +78,14 @@ org.astro.astro_app.model.Funcionario"
 
     <section class="barra-controles">
         <div class="controle-esquerda">
-            <div class="search-bar">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" id="busca-funcionario" placeholder="Pesquisar funcionário...">
-            </div>
+            <form action="<%=caminho%>/listar-funcionarios" method="get" style="display:contents">
+                <div class="search-bar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="busca-funcionario" name="nome"
+                           placeholder="Pesquisar nome do funcionario..."
+                           value="<%= request.getParameter("nome") != null ? request.getParameter("nome") : "" %>">
+                </div>
+            </form>
         </div>
         <div class="controle-direita">
             <button class="btn-filtrar" type="button"><i class="fa-solid fa-filter"></i> Filtrar</button>

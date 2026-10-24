@@ -33,6 +33,8 @@ public class ServletReadAlerta extends HttpServlet {
 
         String idEmpresaTexto = request.getParameter("id_empresa");
 
+        String descricao = request.getParameter("descricao");
+
         //inicia a consulta e adiciona somente os filtros preenchidos
         StringBuilder sql = new StringBuilder("SELECT * FROM alerta WHERE 1=1");
 
@@ -55,6 +57,10 @@ public class ServletReadAlerta extends HttpServlet {
             //filtro por idempresa
             if (idEmpresaTexto != null && !idEmpresaTexto.isBlank() && !idEmpresaTexto.equals("0")) {
                 sql.append(" AND id_empresa = ").append(Integer.parseInt(idEmpresaTexto));
+            }
+            //pesquisar nome
+            if (descricao != null && !descricao.isBlank()) {
+                sql.append(" AND descricao ILIKE '%").append(descricao.trim().replace("'", "''")).append("%'");
             }
         } catch (IllegalArgumentException e) {
             //se algum filtro for invalido, consulta todos os alertas e informa o erro

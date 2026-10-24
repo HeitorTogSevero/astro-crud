@@ -33,6 +33,8 @@ public class ServletReadDepartamento extends HttpServlet {
 
         StringBuilder sql = new StringBuilder("SELECT * FROM departamento WHERE 1=1");
 
+        String nome = request.getParameter("nome");
+
         try {
             Integer grauRisco = null;
             Integer idEmpresa = null;
@@ -58,6 +60,9 @@ public class ServletReadDepartamento extends HttpServlet {
             }
             if (idEmpresa != null && idEmpresa > 0) {
                 sql.append(" AND id_empresa = ").append(idEmpresa);
+            }
+            if (nome != null && !nome.isBlank()) {
+                sql.append(" AND nome ILIKE '%").append(nome.trim().replace("'", "''")).append("%'");
             }
         }catch (IllegalArgumentException e) {
             sql = new StringBuilder("SELECT * FROM departamento WHERE 1=0");

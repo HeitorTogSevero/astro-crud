@@ -83,10 +83,14 @@ org.astro.astro_app.model.Empresa"
 
     <section class="barra-controles">
         <div class="controle-esquerda">
-            <div class="search-bar">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" id="busca-empresa" placeholder="Pesquisar empresa...">
-            </div>
+            <form action="<%=caminho%>/listar-empresas" method="get" style="display:contents">
+                <div class="search-bar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="busca-empresa" name="nome"
+                           placeholder="Pesquisar nome da empresa..."
+                           value="<%= fNome %>">
+                </div>
+            </form>
         </div>
         <div class="controle-direita">
             <button class="btn-filtrar" type="button"><i class="fa-solid fa-filter"></i> Filtrar</button>

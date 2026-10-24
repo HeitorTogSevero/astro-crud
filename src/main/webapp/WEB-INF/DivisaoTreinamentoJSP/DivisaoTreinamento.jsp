@@ -72,10 +72,14 @@ org.astro.astro_app.model.DivisaoTreinamento"
 
     <section class="barra-controles">
         <div class="controle-esquerda">
-            <div class="search-bar">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" id="busca-divisao" name="busca-divisao" placeholder="Pesquisar divisão...">
-            </div>
+            <form action="<%=caminho%>/listar-divisoes" method="get" style="display:contents">
+                <div class="search-bar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="busca-divisao" name="nome"
+                           placeholder="Pesquisar nome da divisao..."
+                           value="<%= request.getParameter("nome") != null ? request.getParameter("nome") : "" %>">
+                </div>
+            </form>
         </div>
 
         <div class="controle-direita">
