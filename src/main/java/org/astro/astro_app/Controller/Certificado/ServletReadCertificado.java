@@ -41,23 +41,49 @@ public class ServletReadCertificado extends HttpServlet {
 
         //filtros
         try {
+            //guarda os filtros convertidos antes de montar a consulta
+            Date dataEmissaoMinima = null;
+            Date dataEmissaoMaxima = null;
+            Integer idFuncionario = null;
+
             //filtro dtminima
             if (dataEmissaoMinimaTexto != null && !dataEmissaoMinimaTexto.isBlank()) {
-                Date.valueOf(dataEmissaoMaximaTexto); //ve o formato ano-mes-dia, se for invalido mostra o erro
-                sql.append(" AND dt_emissao >= '").append(dataEmissaoMinimaTexto).append("'");
+                //valida o formato ano-mes-dia e converte a data minima
+                dataEmissaoMinima = Date.valueOf(dataEmissaoMinimaTexto);
             }
             //filtro dtmaxima
             if (dataEmissaoMaximaTexto != null && !dataEmissaoMaximaTexto.isBlank()) {
-                Date.valueOf(dataEmissaoMaximaTexto); //ve o formato ano-mes-dia, se for invalido mostra o erro
-                sql.append(" AND dt_emissao <= '").append(dataEmissaoMaximaTexto).append("'");
+                //valida o formato ano-mes-dia e converte a data maxima
+                dataEmissaoMaxima = Date.valueOf(dataEmissaoMaximaTexto);
             }
             //filtro idfuncionario
             if (idFuncionarioTexto != null && !idFuncionarioTexto.isBlank() && !idFuncionarioTexto.equals("0")) {
-                sql.append(" AND id_funcionario = ").append(Integer.parseInt(idFuncionarioTexto));
+                idFuncionario = Integer.parseInt(idFuncionarioTexto);
+                if (idFuncionario < 1) {
+                    throw new IllegalArgumentException("ID do funcionário deve ser positivo");
+                }
+            }
+            //confere se a data minima nao esta depois da data maxima
+            if (dataEmissaoMinima != null && dataEmissaoMaxima != null && dataEmissaoMinima.after(dataEmissaoMaxima)) {
+                throw new IllegalArgumentException("Data inicial posterior à data final");
+            }
+
+            //adiciona a data minima quando ela foi informada
+            if (dataEmissaoMinima != null) {
+                sql.append(" AND dt_emissao >= '").append(dataEmissaoMinima).append("'");
+            }
+            //adiciona a data maxima quando ela foi informada
+            if (dataEmissaoMaxima != null) {
+                sql.append(" AND dt_emissao <= '").append(dataEmissaoMaxima).append("'");
+            }
+            //adiciona o id do funcionario quando ele foi informado
+            if (idFuncionario != null) {
+                sql.append(" AND id_funcionario = ").append(idFuncionario);
             }
         } catch (IllegalArgumentException e) {
-            sql = new StringBuilder("SELECT * FROM certificado WHERE 1=1");
-            request.setAttribute("erro", "filtro invlido");
+            //nao retorna registros como se o filtro invalido tivesse sido aplicado
+            sql = new StringBuilder("SELECT * FROM certificado WHERE 1=0");
+            request.setAttribute("erro", "filtro invalido");
         }
         sql.append(" ORDER BY id_certificado");
 

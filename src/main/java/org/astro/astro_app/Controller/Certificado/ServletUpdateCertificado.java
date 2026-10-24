@@ -131,9 +131,14 @@ public class ServletUpdateCertificado extends HttpServlet {
                             validade
                     );
 
-                    certificadoDAO.alterarCertificado(certificadoAtualizado);
-                    response.sendRedirect(request.getContextPath() + "/listar-certificados");
-                    return;
+                    int resultado = certificadoDAO.alterarCertificado(certificadoAtualizado);
+                    if (resultado > 0) {
+                        response.sendRedirect(request.getContextPath() + "/listar-certificados");
+                        return;
+                    }
+
+                    mensagem = "Nao foi possivel alterar o certificado. Confira os dados e tente novamente.";
+                    request.setAttribute("erro", mensagem);
                 }
 
             }
