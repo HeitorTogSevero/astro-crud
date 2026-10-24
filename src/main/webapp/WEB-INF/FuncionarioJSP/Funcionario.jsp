@@ -176,6 +176,7 @@ org.astro.astro_app.model.Funcionario"
             <div class="modal-campo">
                 <label for="campo-cargo">Cargo: </label>
                 <input type="text" id="campo-cargo" name="cargo" placeholder="Ex: Professor" required>
+                <span id="erroCargo"></span>
             </div>
 
             <div class="modal-campo">
@@ -187,11 +188,13 @@ org.astro.astro_app.model.Funcionario"
             <div class="modal-campo">
                 <label for="campo-id_empresa">Empresa (id)</label>
                 <input type="number" id="campo-id_empresa" name="id_empresa" min="0" placeholder="ID" required>
+                <span id="erroIdEmpresa"></span>
             </div>
 
             <div class="modal-campo">
                 <label for="campo-id_departamento">Departamento (id): </label>
                 <input type="number" id="campo-id_departamento" name="id_departamento" min="0" placeholder="ID" required>
+                <span id="erroIdDepart"></span>
             </div>
 
             <div class="modal-rodape">
@@ -241,7 +244,7 @@ org.astro.astro_app.model.Funcionario"
             <h2>Editar funcionário</h2>
             <button type="button" class="modal-fechar" id="fechar-modal-editar"><i class="fa-solid fa-xmark"></i></button>
         </div>
-        <form class="modal-formulario" action="<%=caminho%>/alterar-funcionario" method="post">
+        <form id="formulario-editar" class="modal-formulario" action="<%=caminho%>/alterar-funcionario" method="post">
             <input type="hidden" id="editar-id-funcionario" name="id_funcionario">
 
             <div class="modal-campo">
@@ -359,6 +362,7 @@ org.astro.astro_app.model.Funcionario"
 </script>
 <script src="<%=caminho%>/JS/Create/create-funcionario.js"></script>
 <script src="<%=caminho%>/JS/Update/update-funcionario.js"></script>
+<script src="<%=caminho%>/JS/Paginas/carregamento.js"></script>
 
 </body>
 </html>

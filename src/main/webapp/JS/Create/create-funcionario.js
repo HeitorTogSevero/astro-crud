@@ -1,3 +1,4 @@
+(() => {
 // FORMULÁRIO PARA INSERIR//
 
 
@@ -12,7 +13,7 @@ const cpf = document.getElementById("campo-cpf")
 
 const email = document.getElementById("campo-email")
 
-const idEmpreas = document.getElementById("campo-id_empresa")
+const idEmpresa = document.getElementById("campo-id_empresa")
 
 const idDepart = document.getElementById("campo-id_departamento")
 
@@ -177,7 +178,7 @@ form.addEventListener("input", function (){
         erroIdDepart.classList.remove("invalido", "valido");
     }
 
-    else if (Number(idEmpresa.value) <= 0) {
+    else if (Number(idDepart.value) <= 0) {
 
         erroIdDepart.textContent = "O id deve ser maior que 0";
 
@@ -222,3 +223,4 @@ form.addEventListener("submit", function (event){
     }
 
 })
+})();

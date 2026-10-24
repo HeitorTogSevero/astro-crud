@@ -1,3 +1,4 @@
+(() => {
 // FORMULÁRIO PARA EDITAR//
 
 
@@ -132,7 +133,7 @@ form.addEventListener("input", function (){
         erroDataEmissao.classList.remove("valido")
     }
 
-    else if (dataEmissao.value >= dataAtual){
+    else if (dataEmissao.value > dataAtual){
 
         erroDataEmissao.textContent = "A data deve ser <= a data atual";
 
@@ -203,7 +204,7 @@ form.addEventListener("submit", function (event){
         event.preventDefault()
     }
 
-    else if (dataEmissao.value >= dataAtual){
+    else if (dataEmissao.value > dataAtual){
         event.preventDefault()
     }
 
@@ -215,3 +216,4 @@ form.addEventListener("submit", function (event){
         event.preventDefault()
     }
 })
+})();

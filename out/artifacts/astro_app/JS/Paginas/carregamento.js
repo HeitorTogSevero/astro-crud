@@ -1,5 +1,67 @@
 (() => {
     "use strict";
+
+    const script = document.currentScript;
+    const urlScript = script ? script.src : window.location.href;
+    const urlCss = new URL("../../style/carregamento.css", urlScript).href;
+
+    if (!document.querySelector('link[href="' + urlCss + '"]')) {
+        const estilo = document.createElement("link");
+        estilo.rel = "stylesheet";
+        estilo.href = urlCss;
+        document.head.appendChild(estilo);
+    }
+
+    let tela = document.querySelector(".tela-carregamento");
+    if (!tela) {
+        tela = document.createElement("div");
+        tela.className = "tela-carregamento";
+        tela.id = "tela-carregamento-envio";
+        tela.setAttribute("aria-busy", "true");
+        tela.hidden = true;
+        tela.innerHTML = `
+            <div class="carregamento" role="status" aria-label="Carregando, aguarde">
+                <div class="saturno" aria-hidden="true">
+                    <img class="saturno__base" alt="" draggable="false">
+                    <img class="saturno__bolinha" alt="" draggable="false">
+                    <img class="saturno__frente" alt="" draggable="false">
+                </div>
+                <p class="carregamento__texto" aria-hidden="true">alinhando os planetas<span class="pontos"><span>.</span><span>.</span><span>.</span></span></p>
+            </div>`;
+        document.body.appendChild(tela);
+
+        tela.querySelector(".saturno__base").src = new URL("../../imagens/saturno-c.png", urlScript).href;
+        tela.querySelector(".saturno__bolinha").src = new URL("../../imagens/bolinha-c.png", urlScript).href;
+        tela.querySelector(".saturno__frente").src = new URL("../../imagens/saturno-c-1.png", urlScript).href;
+    }
+
+    function mostrarCarregamento() {
+        tela.hidden = false;
+    }
+
+    document.addEventListener("submit", evento => {
+        if (evento.defaultPrevented || evento.target.target === "_blank") return;
+        mostrarCarregamento();
+    });
+
+    document.addEventListener("click", evento => {
+        if (evento.defaultPrevented || evento.button !== 0 || evento.metaKey || evento.ctrlKey
+                || evento.shiftKey || evento.altKey) return;
+
+        const link = evento.target.closest("a[href]");
+        if (!link || link.target === "_blank" || link.hasAttribute("download")) return;
+
+        const href = link.getAttribute("href");
+        if (!href || href.startsWith("#") || /^(mailto:|tel:|javascript:)/i.test(href)) return;
+
+        const destino = new URL(href, window.location.href);
+        if (destino.origin !== window.location.origin) return;
+        if (destino.pathname === window.location.pathname && destino.search === window.location.search
+                && destino.hash) return;
+
+        mostrarCarregamento();
+    });
+
     const planeta = document.querySelector(".saturno");
     const bolinha = document.querySelector(".saturno__bolinha");
     if (!planeta || !bolinha) return;
@@ -40,7 +102,8 @@
         quadro = requestAnimationFrame(animar);
     }
 
-    window.addEventListener("resize", () => { largura = planeta.clientWidth; });
+    const observadorTamanho = new ResizeObserver(atualizar);
+    observadorTamanho.observe(planeta);
     movimentoReduzido.addEventListener("change", atualizar);
     document.addEventListener("visibilitychange", atualizar);
     atualizar();

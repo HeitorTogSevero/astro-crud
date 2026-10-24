@@ -151,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
             '<div class="astro-glossario-modal__fundo" data-fechar-glossario></div>' +
             '<div class="astro-glossario-modal__caixa" role="dialog" aria-modal="true" aria-labelledby="titulo-modal-glossario">' +
             '<button class="astro-glossario-modal__fechar" type="button" aria-label="Fechar" data-fechar-glossario>×</button>' +
-            '<div class="astro-glossario-modal__cabecalho"><img class="astro-glossario-modal__isotipo" src="lp/isotipo.png" alt=""><span class="astro-glossario-modal__etiqueta">GLOSSÁRIO</span></div>' +
+            '<div class="astro-glossario-modal__cabecalho"><img class="astro-glossario-modal__isotipo" src="imagens/isotipo.png" alt=""><span class="astro-glossario-modal__etiqueta">GLOSSÁRIO</span></div>' +
             '<h2 id="titulo-modal-glossario"></h2><p></p><div class="astro-glossario-modal__nota"><strong>Na prática</strong><span></span></div>' +
             '</div>' +
             '</div>'
@@ -205,7 +205,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 '<div class="astro-glossario-modal" hidden><div class="astro-glossario-modal__fundo" data-fechar-sugestao></div>' +
                 '<div class="astro-glossario-modal__caixa" role="dialog" aria-modal="true" aria-labelledby="titulo-sugestao">' +
                 '<button class="astro-glossario-modal__fechar" type="button" aria-label="Fechar" data-fechar-sugestao>×</button>' +
-                '<div class="astro-glossario-modal__cabecalho"><img class="astro-glossario-modal__isotipo" src="lp/isotipo.png" alt=""><span class="astro-glossario-modal__etiqueta">CONSTRUA COM A GENTE</span></div><h2 id="titulo-sugestao">Sugerir um termo</h2>' +
+                '<div class="astro-glossario-modal__cabecalho"><img class="astro-glossario-modal__isotipo" src="imagens/isotipo.png" alt=""><span class="astro-glossario-modal__etiqueta">CONSTRUA COM A GENTE</span></div><h2 id="titulo-sugestao">Sugerir um termo</h2>' +
                 '<p>Compartilhe uma expressão que faria diferença no glossário da Astro. Sua sugestão vai direto para nossa equipe.</p>' +
                 '<form class="astro-sugestao-form"><label>Termo ou sigla *<input name="termo" required maxlength="120"></label>' +
                 '<label>Explique brevemente o termo<textarea name="detalhes" rows="4" maxlength="1000"></textarea></label>' +
