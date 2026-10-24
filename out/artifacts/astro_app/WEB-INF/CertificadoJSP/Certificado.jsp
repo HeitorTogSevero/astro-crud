@@ -55,7 +55,7 @@ org.astro.astro_app.model.Certificado"
             <i class="fa-solid fa-award"></i>certificado
         </a>
         <div class="sidebar-bottom">
-            <a href="<%=request.getContextPath()%>/landing-page.html" class="nav-item" id="exit-bottom">
+            <a href="<%=request.getContextPath()%>/logout" class="nav-item" id="exit-bottom">
                 <i class="fa-solid fa-right-from-bracket"></i>Sair
             </a>
         </div>

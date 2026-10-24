@@ -69,7 +69,7 @@ org.astro.astro_app.model.Empresa"
         </a>
 
         <div class="sidebar-bottom">
-            <a href="<%=request.getContextPath()%>/landing-page.html" class="nav-item" id="exit-bottom"><i class="fa-solid fa-right-from-bracket"></i>Sair</a>
+            <a href="<%=request.getContextPath()%>/logout" class="nav-item" id="exit-bottom"><i class="fa-solid fa-right-from-bracket"></i>Sair</a>
         </div>
     </nav>
 </aside>
