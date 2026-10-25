@@ -1,10 +1,10 @@
 package org.astro.astro_app.dao;
 
-import org.astro.astro_app.Conexão.Conexao;
-import org.astro.astro_app.model.Departamento_Equipamento;
+import org.astro.astro_app.Conexão.Conexao; //Import da classe Conexao
+import org.astro.astro_app.model.Departamento_Equipamento; //Import da classe Departamento_Equipamento
 
-import java.sql.*;
-import java.util.ArrayList;
+import java.sql.*; //Import da classe java.sql
+import java.util.ArrayList; //Import da classe ArrauList
 
 // Classe DAO Departamento_Equipamento - CRUD
 public class Departamento_EquipamentoDAO {
@@ -16,6 +16,7 @@ public class Departamento_EquipamentoDAO {
         Conexao conexao = new Conexao();
         Connection conn = null;
 
+        //Tentando a conexão
         try{
             conn = conexao.conectar();
 
@@ -25,16 +26,18 @@ public class Departamento_EquipamentoDAO {
             pstmt.setInt(1, dpE.getIdDepartamento());
             pstmt.setInt(2, dpE.getIdEquipamento());
 
+            // Executa o comando INSERIR e verifica se alguma linha foi afetada
             if(pstmt.executeUpdate() > 0){
                 return true;
             }
             return false;
 
+        //Mensagem de erro da conexão
         }catch(SQLException sqlE){
             System.out.println(sqlE.getMessage());
             return false;
         }finally {
-            conexao.desconectar(conn);
+            conexao.desconectar(conn); // Desconectando do Banco
         }
     }
 
@@ -47,6 +50,7 @@ public class Departamento_EquipamentoDAO {
 
         ArrayList<Departamento_Equipamento> vet = new ArrayList<>();
 
+        //Tentando a conexão
         try{
             conn = conexao.conectar();
 
@@ -61,10 +65,11 @@ public class Departamento_EquipamentoDAO {
 
             stmt.close();
 
+        //Mensagem de erro da conexão
         }catch (SQLException sqlE){
             System.out.println(sqlE.getMessage());
         }finally {
-            conexao.desconectar(conn);
+            conexao.desconectar(conn); // Desconectando do Banco
         }
 
         return vet;
@@ -79,6 +84,7 @@ public class Departamento_EquipamentoDAO {
 
         ArrayList<Departamento_Equipamento> vet = new ArrayList<>();
 
+        //Tentando a conexão
         try{
             conn = conexao.conectar();
 
@@ -93,10 +99,11 @@ public class Departamento_EquipamentoDAO {
                 vet.add(new Departamento_Equipamento(rs.getInt("id_departamento"), rs.getInt("id_equipamento")));
             }
 
+        //Mensagem de erro da conexão
         }catch(SQLException sqlE){
             System.out.println(sqlE.getMessage());
         }finally {
-            conexao.desconectar(conn);
+            conexao.desconectar(conn); // Desconectando do Banco
         }
 
         return vet;
@@ -111,6 +118,7 @@ public class Departamento_EquipamentoDAO {
 
         ArrayList<Departamento_Equipamento> vet = new ArrayList<>();
 
+        //Tentando a conexão
         try{
             conn = conexao.conectar();
 
@@ -125,10 +133,11 @@ public class Departamento_EquipamentoDAO {
                 vet.add(new Departamento_Equipamento(rs.getInt("id_departamento"), rs.getInt("id_equipamento")));
             }
 
+        //Mensagem de erro da conexão
         }catch(SQLException sqlE){
             System.out.println(sqlE.getMessage());
         }finally {
-            conexao.desconectar(conn);
+            conexao.desconectar(conn); // Desconectando do Banco
         }
 
         return vet;
@@ -141,6 +150,7 @@ public class Departamento_EquipamentoDAO {
         Conexao conexao = new Conexao();
         Connection conn = null;
 
+    //Tentando a conexão
         try {
             conn = conexao.conectar();
 
@@ -152,16 +162,18 @@ public class Departamento_EquipamentoDAO {
             pstmt.setInt(3, idDepartamentoAntigo);
             pstmt.setInt(4, idEquipamentoAntigo);
 
+            // Executa o comando alterar e verifica se alguma linha foi afetada
             if(pstmt.executeUpdate() > 0){
                 return 1;
             }
             return 0;
 
+        //Mensagem de erro da conexão
         }catch(SQLException sqlE){
             System.out.println(sqlE.getMessage());
             return -1;
         }finally {
-            conexao.desconectar(conn);
+            conexao.desconectar(conn); // Desconectando do Banco
         }
     }
 
@@ -172,24 +184,28 @@ public class Departamento_EquipamentoDAO {
         Conexao conexao = new Conexao();
         Connection conn = null;
 
+        //Tentando a conexão
         try{
             conn = conexao.conectar();
 
+            // Interface para realizar comandos SQL's:
             PreparedStatement pstmt = conn.prepareStatement("DELETE FROM depart_equipamento WHERE id_departamento = ? AND id_equipamento = ?");
 
             pstmt.setInt(1, idDepartamento);
             pstmt.setInt(2, idEquipamento);
 
+            // Executa o comando DELETE e verifica se alguma linha foi afetada
             if(pstmt.executeUpdate() > 0){
                 return 1;
             }
             return 0;
 
+        //Mensagem de erro da conexão
         }catch(SQLException sqlE){
             System.out.println(sqlE.getMessage());
             return -1;
         }finally {
-            conexao.desconectar(conn);
+            conexao.desconectar(conn); // Desconectando do Banco
         }
     }
 }

@@ -2,17 +2,18 @@ package org.astro.astro_app.model;
 
 //Classe model Departamento
 public class Departamento {
-    //Declaração de variáveis
 
-   //Atributos da classe
+   //Atributos Inteiros
     private int idDepartamento;
     private int idEmpresa;
+
+    // Atributos String
     private String grauRisco;
     private String nome;
     private String descricao;
     private String atividade;
 
-    //Metodo contrutor da classe
+    // Construtor completo para inicializar um Departamento
     public Departamento(int idDepartamento, int idEmpresa, String grauRisco, String nome, String descricao, String atividade) {
         this.idDepartamento = idDepartamento;
         this.idEmpresa = idEmpresa;
@@ -22,8 +23,10 @@ public class Departamento {
         this.atividade = atividade;
     }
 
+    // Construtor vaziu (para recuperar dados já existentes do banco de dados)
     public Departamento(){}
 
+    // Construtor sem o ID
     public Departamento(int idEmpresa, String grauRisco, String nome, String descricao, String atividade) {
         this.idEmpresa = idEmpresa;
         this.grauRisco = grauRisco;
@@ -32,7 +35,7 @@ public class Departamento {
         this.atividade = atividade;
     }
 
-    //Metodos Getters
+    // Getter
 
     public int getIdDepartamento() {
         return idDepartamento;

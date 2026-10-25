@@ -1,10 +1,10 @@
 package org.astro.astro_app.dao;
 
-import org.astro.astro_app.Conexão.Conexao;
-import org.astro.astro_app.model.Cronograma;
+import org.astro.astro_app.Conexão.Conexao; //Import da classe Conexao
+import org.astro.astro_app.model.Cronograma; //Import da classe Cronograma
 
-import java.sql.*;
-import java.util.ArrayList;
+import java.sql.*; //Import das classes java.sql
+import java.util.ArrayList; //Import da classe ArrayList
 
 // Classe DAO Cronograma - CRUD:
 public class CronogramaDAO {
@@ -16,6 +16,7 @@ public class CronogramaDAO {
         Conexao conexao = new Conexao();
         Connection conn = null;
 
+        //Tentando a conexão
         try{
             conn = conexao.conectar();
 
@@ -26,16 +27,18 @@ public class CronogramaDAO {
             pstmt.setInt(2, cronograma.getIdEmpresa());
             pstmt.setInt(3, cronograma.getIdFuncionario());
 
+            // Executa o comando inserir e verifica se alguma linha foi afetada
             if (pstmt.executeUpdate() > 0){
                 return true;
             }
             return false;
 
+        //Mensagem de erro da conexão
         }catch(SQLException sqle){
             System.out.println(sqle.getMessage());
             return false;
         }finally {
-            conexao.desconectar(conn);
+            conexao.desconectar(conn); // Desconectando do Banco
         }
     }
 
@@ -48,11 +51,13 @@ public class CronogramaDAO {
 
         ArrayList<Cronograma> vet = new ArrayList<>();
 
+        //Tentando a conexão
         try{
             conn = conexao.conectar();
 
             // Interface para realizar comandos SQL's:
             Statement stmt = conn.createStatement();
+
             ResultSet rs = stmt.executeQuery(sql);
 
             while(rs.next()){
@@ -61,10 +66,11 @@ public class CronogramaDAO {
 
             stmt.close();
 
+        //Mensagem de erro da conexão
         }catch (SQLException sqle){
             System.out.println(sqle.getMessage());
         }finally {
-            conexao.desconectar(conn);
+            conexao.desconectar(conn); // Desconectando do Banco
         }
 
         return vet;
@@ -77,6 +83,7 @@ public class CronogramaDAO {
         Conexao conexao = new Conexao();
         Connection conn = null;
 
+        //Tentando a conexão
         try{
             conn = conexao.conectar();
 
@@ -87,16 +94,18 @@ public class CronogramaDAO {
 
             ResultSet rs = pstmt.executeQuery();
 
+            // Executa o comando BUSCAR e verifica se alguma linha foi afetada
             if (rs.next()) {
                 return new Cronograma(rs.getInt("id_funcionario"), rs.getInt("id_empresa"), rs.getInt("id_cronograma"), rs.getDate("agendamento"));
             }
             return null;
 
+        //Mensagem de erro da conexão
         } catch (SQLException sqle){
             System.out.println(sqle.getMessage());
             return null;
         } finally {
-            conexao.desconectar(conn);
+            conexao.desconectar(conn); // Desconectando do Banco
         }
     }
 
@@ -109,6 +118,7 @@ public class CronogramaDAO {
 
         ArrayList<Cronograma> vet = new ArrayList<>();
 
+        //Tentando a conexão
         try{
             conn = conexao.conectar();
 
@@ -123,10 +133,11 @@ public class CronogramaDAO {
                 vet.add(new Cronograma(rs.getInt("id_funcionario"), rs.getInt("id_empresa"), rs.getInt("id_cronograma"), rs.getDate("agendamento")));
             }
 
+        //Mensagem de erro da conexão
         } catch (SQLException sqle){
             System.out.println(sqle.getMessage());
         } finally {
-            conexao.desconectar(conn);
+            conexao.desconectar(conn); // Desconectando do Banco
         }
 
         return vet;
@@ -141,6 +152,7 @@ public class CronogramaDAO {
 
         ArrayList<Cronograma> vet = new ArrayList<>();
 
+        //Tentando a conexão
         try{
             conn = conexao.conectar();
 
@@ -155,10 +167,11 @@ public class CronogramaDAO {
                 vet.add(new Cronograma(rs.getInt("id_funcionario"), rs.getInt("id_empresa"), rs.getInt("id_cronograma"), rs.getDate("agendamento")));
             }
 
+        //Mensagem de erro da conexão
         } catch (SQLException sqle){
             System.out.println(sqle.getMessage());
         } finally {
-            conexao.desconectar(conn); // desconectando do Banco
+            conexao.desconectar(conn); // Desconectando do Banco
         }
 
         return vet;
@@ -171,6 +184,7 @@ public class CronogramaDAO {
         Conexao conexao = new Conexao();
         Connection conn = null;
 
+        //Tentando a conexão
         try{
             conn = conexao.conectar();
 
@@ -182,16 +196,18 @@ public class CronogramaDAO {
             pstmt.setInt(3, cronograma.getIdFuncionario());
             pstmt.setInt(4, cronograma.getIdCronograma());
 
+            // Executa o comando alterar e verifica se alguma linha foi afetada
             if (pstmt.executeUpdate() > 0){
                 return 1;
             }
             return 0;
 
+        //Mensagem de erro da conexão
         }catch (SQLException sqle){
             System.out.println(sqle.getMessage());
             return -1;
         }finally {
-            conexao.desconectar(conn); // desconectando do Banco
+            conexao.desconectar(conn); // Desconectando do Banco
         }
     }
 
@@ -202,6 +218,7 @@ public class CronogramaDAO {
         Conexao conexao = new Conexao();
         Connection conn = null;
 
+        //Tentando a conexão
         try{
             conn = conexao.conectar();
 
@@ -210,16 +227,18 @@ public class CronogramaDAO {
 
             pstmt.setInt(1, idCronograma);
 
+            // Executa o comando DELETE e verifica se alguma linha foi afetada
             if (pstmt.executeUpdate() > 0){
                 return 1;
             }
             return 0;
 
+        //Mensagem de erro da conexão
         }catch (SQLException sqle){
             System.out.println(sqle.getMessage());
             return -1;
         }finally {
-            conexao.desconectar(conn);
+            conexao.desconectar(conn); // Desconectando do Banco
         }
     }
 }

@@ -4,10 +4,11 @@ import java.sql.Date;
 
 //Classe model Empresa
 public class Empresa {
-    //Declaração de variáveis
-    //Atributos da classe
+
+    //Atributos inteiros
     private int idEmpresa;
 
+    //Atributos String
     private String cnae;
     private String nome;
     private String cep;
@@ -17,9 +18,10 @@ public class Empresa {
     private String bairro;
     private String cidade;
 
+    //Atributos Date
     private Date dtRegistro;
 
-    // Metodo Construtor da classe:
+    // Construtor completo para inicializar uma Empresa
     public Empresa(int idEmpresa, String cnae, String nome, String cep, String cnpj, String rua, String estado, String bairro, String cidade, Date dtRegistro) {
         this.idEmpresa = idEmpresa;
         this.cnae = cnae;
@@ -33,10 +35,12 @@ public class Empresa {
         this.dtRegistro = dtRegistro;
     }
 
+    // Construtor vaziu (para recuperar dados já existentes do banco de dados)
     public Empresa(){
 
     }
 
+    // Construtor sem o ID
     public Empresa(String cnae, String nome, String cep, String cnpj, String rua, String estado, String bairro, String cidade, Date dtRegistro) {
         this.cnae = cnae;
         this.nome = nome;
@@ -50,7 +54,7 @@ public class Empresa {
     }
 
 
-    // Metodos Getters:
+    // Getters
 
     public int getIdEmpresa() {
         return idEmpresa;

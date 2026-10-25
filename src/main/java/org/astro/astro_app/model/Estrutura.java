@@ -2,17 +2,16 @@ package org.astro.astro_app.model;
 
 // Classe Model Estrutura:
 public class Estrutura {
-    //Declaração de Variaveis:
 
-    // Atributos da Classe:
+    // Atributos Inteiros
     private int idEstrutura;
     private int idEmpresa;
 
+    // Atributos String
     private String risco;
     private String descricao;
 
-    // Metodo Construtor da classe:|
-
+    // Construtor completo para inicializar uma Estrutura
     public Estrutura(int idEstrutura, int idEmpresa, String risco, String descricao) {
         this.idEstrutura = idEstrutura;
         this.idEmpresa = idEmpresa;
@@ -20,15 +19,17 @@ public class Estrutura {
         this.descricao = descricao;
     }
 
+    // Construtor vaziu (para recuperar dados já existentes do banco de dados)
     public Estrutura(){}
 
+    // Construtor sem o ID
     public Estrutura(int idEmpresa, String risco, String descricao) {
         this.idEmpresa = idEmpresa;
         this.risco = risco;
         this.descricao = descricao;
     }
 
-    // Métodos Getters:
+    // Getters
 
     public int getIdEstrutura() {
         return idEstrutura;

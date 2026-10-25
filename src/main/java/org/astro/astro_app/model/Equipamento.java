@@ -4,17 +4,18 @@ import java.sql.Date;
 
 // Classe Model Equipamento
 public class Equipamento {
-    // Declaração de Variaveis:
 
-    // Atributos da Classe:
+    // Atributos Inteiros
     private int idEquipamento;
 
+    // Atributos Date
     private Date dtValidade;
 
+    // Atributos String
     private String nome;
     private String clasificacaoGov;
 
-    // Metodo do Construtor da classe:
+    // Construtor completo para inicializar um Equipamento
     public Equipamento(int idEquipamento, Date dtValidade, String nome, String clasificacaoGov) {
         this.idEquipamento = idEquipamento;
         this.dtValidade = dtValidade;
@@ -22,15 +23,17 @@ public class Equipamento {
         this.clasificacaoGov = clasificacaoGov;
     }
 
+    // Construtor vaziu (para recuperar dados já existentes do banco de dados)
     public Equipamento(){}
 
+    // Construtor sem o ID
     public Equipamento(Date dtValidade, String nome, String clasificacaoGov) {
         this.dtValidade = dtValidade;
         this.nome = nome;
         this.clasificacaoGov = clasificacaoGov;
     }
 
-    //Métodos Getters:
+    //Getters
 
     public int getIdEquipamento() {
         return idEquipamento;

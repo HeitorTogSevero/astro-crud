@@ -2,20 +2,20 @@ package org.astro.astro_app.model;
 
 // Classe Model Funcionario:
 public class Funcionario {
-    //Declaração de Variaveis:
 
-    // Atributos da Classe:
+    // Atributos Inteiros
     private String nome;
     private String cargo;
     private String cpf;
     private String email;
 
+    // Atributos String
     private int idEmpresa;
     private int idFuncionario;
     private int idDepartamento;
 
 
-    // Metodo Construtor da classe
+    // Construtor completo para inicializar um Funcionario
     public Funcionario(String nome, String cargo, String cpf, String email, int idEmpresa, int idFuncionario, int idDepartamento) {
         this.nome = nome;
         this.cargo = cargo;
@@ -26,10 +26,12 @@ public class Funcionario {
         this.idDepartamento = idDepartamento;
     }
 
+    // Construtor vaziu (para recuperar dados já existentes do banco de dados)
     public Funcionario(){
 
     }
 
+    // Construtor sem o ID
     public Funcionario(String nome, String cargo, String cpf, String email, int idEmpresa, int idDepartamento) {
         this.nome = nome;
         this.cargo = cargo;
@@ -39,7 +41,7 @@ public class Funcionario {
         this.idDepartamento = idDepartamento;
     }
 
-    // Metodos Getters:
+    // Getter
 
     public String getNome() {
         return nome;
