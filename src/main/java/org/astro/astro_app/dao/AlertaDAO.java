@@ -1,10 +1,10 @@
 package org.astro.astro_app.dao;
 
-import org.astro.astro_app.Conexão.Conexao;
-import org.astro.astro_app.model.Alerta;
+import org.astro.astro_app.Conexão.Conexao; //Import da classe Conexao
+import org.astro.astro_app.model.Alerta; //Import da classe Alerta
 
-import java.sql.*;
-import java.util.ArrayList;
+import java.sql.*; //Import das classes java.sql
+import java.util.ArrayList; //Import da classe ArrayList
 
 // Classe DAO Alerta - CRUD:
 public class AlertaDAO {
@@ -16,6 +16,7 @@ public class AlertaDAO {
         Conexao conexao = new Conexao();
         Connection conn = null;
 
+        //Tentando a conexão
         try{
             conn = conexao.conectar();
 
@@ -27,17 +28,18 @@ public class AlertaDAO {
             pstmt.setDate(3, a.getDtLimite());
             pstmt.setInt(4, a.getIdEmpresa());
 
-            // Verificacao para saber se o INSERT funcionou:
+            // Executa o comando INSERIR e verifica se alguma linha foi afetada
             if (pstmt.executeUpdate() > 0) {
                 return true;
             }
             return false;
 
+        //Mensagem de erro da conexão
         } catch (SQLException sqlE) {
             System.out.println(sqlE.getMessage());
             return false;
         } finally {
-            conexao.desconectar(conn); // desconectando do Banco
+            conexao.desconectar(conn); // Desconectando do Banco
         }
     }
 
@@ -50,6 +52,7 @@ public class AlertaDAO {
 
         ArrayList<Alerta> vet = new ArrayList<>();
 
+        //Tentando a conexão
         try {
             conn = conexao.conectar();
 
@@ -63,10 +66,11 @@ public class AlertaDAO {
 
             stmt.close();
 
+        //Mensagem de erro da conexão
         } catch (SQLException sqlE) {
             System.out.println(sqlE.getMessage());
         } finally {
-            conexao.desconectar(conn); // desconectando do Banco
+            conexao.desconectar(conn); // Desconectando do Banco
         }
 
         return vet;
@@ -79,6 +83,7 @@ public class AlertaDAO {
         Conexao conexao = new Conexao();
         Connection conn = null;
 
+        //Tentando a conexão
         try {
             conn = conexao.conectar();
 
@@ -89,17 +94,18 @@ public class AlertaDAO {
 
             ResultSet rs = pstmt.executeQuery();
 
-            // le os dados ANTES de fechar a conexao
+            // Executa o comando BUSCAR e verifica se alguma linha foi afetada
             if (rs.next()) {
                 return new Alerta(rs.getInt("id_alerta"), rs.getInt("codigo"), rs.getInt("id_empresa"), rs.getString("descricao"), rs.getDate("dt_limite"));
             }
             return null;
 
+        //Mensagem de erro da conexão
         } catch (SQLException sqlE) {
             System.out.println(sqlE.getMessage());
             return null;
         } finally {
-            conexao.desconectar(conn); // desconectando do Banco
+            conexao.desconectar(conn); // Desconectando do Banco
         }
     }
 
@@ -112,6 +118,7 @@ public class AlertaDAO {
 
         ArrayList<Alerta> vet = new ArrayList<>();
 
+        //Tentando a conexão
         try {
             conn = conexao.conectar();
 
@@ -126,10 +133,11 @@ public class AlertaDAO {
                 vet.add(new Alerta(rs.getInt("id_alerta"), rs.getInt("codigo"), rs.getInt("id_empresa"), rs.getString("descricao"), rs.getDate("dt_limite")));
             }
 
+        //Mensagem de erro da conexão
         } catch (SQLException sqlE) {
             System.out.println(sqlE.getMessage());
         } finally {
-            conexao.desconectar(conn); // desconectando do Banco
+            conexao.desconectar(conn); // Desconectando do Banco
         }
 
         return vet;
@@ -142,8 +150,9 @@ public class AlertaDAO {
         Conexao conexao = new Conexao();
         Connection conn = null;
 
+        //Tentando a conexão
         try {
-            conn = conexao.conectar();
+            conn = conexao.conectar(); // Desconectando do Banco
 
             // Interface para realizar comandos SQL's
             PreparedStatement pstmt = conn.prepareStatement("UPDATE alerta set codigo = ?, id_empresa = ?, descricao = ?, dt_limite = ? WHERE id_alerta = ?");
@@ -155,17 +164,19 @@ public class AlertaDAO {
             pstmt.setInt(5, a.getIdAlerta());
 
 
+            // Executa o comando ALTERAR e verifica se alguma linha foi afetada
             if (pstmt.executeUpdate() > 0){
                 return 1;
             }
 
             return 0;
 
+        //Mensagem de erro da conexão
         }catch (SQLException sqlE){
             System.out.println(sqlE.getMessage());
             return -1;
         }finally {
-            conexao.desconectar(conn);
+            conexao.desconectar(conn); // Desconectando do Banco
         }
 
     }
@@ -177,6 +188,7 @@ public class AlertaDAO {
         Conexao conexao = new Conexao();
         Connection conn = null;
 
+        //Tentando a conexão
         try {
             conn = conexao.conectar();
 
@@ -185,17 +197,18 @@ public class AlertaDAO {
 
             pstmt.setInt(1, idAlerta);
 
-
+            // Executa o comando DELETE e verifica se alguma linha foi afetada
             if (pstmt.executeUpdate() == 0) {
                 return 0;
             }
             return 1;
 
+        //Mensagem de erro da conexão
         } catch (SQLException sqle) {
             System.out.println(sqle.getMessage());
             return -1;
         } finally {
-            conexao.desconectar(conn); // desconectando do Banco
+            conexao.desconectar(conn); // Desconectando do Banco
         }
     }
 }

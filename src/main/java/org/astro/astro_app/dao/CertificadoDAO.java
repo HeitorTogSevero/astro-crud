@@ -1,10 +1,10 @@
 package org.astro.astro_app.dao;
 
-import org.astro.astro_app.Conexão.Conexao;
-import org.astro.astro_app.model.Certificado;
+import org.astro.astro_app.Conexão.Conexao; //Import da classe Conexao
+import org.astro.astro_app.model.Certificado; //Import da classe Alerta
 
-import java.sql.*;
-import java.util.ArrayList;
+import java.sql.*; //Import das classes java.sql
+import java.util.ArrayList; //Import da classe Certificado
 
 // Classe DAO Certificado - CRUD:
 public class CertificadoDAO {
@@ -16,6 +16,7 @@ public class CertificadoDAO {
         Conexao conexao = new Conexao();
         Connection conn = null;
 
+        //Tentando a conexão
         try{
             conn = conexao.conectar();
 
@@ -28,17 +29,18 @@ public class CertificadoDAO {
             pstmt.setDate(4, c.getDtEmissao());
             pstmt.setDate(5, c.getDtValidade());
 
-            // Verificacao para saber se o INSERT funcionou:
+            // Executa o comando INSERIR e verifica se alguma linha foi afetada
             if (pstmt.executeUpdate() > 0){
                 return true;
             }
             return false;
 
+        //Mensagem de erro da conexão
         }catch (SQLException sqlE){
             System.out.println(sqlE.getMessage());
             return false;
         }finally {
-            conexao.desconectar(conn); // desconectando do Banco
+            conexao.desconectar(conn); // Desconectando do Banco
         }
     }
 
@@ -51,6 +53,7 @@ public class CertificadoDAO {
 
         ArrayList<Certificado> vet = new ArrayList<>();
 
+        //Tentando a conexão
         try {
             conn = conexao.conectar();
 
@@ -64,10 +67,11 @@ public class CertificadoDAO {
 
             stmt.close();
 
+        //Mensagem de erro da conexão
         } catch (SQLException sqlE) {
             System.out.println(sqlE.getMessage());
         } finally {
-            conexao.desconectar(conn); // desconectando do Banco
+            conexao.desconectar(conn); // Desconectando do Banco
         }
 
         return vet;
@@ -80,6 +84,7 @@ public class CertificadoDAO {
         Conexao conexao = new Conexao();
         Connection conn = null;
 
+        //Tentando a conexão
         try {
             conn = conexao.conectar();
 
@@ -90,16 +95,18 @@ public class CertificadoDAO {
 
             ResultSet rs = pstmt.executeQuery();
 
+            // Executa o comando BUSCAR e verifica se alguma linha foi afetada
             if (rs.next()) {
                 return new Certificado(rs.getInt("id_certificado"), rs.getInt("id_funcionario"), rs.getInt("id_nrfuncionario"), rs.getInt("id_nrempresa"), rs.getDate("dt_emissao"), rs.getDate("validade"));
             }
             return null;
 
+        //Mensagem de erro da conexão
         } catch (SQLException sqlE) {
             System.out.println(sqlE.getMessage());
             return null;
         } finally {
-            conexao.desconectar(conn); // desconectando do Banco
+            conexao.desconectar(conn); // Desconectando do Banco
         }
     }
 
@@ -112,6 +119,7 @@ public class CertificadoDAO {
 
         ArrayList<Certificado> vet = new ArrayList<>();
 
+        //Tentando a conexão
         try {
             conn = conexao.conectar();
 
@@ -126,10 +134,11 @@ public class CertificadoDAO {
                 vet.add(new Certificado(rs.getInt("id_certificado"), rs.getInt("id_funcionario"), rs.getInt("id_nrfuncionario"), rs.getInt("id_nrempresa"), rs.getDate("dt_emissao"), rs.getDate("validade")));
             }
 
+        //Mensagem de erro da conexão
         } catch (SQLException sqlE) {
             System.out.println(sqlE.getMessage());
         } finally {
-            conexao.desconectar(conn); // desconectando do Banco
+            conexao.desconectar(conn); // Desconectando do Banco
         }
 
         return vet;
@@ -144,6 +153,7 @@ public class CertificadoDAO {
 
         ArrayList<Certificado> vet = new ArrayList<>();
 
+        //Tentando a conexão
         try {
             conn = conexao.conectar();
 
@@ -158,10 +168,11 @@ public class CertificadoDAO {
                 vet.add(new Certificado(rs.getInt("id_certificado"), rs.getInt("id_funcionario"), rs.getInt("id_nrfuncionario"), rs.getInt("id_nrempresa"), rs.getDate("dt_emissao"), rs.getDate("validade")));
             }
 
+        //Mensagem de erro da conexão
         } catch (SQLException sqlE) {
             System.out.println(sqlE.getMessage());
         } finally {
-            conexao.desconectar(conn); // desconectando do Banco
+            conexao.desconectar(conn); // Desconectando do Banco
         }
 
         return vet;
@@ -176,6 +187,7 @@ public class CertificadoDAO {
 
         ArrayList<Certificado> vet = new ArrayList<>();
 
+        //Tentando a conexão
         try {
             conn = conexao.conectar();
 
@@ -193,7 +205,7 @@ public class CertificadoDAO {
         } catch (SQLException sqlE) {
             System.out.println(sqlE.getMessage());
         } finally {
-            conexao.desconectar(conn); // desconectando do Banco
+            conexao.desconectar(conn); // Desconectando do Banco
         }
 
         return vet;
@@ -205,6 +217,7 @@ public class CertificadoDAO {
         Conexao conexao=new Conexao();
         Connection conn = null;
 
+        //Tentando a conexão
         try {
             conn = conexao.conectar();
 
@@ -212,6 +225,7 @@ public class CertificadoDAO {
 
             ResultSet rs = pstmt.executeQuery();
 
+            // Executa o comando CONTAR e verifica se alguma linha foi afetada
             if(rs.next()){
                 total = rs.getInt(1);
             }
@@ -219,7 +233,7 @@ public class CertificadoDAO {
         }catch (SQLException e ){
             System.out.println("Erro ao contar certificados: " + e.getMessage());
         }finally {
-            conexao.desconectar(conn);
+            conexao.desconectar(conn); // Desconectando do Banco
         }
         return total;
     }
@@ -230,6 +244,7 @@ public class CertificadoDAO {
         Conexao conexao = new Conexao();
         Connection conn = null;
 
+        //Tentando a conexão
         try {
             conn = conexao.conectar();
 
@@ -243,6 +258,7 @@ public class CertificadoDAO {
             pstmt.setDate(5, c.getDtValidade());
             pstmt.setInt(6, c.getIdCertificado());
 
+            // Executa o comando ALTERAR e verifica se alguma linha foi afetada
             if (pstmt.executeUpdate() > 0){
                 return 1;
             }
@@ -253,7 +269,7 @@ public class CertificadoDAO {
             System.out.println(sqlE.getMessage());
             return -1;
         }finally {
-            conexao.desconectar(conn); // desconectando do Banco
+            conexao.desconectar(conn); // Desconectando do Banco
         }
     }
 
@@ -264,6 +280,7 @@ public class CertificadoDAO {
         Conexao conexao = new Conexao();
         Connection conn = null;
 
+        //Tentando a conexão
         try{
             conn = conexao.conectar();
 
@@ -272,16 +289,18 @@ public class CertificadoDAO {
 
             pstmt.setInt(1, idCertificado);
 
+            // Executa o comando DELETE e verifica se alguma linha foi afetada
             if (pstmt.executeUpdate() > 0){
                 return 1;
             }
             return 0;
 
+        //Mensagem de erro da conexão
         } catch (SQLException sqle) {
             System.out.println(sqle.getMessage());
             return -1;
         } finally {
-            conexao.desconectar(conn); // desconectando do Banco
+            conexao.desconectar(conn); // Desconectando do Banco
         }
     }
 }

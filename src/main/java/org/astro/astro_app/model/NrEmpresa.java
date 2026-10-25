@@ -4,19 +4,20 @@ import java.sql.Date;
 
 //Classe model NrEmpresa
 public class NrEmpresa {
-    //Declaração de variáveis
 
-    //Atributos da classe
+    //Atributos Inteiros
     private int idNrEmpresa;
     private int idNrDescricao;
     private int numero;
 
+    // Atributos String
     private String titulo;
     private String status;
 
+    // Atributos Date
     private Date dtRealização;
 
-    //Metodo construtor da classe
+    // Construtor completo para inicializar uma NrEmpresa
     public NrEmpresa(int idNrEmpresa, int idNrDescricao, int numero, String titulo, String status, Date dtRealização) {
         this.idNrEmpresa = idNrEmpresa;
         this.idNrDescricao = idNrDescricao;
@@ -26,8 +27,10 @@ public class NrEmpresa {
         this.dtRealização = dtRealização;
     }
 
+    // Construtor vaziu (para recuperar dados já existentes do banco de dados)
     public NrEmpresa(){}
 
+    // Construtor sem o ID
     public NrEmpresa(int idNrDescricao, int numero, String titulo, String status, Date dtRealização) {
         this.idNrDescricao = idNrDescricao;
         this.numero = numero;
@@ -36,7 +39,8 @@ public class NrEmpresa {
         this.dtRealização = dtRealização;
     }
 
-    //Metodos Getters
+    // Getter
+
     public int getIdNremp() {
         return idNrEmpresa;
     }

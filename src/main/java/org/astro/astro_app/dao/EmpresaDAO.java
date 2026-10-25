@@ -1,10 +1,10 @@
 package org.astro.astro_app.dao;
 
-import org.astro.astro_app.Conexão.Conexao;
-import org.astro.astro_app.model.Empresa;
+import org.astro.astro_app.Conexão.Conexao; //Import da classe Conexao
+import org.astro.astro_app.model.Empresa; //Import da classe Empresa
 
-import java.sql.*;
-import java.util.ArrayList;
+import java.sql.*; //Import da classe java.sql
+import java.util.ArrayList; //Import da classe ArrayList
 
 // Classe DAO Empresa - CRUD:
 public class EmpresaDAO {
@@ -16,9 +16,11 @@ public class EmpresaDAO {
         Conexao conexao = new Conexao();
         Connection conn = null;
 
+        //Tentando a conexão
         try{
             conn = conexao.conectar();
 
+            // Interface para realizar comandos SQL's:
             PreparedStatement pstmt = conn.prepareStatement("INSERT INTO empresa (nome, cnae, rua, cep, cidade, bairro, estado, cnpj, dt_registro) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
             pstmt.setString(1, empresa.getNome());
@@ -31,30 +33,35 @@ public class EmpresaDAO {
             pstmt.setString(8, empresa.getCnpj());
             pstmt.setDate(9, empresa.getDtRegistro());
 
+            // Executa o comando inserir e verifica se alguma linha foi afetada
             if (pstmt.executeUpdate() > 0){
                 return true;
             }
             return false;
 
+        //Mensagem de erro da conexão
         }catch(SQLException sqle){
             System.out.println(sqle.getMessage());
             return false;
         }finally {
-            conexao.desconectar(conn);
+            conexao.desconectar(conn); // Desconectando do Banco
         }
     }
 
     // Metodo Read | Select - CRUD
     public ArrayList<Empresa> buscar(String sql){
 
+        // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
         ArrayList<Empresa> vet = new ArrayList<>();
 
+        //Tentando a conexão
         try{
             conn = conexao.conectar();
 
+            // Interface para realizar comandos SQL's:
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
 
@@ -64,10 +71,11 @@ public class EmpresaDAO {
 
             stmt.close();
 
+        //Mensagem de erro da conexão
         }catch (SQLException sqle){
             System.out.println(sqle.getMessage());
         }finally {
-            conexao.desconectar(conn);
+            conexao.desconectar(conn); // Desconectando do Banco
         }
 
         return vet;
@@ -76,28 +84,33 @@ public class EmpresaDAO {
     // Metodo Read | Select - CRUD, mas baseado no Id da empresa
     public Empresa buscarPorIdEmpresa(int idEmpresa){
 
+        // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
+        //Tentando a conexão
         try{
             conn = conexao.conectar();
 
+            // Interface para realizar comandos SQL's
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM empresa WHERE id_empresa = ?");
 
             pstmt.setInt(1, idEmpresa);
 
             ResultSet rs = pstmt.executeQuery();
 
+            // Executa o comando BUSCAR e verifica se alguma linha foi afetada
             if (rs.next()) {
                 return new Empresa(rs.getInt("id_empresa"), rs.getString("cnae"), rs.getString("nome"), rs.getString("cep"), rs.getString("cnpj"), rs.getString("rua"), rs.getString("estado"), rs.getString("bairro"), rs.getString("cidade"), rs.getDate("dt_registro"));
             }
             return null;
 
+        //Mensagem de erro da conexão
         } catch (SQLException sqle){
             System.out.println(sqle.getMessage());
             return null;
         } finally {
-            conexao.desconectar(conn);
+            conexao.desconectar(conn); // Desconectando do Banco
         }
     }
 
@@ -105,12 +118,16 @@ public class EmpresaDAO {
     public ArrayList<Empresa> listarUltimasTresEmpresas(){
 
         ArrayList<Empresa> empresas = new ArrayList<>();
+
+        // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
+        //Tentando a conexão
         try{
             conn = conexao.conectar();
 
+            // Interface para realizar comandos SQL's
             PreparedStatement pstmt = conn.prepareStatement("SELECT id_empresa, cnpj, nome, cnae, bairro, cep, rua, estado, cidade, dt_registro FROM empresa ORDER BY dt_registro DESC LIMIT 3;");
 
             ResultSet rs = pstmt.executeQuery();
@@ -119,33 +136,43 @@ public class EmpresaDAO {
                 empresas.add(new Empresa(rs.getInt("id_empresa"), rs.getString("cnae"), rs.getString("nome"), rs.getString("cep"), rs.getString("cnpj"), rs.getString("rua"), rs.getString("estado"), rs.getString("bairro"), rs.getString("cidade"), rs.getDate("dt_registro")
                 ));            }
 
+        //Mensagem de erro da conexão
         }catch (SQLException e){
             System.out.println("erro ao listar as ultimas 3 empresas foi: " + e.getMessage());
         }finally {
-            conexao.desconectar(conn);
+            conexao.desconectar(conn); // Desconectando do Banco
         }
         return empresas;
     }
 
     //Metodo de contar empresas, que retorna o total de empresas cadastradas no banco de dados
     public int contarEmpresas(){
+
         int total = 0;
+
+        // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
+
+        //Tentando a conexão
         try{
             conn = conexao.conectar();
 
+            // Interface para realizar comandos SQL's
             PreparedStatement pstmt = conn.prepareStatement("SELECT COUNT(id_empresa) FROM empresa;");
+
             ResultSet rs = pstmt.executeQuery();
 
+            // Executa o comando contar e verifica se alguma linha foi afetada
             if (rs.next()){
                 total = rs.getInt(1);
             }
 
+        //Mensagem de erro da conexão
         }catch (SQLException e){
             System.out.println("erro ao contar empresas: " + e.getMessage());
         }finally {
-            conexao.desconectar(conn);
+            conexao.desconectar(conn); // Desconectando do Banco
         }
         return total;
     }
@@ -153,12 +180,15 @@ public class EmpresaDAO {
     // Metodo Update - CRUD
     public int alterarEmpresa(Empresa empresa){
 
+        // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
+        //Tentando a conexão
         try{
             conn = conexao.conectar();
 
+            // Interface para realizar comandos SQL's
             PreparedStatement pstmt = conn.prepareStatement("UPDATE empresa set cnpj = ?, nome = ?, cnae = ?, bairro = ?, cep = ?, rua = ?, estado = ?, cidade = ?, dt_registro = ? WHERE id_empresa = ?");
 
             pstmt.setString(1, empresa.getCnpj());
@@ -172,42 +202,49 @@ public class EmpresaDAO {
             pstmt.setDate(9, empresa.getDtRegistro());
             pstmt.setInt(10, empresa.getIdEmpresa());
 
+            // Executa o comando alterar e verifica se alguma linha foi afetada
             if (pstmt.executeUpdate() > 0){
                 return 1;
             }
             return 0;
 
+        //Mensagem de erro da conexão
         }catch (SQLException sqle){
             System.out.println(sqle.getMessage());
             return -1;
         }finally {
-            conexao.desconectar(conn);
+            conexao.desconectar(conn); // Desconectando do Banco
         }
     }
 
     // Metodo Delete | Remove - CRUD
     public int remover(int idEmpresa){
 
+        // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
+        //Tentando a conexão
         try{
             conn = conexao.conectar();
 
+            // Interface para realizar comandos SQL's:
             PreparedStatement pstmt = conn.prepareStatement("DELETE FROM empresa WHERE id_empresa = ?");
 
             pstmt.setInt(1, idEmpresa);
 
+            // Executa o comando DELETE e verifica se alguma linha foi afetada
             if (pstmt.executeUpdate() > 0){
                 return 1;
             }
             return 0;
 
+        //Mensagem de erro da conexão
         }catch (SQLException sqle){
             System.out.println(sqle.getMessage());
             return -1;
         }finally {
-            conexao.desconectar(conn);
+            conexao.desconectar(conn); // Desconectando do Banco
         }
     }
 }

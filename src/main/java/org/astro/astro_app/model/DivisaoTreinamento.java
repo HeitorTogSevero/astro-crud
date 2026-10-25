@@ -2,17 +2,18 @@ package org.astro.astro_app.model;
 
 //Classe model DivisaoTreinamento
 public class DivisaoTreinamento {
-    //Declaração de variáveis
 
-    //Atributos da classe
+    //Atributos Inteiros
     private int idDivisao;
     private int idCronograma;
     private int codigo;
     private int idEmpresa;
+
+    // Atributos String
     private String nome;
 
 
-    //Metodo construtor da classe
+    // Construtor completo para inicializar uma divisão
     public DivisaoTreinamento(int idDivisao, int idCronograma, int codigo, int idEmpresa, String nome) {
         this.idDivisao = idDivisao;
         this.idCronograma = idCronograma;
@@ -21,17 +22,18 @@ public class DivisaoTreinamento {
         this.nome = nome;
     }
 
+    // Construtor vaziu (para recuperar dados já existentes do banco de dados)
     public DivisaoTreinamento(){}
 
+    // Construtor sem o ID
     public DivisaoTreinamento( int idCronograma, int codigo, int idEmpresa, String nome) {
         this.idCronograma = idCronograma;
         this.codigo = codigo;
-
         this.idEmpresa = idEmpresa;
         this.nome = nome;
     }
 
-    //Métodos Getters
+    // Getter
 
     public int getIdDivisao() {
         return idDivisao;

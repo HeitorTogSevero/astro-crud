@@ -1,12 +1,12 @@
 package org.astro.astro_app.dao;
 
-import org.astro.astro_app.Conexão.Conexao;
-import org.astro.astro_app.model.Administrador;
+import org.astro.astro_app.Conexão.Conexao; //Import da classe Conexao
+import org.astro.astro_app.model.Administrador; //Import da classe Adiministrador
 
-import java.sql.*;
-import java.util.ArrayList;
+import java.sql.*; //Import das classes java.sql
+import java.util.ArrayList; //Import da classe ArrayList
 
-// Classe DAO ServletReadAdministrador - CRUD
+// Classe DAO Administrador - CRUD
 public class AdministradorDAO {
 
     // Metodo Create | Insert - CRUD
@@ -16,6 +16,7 @@ public class AdministradorDAO {
         Conexao conexao = new Conexao();
         Connection conn = null;
 
+        //Tentando a conexão
         try {
             conn = conexao.conectar();
 
@@ -27,11 +28,12 @@ public class AdministradorDAO {
 
             return pstmt.executeUpdate() > 0;
 
+        //Mensagem de erro da conexão
         } catch (SQLException sqlE) {
             System.out.println(sqlE.getMessage());
             return false;
         } finally {
-            conexao.desconectar(conn); // desconectando do BD
+            conexao.desconectar(conn); // Desconectando do banco de dados
         }
     }
 
@@ -44,9 +46,11 @@ public class AdministradorDAO {
 
         ArrayList<Administrador> vet = new ArrayList<>();
 
+        //Tentando a conexão
         try {
             conn = conexao.conectar();
 
+            // Interface para realizar comandos SQL's:
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
 
@@ -55,11 +59,11 @@ public class AdministradorDAO {
             }
 
             stmt.close();
-
+        //Mensagem de erro da conexão
         } catch (SQLException sqlE) {
             System.out.println(sqlE.getMessage());
         } finally {
-            conexao.desconectar(conn);
+            conexao.desconectar(conn); // Desconectando do banco de dados
         }
         return vet;
     }
@@ -71,6 +75,7 @@ public class AdministradorDAO {
         Conexao conexao = new Conexao();
         Connection conn = null;
 
+        //Tentando a conexão
         try {
             conn = conexao.conectar();
 
@@ -89,12 +94,12 @@ public class AdministradorDAO {
                         rs.getString("senha"));
             }
             return null;
-
+        //Mensagem de erro da conexão
         } catch (SQLException sqlE) {
             System.out.println(sqlE.getMessage());
             return null;
         } finally {
-            conexao.desconectar(conn);
+            conexao.desconectar(conn); // Desconectando do banco de dados
         }
     }
 
@@ -105,6 +110,7 @@ public class AdministradorDAO {
         Conexao conexao = new Conexao();
         Connection conn = null;
 
+        //Tentando a conexão
         try {
             conn = conexao.conectar();
 
@@ -115,16 +121,18 @@ public class AdministradorDAO {
             pstmt.setString(3, admin.getSenha());
             pstmt.setInt(4, admin.getIdAdmin());
 
+            // Executa o comando ALTERAR e verifica se alguma linha foi afetada
             if (pstmt.executeUpdate() > 0) {
                 return 1;
             }
             return 0;
 
+        //Mensagem de erro da conexão
         } catch (SQLException sqlE) {
             System.out.println(sqlE.getMessage());
             return -1;
         } finally {
-            conexao.desconectar(conn);
+            conexao.desconectar(conn); // Desconectando do banco de dados
         }
     }
 
@@ -135,23 +143,27 @@ public class AdministradorDAO {
         Conexao conexao = new Conexao();
         Connection conn = null;
 
+        //Tentando a conexão
         try {
             conn = conexao.conectar();
 
+            // Interface para realizar comandos SQL's:
             PreparedStatement pstmt = conn.prepareStatement("DELETE FROM administrador WHERE id_admin = ?");
 
             pstmt.setInt(1, idAdmin);
 
+            // Executa o comando DELETE e verifica se alguma linha foi afetada
             if (pstmt.executeUpdate() > 0) {
                 return 1;
             }
             return 0;
 
+        //Mensagem de erro da conexão
         } catch (SQLException sqlE) {
             System.out.println(sqlE.getMessage());
             return -1;
         } finally {
-            conexao.desconectar(conn);
+            conexao.desconectar(conn); // Desconectando do banco de dados
         }
     }
 
@@ -161,6 +173,7 @@ public class AdministradorDAO {
         Conexao conexao = new Conexao();
         Connection conn = null;
 
+        //Tentando a conexão
         try {
             conn = conexao.conectar();
 
@@ -172,27 +185,32 @@ public class AdministradorDAO {
 
             ResultSet rs = pstmt.executeQuery();
 
+            // Executa o comando AUTENTICAR e verifica se alguma linha foi afetada
             if (rs.next()) {
                 return new Administrador(rs.getInt("id_admin"), rs.getString("nome"), rs.getString("email"), null); // O null serve para não devolver a senha
             }
             return null;
 
+        //Mensagem de erro da conexão
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             return null;
         } finally {
-            conexao.desconectar(conn);
+            conexao.desconectar(conn); // Desconectando do banco de dados
         }
     }
 
+    // Método para validar se o email está correto
     public boolean emailExiste(String email) {
 
         Conexao conexao = new Conexao();
         Connection conn = null;
 
+        //Tentando a conexão
         try {
             conn = conexao.conectar();
 
+            // Interface para realizar comandos SQL's:
             PreparedStatement pstmt = conn.prepareStatement("SELECT 1 FROM administrador WHERE email = ?");
 
             pstmt.setString(1, email);
@@ -201,11 +219,12 @@ public class AdministradorDAO {
 
             return rs.next();
 
+        //Mensagem de erro da conexão
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             return true; // na dúvida, bloqueia o cadastro
         } finally {
-            conexao.desconectar(conn);
+            conexao.desconectar(conn); // Desconectando do banco de dados
         }
     }
 
