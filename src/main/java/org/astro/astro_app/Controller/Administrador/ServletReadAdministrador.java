@@ -17,9 +17,13 @@ import java.io.IOException;
 public class ServletReadAdministrador extends HttpServlet {
 
     private AdministradorDAO administradorDAO;
+
     private EmpresaDAO empresaDAO;
+
     private FuncionarioDAO funcionarioDAO;
+
     private CertificadoDAO certificadoDAO;
+
     private DepartamentoDAO departamentoDAO;
 
     @Override
@@ -51,6 +55,6 @@ public class ServletReadAdministrador extends HttpServlet {
         request.setAttribute("ultimasEmpresas", empresaDAO.listarUltimasTresEmpresas());
 
 
-        request.getRequestDispatcher("/crud.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/crud.jsp").forward(request, response);
     }
 }

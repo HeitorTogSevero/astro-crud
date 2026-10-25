@@ -232,5 +232,7 @@
     })();
 </script>
 
+<script src="<%=caminho%>/JS/Paginas/carregamento.js"></script>
+
 </body>
 </html>

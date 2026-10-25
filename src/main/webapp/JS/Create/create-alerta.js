@@ -1,10 +1,11 @@
+(() => {
 // FORMULÁRIO PARA INSERIR//
 
 
 // Declarando as Variáveis //
-const form = document.getElementById("formulario-adicionar");
+const form = document.getElementById("formulario-adicionar-alerta");
 const codigo = document.getElementById("campo-codigo");
-const idEmpresa = document.getElementById("campo-id-empresa");
+const idEmpresa = document.getElementById("campo-id_empresa");
 const descricao = document.getElementById("campo-descricao");
 const dtLimite = document.getElementById("campo-dt_limite");
 
@@ -169,3 +170,4 @@ form.addEventListener("submit", function(event) {
     }
 
 });
+})();

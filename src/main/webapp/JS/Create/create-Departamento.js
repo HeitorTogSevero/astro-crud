@@ -1,8 +1,9 @@
+(() => {
 // FORMULÁRIO PARA INSERIR//
 
 
 // Declarando as Variáveis //
-const form = document.getElementById("formulario-adicionar")
+const form = document.getElementById("formulario-adicionar-departamento")
 
 const nome = document.getElementById("campo-nome")
 
@@ -162,32 +163,6 @@ form.addEventListener("input", function (){
 })
 
 //Validações de Dados - Id Departamento//
-form.addEventListener("input", function (){
-
-    if (idDepart.value.trim() === "") {
-
-        erroIdDepart.textContent = "";
-        erroIdDepart.classList.remove("invalido", "valido");
-    }
-
-    else if (Number(idEmpresa.value) <= 0) {
-
-        erroIdDepart.textContent = "O id deve ser maior que 0";
-
-        erroIdDepart.classList.add("invalido");
-        erroIdDepart.classList.remove("valido");
-    }
-
-    else {
-
-        erroIdDepart.textContent = "Opção válida!";
-
-        erroIdDepart.classList.add("valido");
-        erroIdDepart.classList.remove("invalido");
-    }
-})
-
-// SUBMETER O FORMULÁRIO //
 form.addEventListener("submit", function (event){
 
     if (Number(idEmpresa.value) <= 0 ) {
@@ -202,10 +177,6 @@ form.addEventListener("submit", function (event){
         event.preventDefault();
     }
 
-    else if (Number(idDepart.value) <= 0){
-        event.preventDefault();
-    }
-
     else if (atividade.value.length > 15){
         event.preventDefault();
     }
@@ -215,3 +186,4 @@ form.addEventListener("submit", function (event){
     }
 
 })
+})();

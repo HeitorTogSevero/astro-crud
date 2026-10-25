@@ -1,8 +1,9 @@
+(() => {
 // FORMULÁRIO PARA INSERIR//
 
 
 // Declarando as Variáveis //
-const form = document.getElementById("formulario-adicionar")
+const form = document.getElementById("formulario-adicionar-empresa")
 
 const nome = document.getElementById("campo-nome")
 
@@ -348,3 +349,4 @@ form.addEventListener("submit", function (event){
         event.preventDefault()
     }
 })
+})();

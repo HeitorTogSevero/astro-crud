@@ -61,7 +61,7 @@ org.astro.astro_app.model.Alerta"
             <i class="fa-solid fa-award"></i>certificado
         </a>
         <div class="sidebar-bottom">
-            <a href="<%=request.getContextPath()%>/landing-page.html" class="nav-item" id="exit-bottom">
+            <a href="<%=request.getContextPath()%>/logout" class="nav-item" id="exit-bottom">
                 <i class="fa-solid fa-right-from-bracket"></i>Sair
             </a>
         </div>
@@ -78,10 +78,14 @@ org.astro.astro_app.model.Alerta"
 
     <section class="barra-controles">
         <div class="controle-esquerda">
-            <div class="search-bar">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" id="busca-alerta" name="busca-alerta" placeholder="Pesquisar alerta...">
-            </div>
+            <form action="<%=caminho%>/listar-alerta" method="get" style="display:contents">
+                <div class="search-bar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="busca-alerta" name="descricao"
+                           placeholder="Pesquisar descricao do alerta..."
+                           value="<%= request.getParameter("descricao") != null ? request.getParameter("descricao") : "" %>">
+                </div>
+            </form>
         </div>
 
         <div class="controle-direita">
@@ -102,7 +106,9 @@ org.astro.astro_app.model.Alerta"
         if (mensagem != null) {
             String cor = mensagem.toLowerCase().contains("sucesso") ? "green" : "red";
     %>
-    <p style="color: <%= cor %>"><%= mensagem %></p>
+    <div id="pop-up-erro" onclick="fecharErro()">
+        <p><%= mensagem %></p>
+    </div>
     <% } %>
 
     <section class="panel painel-tabela">
@@ -168,7 +174,7 @@ org.astro.astro_app.model.Alerta"
             </button>
         </div>
 
-        <form id="formulario-adicionar" class="modal-formulario"
+        <form id="formulario-adicionar-alerta" class="modal-formulario"
               action="<%=caminho%>/adicionar-alerta" method="post">
 
             <div class="modal-campo">
@@ -185,7 +191,7 @@ org.astro.astro_app.model.Alerta"
 
             <div class="modal-campo">
                 <label for="campo-dt_limite">Data Limite:</label>
-                <input type="date" id="campo-dt_limite" name="Data Limite" required>
+                <input type="date" id="campo-dt_limite" name="dt_limite" required>
                 <span id="erroData"></span>
             </div>
 
@@ -214,7 +220,7 @@ org.astro.astro_app.model.Alerta"
         </div>
 
         <form id="formulario-filtro" class="modal-formulario"
-              action="<%=caminho%>/lista-alerta" method="get">
+              action="<%=caminho%>/listar-alerta" method="get">
 
             <div class="modal-campo">
                 <label for="filtro-codigo">Código</label>
@@ -236,7 +242,7 @@ org.astro.astro_app.model.Alerta"
             </div>
 
             <div class="modal-rodape">
-                <a href="<%=caminho%>/lista-alerta" class="botao-cancelar" id="limpar-filtro">Limpar</a>
+                <a href="<%=caminho%>/listar-alerta" class="botao-cancelar" id="limpar-filtro">Limpar</a>
                 <button type="submit" class="botao-salvar">Aplicar filtro</button>
             </div>
         </form>
@@ -272,13 +278,13 @@ org.astro.astro_app.model.Alerta"
 
             <div class="modal-campo">
                 <label for="editar-dt_limite">Data Limite: </label>
-                <input type="date" id="editar-dt_limite" name="dd/mm/aaaa" required>
+                <input type="date" id="editar-dt_limite" name="dt_limite" required>
                 <span id="editar-erroData"></span>
             </div>
 
             <div class="modal-campo">
                 <label for="editar-id-empresa">Empresa (id): </label>
-                <input type="number" id="editar-id-empresa" name="ID" min="0" required>
+                <input type="number" id="editar-id-empresa" name="id_empresa" min="0" required>
                 <span id="editar-erroId"></span>
             </div>
 
@@ -383,7 +389,7 @@ org.astro.astro_app.model.Alerta"
         document.getElementById('editar-descricao').value = linha.children[1].textContent.trim();
         document.getElementById('editar-codigo').value = linha.children[2].textContent.trim();
         document.getElementById('editar-dt_limite').value = converterDataBrParaIso(linha.children[3].textContent.trim());
-        document.getElementById('editar-id_empresa').value = linha.children[4].textContent.trim();
+        document.getElementById('editar-id-empresa').value = linha.children[4].textContent.trim();
         abrirEditar();
     });
 
@@ -430,10 +436,27 @@ org.astro.astro_app.model.Alerta"
     modal.addEventListener('click', function (evento) {
         if (evento.target === modal) fecharModal();
     });
+
+    function fecharErro() {
+        const erro = document.getElementById("pop-up-erro");
+
+        if (erro) {
+            erro.style.opacity = "0";
+            erro.style.transform = "translateY(20px)";
+
+            setTimeout(function () {
+                erro.remove();
+            }, 300);
+        }
+    }
+
+    // Desaparece automaticamente depois de 5 segundos
+    setTimeout(fecharErro, 5000);
 </script>
 
 <script src="<%=caminho%>/JS/Create/create-alerta.js"></script>
 <script src="<%=caminho%>/JS/Update/update-alerta.js"></script>
+<script src="<%=caminho%>/JS/Paginas/carregamento.js"></script>
 
 </body>
 </html>

@@ -162,5 +162,7 @@
     </div>
 </footer>
 
+<script src="<%=caminho%>/JS/Paginas/carregamento.js"></script>
+
 </body>
 </html>

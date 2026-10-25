@@ -1,9 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@ page import="java.util.List,
-    java.util.ArrayList,
-    org.astro.astro_app.model.Departamento"%>
+java.util.ArrayList,
+org.astro.astro_app.model.Departamento"%>
 <%!private String v(String s) {
-return s == null ? "" : s;}%>
+    return s == null ? "" : s;}%>
 <%  String caminho = request.getContextPath();
     ArrayList<Departamento> departamentos = (ArrayList<Departamento>) request.getAttribute("departamentos");
     //valores de filtro(pra nao ficar null
@@ -53,7 +53,7 @@ return s == null ? "" : s;}%>
             <i class="fa-solid fa-award"></i>certificado
         </a>
         <div class="sidebar-bottom">
-            <a href="<%=request.getContextPath()%>/landing-page.html" class="nav-item" id="exit-bottom">
+            <a href="<%=request.getContextPath()%>/logout" class="nav-item" id="exit-bottom">
                 <i class="fa-solid fa-right-from-bracket"></i>Sair
             </a>
         </div>
@@ -70,10 +70,14 @@ return s == null ? "" : s;}%>
 
     <section class="barra-controles">
         <div class="controle-esquerda">
-            <div class="search-bar">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" id="busca-departamento" name="busca-departamento" placeholder="Pesquisar departamento...">
-            </div>
+            <form action="<%=caminho%>/listar-departamentos" method="get" style="display:contents">
+                <div class="search-bar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="busca-departamento" name="nome"
+                           placeholder="Pesquisar nome do departamento..."
+                           value="<%= request.getParameter("nome") != null ? request.getParameter("nome") : "" %>">
+                </div>
+            </form>
         </div>
 
         <div class="controle-direita">
@@ -93,7 +97,9 @@ return s == null ? "" : s;}%>
     if (mensagem != null) {
     String cor = mensagem.toLowerCase().contains("sucesso") ? "green" : "red";
     %>
-    <p style="color: <%= cor %>"><%= mensagem %></p>
+    <div id="pop-up-erro" style="">
+        <p><%= mensagem %></p>
+    </div>
     <% } %>
 
     <section class="panel painel-tabela">
@@ -104,7 +110,7 @@ return s == null ? "" : s;}%>
                     <th class="ordenavel" data-coluna="id_departamento"><strong>ID do Departamento</strong> <i class="fa-solid fa-sort"></i></th>
                     <th class="ordenavel" data-coluna="nome">Nome <i class="fa-solid fa-sort"></i></th>
                     <th class="ordenavel" data-coluna="descricao">Descrição <i class="fa-solid fa-sort"></i></th>
-                    <th class="ordenavel" data-coluna="grau_risco">Grau de Riso <i class="fa-solid fa-sort"></i></th>
+                    <th class="ordenavel" data-coluna="grau_risco">Grau de Risco <i class="fa-solid fa-sort"></i></th>
                     <th class="ordenavel" data-coluna="atividade">Atividade <i class="fa-solid fa-sort"></i></th>
                     <th class="ordenavel" data-coluna="id_empresa">Empresa <i class="fa-solid fa-sort"></i></th>
                     <th>Ações</th>
@@ -139,20 +145,6 @@ return s == null ? "" : s;}%>
                 %>
                 <tr>
                     <td colspan="7">Nenhum departamento encontrado.</td>
-
-                <tr id_departamento="" nome="" descricao="" grau_risco="" atividade="" id_empresa="">
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <div class="celula-acoes">
-                            <button class="btn-editar" type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar</button>
-                            <button class="btn-remover" type="button" data-acao="remover"><i class="fa-solid fa-trash"></i> </button>
-                        </div>
-                    </td>
                 </tr>
                 <% } %>
                 </tbody>
@@ -175,7 +167,7 @@ return s == null ? "" : s;}%>
             </button>
         </div>
 
-        <form id="formulario-adicionar" class="modal-formulario"
+        <form id="formulario-adicionar-departamento" class="modal-formulario"
               action="<%=caminho%>/adicionar-departamento" method="post">
 
             <div class="modal-campo">
@@ -204,7 +196,7 @@ return s == null ? "" : s;}%>
 
             <div class="modal-campo">
                 <label for="campo-id_empresa">Empresa (id):</label>
-                <input type="number" id="campo-id_empresa" name="id_empresa" min="0" placeholder="ID" required>
+                <input type="number" id="campo-id_empresa" name="id_empresa" min="1" placeholder="ID" required>
                 <span id="erroIdEmpresa"></span>
             </div>
 
@@ -296,7 +288,7 @@ return s == null ? "" : s;}%>
 
             <div class="modal-campo">
                 <label for="editar-id_empresa">Empresa (id): </label>
-                <input type="number" id="editar-id_empresa" name="id_empresa" min="0" placeholder="ID" required>
+                <input type="number" id="editar-id_empresa" name="id_empresa" min="1" placeholder="ID" required>
                 <span id="editar-erroIdEmpresa"></span>
             </div>
 
@@ -392,6 +384,7 @@ return s == null ? "" : s;}%>
 </script>
 <script src="<%=caminho%>/JS/Create/create-Departamento.js"></script>
 <script src="<%=caminho%>/JS/Update/update-departamento.js"></script>
+<script src="<%=caminho%>/JS/Paginas/carregamento.js"></script>
 
 </body>
 </html>

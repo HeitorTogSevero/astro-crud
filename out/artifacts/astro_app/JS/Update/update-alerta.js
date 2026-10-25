@@ -1,3 +1,4 @@
+(() => {
  // FORMULÁRIO PARA EDITAR//
 
 // Declarando as Variáveis //
@@ -176,3 +177,4 @@ form.addEventListener("submit", function(event) {
     }
 
 });
+})();

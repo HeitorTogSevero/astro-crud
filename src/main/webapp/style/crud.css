@@ -58,6 +58,17 @@ body {
     width: 140px;
 }
 
+.logo::before {
+    content: "";
+    display: none;
+    width: 40px;
+    height: 40px;
+    background-image: url('imagens/logotipo-icone.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
 .nav-menu {
     display: flex;
     flex-direction: column;
@@ -91,6 +102,7 @@ body {
 }
 
 .nav-item i {
+    display: inline-block;
     width: 20px;
     text-align: center;
 }
@@ -101,7 +113,8 @@ body {
 
 .main-content {
     flex: 1;
-    min-width: 0; /* permite encolher de volta, mesmo com conteúdo largo dentro */
+    min-width: 0;
+    height: 100vh;
     padding: 32px 48px;
     display: flex;
     flex-direction: column;
@@ -182,7 +195,7 @@ body {
 
 .stats-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 12px;
 }
 
@@ -194,6 +207,11 @@ body {
     align-items: center;
     gap: 16px;
     justify-content: center;
+    min-width: 0;
+}
+
+.stat-card p {
+    min-width: 0;
 }
 
 .stat-card h3 {
@@ -231,7 +249,7 @@ body {
 
 #tabela-rolavel-inicio {
     max-width: 100%;
-    overflow-x: auto; 
+    overflow-x: auto;
     overflow-y: hidden;
     border-radius: 25px;
     margin-left: 10px;
@@ -287,10 +305,227 @@ body {
     border-bottom: none;
 }
 
-#exit-bottom{
-    font-weight: bold;
+@media (max-width: 1024px) {
+    .sidebar {
+        width: 84px;
+    }
+
+    .img-logo {
+        width: 40px;
+        display: none;
+    }
+
+    .logo::before {
+        display: block;
+        width: 40px;
+        height: 40px;
+    }
+
+    .nav-menu {
+        padding: 15px 8px;
+        margin-left: 0;
+    }
+
+    .nav-item {
+        justify-content: center;
+        padding: 14px 0;
+        gap: 0;
+        font-size: 0;
+        letter-spacing: 0;
+    }
+
+    .nav-item.active {
+        margin-right: 0;
+    }
+
+    .nav-item i {
+        font-size: 19px;
+    }
+
+    .main-content {
+        margin-left: 84px;
+        padding: 24px 20px;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .header {
+        flex-wrap: wrap;
+        row-gap: 12px;
+    }
+
+    .search-bar {
+        width: 100%;
+    }
 }
 
-#exit-bottom:hover{
-    color: rgb(176, 79, 232);
+@media (max-width: 680px) {
+    .sidebar {
+        width: 64px;
+    }
+
+    .img-logo {
+        width: 32px;
+        display: none;
+    }
+
+    .logo::before {
+        display: block;
+        width: 32px;
+        height: 32px;
+    }
+
+    .nav-item i {
+        font-size: 17px;
+    }
+
+    .main-content {
+        margin-left: 64px;
+        padding: 18px 14px;
+        gap: 14px;
+    }
+
+    .sidebar-bottom {
+        margin-top: 24px;
+    }
+
+    .header {
+        margin-bottom: 8px;
+        gap: 10px;
+    }
+
+    .header h1 {
+        font-size: 18px;
+    }
+
+    .welcome-banner {
+        padding: 18px 20px;
+    }
+
+    .welcome-banner h2 {
+        font-size: 21px;
+    }
+
+    .welcome-banner p {
+        font-size: 15px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .stat-card {
+        padding: 14px 18px;
+        justify-content: flex-start;
+    }
+
+    .stat-card h3 {
+        font-size: 34px;
+    }
+
+    .stat-card p {
+        font-size: 15px;
+    }
+
+    .panel {
+        padding: 18px 14px;
+    }
+}
+
+@media (max-width: 380px) {
+    .sidebar {
+        width: 56px;
+    }
+
+    .img-logo {
+        width: 28px;
+        display: none;
+    }
+
+    .logo::before {
+        display: block;
+        width: 28px;
+        height: 28px;
+    }
+
+    .nav-item i {
+        font-size: 16px;
+    }
+
+    .main-content {
+        margin-left: 56px;
+        padding: 14px 10px;
+    }
+
+    .stat-card h3 {
+        font-size: 28px;
+    }
+}
+
+@media (min-width: 1600px) {
+    .welcome-banner,
+    .stats-grid,
+    .bottom-grid {
+        max-width: 1800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media (min-width: 2200px) {
+    .header h1 {
+        font-size: 28px;
+    }
+
+    .welcome-banner h2 {
+        font-size: 30px;
+    }
+
+    .welcome-banner p {
+        font-size: 19px;
+    }
+
+    .stat-card h3 {
+        font-size: 54px;
+    }
+
+    .stat-card p {
+        font-size: 19px;
+    }
+
+    .panel h2 {
+        font-size: 21px;
+    }
+
+    .data-table th {
+        font-size: 16px;
+    }
+
+    .data-table td {
+        font-size: 15px;
+    }
+}
+
+#pop-up-erro{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+
+    width: fit-content;
+    max-width: 400px;
+    min-width: 250px;
+
+    padding: 12px 16px;
+
+    border: 2px solid red;
+    background: rgba(128, 3, 3, 0.6);
+    color: white;
+    border-radius: 6px;
+
+    font-size: 14px;
+
+    z-index: 9999;
 }

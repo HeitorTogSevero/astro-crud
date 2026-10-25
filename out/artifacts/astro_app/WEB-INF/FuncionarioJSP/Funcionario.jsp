@@ -64,7 +64,7 @@ org.astro.astro_app.model.Funcionario"
         </a>
 
         <div class="sidebar-bottom">
-            <a href="<%=request.getContextPath()%>/landing-page.html" class="nav-item" id="exit-bottom"><i class="fa-solid fa-right-from-bracket"></i>Sair</a>
+            <a href="<%=request.getContextPath()%>/logout" class="nav-item" id="exit-bottom"><i class="fa-solid fa-right-from-bracket"></i>Sair</a>
         </div>
     </nav>
 </aside>
@@ -78,10 +78,14 @@ org.astro.astro_app.model.Funcionario"
 
     <section class="barra-controles">
         <div class="controle-esquerda">
-            <div class="search-bar">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" id="busca-funcionario" placeholder="Pesquisar funcionário...">
-            </div>
+            <form action="<%=caminho%>/listar-funcionarios" method="get" style="display:contents">
+                <div class="search-bar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="busca-funcionario" name="nome"
+                           placeholder="Pesquisar nome do funcionario..."
+                           value="<%= request.getParameter("nome") != null ? request.getParameter("nome") : "" %>">
+                </div>
+            </form>
         </div>
         <div class="controle-direita">
             <button class="btn-filtrar" type="button"><i class="fa-solid fa-filter"></i> Filtrar</button>
@@ -95,7 +99,9 @@ org.astro.astro_app.model.Funcionario"
         if (mensagem != null) {
             String cor = mensagem.toLowerCase().contains("sucesso") ? "green" : "red";
     %>
-    <p style="color: <%= cor %>"><%= mensagem %></p>
+    <div id="pop-up-erro" style="">
+        <p><%= mensagem %></p>
+    </div>
     <% } %>
 
     <section class="panel painel-tabela">
@@ -157,7 +163,7 @@ org.astro.astro_app.model.Funcionario"
             <h2>Adicionar em funcionario</h2>
             <button type="button" class="modal-fechar" id="fechar-modal"><i class="fa-solid fa-xmark"></i></button>
         </div>
-        <form class="modal-formulario" action="<%=caminho%>/adicionar-funcionario" method="post">
+        <form  id="formulario-adicionar-funcionario" class="modal-formulario" action="<%=caminho%>/adicionar-funcionario" method="post">
 
             <div class="modal-campo">
                 <label for="campo-cpf">CPF: </label>
@@ -174,6 +180,7 @@ org.astro.astro_app.model.Funcionario"
             <div class="modal-campo">
                 <label for="campo-cargo">Cargo: </label>
                 <input type="text" id="campo-cargo" name="cargo" placeholder="Ex: Professor" required>
+                <span id="erroCargo"></span>
             </div>
 
             <div class="modal-campo">
@@ -185,11 +192,13 @@ org.astro.astro_app.model.Funcionario"
             <div class="modal-campo">
                 <label for="campo-id_empresa">Empresa (id)</label>
                 <input type="number" id="campo-id_empresa" name="id_empresa" min="0" placeholder="ID" required>
+                <span id="erroIdEmpresa"></span>
             </div>
 
             <div class="modal-campo">
                 <label for="campo-id_departamento">Departamento (id): </label>
                 <input type="number" id="campo-id_departamento" name="id_departamento" min="0" placeholder="ID" required>
+                <span id="erroIdDepart"></span>
             </div>
 
             <div class="modal-rodape">
@@ -239,7 +248,7 @@ org.astro.astro_app.model.Funcionario"
             <h2>Editar funcionário</h2>
             <button type="button" class="modal-fechar" id="fechar-modal-editar"><i class="fa-solid fa-xmark"></i></button>
         </div>
-        <form class="modal-formulario" action="<%=caminho%>/alterar-funcionario" method="post">
+        <form id="formulario-editar" class="modal-formulario" action="<%=caminho%>/alterar-funcionario" method="post">
             <input type="hidden" id="editar-id-funcionario" name="id_funcionario">
 
             <div class="modal-campo">
@@ -357,6 +366,7 @@ org.astro.astro_app.model.Funcionario"
 </script>
 <script src="<%=caminho%>/JS/Create/create-funcionario.js"></script>
 <script src="<%=caminho%>/JS/Update/update-funcionario.js"></script>
+<script src="<%=caminho%>/JS/Paginas/carregamento.js"></script>
 
 </body>
 </html>

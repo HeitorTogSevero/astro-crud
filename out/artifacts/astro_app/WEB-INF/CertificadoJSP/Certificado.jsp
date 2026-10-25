@@ -55,7 +55,7 @@ org.astro.astro_app.model.Certificado"
             <i class="fa-solid fa-award"></i>certificado
         </a>
         <div class="sidebar-bottom">
-            <a href="<%=request.getContextPath()%>/landing-page.html" class="nav-item" id="exit-bottom">
+            <a href="<%=request.getContextPath()%>/logout" class="nav-item" id="exit-bottom">
                 <i class="fa-solid fa-right-from-bracket"></i>Sair
             </a>
         </div>
@@ -72,10 +72,12 @@ org.astro.astro_app.model.Certificado"
 
     <section class="barra-controles">
         <div class="controle-esquerda">
-            <div class="search-bar">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" id="busca-certificado" name="busca-certificado" placeholder="Pesquisar certificado...">
-            </div>
+            <form action="<%=caminho%>/listar-certificados" method="get" style="display:contents">
+                <div class="search-bar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="number" id="busca-certificado" name="id_funcionario" placeholder="pesquisar ID do funcionário..." value="<%= request.getParameter("id_funcionario") != null ? request.getParameter("id_funcionario") : "" %>">
+                </div>
+            </form>
         </div>
 
         <div class="controle-direita">
@@ -96,7 +98,9 @@ org.astro.astro_app.model.Certificado"
         if (mensagem != null) {
             String cor = mensagem.toLowerCase().contains("sucesso") ? "green" : "red";
     %>
-    <p style="color: <%= cor %>"><%= mensagem %></p>
+    <div id="pop-up-erro" style="">
+        <p><%= mensagem %></p>
+    </div>
     <% } %>
 
     <section class="panel painel-tabela">
@@ -164,18 +168,18 @@ org.astro.astro_app.model.Certificado"
             </button>
         </div>
 
-        <form id="formulario-adicionar" class="modal-formulario"
+        <form id="formulario-adicionar-certificado" class="modal-formulario"
               action="<%=caminho%>/adicionar-certificado" method="post">
 
             <div class="modal-campo">
                 <label for="campo-dt_emissao">Data de Emissao: </label>
-                <input type="date" id="campo-dt_emissao" name="dd/mm/aaaa" required>
+                <input type="date" id="campo-dt_emissao" name="dt_emissao" required>
                 <span id="erroDataEmissao"></span>
             </div>
 
             <div class="modal-campo">
                 <label for="validade">Validade: </label>
-                <input type="date" id="validade" name="dd/mm/aaaa" required>
+                <input type="date" id="validade" name="validade" required>
                 <span id="erroValidade"></span>
             </div>
 
@@ -438,6 +442,7 @@ org.astro.astro_app.model.Certificado"
 
 <script src="<%=caminho%>/JS/Create/create-certificado.js"></script>
 <script src="<%=caminho%>/JS/Update/update-certificado.js"></script>
+<script src="<%=caminho%>/JS/Paginas/carregamento.js"></script>
 
 </body>
 </html>

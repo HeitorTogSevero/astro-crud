@@ -30,7 +30,7 @@ org.astro.astro_app.model.Empresa"%>
     <link rel="stylesheet" href="<%=caminho%>/style/tabelas.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="icon" type="image/png" href="imagens/isotipo.png">
+    <link rel="icon" type="image/png" href="<%=caminho%>/imagens/isotipo.png">
 </head>
 <body>
 
@@ -54,14 +54,14 @@ org.astro.astro_app.model.Empresa"%>
         <a href="<%=caminho%>/listar-divisoes" class="nav-item">
             <i class="fa-regular fa-file-lines"></i>divisao_treinamento
         </a>
-        <a href="<%=caminho%>/lista-alerta" class="nav-item">
+        <a href="<%=caminho%>/listar-alerta" class="nav-item">
             <i class="fa-regular fa-calendar-check"></i>alerta
         </a>
         <a href="<%=caminho%>/listar-certificados" class="nav-item">
             <i class="fa-solid fa-award"></i>certificado
         </a>
         <div class="sidebar-bottom">
-            <a href="<%=request.getContextPath()%>/landing-page.html" class="nav-item" id="exit-bottom">
+            <a href="<%=request.getContextPath()%>/logout" class="nav-item" id="exit-bottom">
                 <i class="fa-solid fa-right-from-bracket"></i>Sair
             </a>
         </div>
@@ -154,6 +154,8 @@ org.astro.astro_app.model.Empresa"%>
     </section>
 
 </main>
+
+<script src="<%=caminho%>/JS/Paginas/carregamento.js"></script>
 
 </body>
 </html>

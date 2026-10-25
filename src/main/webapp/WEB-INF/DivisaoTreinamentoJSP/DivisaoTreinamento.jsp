@@ -55,7 +55,7 @@ org.astro.astro_app.model.DivisaoTreinamento"
             <i class="fa-solid fa-award"></i>certificado
         </a>
         <div class="sidebar-bottom">
-            <a href="<%=request.getContextPath()%>/landing-page.html" class="nav-item" id="exit-bottom">
+            <a href="<%=request.getContextPath()%>/logout" class="nav-item" id="exit-bottom">
                 <i class="fa-solid fa-right-from-bracket"></i>Sair
             </a>
         </div>
@@ -72,10 +72,14 @@ org.astro.astro_app.model.DivisaoTreinamento"
 
     <section class="barra-controles">
         <div class="controle-esquerda">
-            <div class="search-bar">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" id="busca-divisao" name="busca-divisao" placeholder="Pesquisar divisão...">
-            </div>
+            <form action="<%=caminho%>/listar-divisoes" method="get" style="display:contents">
+                <div class="search-bar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="busca-divisao" name="nome"
+                           placeholder="Pesquisar nome da divisao..."
+                           value="<%= request.getParameter("nome") != null ? request.getParameter("nome") : "" %>">
+                </div>
+            </form>
         </div>
 
         <div class="controle-direita">
@@ -96,8 +100,9 @@ org.astro.astro_app.model.DivisaoTreinamento"
         if (mensagem != null) {
             String cor = mensagem.toLowerCase().contains("sucesso") ? "green" : "red";
     %>
-    <p style="color: <%= cor %>"><%= mensagem %></p>
-    <% } %>
+    <div id="pop-up-erro" style="">
+        <p><%= mensagem %></p>
+    </div>    <% } %>
 
     <section class="panel painel-tabela">
         <div class="tabela-rolavel">
@@ -162,7 +167,7 @@ org.astro.astro_app.model.DivisaoTreinamento"
             </button>
         </div>
 
-        <form id="formulario-adicionar" class="modal-formulario"
+        <form id="formulario-adicionar-divisao" class="modal-formulario"
               action="<%=caminho%>/adicionar-divisao" method="post">
 
             <div class="modal-campo">
@@ -217,12 +222,12 @@ org.astro.astro_app.model.DivisaoTreinamento"
 
             <div class="modal-campo">
                 <label for="filtro-id_empresa">Empresa (id)</label>
-                <input type="number" id="filtro-id_empresa" name="id_empresa" min="0" placeholder="ID value="<%= fIdEmpresa %>">
+                <input type="number" id="filtro-id_empresa" name="id_empresa" min="0" placeholder="ID" value="<%= fIdEmpresa %>">
             </div>
 
             <div class="modal-campo">
                 <label for="filtro-nome">Nome</label>
-                <input type="text" id="filtro-nome" name="nome" placeholder="ID" value="<%= fNome %>">
+                <input type="text" id="filtro-nome" name="nome" placeholder="Nome" value="<%= fNome %>">
             </div>
 
             <div class="modal-rodape">
@@ -269,6 +274,7 @@ org.astro.astro_app.model.DivisaoTreinamento"
             <div class="modal-campo">
                 <label for="editar-id_cronograma">Cronograma (id):</label>
                 <input type="number" id="editar-id_cronograma" name="id_cronograma" min="0" placeholder="ID" required>
+                <span id="editar-erroIdCrono"></span>
             </div>
 
             <div class="modal-rodape">
@@ -363,6 +369,7 @@ org.astro.astro_app.model.DivisaoTreinamento"
 </script>
 <script src="<%=caminho%>/JS/Create/create-divisao_treinamento.js"></script>
 <script src="<%=caminho%>/JS/Update/update-divisao_Treinamento.js"></script>
+<script src="<%=caminho%>/JS/Paginas/carregamento.js"></script>
 
 </body>
 </html>
