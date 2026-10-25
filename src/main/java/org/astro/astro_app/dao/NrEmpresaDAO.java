@@ -108,7 +108,7 @@ public class NrEmpresaDAO {
         } finally {
             conexao.desconectar(conn); // Desconectando do Banco
         }
-        }
+
     }
 
     // Metodo Read | Select - CRUD, mas baseado no Id da nr_descricao
