@@ -1,5 +1,6 @@
 package org.astro.astro_app.Controller.Alerta;
 
+// Biblioteca:
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
@@ -17,14 +18,16 @@ public class ServletReadAlerta extends HttpServlet {
 
     @Override
     public void init() {
-        //concede o acesso ao DAO de alertas quando o servlet e iniciado
+
+        // Concede o acesso ao DAO de alertas quando o servlet e iniciado
         alertaDAO = new AlertaDAO();
+
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        //le os filtros opcionais enviados pela tela de listagem
+        // Lê os filtros opcionais enviados pela tela de listagem
         String codigoTexto = request.getParameter("codigo");
 
         String dtLimiteMin = request.getParameter("dt_limite_min");
@@ -35,53 +38,80 @@ public class ServletReadAlerta extends HttpServlet {
 
         String descricao = request.getParameter("descricao");
 
-        //inicia a consulta e adiciona somente os filtros preenchidos
+        // Inicia a consulta e adiciona somente os filtros preenchidos
         StringBuilder sql = new StringBuilder("SELECT * FROM alerta WHERE 1=1");
 
-        //valida os valores dos filtros antes de incluir eles na consulta
+        // Valida os valores dos filtros antes de incluir eles na consulta
         try {
-            //filtro por codigo
+
+            // Filtro por codigo
             if (codigoTexto != null && !codigoTexto.isBlank() && !codigoTexto.equals("0")) {
+
                 sql.append(" AND codigo = ").append(Integer.parseInt(codigoTexto));
+
             }
-            //filtro por dtminima
+
+            // Filtro por dtminima
             if (dtLimiteMin != null && !dtLimiteMin.isBlank()) {
+
                 Date.valueOf(dtLimiteMin); //ve o formato ano-mes-dia, se for invalido mostra o erro
+
                 sql.append(" AND dt_limite >= '").append(dtLimiteMin).append("'");
+
             }
-            //filtro por dtmaxima
+
+            // Filtro por dtmaxima
             if (dtLimiteMax != null && !dtLimiteMax.isBlank()) {
+
                 Date.valueOf(dtLimiteMax); //ve o formato ano-mes-dia, se for invalido mostra o erro
+
                 sql.append(" AND dt_limite <= '").append(dtLimiteMax).append("'");
+
             }
-            //filtro por idempresa
+
+            // Filtro por idempresa
             if (idEmpresaTexto != null && !idEmpresaTexto.isBlank() && !idEmpresaTexto.equals("0")) {
+
                 sql.append(" AND id_empresa = ").append(Integer.parseInt(idEmpresaTexto));
+
             }
-            //pesquisar nome
+
+            // Pesquisar nome
             if (descricao != null && !descricao.isBlank()) {
+
                 sql.append(" AND descricao ILIKE '%").append(descricao.trim().replace("'", "''")).append("%'");
+
             }
-        } catch (IllegalArgumentException e) {
-            //se algum filtro for invalido, consulta todos os alertas e informa o erro
-            sql = new StringBuilder("SELECT * FROM alerta WHERE 1=1");
-            request.setAttribute("erro", "Filtro invalido");
         }
+
+        catch (IllegalArgumentException e) {
+
+            // Se algum filtro for invalido, consulta todos os alertas e informa o erro
+            sql = new StringBuilder("SELECT * FROM alerta WHERE 1=1");
+
+            request.setAttribute("erro", "Filtro invalido");
+
+        }
+
         sql.append(" ORDER BY id_alerta");
 
-        //executa a consulta e guarda os resultados para a pagina JSP
+        // Executa a consulta e guarda os resultados para a pagina JSP
         ArrayList<Alerta> alertas = alertaDAO.buscar(sql.toString());
 
-        //disponibiliza resultados e filtros para manter a tela preenchida
+        // Disponibiliza resultados e filtros para manter a tela preenchida
         request.setAttribute("alertas", alertas);
 
-        //coloquei isso mas é opcional(é só p manter os valores no filtro)
+        // Mantém os valores no filtro(opicional)
         request.setAttribute("filtroCodigo", codigoTexto);
+
         request.setAttribute("filtroDtMin", dtLimiteMin);
+
         request.setAttribute("filtroDtMax", dtLimiteMax);
+
         request.setAttribute("filtroIdEmpresa", idEmpresaTexto);
 
-        //encaminha internamente para a tela que apresenta a listagem
+        // Encaminha internamente para a tela que apresenta a listagem
         request.getRequestDispatcher("/WEB-INF/AlertaJSP/alerta.jsp").forward(request, response);
+
     }
 }

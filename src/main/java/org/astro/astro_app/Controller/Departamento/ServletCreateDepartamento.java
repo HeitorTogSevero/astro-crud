@@ -1,5 +1,6 @@
 package org.astro.astro_app.Controller.Departamento;
 
+// Biblioteca:
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -17,14 +18,19 @@ public class ServletCreateDepartamento extends HttpServlet {
 
     @Override
     public void init() {
+
+        // Concede o acesso ao DAO do departamento quando o servlet e iniciado
         departamentoDAO = new DepartamentoDAO();
+
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        // Os dados chegam em bits, aqui converte ele para linguagem normal
         request.setCharacterEncoding("UTF-8");
 
+        // Le os valores enviados no formulario de cadastro
         String idEmpresaTexto = request.getParameter("id_empresa");
 
         String grauRisco = request.getParameter("grau_risco");
@@ -38,33 +44,44 @@ public class ServletCreateDepartamento extends HttpServlet {
 
         String mensagem = "";
 
+        // Verifica campos obrigatorios e limites antes de converter os dados
         if (nome == null || nome.isBlank()) {
+
             mensagem = "o nome não pode ser vazio";
             request.setAttribute("erro", mensagem);
+
 
         }
 
         else if (nome.length() > 100) {
+
             mensagem = "o nome deve conter até 100 caracteres";
             request.setAttribute("erro", mensagem);
+
 
         }
 
         else if (descricao == null || descricao.isBlank()) {
+
             mensagem = "a descrição não pode ser vazia";
             request.setAttribute("erro", mensagem);
+
 
         }
 
         else if (descricao.length() > 250) {
+
             mensagem = "a descricao deve conter até 250 caracteres";
             request.setAttribute("erro", mensagem);
+
 
         }
 
         else if (grauRisco == null || grauRisco.isBlank()) {
+
             mensagem = "o grau de risco não pode ser vazio";
             request.setAttribute("erro", mensagem);
+
 
         }
 
@@ -93,6 +110,8 @@ public class ServletCreateDepartamento extends HttpServlet {
 
         }
         else {
+
+            // Converte os campos numericos e a data para os tipos usados pelo modelo
             try {
                 int idEmpresa = Integer.parseInt(idEmpresaTexto);
 
@@ -102,9 +121,10 @@ public class ServletCreateDepartamento extends HttpServlet {
 
                 } else {
 
-                    //ele é inserido apenas o número, então adicionamos o "Grau" para ficar: Grau 1, Grau 2...
+                    // Nele é inserido apenas o número, então adicionamos o "Grau" para ficar: Grau 1, Grau 2...
                     String grauNoBanco = "Grau " + grauRisco;
 
+                    // Monta o modelo e pede ao DAO para inserir o novo registro
                     Departamento departamento = new Departamento(
                             idEmpresa,
                             grauNoBanco,
@@ -118,16 +138,22 @@ public class ServletCreateDepartamento extends HttpServlet {
                         return;
                     }
 
+                    // Mensagem de erro
                     mensagem = "Não foi possível inserir o departamento. Confira o ID da empresa e tente novamente.";
                     request.setAttribute("erro", mensagem);
                 }
-            } catch (NumberFormatException e) {
+            }
+
+            // Trata valores que nao podem ser convertidos para numero ou data
+            catch (NumberFormatException e) {
                 mensagem = "o id deve ser numero valido";
                 request.setAttribute("erro", mensagem);
             }
         }
 
+        // Em caso de erro, retorna ao formulario com a mensagem de validacao.
         request.setAttribute("departamentos", departamentoDAO.buscar("SELECT * FROM departamento ORDER BY 1"));
         request.getRequestDispatcher("/WEB-INF/DepartamentoJSP/Departamento.jsp").forward(request, response);
+
     }
 }

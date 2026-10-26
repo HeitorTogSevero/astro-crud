@@ -1,5 +1,6 @@
 package org.astro.astro_app.Controller.DivisaoTreinamento;
 
+// Biblioteca:
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
@@ -14,14 +15,19 @@ public class ServletCreateDivisaoTreinamento extends HttpServlet{
 
     @Override
     public void init(){
+
+        // Concede o acesso ao DAO da divisão treinamentp quando o servlet e iniciado
         divisaoTreinamentoDAO = new DivisaoTreinamentoDAO();
+
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
 
+        // Os dados chegam em bits, aqui converte ele para linguagem normal
         request.setCharacterEncoding("UTF-8");
 
+        // Le os valores enviados no formulario de cadastro
         String idCronogramaTexto = request.getParameter("id_cronograma");
 
         String codigoTexto = request.getParameter("codigo");
@@ -32,32 +38,45 @@ public class ServletCreateDivisaoTreinamento extends HttpServlet{
 
         String mensagem = "";
 
+        // Verifica campos obrigatorios e limites antes de converter os dados
         if(idCronogramaTexto == null || idCronogramaTexto.isBlank()){
+
             mensagem = "o id do cronograma não pode ser vazio";
             request.setAttribute("erro", mensagem);
+
         }
 
         else if(codigoTexto == null || codigoTexto.isBlank()){
+
             mensagem = "o codigo não pode ser vazio";
             request.setAttribute("erro", mensagem);
+
         }
 
         else if(idEmpresaTexto == null || idEmpresaTexto.isBlank()){
+
             mensagem = "o id da empresa não pode ser vazio";
             request.setAttribute("erro", mensagem);
+
         }
 
         else if(nome == null || nome.isBlank()){
+
             mensagem = "o nome não pode ser vazio";
             request.setAttribute("erro", mensagem);
+
         }
 
         else if(nome.length() > 50){
+
             mensagem = "o nome deve conter até 50 caracteres";
             request.setAttribute("erro", mensagem);
+
         }
 
         else{
+
+            // Converte os campos numericos e a data para os tipos usados pelo modelo
             try{
 
                 int idCronograma = Integer.parseInt(idCronogramaTexto);
@@ -66,6 +85,7 @@ public class ServletCreateDivisaoTreinamento extends HttpServlet{
 
                 int idEmpresa = Integer.parseInt(idEmpresaTexto);
 
+                // Confere regras de negocio antes de gravar o alerta
                 if(idCronograma <= 0){
                     mensagem = "o id do cronograma deve ser > 0";
                     request.setAttribute("erro", mensagem);
@@ -82,6 +102,8 @@ public class ServletCreateDivisaoTreinamento extends HttpServlet{
                 }
 
                 else {
+
+                    // Monta o modelo e pede ao DAO para inserir o novo registro
                     DivisaoTreinamento divisaoTreinamento = new DivisaoTreinamento(
                             idCronograma,
                             codigo,
@@ -91,15 +113,21 @@ public class ServletCreateDivisaoTreinamento extends HttpServlet{
 
                     divisaoTreinamentoDAO.inserir(divisaoTreinamento);
 
+                    // Após a insercao redireciona para a listagem atualizada
                     response.sendRedirect(request.getContextPath() + "/listar-divisoes");
                     return;
                 }
             }
+
+            // Trata valores que nao podem ser convertidos para numero ou data
             catch (NumberFormatException e ){
                 mensagem = "codigo ou idEmpresa ou idCronograma devem ser numeros válidos";
                 request.setAttribute("erro", mensagem);
             }
         }
+
+        // Em caso de erro, retorna ao formulario com a mensagem de validacao.
         request.getRequestDispatcher("/WEB-INF/DivisaoTreinamentoJSP/DivisaoTreinamento.jsp").forward(request,response);
+
     }
 }
