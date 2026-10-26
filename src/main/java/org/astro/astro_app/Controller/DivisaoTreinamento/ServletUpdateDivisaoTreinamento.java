@@ -1,5 +1,6 @@
 package org.astro.astro_app.Controller.DivisaoTreinamento;
 
+// Biblioteca:
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
@@ -15,7 +16,10 @@ public class ServletUpdateDivisaoTreinamento extends HttpServlet{
 
     @Override
     public void init(){
+
+        // Concede o acesso ao DAO da divisão treinamentp quando o servlet e iniciado
         divisaoTreinamentoDAO = new DivisaoTreinamentoDAO();
+
     }
 
     @Override
@@ -23,6 +27,7 @@ public class ServletUpdateDivisaoTreinamento extends HttpServlet{
 
         request.setCharacterEncoding("UTF-8");
 
+        // Le o identificador e os novos valores enviados pelo formulario de edicao
         String idDivisaoTexto = request.getParameter("id_divisao");
 
         String idCronogramaTexto = request.getParameter("id_cronograma");
@@ -35,39 +40,60 @@ public class ServletUpdateDivisaoTreinamento extends HttpServlet{
 
         String mensagem = "";
 
+        // Valida campos obrigatorios e o tamanho da descricao antes da conversao
         if(idDivisaoTexto == null || idDivisaoTexto.isBlank()){
+
             mensagem = "o id da divisao não informado";
+
             request.setAttribute("erro", mensagem);
+
         }
 
         else if(idCronogramaTexto == null || idCronogramaTexto.isBlank()){
+
             mensagem = "o id do cronograma não pode ser vazio";
+
             request.setAttribute("erro", mensagem);
+
         }
 
         else if(codigoTexto == null || codigoTexto.isBlank()){
+
             mensagem = "o codigo não pode ser vazio";
+
             request.setAttribute("erro", mensagem);
+
         }
 
         else if(idEmpresaTexto == null || idEmpresaTexto.isBlank()){
+
             mensagem = "o id da empresa não pode ser vazio";
+
             request.setAttribute("erro", mensagem);
+
         }
 
         else if(nome == null || nome.isBlank()){
+
             mensagem = "o nome não pode ser vazio";
+
             request.setAttribute("erro", mensagem);
+
         }
 
         else if(nome.length() > 50){
+
             mensagem = "o nome deve conter até 50 caracteres";
+
             request.setAttribute("erro", mensagem);
+
         }
 
         else{
+
             try{
 
+                // Converte identificadores, codigo e data para os tipos esperados
                 int idDivisao = Integer.parseInt(idDivisaoTexto);
 
                 int idCronograma = Integer.parseInt(idCronogramaTexto);
@@ -76,28 +102,39 @@ public class ServletUpdateDivisaoTreinamento extends HttpServlet{
 
                 int idEmpresa = Integer.parseInt(idEmpresaTexto);
 
+                // Aplica as regras de negócio antes de atualizar o registro
                 if(idDivisao <=0){
+
                     mensagem = "Id da divisao é invalido";
+
                     request.setAttribute("erro", mensagem);
+
                 }
 
                 else if(idCronograma <=0){
+
                     mensagem = "id do cronograma é inválido";
+
                     request.setAttribute("erro", mensagem);
                 }
 
                 else if(codigo <= 0){
+
                     mensagem = "o codigo é inválido";
+
                     request.setAttribute("erro", mensagem);
                 }
 
                 else if(idEmpresa <=0){
+
                     mensagem = "o id da empresa é inválido";
+
                     request.setAttribute("erro", mensagem);
                 }
 
                 else{
 
+                    // Monta o modelo atualizado e envia os dados ao DAO
                     DivisaoTreinamento divisaoTreinamento = new DivisaoTreinamento(
                             idDivisao,
                             idCronograma,
@@ -106,19 +143,23 @@ public class ServletUpdateDivisaoTreinamento extends HttpServlet{
                             nome
                     );
 
+                    // Altera caso todos os pontos tenham sido compridos
                     divisaoTreinamentoDAO.alterarDivisaoTreinamento(divisaoTreinamento);
 
+                    // Redireciona para a lista apos concluir a atualizacao.
                     response.sendRedirect(request.getContextPath() + "/listar-divisoes");
-
                     return;
                 }
             }
+
+            // Trata identificadores invalidos e datas fora do formato esperado
             catch (NumberFormatException e){
                 mensagem = "Os ids devem ser numeros validos";
                 request.setAttribute("erro", mensagem);
             }
         }
 
+        // Em caso de erro, retorna ao formulario com a mensagem de validacao
         request.getRequestDispatcher("/WEB-INF/DivisaoTreinamentoJSP/DivisaoTreinamento.jsp").forward(request,response);
 
     }

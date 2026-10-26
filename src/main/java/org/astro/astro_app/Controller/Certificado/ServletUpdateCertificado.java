@@ -1,5 +1,6 @@
 package org.astro.astro_app.Controller.Certificado;
 
+// Biblioteca:
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -19,7 +20,10 @@ public class ServletUpdateCertificado extends HttpServlet {
 
     @Override
     public void init() {
+
+        // Concede o acesso ao DAO do certificado quando o servlet e iniciado
         certificadoDAO = new CertificadoDAO();
+
     }
 
     @Override
@@ -27,6 +31,7 @@ public class ServletUpdateCertificado extends HttpServlet {
 
         request.setCharacterEncoding("UTF-8");
 
+        // Le o identificador e os novos valores enviados pelo formulario de edicao
         String idCertificadoTexto = request.getParameter("id_certificado");
 
         String idFuncionarioTexto = request.getParameter("id_funcionario");
@@ -39,10 +44,12 @@ public class ServletUpdateCertificado extends HttpServlet {
 
         String validadeTexto = request.getParameter("validade");
 
+        // Guarda a data convertida e a mensagem de erro, se houver
         Date dataEmissao = null;
         Date validade = null;
         String mensagem = "";
 
+        // Valida campos obrigatorios e o tamanho da descricao antes da conversao
         if (idCertificadoTexto == null || idCertificadoTexto.isBlank()) {
             mensagem = "Erro: id do certificado não informado";
             request.setAttribute("erro", mensagem);
@@ -74,8 +81,10 @@ public class ServletUpdateCertificado extends HttpServlet {
         }
 
         else {
+
             try {
 
+                // Converte identificadores, codigo e data para os tipos esperados
                 int idCertificado = Integer.parseInt(idCertificadoTexto);
 
                 int idFuncionario = Integer.parseInt(idFuncionarioTexto);
@@ -90,38 +99,58 @@ public class ServletUpdateCertificado extends HttpServlet {
                 LocalDate localDataEmissao = dataEmissao.toLocalDate();
                 LocalDate localValidade = validade.toLocalDate();
 
+                // Aplica as regras de negócio antes de atualizar o registro
                 if (idCertificado <= 0) {
+
                     mensagem = "o id do certificado é invalido";
+
                     request.setAttribute("erro", mensagem);
                 }
 
+
                 else if (idFuncionario <= 0) {
+
                     mensagem = "o id do funcionário deve ser > 0";
+
                     request.setAttribute("erro", mensagem);
+
                 }
 
                 else if (idNrFuncionario <= 0) {
+
                     mensagem = "o id da NR do funcionario deve ser > 0";
+
                     request.setAttribute("erro", mensagem);
+
                 }
 
                 else if (idNrEmpresa <= 0) {
+
                     mensagem = "o id da NR da empresa deve ser > 0";
+
                     request.setAttribute("erro", mensagem);
+
                 }
 
                 else if (localDataEmissao.isAfter(LocalDate.now())) {
+
                     mensagem = "a data deve ser anterior ou no dia atual";
+
                     request.setAttribute("erro", mensagem);
+
                 }
 
                 else if (localValidade.isBefore(LocalDate.now())) {
+
                     mensagem = "a validade deve ser a partir do dia atual";
+
                     request.setAttribute("erro", mensagem);
+
                 }
 
                 else {
 
+                    // Monta o modelo atualizado e envia os dados ao DAO
                     Certificado certificadoAtualizado = new Certificado(
                             idCertificado,
                             idFuncionario,
@@ -131,17 +160,25 @@ public class ServletUpdateCertificado extends HttpServlet {
                             validade
                     );
 
+                    // Altera caso todos os pontos tenham sido compridos
                     int resultado = certificadoDAO.alterarCertificado(certificadoAtualizado);
+
                     if (resultado > 0) {
+
+                        // Redireciona para a lista apos concluir a atualizacao.
                         response.sendRedirect(request.getContextPath() + "/listar-certificados");
                         return;
+
                     }
 
-                    mensagem = "Nao foi possivel alterar o certificado. Confira os dados e tente novamente.";
+                    // Mensagem de erro
+                    mensagem = "Não foi possivel alterar o certificado. Confira os dados e tente novamente.";
                     request.setAttribute("erro", mensagem);
                 }
 
             }
+
+            // Trata identificadores invalidos e datas fora do formato esperado
             catch (NumberFormatException e) {
                 mensagem = "os ids devem ser numeros validos";
                 request.setAttribute("erro", mensagem);
@@ -152,7 +189,8 @@ public class ServletUpdateCertificado extends HttpServlet {
             }
         }
 
-        //se teve erro, volta pra pagina
+        // Em caso de erro, retorna ao formulario com a mensagem de validacao
         request.getRequestDispatcher("/WEB-INF/CertificadoJSP/Certificado.jsp").forward(request, response);
+
     }
 }

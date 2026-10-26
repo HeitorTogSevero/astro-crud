@@ -1,5 +1,6 @@
 package org.astro.astro_app.Controller.Administrador;
 
+// Biblioteca:
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -28,22 +29,30 @@ public class ServletReadAdministrador extends HttpServlet {
 
     @Override
     public void init() {
+
+        // Concede o acesso ao DAO de adiministrador quando o servlet e iniciado
         administradorDAO = new AdministradorDAO();
 
+        // Concede o acesso ao DAO da empresa quando o servlet e iniciado
         empresaDAO = new EmpresaDAO();
 
+        // Concede o acesso ao DAO do funcionário quando o servlet e iniciado
         funcionarioDAO = new FuncionarioDAO();
 
+        // Concede o acesso ao DAO de certificados quando o servlet e iniciado
         certificadoDAO = new CertificadoDAO();
 
+        // Concede o acesso ao DAO do departamento quando o servlet e iniciado
         departamentoDAO = new DepartamentoDAO();
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        // Os dados chegam em bits, aqui converte ele para linguagem normal
         request.setCharacterEncoding("UTF-8");
 
+        // Mantém os valores no filtro(opicional)
         request.setAttribute("totalEmpresas", empresaDAO.contarEmpresas());
 
         request.setAttribute("totalFuncionarios", funcionarioDAO.contarFuncionarios());
@@ -55,6 +64,7 @@ public class ServletReadAdministrador extends HttpServlet {
         request.setAttribute("ultimasEmpresas", empresaDAO.listarUltimasTresEmpresas());
 
 
+        // Encaminha internamente para a tela que apresenta a listagem
         request.getRequestDispatcher("/WEB-INF/crud.jsp").forward(request, response);
     }
 }

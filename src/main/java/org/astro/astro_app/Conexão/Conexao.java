@@ -1,5 +1,6 @@
 package org.astro.astro_app.Conexão;
 
+//Binlioteca:
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -11,17 +12,16 @@ public class Conexao{
 
     Dotenv dotenv = Dotenv.load();
 
-    //    Esse metodo conecta o Projeto com o BD
+    // Esse metodo conecta o Projeto com o BD
     public Connection conectar() {
+
         Connection conn = null;
 
-
-//         Realizando a Conexão:
-
+        // Realizando a Conexão:
         try{
             Class.forName("org.postgresql.Driver"); // Driver do JDBC
 
-//          Recebendo os valores do arquivo .env:
+            // Recebendo os valores do arquivo .env:
             String usuario = dotenv.get("DB_USER");
             String senha = dotenv.get("DB_PASSWORD");
             String url = dotenv.get("DB_URL");
@@ -35,16 +35,18 @@ public class Conexao{
             System.out.println(e.getMessage());
         }
 
-
         return conn;
 
     }
     // Metodo para Desconetar o Banco:
     public void desconectar(Connection conn){
+
         try{
+
             if (conn != null && !conn.isClosed()) {
                 conn.close(); // Fechando a Conexão
             }
+
         } catch (SQLException sqle) {
             sqle.printStackTrace();
         }

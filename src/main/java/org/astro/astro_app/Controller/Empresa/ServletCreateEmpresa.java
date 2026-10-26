@@ -1,5 +1,6 @@
 package org.astro.astro_app.Controller.Empresa;
 
+// Biblioteca:
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
@@ -18,12 +19,16 @@ public class ServletCreateEmpresa extends HttpServlet{
 
     @Override
     public void init(){
+
+        // Concede o acesso ao DAO de empresas quando o servlet e iniciado
         empresaDAO = new EmpresaDAO();
+
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
 
+        // Os dados chegam em bits, aqui converte ele para linguagem normal
         request.setCharacterEncoding("UTF-8");
 
         final Pattern cepRegex =
@@ -35,6 +40,7 @@ public class ServletCreateEmpresa extends HttpServlet{
         final Pattern cnaeRegex =
                 Pattern.compile("^(\\d{4}-\\d/\\d{2}|\\d{7})$");
 
+        // Le os valores enviados no formulario de cadastro
         String cnae = request.getParameter("cnae");
 
         String nome = request.getParameter("nome");
@@ -53,89 +59,120 @@ public class ServletCreateEmpresa extends HttpServlet{
 
         String dataRegistroTexto = request.getParameter("dt_registro");
 
+        // Guarda a data como sqlDate depois de validar e converter o texto recebido
         Date dataRegistro = null;
         String mensagem = "";
 
+        // Verifica campos obrigatorios e limites antes de converter os dados
         if(dataRegistroTexto == null || dataRegistroTexto.isBlank()){
+
             mensagem = "a data não pode ser vazia";
             request.setAttribute("erro", mensagem);
+
         }
 
         else if(nome == null || nome.isBlank()){
+
             mensagem = "o nome não pode ser vazio";
             request.setAttribute("erro", mensagem);
+
         }
 
         else if(nome.length() > 100){
+
             mensagem = "o nome pode conter até 100 caracteres";
             request.setAttribute("erro", mensagem);
 
         }
 
         else if(rua == null || rua.isBlank()){
+
             mensagem = "o nome da rua não pode ser vazio";
             request.setAttribute("erro", mensagem);
 
         }
 
         else if(rua.length() > 100){
+
             mensagem = "o nome da rua pode conter até 100 caracteres";
             request.setAttribute("erro", mensagem);
+
         }
 
         else if(bairro == null || bairro.isBlank()){
+
             mensagem = "o nome do bairro não pode ser vazio";
             request.setAttribute("erro", mensagem);
+
         }
 
         else if(bairro.length() > 100){
+
             mensagem = "o nome do bairro pode conter até 100 caracteres";
             request.setAttribute("erro", mensagem);
+
         }
 
         else if(cidade == null || cidade.isBlank()){
+
             mensagem = "o nome da cidade não pode ser vazio";
             request.setAttribute("erro", mensagem);
+
 
         }
 
         else if(cidade.length() > 100){
+
             mensagem = " nome da cidade pode conter até 100 caracteres";
             request.setAttribute("erro", mensagem);
+
         }
 
         else if(estado == null || estado.isBlank()){
+
             mensagem = "o nome do estado não pode ser vazio";
             request.setAttribute("erro", mensagem);
+
 
         }
 
         else if(estado.length() > 100){
+
             mensagem = "o nome do estado pode conter até 2 caracteres";
             request.setAttribute("erro", mensagem);
+
         }
 
         else if(cep == null || !cepRegex.matcher(cep).matches()){
+
             mensagem = "o formato do cep não é aceito";
             request.setAttribute("erro", mensagem);
+
         }
 
         else if(cnpj == null || !cnpjRegex.matcher(cnpj).matches()){
+
             mensagem = "o formato do cnpj não é aceito";
             request.setAttribute("erro", mensagem);
+
         }
 
         else if(cnae == null || !cnaeRegex.matcher(cnae).matches()){
+
             mensagem = "o formato do cnae não é aceito";
             request.setAttribute("erro", mensagem);
+
         }
 
         else{
+
+            // Converte os campos numericos e a data para os tipos usados pelo modelo
             try{
 
                 dataRegistro = Date.valueOf(dataRegistroTexto);
                 LocalDate localDataRegistro = dataRegistro.toLocalDate();
 
+                // Confere regras de negocio antes de gravar o alerta
                 if(localDataRegistro.isAfter(LocalDate.now())){
                     mensagem = "Erro: a data de registro deve ser antes ou no dia atual";
                     request.setAttribute("erro", mensagem);
@@ -143,6 +180,7 @@ public class ServletCreateEmpresa extends HttpServlet{
 
                 else{
 
+                    // Monta o modelo e pede ao DAO para inserir o novo registro
                     Empresa empresa = new Empresa(
                             cnae,
                             nome,
@@ -156,18 +194,21 @@ public class ServletCreateEmpresa extends HttpServlet{
                     );
 
                     empresaDAO.inserir(empresa);
-                    //depois manda o usuario pro ReadEmpresa
+
+                    // Após a insercao redireciona para a listagem atualizada
                     response.sendRedirect(request.getContextPath() + "/listar-empresas");
                     return;
                 }
 
+            // Trata valores que nao podem ser convertidos para numero ou data
             }catch (IllegalArgumentException e){
                 mensagem = "data invalida, use o formato ano-mes-dia";
                 request.setAttribute("erro", mensagem);
             }
         }
 
-        //teve erro, volta para a pagina
+        // Em caso de erro, retorna ao formulario com a mensagem de validacao.
         request.getRequestDispatcher("/WEB-INF/EmpresaJSP/Empresa.jsp").forward(request,response);
+
     }
 }

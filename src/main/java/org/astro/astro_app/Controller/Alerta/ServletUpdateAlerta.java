@@ -1,5 +1,6 @@
 package org.astro.astro_app.Controller.Alerta;
 
+// Biblioteca:
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
@@ -17,8 +18,10 @@ public class ServletUpdateAlerta extends HttpServlet {
 
     @Override
     public void init() {
-        //concede o acesso ao DAO de alertas quando o servlet e iniciado
+
+        // Concede o acesso ao DAO de alertas quando o servlet e iniciado
         alertaDAO = new AlertaDAO();
+
     }
 
     @Override
@@ -43,39 +46,58 @@ public class ServletUpdateAlerta extends HttpServlet {
 
         // Valida campos obrigatorios e o tamanho da descricao antes da conversao
         if (idAlertaTexto == null || idAlertaTexto.isBlank()) {
+
             mensagem = "id do alerta não informado";
+
             request.setAttribute("erro", mensagem);
+
         }
 
         else if (dtLimiteTexto == null || dtLimiteTexto.isBlank()) {
+
             mensagem = "a data não pode ser vazia";
+
             request.setAttribute("erro", mensagem);
+
         }
 
         else if (descricao == null || descricao.isBlank()) {
+
             mensagem = "a descricao não pode ser vazia";
+
             request.setAttribute("erro", mensagem);
+
         }
 
         else if (descricao.length() > 250) {
+
             mensagem = "O maximo de caracteres é 250";
+
             request.setAttribute("erro", mensagem);
+
         }
 
         else if (codigoTexto == null || codigoTexto.isBlank()) {
+
             mensagem = "O codigo nao pode ser nulo";
+
             request.setAttribute("erro", mensagem);
+
         }
 
         else if (idEmpresaTexto == null || idEmpresaTexto.isBlank()) {
+
             mensagem = "O id da empresa não pode ser nulo";
+
             request.setAttribute("erro", mensagem);
+
         }
 
         else {
+
             try {
 
-                //converte identificadores, codigo e data para os tipos esperados
+                // Converte identificadores, codigo e data para os tipos esperados
                 int idAlerta = Integer.parseInt(idAlertaTexto);
 
                 int codigo = Integer.parseInt(codigoTexto);
@@ -85,29 +107,42 @@ public class ServletUpdateAlerta extends HttpServlet {
                 dataLimite = Date.valueOf(dtLimiteTexto);
                 LocalDate localDataLimite = dataLimite.toLocalDate();
 
-                //aplica as regras de negocio antes de atualizar o registro
+                // Aplica as regras de negócio antes de atualizar o registro
                 if (idAlerta <= 0) {
+
                     mensagem = "O id do alerta invalido";
+
                     request.setAttribute("erro", mensagem);
+
                 }
 
                 else if (codigo <= 0) {
+
                     mensagem = "O codigo deve ser > 0";
+
                     request.setAttribute("erro", mensagem);
+
                 }
 
                 else if (idEmpresa <= 0) {
+
                     mensagem = "Este id deve ser > 0";
+
                     request.setAttribute("erro", mensagem);
+
                 }
 
                 else if (localDataLimite.isBefore(LocalDate.now())) {
+
                     mensagem = "A data limite deve ser a partir da data atual";
+
                     request.setAttribute("erro", mensagem);
+
                 }
 
                 else {
-                    //monta o modelo atualizado e envia os dados ao DAO
+
+                    // Monta o modelo atualizado e envia os dados ao DAO
                     Alerta alertaAtualizado = new Alerta(
                             idAlerta,
                             codigo,
@@ -116,14 +151,17 @@ public class ServletUpdateAlerta extends HttpServlet {
                             dataLimite
                     );
 
+                    // Altera caso todos os pontos tenham sido compridos
                     alertaDAO.alterarAlerta(alertaAtualizado);
+
                     // Redireciona para a lista apos concluir a atualizacao.
                     response.sendRedirect(request.getContextPath() + "/listar-alerta");
                     return;
                 }
 
             }
-            //trata identificadores invalidos e datas fora do formato esperado
+
+            // Trata identificadores invalidos e datas fora do formato esperado
             catch (NumberFormatException e) {
                 mensagem = "Codigo ou id da empresa devem ser numeros validos";
                 request.setAttribute("erro", mensagem);
@@ -134,7 +172,8 @@ public class ServletUpdateAlerta extends HttpServlet {
             }
         }
 
-        //em caso de erro, retorna ao formulario com a mensagem de validacao
+        // Em caso de erro, retorna ao formulario com a mensagem de validacao
         request.getRequestDispatcher("/WEB-INF/AlertaJSP/alerta.jsp").forward(request, response);
+
     }
 }
