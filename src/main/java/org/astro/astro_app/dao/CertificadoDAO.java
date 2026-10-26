@@ -1,22 +1,23 @@
 package org.astro.astro_app.dao;
 
-import org.astro.astro_app.Conexão.Conexao; //Import da classe Conexao
-import org.astro.astro_app.model.Certificado; //Import da classe Alerta
+// Biblioteca:
+import org.astro.astro_app.Conexão.Conexao;
+import org.astro.astro_app.model.Certificado;
 
-import java.sql.*; //Import das classes java.sql
-import java.util.ArrayList; //Import da classe Certificado
+import java.sql.*;
+import java.util.ArrayList;
 
 // Classe DAO Certificado - CRUD:
 public class CertificadoDAO {
 
-    // Metodo Create | Insert - CRUD
+    // Método Create | Insert - CRUD
     public boolean inserir(Certificado c){
 
         // Criando a conexão com o banco de dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-        //Tentando a conexão
+        // Tentando a conexão
         try{
             conn = conexao.conectar();
 
@@ -35,7 +36,7 @@ public class CertificadoDAO {
             }
             return false;
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         }catch (SQLException sqlE){
             System.out.println(sqlE.getMessage());
             return false;
@@ -44,7 +45,7 @@ public class CertificadoDAO {
         }
     }
 
-    // Metodo Read | Select - CRUD
+    // Método Read | Select - CRUD
     public ArrayList<Certificado> buscar(String sql) {
 
         // Criando a conexão com o Banco de Dados
@@ -53,7 +54,7 @@ public class CertificadoDAO {
 
         ArrayList<Certificado> vet = new ArrayList<>();
 
-        //Tentando a conexão
+        // Tentando a conexão
         try {
             conn = conexao.conectar();
 
@@ -67,7 +68,7 @@ public class CertificadoDAO {
 
             stmt.close();
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         } catch (SQLException sqlE) {
             System.out.println(sqlE.getMessage());
         } finally {
@@ -77,14 +78,14 @@ public class CertificadoDAO {
         return vet;
     }
 
-    // Metodo Read | Select - CRUD, mas baseado no Id do certificado
+    // Método Read | Select - CRUD, mas baseado no Id do certificado
     public Certificado buscarPorIdCertificado(int idCertificado) {
 
         // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-        //Tentando a conexão
+        // Tentando a conexão
         try {
             conn = conexao.conectar();
 
@@ -101,7 +102,7 @@ public class CertificadoDAO {
             }
             return null;
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         } catch (SQLException sqlE) {
             System.out.println(sqlE.getMessage());
             return null;
@@ -110,7 +111,7 @@ public class CertificadoDAO {
         }
     }
 
-    // Metodo Read | Select - CRUD, mas baseado no Id do funcionario
+    // Método Read | Select - CRUD, mas baseado no Id do funcionario
     public ArrayList<Certificado> buscarPorIdFuncionario(int idFuncionario) {
 
         // Criando a conexão com o Banco de Dados
@@ -119,7 +120,7 @@ public class CertificadoDAO {
 
         ArrayList<Certificado> vet = new ArrayList<>();
 
-        //Tentando a conexão
+        // Tentando a conexão
         try {
             conn = conexao.conectar();
 
@@ -144,7 +145,7 @@ public class CertificadoDAO {
         return vet;
     }
 
-    // Metodo Read | Select - CRUD, mas baseado no Id do nr_funcionario
+    // Método Read | Select - CRUD, mas baseado no Id do nr_funcionario
     public ArrayList<Certificado> buscarPorIdNrFunc(int idNrFunc) {
 
         // Criando a conexão com o Banco de Dados
@@ -153,7 +154,7 @@ public class CertificadoDAO {
 
         ArrayList<Certificado> vet = new ArrayList<>();
 
-        //Tentando a conexão
+        // Tentando a conexão
         try {
             conn = conexao.conectar();
 
@@ -168,7 +169,7 @@ public class CertificadoDAO {
                 vet.add(new Certificado(rs.getInt("id_certificado"), rs.getInt("id_funcionario"), rs.getInt("id_nrfuncionario"), rs.getInt("id_nrempresa"), rs.getDate("dt_emissao"), rs.getDate("validade")));
             }
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         } catch (SQLException sqlE) {
             System.out.println(sqlE.getMessage());
         } finally {
@@ -178,7 +179,7 @@ public class CertificadoDAO {
         return vet;
     }
 
-    // Metodo Read | Select - CRUD, mas baseado no Id do nr_empresa
+    // Método Read | Select - CRUD, mas baseado no Id do nr_empresa
     public ArrayList<Certificado> buscarPorIdEmpresa(int idNrEmpresa) {
 
         // Criando a conexão com o Banco de Dados
@@ -187,7 +188,7 @@ public class CertificadoDAO {
 
         ArrayList<Certificado> vet = new ArrayList<>();
 
-        //Tentando a conexão
+        // Tentando a conexão
         try {
             conn = conexao.conectar();
 
@@ -211,13 +212,13 @@ public class CertificadoDAO {
         return vet;
     }
 
-    //metodo de contar certificados
+    // Método de contar certificados
     public int contarCertificados(){
         int total = 0;
         Conexao conexao=new Conexao();
         Connection conn = null;
 
-        //Tentando a conexão
+        // Tentando a conexão
         try {
             conn = conexao.conectar();
 
@@ -237,14 +238,14 @@ public class CertificadoDAO {
         }
         return total;
     }
-    // Metodo Update - CRUD
+    // Método Update - CRUD
     public int alterarCertificado(Certificado c){
 
         // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-        //Tentando a conexão
+        // Tentando a conexão
         try {
             conn = conexao.conectar();
 
@@ -273,7 +274,7 @@ public class CertificadoDAO {
         }
     }
 
-    // Metodo Delete | Remove - CRUD
+    // Método Delete | Remove - CRUD
     public int remover(int idCertificado){
 
         // Criando a conexão com o Banco de Dados

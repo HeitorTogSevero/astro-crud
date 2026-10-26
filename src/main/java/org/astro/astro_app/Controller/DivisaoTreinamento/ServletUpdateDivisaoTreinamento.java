@@ -17,7 +17,7 @@ public class ServletUpdateDivisaoTreinamento extends HttpServlet{
     @Override
     public void init(){
 
-        // Concede o acesso ao DAO da divisão treinamentp quando o servlet e iniciado
+        // Concede o acesso ao DAO da divisão treinamento, quando o servlet e iniciado
         divisaoTreinamentoDAO = new DivisaoTreinamentoDAO();
 
     }
@@ -27,12 +27,12 @@ public class ServletUpdateDivisaoTreinamento extends HttpServlet{
 
         request.setCharacterEncoding("UTF-8");
 
-        // Le o identificador e os novos valores enviados pelo formulario de edicao
+        // Le o identificador e os novos valores enviados pelo formulário de edição
         String idDivisaoTexto = request.getParameter("id_divisao");
 
         String idCronogramaTexto = request.getParameter("id_cronograma");
 
-        String codigoTexto = request.getParameter("codigo");
+        String codigoTexto = request.getParameter("código");
 
         String idEmpresaTexto = request.getParameter("id_empresa");
 
@@ -40,10 +40,10 @@ public class ServletUpdateDivisaoTreinamento extends HttpServlet{
 
         String mensagem = "";
 
-        // Valida campos obrigatorios e o tamanho da descricao antes da conversao
+        // Valida campos obrigatórios e o tamanho da descrição antes da conversão
         if(idDivisaoTexto == null || idDivisaoTexto.isBlank()){
 
-            mensagem = "o id da divisao não informado";
+            mensagem = "o id da divisão não informado";
 
             request.setAttribute("erro", mensagem);
 
@@ -59,7 +59,7 @@ public class ServletUpdateDivisaoTreinamento extends HttpServlet{
 
         else if(codigoTexto == null || codigoTexto.isBlank()){
 
-            mensagem = "o codigo não pode ser vazio";
+            mensagem = "o código não pode ser vazio";
 
             request.setAttribute("erro", mensagem);
 
@@ -120,7 +120,7 @@ public class ServletUpdateDivisaoTreinamento extends HttpServlet{
 
                 else if(codigo <= 0){
 
-                    mensagem = "o codigo é inválido";
+                    mensagem = "o código é inválido";
 
                     request.setAttribute("erro", mensagem);
                 }
@@ -146,20 +146,20 @@ public class ServletUpdateDivisaoTreinamento extends HttpServlet{
                     // Altera caso todos os pontos tenham sido compridos
                     divisaoTreinamentoDAO.alterarDivisaoTreinamento(divisaoTreinamento);
 
-                    // Redireciona para a lista apos concluir a atualizacao.
+                    // Redireciona para a lista apos concluir a atualização.
                     response.sendRedirect(request.getContextPath() + "/listar-divisoes");
                     return;
                 }
             }
 
-            // Trata identificadores invalidos e datas fora do formato esperado
+            // Trata identificadores inválidos e datas fora do formato esperado
             catch (NumberFormatException e){
-                mensagem = "Os ids devem ser numeros validos";
+                mensagem = "Os ids devem ser números validos";
                 request.setAttribute("erro", mensagem);
             }
         }
 
-        // Em caso de erro, retorna ao formulario com a mensagem de validacao
+        // Em caso de erro, retorna ao formulário com a mensagem de validação
         request.getRequestDispatcher("/WEB-INF/DivisaoTreinamentoJSP/DivisaoTreinamento.jsp").forward(request,response);
 
     }

@@ -38,7 +38,7 @@ public class ServletUpdateFuncionario extends HttpServlet {
                 Pattern.compile("^[a-zA-Z0-9._%+#$!\\-]+@(gmail|hotmail|yahoo|outlook)\\.(com|com\\.br|org\\.br)$");
 
 
-        // Le o identificador e os novos valores enviados pelo formulario de edicao
+        // Le o identificador e os novos valores enviados pelo formulário de edição
         String idFuncionarioTexto = request.getParameter("id_funcionario");
 
         String nome = request.getParameter("nome");
@@ -55,7 +55,7 @@ public class ServletUpdateFuncionario extends HttpServlet {
 
         String mensagem = "";
 
-        // Valida campos obrigatorios e o tamanho da descricao antes da conversao
+        // Valida campos obrigatórios e o tamanho da descrição antes da conversão
         if (idFuncionarioTexto == null || idFuncionarioTexto.isBlank()) {
 
             mensagem = "o id do funcionario nao informado";
@@ -148,7 +148,7 @@ public class ServletUpdateFuncionario extends HttpServlet {
 
             try {
 
-                // Converte identificadores, codigo e data para os tipos esperados
+                // Converte identificadores, código e data para os tipos esperados
                 int idFuncionario = Integer.parseInt(idFuncionarioTexto);
 
                 int idEmpresa = Integer.parseInt(idEmpresaTexto);
@@ -196,14 +196,14 @@ public class ServletUpdateFuncionario extends HttpServlet {
                     // Altera caso todos os pontos tenham sido compridos
                     funcionarioDAO.alterarFuncionario(funcionario);
 
-                    // Redireciona para a lista apos concluir a atualizacao.
+                    // Redireciona para a lista apos concluir a atualização.
                     response.sendRedirect(request.getContextPath() + "/listar-funcionarios");
                     return;
                 }
 
             }
 
-            // Trata identificadores invalidos e datas fora do formato esperado
+            // Trata identificadores inválidos e datas fora do formato esperado
             catch (NumberFormatException e) {
 
                 mensagem = "os ids devem ser numeros validos";
@@ -212,7 +212,7 @@ public class ServletUpdateFuncionario extends HttpServlet {
             }
         }
 
-        // Em caso de erro, retorna ao formulario com a mensagem de validacao
+        // Em caso de erro, retorna ao formulário com a mensagem de validação
         request.getRequestDispatcher("/WEB-INF/FuncionarioJSP/Funcionario.jsp").forward(request, response);
 
     }

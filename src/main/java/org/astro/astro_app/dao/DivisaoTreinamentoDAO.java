@@ -1,22 +1,23 @@
 package org.astro.astro_app.dao;
 
-import org.astro.astro_app.Conexão.Conexao; //Import da classe Conexao
-import org.astro.astro_app.model.DivisaoTreinamento; //Import da classe DivisaoTreinamento
+// Biblioteca:
+import org.astro.astro_app.Conexão.Conexao;
+import org.astro.astro_app.model.DivisaoTreinamento;
 
-import java.sql.*; //Import da classe java.sql
-import java.util.ArrayList; //Import da classe ArrayList
+import java.sql.*;
+import java.util.ArrayList;
 
 // Classe DAO DivisaoTreinamento - CRUD:
 public class DivisaoTreinamentoDAO {
 
-    // Metodo Create | Insert - CRUD
+    // Método Create | Insert - CRUD
     public boolean inserir(DivisaoTreinamento divisaoTreinamento){
 
         // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-        //Tentando a conexão
+        // Tentando a conexão
         try{
             conn = conexao.conectar();
 
@@ -34,7 +35,7 @@ public class DivisaoTreinamentoDAO {
             }
             return false;
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         }catch(SQLException sqle){
             System.out.println(sqle.getMessage());
             return false;
@@ -43,7 +44,7 @@ public class DivisaoTreinamentoDAO {
         }
     }
 
-    // Metodo Read | Select - CRUD
+    // Método Read | Select - CRUD
     public ArrayList<DivisaoTreinamento> buscar(String sql){
 
         // Criando a conexão com o Banco de Dados
@@ -52,7 +53,7 @@ public class DivisaoTreinamentoDAO {
 
         ArrayList<DivisaoTreinamento> vet = new ArrayList<>();
 
-        //Tentando a conexão
+        // Tentando a conexão
         try{
             conn = conexao.conectar();
 
@@ -67,7 +68,7 @@ public class DivisaoTreinamentoDAO {
 
             stmt.close();
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         }catch (SQLException sqle){
             System.out.println(sqle.getMessage());
         }finally {
@@ -77,14 +78,14 @@ public class DivisaoTreinamentoDAO {
         return vet;
     }
 
-    // Metodo Read | Select - CRUD, mas baseado no Id da divisao
+    // Método Read | Select - CRUD, mas baseado no Id da divisao
     public DivisaoTreinamento buscarPorIdDiv(int idDivisao){
 
         // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-        //Tentando a conexão
+        // Tentando a conexão
         try{
             conn = conexao.conectar();
 
@@ -101,7 +102,7 @@ public class DivisaoTreinamentoDAO {
             }
             return null;
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         } catch (SQLException sqle){
             System.out.println(sqle.getMessage());
             return null;
@@ -110,7 +111,7 @@ public class DivisaoTreinamentoDAO {
         }
     }
 
-    // Metodo Read | Select - CRUD, mas baseado no Id da empresa
+    // Método Read | Select - CRUD, mas baseado no Id da empresa
     public ArrayList<DivisaoTreinamento> buscarPorIdEmpresa(int idEmpresa){
 
         // Criando a conexão com o Banco de Dados
@@ -119,7 +120,7 @@ public class DivisaoTreinamentoDAO {
 
         ArrayList<DivisaoTreinamento> vet = new ArrayList<>();
 
-        //Tentando a conexão
+        // Tentando a conexão
         try{
             conn = conexao.conectar();
 
@@ -134,7 +135,7 @@ public class DivisaoTreinamentoDAO {
                 vet.add(new DivisaoTreinamento(rs.getInt("id_divisao"), rs.getInt("id_cronograma"), rs.getInt("codigo"), rs.getInt("id_empresa"), rs.getString("nome")));
             }
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         } catch (SQLException sqle){
             System.out.println(sqle.getMessage());
         } finally {
@@ -144,7 +145,7 @@ public class DivisaoTreinamentoDAO {
         return vet;
     }
 
-    // Metodo Read | Select - CRUD, mas baseado no Id do cronograma
+    // Método Read | Select - CRUD, mas baseado no Id do cronograma
     public ArrayList<DivisaoTreinamento> buscarPorIdCronograma(int idCronograma){
 
         // Criando a conexão com o Banco de Dados
@@ -153,7 +154,7 @@ public class DivisaoTreinamentoDAO {
 
         ArrayList<DivisaoTreinamento> vet = new ArrayList<>();
 
-        //Tentando a conexão
+        // Tentando a conexão
         try{
             conn = conexao.conectar();
 
@@ -168,7 +169,7 @@ public class DivisaoTreinamentoDAO {
                 vet.add(new DivisaoTreinamento(rs.getInt("id_divisao"), rs.getInt("id_cronograma"), rs.getInt("codigo"), rs.getInt("id_empresa"), rs.getString("nome")));
             }
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         } catch (SQLException sqle){
             System.out.println(sqle.getMessage());
         } finally {
@@ -178,14 +179,14 @@ public class DivisaoTreinamentoDAO {
         return vet;
     }
 
-    // Metodo Update - CRUD
+    // Método Update - CRUD
     public int alterarDivisaoTreinamento(DivisaoTreinamento divisaoTreinamento){
 
         // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-        //Tentando a conexão
+        // Tentando a conexão
         try{
             conn = conexao.conectar();
 
@@ -204,7 +205,7 @@ public class DivisaoTreinamentoDAO {
             }
             return 0;
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         }catch (SQLException sqle){
             System.out.println(sqle.getMessage());
             return -1;
@@ -213,14 +214,14 @@ public class DivisaoTreinamentoDAO {
         }
     }
 
-    // Metodo Delete | Remove - CRUD
+    // Método Delete | Remove - CRUD
     public int remover(int idDivisao){
 
         // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-        //Tentando a conexão
+        // Tentando a conexão
         try{
             conn = conexao.conectar();
 
@@ -235,7 +236,7 @@ public class DivisaoTreinamentoDAO {
             }
             return 0;
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         }catch (SQLException sqle){
             System.out.println(sqle.getMessage());
             return -1;

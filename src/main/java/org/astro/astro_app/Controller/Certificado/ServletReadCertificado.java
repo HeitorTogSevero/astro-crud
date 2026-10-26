@@ -62,7 +62,7 @@ public class ServletReadCertificado extends HttpServlet {
             // Filtro dtmaxima
             if (dataEmissaoMaximaTexto != null && !dataEmissaoMaximaTexto.isBlank()) {
 
-                // Valida o formato ano-mes-dia e converte a data maxima
+                // Valida o formato ano-mes-dia e converte a data máxima
                 dataEmissaoMaxima = Date.valueOf(dataEmissaoMaximaTexto);
 
             }

@@ -32,7 +32,7 @@ public class ServletDeleteDepartamento extends HttpServlet {
         String mensagem = "";
 
 
-        // Impede a exclusao quando o identificador nao foi informado
+        // Impede a exclusão quando o identificador nao foi informado
         if(idDepartamentoTexto == null || idDepartamentoTexto.isBlank()){
 
             mensagem = "id não informado";
@@ -62,7 +62,7 @@ public class ServletDeleteDepartamento extends HttpServlet {
 
         }catch (NumberFormatException e){
 
-            // Se o identificador nao for numerico, informa o erro no formulario
+            // Se o identificador nao for numérico, informa o erro no formulário
             mensagem = "o id do departamento deve ser valido";
             request.setAttribute("erro", mensagem);
             request.getRequestDispatcher("/WEB-INF/DepartamentoJSP/Departamento.jsp").forward(request,response);

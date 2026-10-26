@@ -1,22 +1,22 @@
 package org.astro.astro_app.dao;
 
-import org.astro.astro_app.Conexão.Conexao; //Import da classe Conexao
-import org.astro.astro_app.model.Cronograma; //Import da classe Cronograma
-
-import java.sql.*; //Import das classes java.sql
-import java.util.ArrayList; //Import da classe ArrayList
+// Biblioteca:
+import org.astro.astro_app.Conexão.Conexao;
+import org.astro.astro_app.model.Cronograma;
+import java.sql.*;
+import java.util.ArrayList;
 
 // Classe DAO Cronograma - CRUD:
 public class CronogramaDAO {
 
-    // Metodo Create | Insert - CRUD
+    // Método Create | Insert - CRUD
     public boolean inserir(Cronograma cronograma){
 
         // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-        //Tentando a conexão
+        // Tentando a conexão
         try{
             conn = conexao.conectar();
 
@@ -33,7 +33,7 @@ public class CronogramaDAO {
             }
             return false;
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         }catch(SQLException sqle){
             System.out.println(sqle.getMessage());
             return false;
@@ -42,7 +42,7 @@ public class CronogramaDAO {
         }
     }
 
-    // Metodo Read | Select - CRUD
+    // Método Read | Select - CRUD
     public ArrayList<Cronograma> buscar(String sql){
 
         // Criando a conexão com o Banco de Dados
@@ -51,7 +51,7 @@ public class CronogramaDAO {
 
         ArrayList<Cronograma> vet = new ArrayList<>();
 
-        //Tentando a conexão
+        // Tentando a conexão
         try{
             conn = conexao.conectar();
 
@@ -66,7 +66,7 @@ public class CronogramaDAO {
 
             stmt.close();
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         }catch (SQLException sqle){
             System.out.println(sqle.getMessage());
         }finally {
@@ -76,14 +76,14 @@ public class CronogramaDAO {
         return vet;
     }
 
-    // Metodo Read | Select - CRUD, mas baseado no Id do cronograma
+    // Método Read | Select - CRUD, mas baseado no Id do cronograma
     public Cronograma buscarPorIdCronograma(int idCronograma){
 
         // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-        //Tentando a conexão
+        // Tentando a conexão
         try{
             conn = conexao.conectar();
 
@@ -100,7 +100,7 @@ public class CronogramaDAO {
             }
             return null;
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         } catch (SQLException sqle){
             System.out.println(sqle.getMessage());
             return null;

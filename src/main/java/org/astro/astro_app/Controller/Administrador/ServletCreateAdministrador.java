@@ -59,7 +59,7 @@ public class ServletCreateAdministrador extends HttpServlet{
         request.setAttribute("nomeDigitado", nome != null ? nome : "");
         request.setAttribute("emailDigitado", email != null ? email : "");
 
-        // Valida campos obrigatorios, limites de tamanho e formatos informados.
+        // Valida campos obrigatórios, limites de tamanho e formatos informados.
         if(nome == null || nome.isBlank()){
             mensagem = "Este campo não pode ser vazio";
             request.setAttribute("erro", mensagem);
@@ -106,7 +106,7 @@ public class ServletCreateAdministrador extends HttpServlet{
 
         else{
 
-            // Com os dados validos, cria o administrador e solicita a insercao no banco
+            // Com os dados validos, cria o administrador e solicita a inserção no banco
             try{
 
                 Administrador administrador = new Administrador(
@@ -118,7 +118,7 @@ public class ServletCreateAdministrador extends HttpServlet{
                 boolean verificarInsersao = administradorDAO.inserirAdmin(administrador);
 
                 if (verificarInsersao){
-                    // Ao concluir o cadastro, encaminha o usuario para a tela de login
+                    // Ao concluir o cadastro, encaminha o usuário para a tela de login
                     response.sendRedirect(request.getContextPath() + "/login");
                     return;
                 }else{
@@ -127,14 +127,14 @@ public class ServletCreateAdministrador extends HttpServlet{
                 }
 
             }catch (Exception e) {
-                // Exibe uma mensagem para o usuario e mostra o erro no terminal
+                // Exibe uma mensagem para o usuário e mostra o erro no terminal
                 mensagem = "Erro ao cadastrar. Tente novamente.";
                 request.setAttribute("erro", mensagem);
                 System.out.println(e.getMessage());
             }
         }
 
-        // Se houver erro, retorna ao formulario com a mensagem e os dados preservados
+        // Se houver erro, retorna ao formulário com a mensagem e os dados preservados
         request.getRequestDispatcher("/tela_login/cadastro.jsp").forward(request, response);
     }
 }

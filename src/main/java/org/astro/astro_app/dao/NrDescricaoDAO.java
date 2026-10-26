@@ -1,22 +1,23 @@
 package org.astro.astro_app.dao;
 
-import org.astro.astro_app.Conexão.Conexao; //Import da classe Conexao
-import org.astro.astro_app.model.NrDescricao; //Import da classe NrDescricao
+// Biblioteca:
+import org.astro.astro_app.Conexão.Conexao;
+import org.astro.astro_app.model.NrDescricao;
 
-import java.sql.*; //Import da classe java.sql
-import java.util.ArrayList; //Import da classe ArrayList
+import java.sql.*;
+import java.util.ArrayList;
 
 // Classe DAO NrDescricao - CRUD:
 public class NrDescricaoDAO {
 
-    // Metodo Create | Insert - CRUD
+    // Método Create | Insert - CRUD
     public boolean inserir(NrDescricao nrDescricao){
 
         // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-        //Tentando a conexão
+        // Tentando a conexão
         try{
             conn = conexao.conectar();
 
@@ -33,7 +34,7 @@ public class NrDescricaoDAO {
             }
             return false;
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         }catch(SQLException sqle){
             System.out.println(sqle.getMessage());
             return false;
@@ -42,7 +43,7 @@ public class NrDescricaoDAO {
         }
     }
 
-    // Metodo Read | Select - CRUD
+    // Método Read | Select - CRUD
     public ArrayList<NrDescricao> buscar(String sql){
 
         // Criando a conexão com o Banco de Dados
@@ -51,7 +52,7 @@ public class NrDescricaoDAO {
 
         ArrayList<NrDescricao> vet = new ArrayList<>();
 
-        //Tentando a conexão
+        // Tentando a conexão
         try{
             conn = conexao.conectar();
 
@@ -65,7 +66,7 @@ public class NrDescricaoDAO {
 
             stmt.close();
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         }catch (SQLException sqle){
             System.out.println(sqle.getMessage());
         }finally {
@@ -75,14 +76,14 @@ public class NrDescricaoDAO {
         return vet;
     }
 
-    // Metodo Read | Select - CRUD, mas baseado no Id
+    // Método Read | Select - CRUD, mas baseado no Id
     public NrDescricao buscarPorIdNrDescricao(int idNrDescricao){
 
         // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-        //Tentando a conexão
+        // Tentando a conexão
         try{
             conn = conexao.conectar();
 
@@ -99,7 +100,7 @@ public class NrDescricaoDAO {
             }
             return null;
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         } catch (SQLException sqle){
             System.out.println(sqle.getMessage());
             return null;
@@ -108,14 +109,14 @@ public class NrDescricaoDAO {
         }
     }
 
-    // Metodo Update - CRUD
+    // Método Update - CRUD
     public int alterarNrDescricao(NrDescricao nrDescricao){
 
         // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-        //Tentando a conexão
+        // Tentando a conexão
         try{
             conn = conexao.conectar();
 
@@ -133,7 +134,7 @@ public class NrDescricaoDAO {
             }
             return 0;
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         }catch (SQLException sqle){
             System.out.println(sqle.getMessage());
             return -1;
@@ -142,14 +143,14 @@ public class NrDescricaoDAO {
         }
     }
 
-    // Metodo Delete | Remove - CRUD
+    // Método Delete | Remove - CRUD
     public int remover(int idNrDescricao){
 
         // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-        //Tentando a conexão
+        // Tentando a conexão
         try{
             conn = conexao.conectar();
 
@@ -164,7 +165,7 @@ public class NrDescricaoDAO {
             }
             return 0;
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         }catch (SQLException sqle){
             System.out.println(sqle.getMessage());
             return -1;

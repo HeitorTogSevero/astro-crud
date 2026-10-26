@@ -21,7 +21,7 @@ public class FiltroAutenticarAdmin implements Filter {
 
         HttpServletResponse response1 = (HttpServletResponse) response;
 
-        // Recupera a sessão atual sem criar uma nova caso não exista
+        // Recupera a sessão atual sem criar uma, caso não exista
         HttpSession session = request1.getSession(false);
 
         // Verifica se a sessão existe e se o atributo de administrador logado está presente

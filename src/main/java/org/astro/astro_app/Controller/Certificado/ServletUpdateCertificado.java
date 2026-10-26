@@ -31,7 +31,7 @@ public class ServletUpdateCertificado extends HttpServlet {
 
         request.setCharacterEncoding("UTF-8");
 
-        // Le o identificador e os novos valores enviados pelo formulario de edicao
+        // Le o identificador e os novos valores enviados pelo formulário de edição
         String idCertificadoTexto = request.getParameter("id_certificado");
 
         String idFuncionarioTexto = request.getParameter("id_funcionario");
@@ -49,7 +49,7 @@ public class ServletUpdateCertificado extends HttpServlet {
         Date validade = null;
         String mensagem = "";
 
-        // Valida campos obrigatorios e o tamanho da descricao antes da conversao
+        // Valida campos obrigatórios e o tamanho da descrição antes da conversão
         if (idCertificadoTexto == null || idCertificadoTexto.isBlank()) {
             mensagem = "Erro: id do certificado não informado";
             request.setAttribute("erro", mensagem);
@@ -84,7 +84,7 @@ public class ServletUpdateCertificado extends HttpServlet {
 
             try {
 
-                // Converte identificadores, codigo e data para os tipos esperados
+                // Converte identificadores, código e data para os tipos esperados
                 int idCertificado = Integer.parseInt(idCertificadoTexto);
 
                 int idFuncionario = Integer.parseInt(idFuncionarioTexto);
@@ -165,7 +165,7 @@ public class ServletUpdateCertificado extends HttpServlet {
 
                     if (resultado > 0) {
 
-                        // Redireciona para a lista apos concluir a atualizacao.
+                        // Redireciona para a lista apos concluir a atualização.
                         response.sendRedirect(request.getContextPath() + "/listar-certificados");
                         return;
 
@@ -178,7 +178,7 @@ public class ServletUpdateCertificado extends HttpServlet {
 
             }
 
-            // Trata identificadores invalidos e datas fora do formato esperado
+            // Trata identificadores inválidos e datas fora do formato esperado
             catch (NumberFormatException e) {
                 mensagem = "os ids devem ser numeros validos";
                 request.setAttribute("erro", mensagem);
@@ -189,7 +189,7 @@ public class ServletUpdateCertificado extends HttpServlet {
             }
         }
 
-        // Em caso de erro, retorna ao formulario com a mensagem de validacao
+        // Em caso de erro, retorna ao formulário com a mensagem de validação
         request.getRequestDispatcher("/WEB-INF/CertificadoJSP/Certificado.jsp").forward(request, response);
 
     }

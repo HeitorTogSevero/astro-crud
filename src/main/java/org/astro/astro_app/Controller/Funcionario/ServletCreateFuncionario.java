@@ -38,7 +38,7 @@ public class ServletCreateFuncionario extends HttpServlet {
         final Pattern emailRegex =
                 Pattern.compile("^[a-zA-Z0-9._%+#$!\\-]+@(gmail|hotmail|yahoo|outlook|institutojef)\\.(com|com\\.br|org\\.br)$");
 
-        // Le os valores enviados no formulario de cadastro
+        // Le os valores enviados no formulário de cadastro
         String nome = request.getParameter("nome");
 
         String cargo = request.getParameter("cargo");
@@ -53,7 +53,7 @@ public class ServletCreateFuncionario extends HttpServlet {
 
         String mensagem = "";
 
-        // Verifica campos obrigatorios e limites antes de converter os dados
+        // Verifica campos obrigatórios e limites antes de converter os dados
         if (nome == null || nome.isBlank()) {
 
             mensagem = "o nome nao pode ser vazio";
@@ -84,7 +84,7 @@ public class ServletCreateFuncionario extends HttpServlet {
 
         else if (cpf == null || cpf.isBlank() || !cpfRegex.matcher(cpf).matches()) {
 
-            mensagem = "formato do CPF invalido. Use 000.000.000-00";
+            mensagem = "formato do CPF inválido. Use 000.000.000-00";
             request.setAttribute("erro", mensagem);
 
         }
@@ -126,7 +126,7 @@ public class ServletCreateFuncionario extends HttpServlet {
 
         else {
 
-            // Converte os campos numericos e a data para os tipos usados pelo modelo
+            // Converte os campos numéricos e a data para os tipos usados pelo modelo
             try {
 
                 int idEmpresa = Integer.parseInt(idEmpresaTexto);
@@ -158,21 +158,21 @@ public class ServletCreateFuncionario extends HttpServlet {
 
                     funcionarioDAO.inserir(funcionario);
 
-                    // Após a insercao redireciona para a listagem atualizada
+                    // Após a inserção redireciona para a listagem atualizada
                     response.sendRedirect(request.getContextPath() + "/listar-funcionarios");
                     return;
                 }
 
             }
 
-            // Trata valores que nao podem ser convertidos para numero ou data
+            // Trata valores que nao podem ser convertidos para número ou data
             catch (NumberFormatException e) {
                 mensagem = "os ids devem ser numeros validos";
                 request.setAttribute("erro", mensagem);
             }
         }
 
-        // Em caso de erro, retorna ao formulario com a mensagem de validacao.
+        // Em caso de erro, retorna ao formulário com a mensagem de validação.
         request.getRequestDispatcher("/WEB-INF/FuncionarioJSP/Funcionario.jsp").forward(request, response);
     }
 }

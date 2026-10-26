@@ -40,7 +40,7 @@ public class ServletCreateEmpresa extends HttpServlet{
         final Pattern cnaeRegex =
                 Pattern.compile("^(\\d{4}-\\d/\\d{2}|\\d{7})$");
 
-        // Le os valores enviados no formulario de cadastro
+        // Le os valores enviados no formulário de cadastro
         String cnae = request.getParameter("cnae");
 
         String nome = request.getParameter("nome");
@@ -63,7 +63,7 @@ public class ServletCreateEmpresa extends HttpServlet{
         Date dataRegistro = null;
         String mensagem = "";
 
-        // Verifica campos obrigatorios e limites antes de converter os dados
+        // Verifica campos obrigatórios e limites antes de converter os dados
         if(dataRegistroTexto == null || dataRegistroTexto.isBlank()){
 
             mensagem = "a data não pode ser vazia";
@@ -166,7 +166,7 @@ public class ServletCreateEmpresa extends HttpServlet{
 
         else{
 
-            // Converte os campos numericos e a data para os tipos usados pelo modelo
+            // Converte os campos numéricos e a data para os tipos usados pelo modelo
             try{
 
                 dataRegistro = Date.valueOf(dataRegistroTexto);
@@ -195,19 +195,19 @@ public class ServletCreateEmpresa extends HttpServlet{
 
                     empresaDAO.inserir(empresa);
 
-                    // Após a insercao redireciona para a listagem atualizada
+                    // Após a inserção redireciona para a listagem atualizada
                     response.sendRedirect(request.getContextPath() + "/listar-empresas");
                     return;
                 }
 
-            // Trata valores que nao podem ser convertidos para numero ou data
+            // Trata valores que nao podem ser convertidos para número ou data
             }catch (IllegalArgumentException e){
                 mensagem = "data invalida, use o formato ano-mes-dia";
                 request.setAttribute("erro", mensagem);
             }
         }
 
-        // Em caso de erro, retorna ao formulario com a mensagem de validacao.
+        // Em caso de erro, retorna ao formulário com a mensagem de validação.
         request.getRequestDispatcher("/WEB-INF/EmpresaJSP/Empresa.jsp").forward(request,response);
 
     }

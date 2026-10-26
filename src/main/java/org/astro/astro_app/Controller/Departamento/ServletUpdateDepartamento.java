@@ -30,7 +30,7 @@ public class ServletUpdateDepartamento extends HttpServlet {
 
         request.setCharacterEncoding("UTF-8");
 
-        // Le o identificador e os novos valores enviados pelo formulario de edicao
+        // Le o identificador e os novos valores enviados pelo formulário de edição
         String idDepartamentoTexto = request.getParameter("id_departamento");
 
         String idEmpresaTexto = request.getParameter("id_empresa");
@@ -45,7 +45,7 @@ public class ServletUpdateDepartamento extends HttpServlet {
 
         String mensagem = null;
 
-        // Valida campos obrigatorios e o tamanho da descricao antes da conversao
+        // Valida campos obrigatórios e o tamanho da descricao antes da conversão
         if (idDepartamentoTexto == null || idDepartamentoTexto.isBlank()) {
 
             mensagem = "Informe o ID do departamento.";
@@ -132,7 +132,7 @@ public class ServletUpdateDepartamento extends HttpServlet {
 
             try {
 
-                // Converte identificadores, codigo e data para os tipos esperados
+                // Converte identificadores, código e data para os tipos esperados
                 int idDepartamento = Integer.parseInt(idDepartamentoTexto);
 
                 int idEmpresa = Integer.parseInt(idEmpresaTexto);
@@ -174,7 +174,7 @@ public class ServletUpdateDepartamento extends HttpServlet {
 
                     if (resultado > 0) {
 
-                        // Redireciona para a lista apos concluir a atualizacao.
+                        // Redireciona para a lista apos concluir a atualização.
                         response.sendRedirect(request.getContextPath() + "/listar-departamentos");
                         return;
 
@@ -187,7 +187,7 @@ public class ServletUpdateDepartamento extends HttpServlet {
                 }
             }
 
-            // Trata identificadores invalidos e datas fora do formato esperado
+            // Trata identificadores inválidos e datas fora do formato esperado
             catch (NumberFormatException e) {
                 mensagem = "Os IDs devem ser números válidos.";
                 request.setAttribute("erro", mensagem);
@@ -196,7 +196,7 @@ public class ServletUpdateDepartamento extends HttpServlet {
 
         request.setAttribute("departamentos", departamentoDAO.buscar("SELECT * FROM departamento ORDER BY 1"));
 
-        // Em caso de erro, retorna ao formulario com a mensagem de validacao
+        // Em caso de erro, retorna ao formulário com a mensagem de validação
         request.getRequestDispatcher("/WEB-INF/DepartamentoJSP/Departamento.jsp").forward(request, response);
 
     }

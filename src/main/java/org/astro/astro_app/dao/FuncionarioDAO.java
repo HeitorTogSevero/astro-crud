@@ -1,22 +1,23 @@
 package org.astro.astro_app.dao;
 
-import org.astro.astro_app.Conexão.Conexao; //Import da classe Conexao
-import org.astro.astro_app.model.Funcionario; //Import da classe Funcionario
+// Biblioteca:
+import org.astro.astro_app.Conexão.Conexao;
+import org.astro.astro_app.model.Funcionario;
 
-import java.sql.*; //Import da classe java.sql
-import java.util.ArrayList; //Import da classe ArrayList
+import java.sql.*;
+import java.util.ArrayList;
 
 // Classe DAO Funcionario - CRUD:
 public class FuncionarioDAO {
 
-    // Metodo Create | Insert - CRUD
+    // Método Create | Insert - CRUD
     public boolean inserir(Funcionario f){
 
         // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-        //Tentando a conexão
+        // Tentando a conexão
         try{
             conn = conexao.conectar();
 
@@ -36,7 +37,7 @@ public class FuncionarioDAO {
             }
             return false;
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         }catch (SQLException sqlE){
             System.out.println(sqlE.getMessage());
             return false;
@@ -46,7 +47,7 @@ public class FuncionarioDAO {
     }
 
 
-    // Metodo Read | Select - CRUD
+    // Método Read | Select - CRUD
     public ArrayList<Funcionario> buscar(String sql) {
 
         // Criando a conexão com o Banco de Dados
@@ -55,7 +56,7 @@ public class FuncionarioDAO {
 
         ArrayList<Funcionario> vet = new ArrayList<>();
 
-        //Tentando a conexão
+        // Tentando a conexão
         try {
             conn = conexao.conectar();
 
@@ -69,7 +70,7 @@ public class FuncionarioDAO {
 
             stmt.close();
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         } catch (SQLException sqlE) {
             System.out.println(sqlE.getMessage());
         } finally {
@@ -80,14 +81,14 @@ public class FuncionarioDAO {
     }
 
 
-    // Metodo Read | Select - CRUD, mas baseado no Id do funcionario
+    // Método Read | Select - CRUD, mas baseado no Id do funcionario
     public Funcionario buscarPorIdFunc(int idFunc) {
 
         // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-        //Tentando a conexão
+        // Tentando a conexão
         try {
             conn = conexao.conectar();
 
@@ -105,7 +106,7 @@ public class FuncionarioDAO {
 
             return null;
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         } catch (SQLException sqlE) {
             System.out.println(sqlE.getMessage());
             return null;
@@ -115,7 +116,7 @@ public class FuncionarioDAO {
     }
 
 
-    // Metodo Read | Select - CRUD, mas baseado no Id da empresa
+    // Método Read | Select - CRUD, mas baseado no Id da empresa
     public ArrayList<Funcionario> buscarPorIdEmpresa(int idEmpresa) {
 
         // Criando a conexão com o Banco de Dados
@@ -124,7 +125,7 @@ public class FuncionarioDAO {
 
         ArrayList<Funcionario> vet = new ArrayList<>();
 
-        //Tentando a conexão
+        // Tentando a conexão
         try {
             conn = conexao.conectar();
 
@@ -139,7 +140,7 @@ public class FuncionarioDAO {
                 vet.add(new Funcionario(rs.getString("nome"), rs.getString("cargo"), rs.getString("cpf"), rs.getString("email"), rs.getInt("id_empresa"), rs.getInt("id_funcionario"), rs.getInt("id_departamento")));
             }
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         } catch (SQLException sqlE) {
             System.out.println(sqlE.getMessage());
 
@@ -151,7 +152,7 @@ public class FuncionarioDAO {
     }
 
 
-    // Metodo Read | Select - CRUD, mas baseado no Id do departamento
+    // Método Read | Select - CRUD, mas baseado no Id do departamento
     public ArrayList<Funcionario> buscarPorIdDepart(int idDepart) {
 
         // Criando a conexão com o Banco de Dados
@@ -160,7 +161,7 @@ public class FuncionarioDAO {
 
         ArrayList<Funcionario> vet = new ArrayList<>();
 
-        //Tentando a conexão
+        // Tentando a conexão
         try {
             conn = conexao.conectar();
 
@@ -175,7 +176,7 @@ public class FuncionarioDAO {
                 vet.add(new Funcionario(rs.getString("nome"), rs.getString("cargo"), rs.getString("cpf"), rs.getString("email"), rs.getInt("id_empresa"), rs.getInt("id_funcionario"), rs.getInt("id_departamento")));
             }
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         } catch (SQLException sqlE) {
             System.out.println(sqlE.getMessage());
         } finally {
@@ -186,7 +187,7 @@ public class FuncionarioDAO {
     }
 
 
-    //metodo contar funcionarios
+    // Método contar funcionarios
     public int contarFuncionarios(){
 
         int total = 0;
@@ -195,7 +196,7 @@ public class FuncionarioDAO {
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-        //Tentando a conexão
+        // Tentando a conexão
         try{
             conn  = conexao.conectar();
 
@@ -209,7 +210,7 @@ public class FuncionarioDAO {
                 total = rs.getInt(1);
             }
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         }catch (SQLException e ){
             System.out.println("Erro ao contar funcionarios: " + e.getMessage());
         }finally {
@@ -219,14 +220,14 @@ public class FuncionarioDAO {
     }
 
 
-    // Metodo Update - CRUD
+    // Método Update - CRUD
     public int alterarFuncionario(Funcionario f) {
 
         // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-        //Tentando a conexão
+        // Tentando a conexão
         try {
             conn = conexao.conectar();
 
@@ -246,7 +247,7 @@ public class FuncionarioDAO {
             }
             return 0;
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         }catch (SQLException sqlE) {
             System.out.println(sqlE.getMessage());
             return -1;
@@ -256,14 +257,14 @@ public class FuncionarioDAO {
     }
 
 
-    // Metodo Delete | Remove - CRUD
+    // Método Delete | Remove - CRUD
     public int remover(int idFuncionario){
 
         // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-        //Tentando a conexão
+        // Tentando a conexão
         try{
             conn = conexao.conectar();
 
@@ -278,7 +279,7 @@ public class FuncionarioDAO {
             }
             return 0;
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         } catch (SQLException sqle) {
             System.out.println(sqle.getMessage());
             return -1;

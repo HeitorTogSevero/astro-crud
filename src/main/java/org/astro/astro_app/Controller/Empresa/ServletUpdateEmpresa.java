@@ -41,7 +41,7 @@ public class ServletUpdateEmpresa extends HttpServlet {
         final Pattern cnaeRegex =
                 Pattern.compile("^(\\d{4}-\\d/\\d{2}|\\d{7})$");
 
-        // Le o identificador e os novos valores enviados pelo formulario de edicao
+        // Le o identificador e os novos valores enviados pelo formulário de edição
         String idEmpresaTexto = request.getParameter("id_empresa");
 
         String cnae = request.getParameter("cnae");
@@ -147,7 +147,7 @@ public class ServletUpdateEmpresa extends HttpServlet {
 
         else if (estado.length() > 2) {
 
-            mensagem = "o estado deve ter no maximo 2 caracteres (UF)";
+            mensagem = "o estado deve ter no máximo 2 caracteres (UF)";
 
             request.setAttribute("erro", mensagem);
 
@@ -189,7 +189,7 @@ public class ServletUpdateEmpresa extends HttpServlet {
 
             try {
 
-                // Converte identificadores, codigo e data para os tipos esperados
+                // Converte identificadores, código e data para os tipos esperados
                 int idEmpresa = Integer.parseInt(idEmpresaTexto);
 
                 Date dataRegistro = Date.valueOf(dataRegistroTexto);
@@ -232,14 +232,14 @@ public class ServletUpdateEmpresa extends HttpServlet {
                     // Altera caso todos os pontos tenham sido compridos
                     empresaDAO.alterarEmpresa(empresa);
 
-                    // Redireciona para a lista apos concluir a atualizacao.
+                    // Redireciona para a lista apos concluir a atualização.
                     response.sendRedirect(request.getContextPath() + "/listar-empresas");
                     return;
                 }
 
             }
 
-            // Trata identificadores invalidos e datas fora do formato esperado
+            // Trata identificadores inválidos e datas fora do formato esperado
             catch (NumberFormatException e) {
                 mensagem = "o id deve ser numero valido";
                 request.setAttribute("erro", mensagem);
@@ -250,7 +250,7 @@ public class ServletUpdateEmpresa extends HttpServlet {
             }
         }
 
-        // Em caso de erro, retorna ao formulario com a mensagem de validacao
+        // Em caso de erro, retorna ao formulário com a mensagem de validação
         request.getRequestDispatcher("/WEB-INF/EmpresaJSP/Empresa.jsp").forward(request, response);
 
     }

@@ -29,7 +29,7 @@ public class ServletCreateAlerta extends HttpServlet {
         // Os dados chegam em bits, aqui converte ele para linguagem normal
         request.setCharacterEncoding("UTF-8");
 
-        // Le os valores enviados no formulario de cadastro
+        // Le os valores enviados no formulário de cadastro
         String codigoTexto = request.getParameter("codigo");
 
         String idEmpresaTexto = request.getParameter("id_empresa");
@@ -42,7 +42,7 @@ public class ServletCreateAlerta extends HttpServlet {
         Date dataLimite = null;
         String mensagem = null;
 
-        // Verifica campos obrigatorios e limites antes de converter os dados
+        // Verifica campos obrigatórios e limites antes de converter os dados
         if (dtLimiteTexto == null || dtLimiteTexto.isBlank()) {
 
             mensagem = "a data não pode ser vazia";
@@ -52,21 +52,21 @@ public class ServletCreateAlerta extends HttpServlet {
 
         else if (descricao == null || descricao.isBlank()) {
 
-            mensagem = "a descricao não pode ser vazia";
+            mensagem = "a descrição não pode ser vazia";
             request.setAttribute("erro", mensagem);
 
         }
 
         else if (descricao.length() > 250) {
 
-            mensagem = "O maximo de caracteres é 250";
+            mensagem = "O máximo de caracteres é 250";
             request.setAttribute("erro", mensagem);
 
         }
 
         else if (codigoTexto == null || codigoTexto.isBlank()) {
 
-            mensagem = "O codigo nao pode ser nulo";
+            mensagem = "O código nao pode ser nulo";
             request.setAttribute("erro", mensagem);
 
         }
@@ -80,7 +80,7 @@ public class ServletCreateAlerta extends HttpServlet {
 
         else {
 
-            // Converte os campos numericos e a data para os tipos usados pelo modelo
+            // Converte os campos numéricos e a data para os tipos usados pelo modelo
             try {
 
                 int codigo = Integer.parseInt(codigoTexto);
@@ -92,7 +92,7 @@ public class ServletCreateAlerta extends HttpServlet {
 
                 // Confere regras de negocio antes de gravar o alerta
                 if (codigo <= 0) {
-                    mensagem = "O codigo deve ser > 0";
+                    mensagem = "O código deve ser > 0";
                     request.setAttribute("erro", mensagem);
                 }
 
@@ -122,14 +122,14 @@ public class ServletCreateAlerta extends HttpServlet {
 
                     alertaDAO.inserir(novoAlerta);
 
-                    // Após a insercao redireciona para a listagem atualizada
+                    // Após a inserção redireciona para a listagem atualizada
                     response.sendRedirect(request.getContextPath() + "/listar-alerta");
                     return;
                 }
 
             }
 
-            // Trata valores que nao podem ser convertidos para numero ou data
+            // Trata valores que não podem ser convertidos para número ou data
             catch (NumberFormatException e) {
                 mensagem = "Código ou id da empresa devem ser numeros validos";
                 request.setAttribute("erro", mensagem);
@@ -140,7 +140,7 @@ public class ServletCreateAlerta extends HttpServlet {
             }
         }
 
-        // Em caso de erro, retorna ao formulario com a mensagem de validacao.
+        // Em caso de erro, retorna ao formulário com a mensagem de validação.
         request.getRequestDispatcher("/WEB-INF/AlertaJSP/alerta.jsp").forward(request, response);
 
     }

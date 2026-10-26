@@ -26,11 +26,11 @@ public class ServletDeleteFuncionario extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        // Le o identificador do alerta enviado pelo formulario de exclusao
+        // Le o identificador do alerta enviado pelo formulário de exclusão
         String idFuncionarioTexto = request.getParameter("id_funcionario");
         String mensagem = "";
 
-        // Impede a exclusao quando o identificador nao foi informado
+        // Impede a exclusão quando o identificador nao foi informado
         if (idFuncionarioTexto == null || idFuncionarioTexto.isBlank()) {
 
             mensagem = "id nao informado";
@@ -55,13 +55,13 @@ public class ServletDeleteFuncionario extends HttpServlet {
             // Remove o alerta do banco de dados
             funcionarioDAO.remover(idFuncionario);
 
-            // Redireciona para a listagem apos a exclusao
+            // Redireciona para a listagem após a exclusão
             response.sendRedirect(request.getContextPath() + "/listar-funcionarios");
 
         } catch (NumberFormatException e) {
 
-            // Se o identificador nao for numerico, informa o erro no formulario
-            mensagem = "o id do funcionario deve ser valido";
+            // Se o identificador nao for numérico, informa o erro no formulário
+            mensagem = "o id do funcionário deve ser valido";
             request.setAttribute("erro", mensagem);
             request.getRequestDispatcher("/WEB-INF/FuncionarioJSP/Funcionario.jsp").forward(request, response);
 

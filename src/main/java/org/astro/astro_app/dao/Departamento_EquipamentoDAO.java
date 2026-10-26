@@ -1,22 +1,23 @@
 package org.astro.astro_app.dao;
 
-import org.astro.astro_app.Conexão.Conexao; //Import da classe Conexao
-import org.astro.astro_app.model.Departamento_Equipamento; //Import da classe Departamento_Equipamento
+// Biblioteca:
+import org.astro.astro_app.Conexão.Conexao;
+import org.astro.astro_app.model.Departamento_Equipamento;
 
-import java.sql.*; //Import da classe java.sql
-import java.util.ArrayList; //Import da classe ArrauList
+import java.sql.*;
+import java.util.ArrayList;
 
 // Classe DAO Departamento_Equipamento - CRUD
 public class Departamento_EquipamentoDAO {
 
-    // Metodo Create | Insert - CRUD:
+    // Método Create | Insert - CRUD:
     public boolean inserir(Departamento_Equipamento dpE){
 
         // Criando a Conexão com o Banco de Dados:
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-        //Tentando a conexão
+        // Tentando a conexão
         try{
             conn = conexao.conectar();
 
@@ -32,7 +33,7 @@ public class Departamento_EquipamentoDAO {
             }
             return false;
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         }catch(SQLException sqlE){
             System.out.println(sqlE.getMessage());
             return false;
@@ -50,7 +51,7 @@ public class Departamento_EquipamentoDAO {
 
         ArrayList<Departamento_Equipamento> vet = new ArrayList<>();
 
-        //Tentando a conexão
+        // Tentando a conexão
         try{
             conn = conexao.conectar();
 
@@ -65,7 +66,7 @@ public class Departamento_EquipamentoDAO {
 
             stmt.close();
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         }catch (SQLException sqlE){
             System.out.println(sqlE.getMessage());
         }finally {
@@ -75,7 +76,7 @@ public class Departamento_EquipamentoDAO {
         return vet;
     }
 
-    // Metodo READ | Select - CRUD, mas baseado no Id do departamento
+    // Método READ | Select - CRUD, mas baseado no Id do departamento
     public ArrayList<Departamento_Equipamento> buscarPorIdDepart(int idDepart){
 
         // Criando a Conexão com o Banco de Dados
@@ -84,7 +85,7 @@ public class Departamento_EquipamentoDAO {
 
         ArrayList<Departamento_Equipamento> vet = new ArrayList<>();
 
-        //Tentando a conexão
+        // Tentando a conexão
         try{
             conn = conexao.conectar();
 
@@ -99,7 +100,7 @@ public class Departamento_EquipamentoDAO {
                 vet.add(new Departamento_Equipamento(rs.getInt("id_departamento"), rs.getInt("id_equipamento")));
             }
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         }catch(SQLException sqlE){
             System.out.println(sqlE.getMessage());
         }finally {
@@ -109,7 +110,7 @@ public class Departamento_EquipamentoDAO {
         return vet;
     }
 
-    // Metodo READ | Select - CRUD, mas baseado no Id do equipamento
+    // Método READ | Select - CRUD, mas baseado no Id do equipamento
     public ArrayList<Departamento_Equipamento> buscarPorIdEquipamento(int idEquipamento){
 
         // Criando a Conexão com o Banco de Dados
@@ -118,7 +119,7 @@ public class Departamento_EquipamentoDAO {
 
         ArrayList<Departamento_Equipamento> vet = new ArrayList<>();
 
-        //Tentando a conexão
+        // Tentando a conexão
         try{
             conn = conexao.conectar();
 
@@ -133,7 +134,7 @@ public class Departamento_EquipamentoDAO {
                 vet.add(new Departamento_Equipamento(rs.getInt("id_departamento"), rs.getInt("id_equipamento")));
             }
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         }catch(SQLException sqlE){
             System.out.println(sqlE.getMessage());
         }finally {
@@ -143,14 +144,14 @@ public class Departamento_EquipamentoDAO {
         return vet;
     }
 
-    // Metodo Update - CRUD
+    // Método Update - CRUD
     public int alterarDepartamentoEquipamento(int idDepartamentoAntigo, int idEquipamentoAntigo, Departamento_Equipamento dpE) {
 
         // Criando a conexão com o Banco de Dados:
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-    //Tentando a conexão
+    // Tentando a conexão
         try {
             conn = conexao.conectar();
 
@@ -168,7 +169,7 @@ public class Departamento_EquipamentoDAO {
             }
             return 0;
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         }catch(SQLException sqlE){
             System.out.println(sqlE.getMessage());
             return -1;
@@ -177,14 +178,14 @@ public class Departamento_EquipamentoDAO {
         }
     }
 
-    // Metodo DELETE - CRUD
+    // Método DELETE - CRUD
     public int remover(int idDepartamento, int idEquipamento){
 
         // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-        //Tentando a conexão
+        // Tentando a conexão
         try{
             conn = conexao.conectar();
 
@@ -200,7 +201,7 @@ public class Departamento_EquipamentoDAO {
             }
             return 0;
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         }catch(SQLException sqlE){
             System.out.println(sqlE.getMessage());
             return -1;

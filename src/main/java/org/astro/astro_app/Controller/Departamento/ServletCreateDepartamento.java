@@ -30,7 +30,7 @@ public class ServletCreateDepartamento extends HttpServlet {
         // Os dados chegam em bits, aqui converte ele para linguagem normal
         request.setCharacterEncoding("UTF-8");
 
-        // Le os valores enviados no formulario de cadastro
+        // Le os valores enviados no formulário de cadastro
         String idEmpresaTexto = request.getParameter("id_empresa");
 
         String grauRisco = request.getParameter("grau_risco");
@@ -44,7 +44,7 @@ public class ServletCreateDepartamento extends HttpServlet {
 
         String mensagem = "";
 
-        // Verifica campos obrigatorios e limites antes de converter os dados
+        // Verifica campos obrigatórios e limites antes de converter os dados
         if (nome == null || nome.isBlank()) {
 
             mensagem = "o nome não pode ser vazio";
@@ -111,7 +111,7 @@ public class ServletCreateDepartamento extends HttpServlet {
         }
         else {
 
-            // Converte os campos numericos e a data para os tipos usados pelo modelo
+            // Converte os campos numéricos e a data para os tipos usados pelo modelo
             try {
                 int idEmpresa = Integer.parseInt(idEmpresaTexto);
 
@@ -144,14 +144,14 @@ public class ServletCreateDepartamento extends HttpServlet {
                 }
             }
 
-            // Trata valores que nao podem ser convertidos para numero ou data
+            // Trata valores que não podem ser convertidos para número ou data
             catch (NumberFormatException e) {
                 mensagem = "o id deve ser numero valido";
                 request.setAttribute("erro", mensagem);
             }
         }
 
-        // Em caso de erro, retorna ao formulario com a mensagem de validacao.
+        // Em caso de erro, retorna ao formulário com a mensagem de validação.
         request.setAttribute("departamentos", departamentoDAO.buscar("SELECT * FROM departamento ORDER BY 1"));
         request.getRequestDispatcher("/WEB-INF/DepartamentoJSP/Departamento.jsp").forward(request, response);
 

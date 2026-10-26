@@ -1,22 +1,23 @@
 package org.astro.astro_app.dao;
 
-import org.astro.astro_app.Conexão.Conexao; //Import da classe Conexao
-import org.astro.astro_app.model.Equipamento; //Import da classe Equipamento
+// Biblioteca:
+import org.astro.astro_app.Conexão.Conexao;
+import org.astro.astro_app.model.Equipamento;
 
-import java.sql.*; //Import da classe java.sql
-import java.util.ArrayList; //Import da classe ArrayList
+import java.sql.*;
+import java.util.ArrayList;
 
 // Classe DAO Equipamento - CRUD:
 public class EquipamentoDAO {
 
-    // Metodo Create | Insert - CRUD
+    // Método Create | Insert - CRUD
     public boolean inserir(Equipamento equip){
 
         // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-        //Tentando a conexão
+        // Tentando a conexão
         try{
             conn = conexao.conectar();
 
@@ -33,7 +34,7 @@ public class EquipamentoDAO {
             }
             return false;
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         }catch(SQLException sqlE){
             System.out.println(sqlE.getMessage());
             return false;
@@ -42,7 +43,7 @@ public class EquipamentoDAO {
         }
     }
 
-    // Metodo READ | Select - CRUD
+    // Método READ | Select - CRUD
     public ArrayList<Equipamento> buscar(String sql){
 
         // Criando a conexão com o Banco de Dados
@@ -51,7 +52,7 @@ public class EquipamentoDAO {
 
         ArrayList<Equipamento> vet = new ArrayList<>();
 
-        //Tentando a conexão
+        // Tentando a conexão
         try{
             conn = conexao.conectar();
 
@@ -65,7 +66,7 @@ public class EquipamentoDAO {
 
             stmt.close();
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         }catch(SQLException sqlE){
             System.out.println(sqlE.getMessage());
         }finally{
@@ -75,14 +76,14 @@ public class EquipamentoDAO {
         return vet;
     }
 
-    // Metodo READ | Select - CRUD, mas baseado no Id do equipamento
+    // Método READ | Select - CRUD, mas baseado no Id do equipamento
     public Equipamento buscarPorIdEquipamento(int idEquip){
 
         // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-        //Tentando a conexão
+        // Tentando a conexão
         try{
             conn = conexao.conectar();
 
@@ -99,7 +100,7 @@ public class EquipamentoDAO {
             }
             return null;
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         }catch(SQLException sqlE){
             System.out.println(sqlE.getMessage());
             return null;
@@ -108,14 +109,14 @@ public class EquipamentoDAO {
         }
     }
 
-    // Metodo Update - CRUD
+    // Método Update - CRUD
     public int alterarEquipamento(Equipamento equip) {
 
         // Criando a conexão com o Banco de Dados:
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-        //Tentando a conexão
+        // Tentando a conexão
         try {
             conn = conexao.conectar();
 
@@ -133,7 +134,7 @@ public class EquipamentoDAO {
             }
             return 0;
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         }catch(SQLException sqlE){
             System.out.println(sqlE.getMessage());
             return -1;
@@ -142,14 +143,14 @@ public class EquipamentoDAO {
         }
     }
 
-    // Metodo DELETE - CRUD
+    // Método DELETE - CRUD
     public int remover(int idEquipamento){
 
         // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-        //Tentando a conexão
+        // Tentando a conexão
         try{
             conn = conexao.conectar();
 
@@ -164,7 +165,7 @@ public class EquipamentoDAO {
             }
             return 0;
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         }catch(SQLException sqlE){
             System.out.println(sqlE.getMessage());
             return -1;

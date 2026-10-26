@@ -26,11 +26,11 @@ public class ServletDeleteCertificado extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        // Le o identificador do alerta enviado pelo formulario de exclusao
+        // Le o identificador do alerta enviado pelo formulário de exclusão
         String idCertificadoTexto = request.getParameter("id_certificado");
         String mensagem = "";
 
-        // Impede a exclusao quando o identificador nao foi informado
+        // Impede a exclusão quando o identificador nao foi informado
         if(idCertificadoTexto == null || idCertificadoTexto.isBlank()){
             mensagem = "id nao informado";
             request.setAttribute("erro", mensagem);
@@ -55,7 +55,7 @@ public class ServletDeleteCertificado extends HttpServlet {
             // Remove o alerta do banco de dados
             int resultado = certificadoDAO.remover(idCertificado);
 
-            // Redireciona para a listagem apos a exclusao
+            // Redireciona para a listagem após a exclusão
             if (resultado > 0) {
                 response.sendRedirect(request.getContextPath() + "/listar-certificados");
                 return;
@@ -68,7 +68,7 @@ public class ServletDeleteCertificado extends HttpServlet {
 
         }catch (NumberFormatException e) {
 
-            // Se o identificador nao for numerico, informa o erro no formulario
+            // Se o identificador nao for numérico, informa o erro no formulário
             mensagem = "o id do certificado deve ser valido";
             request.setAttribute("erro", mensagem);
             request.getRequestDispatcher("/WEB-INF/CertificadoJSP/Certificado.jsp").forward(request,response);

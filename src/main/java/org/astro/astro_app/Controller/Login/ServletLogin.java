@@ -108,7 +108,7 @@ public class ServletLogin extends HttpServlet {
             }
         }
 
-        // Em caso de erro, retorna ao formulario com a mensagem de validacao
+        // Em caso de erro, retorna ao formulário com a mensagem de validação
         request.getRequestDispatcher("/tela_login/login.jsp").forward(request, response);
     }
 }
