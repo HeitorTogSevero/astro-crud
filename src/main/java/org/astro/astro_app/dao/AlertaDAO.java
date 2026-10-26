@@ -1,22 +1,23 @@
 package org.astro.astro_app.dao;
 
-import org.astro.astro_app.Conexão.Conexao; //Import da classe Conexao
-import org.astro.astro_app.model.Alerta; //Import da classe Alerta
+// Biblioteca:
+import org.astro.astro_app.Conexão.Conexao;
+import org.astro.astro_app.model.Alerta;
 
-import java.sql.*; //Import das classes java.sql
-import java.util.ArrayList; //Import da classe ArrayList
+import java.sql.*;
+import java.util.ArrayList;
 
 // Classe DAO Alerta - CRUD:
 public class AlertaDAO {
 
-    // Metodo Create | Insert - CRUD:
+    // Método Create | Insert - CRUD:
     public boolean inserir(Alerta a) {
 
         // Criando a conexao com o banco de dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-        //Tentando a conexão
+        // Tentando a conexão
         try{
             conn = conexao.conectar();
 
@@ -34,7 +35,7 @@ public class AlertaDAO {
             }
             return false;
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         } catch (SQLException sqlE) {
             System.out.println(sqlE.getMessage());
             return false;
@@ -43,7 +44,7 @@ public class AlertaDAO {
         }
     }
 
-    // Metodo Read | Select - CRUD
+    // Método Read | Select - CRUD
     public ArrayList<Alerta> buscar(String sql) {
 
         // Criando a conexão com o Banco de Dados
@@ -52,7 +53,7 @@ public class AlertaDAO {
 
         ArrayList<Alerta> vet = new ArrayList<>();
 
-        //Tentando a conexão
+        // Tentando a conexão
         try {
             conn = conexao.conectar();
 
@@ -66,7 +67,7 @@ public class AlertaDAO {
 
             stmt.close();
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         } catch (SQLException sqlE) {
             System.out.println(sqlE.getMessage());
         } finally {
@@ -76,14 +77,14 @@ public class AlertaDAO {
         return vet;
     }
 
-    // Metodo Read | Select - CRUD, mas baseado no Id do alerta
+    // Método Read | Select - CRUD, mas baseado no Id do alerta
     public Alerta buscarPorIdAlerta(int idAlerta) {
 
         // Criando conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-        //Tentando a conexão
+        // Tentando a conexão
         try {
             conn = conexao.conectar();
 
@@ -100,7 +101,7 @@ public class AlertaDAO {
             }
             return null;
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         } catch (SQLException sqlE) {
             System.out.println(sqlE.getMessage());
             return null;
@@ -109,7 +110,7 @@ public class AlertaDAO {
         }
     }
 
-    // Metodo Read | Select - CRUD, mas baseado no Id da empresa
+    // Método Read | Select - CRUD, mas baseado no Id da empresa
     public ArrayList<Alerta> buscarPorIdEmpresa(int idEmpresa) {
 
         // Criando conexão com o Banco de Dados
@@ -118,7 +119,7 @@ public class AlertaDAO {
 
         ArrayList<Alerta> vet = new ArrayList<>();
 
-        //Tentando a conexão
+        // Tentando a conexão
         try {
             conn = conexao.conectar();
 
@@ -133,7 +134,7 @@ public class AlertaDAO {
                 vet.add(new Alerta(rs.getInt("id_alerta"), rs.getInt("codigo"), rs.getInt("id_empresa"), rs.getString("descricao"), rs.getDate("dt_limite")));
             }
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         } catch (SQLException sqlE) {
             System.out.println(sqlE.getMessage());
         } finally {
@@ -143,14 +144,14 @@ public class AlertaDAO {
         return vet;
     }
 
-    //Metodo Update - CRUD
+    //Método Update - CRUD
     public int alterarAlerta(Alerta a){
 
         // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-        //Tentando a conexão
+        // Tentando a conexão
         try {
             conn = conexao.conectar(); // Desconectando do Banco
 
@@ -171,7 +172,7 @@ public class AlertaDAO {
 
             return 0;
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         }catch (SQLException sqlE){
             System.out.println(sqlE.getMessage());
             return -1;
@@ -181,14 +182,14 @@ public class AlertaDAO {
 
     }
 
-    // Metodo Delete | Remove - CRUD
+    // Método Delete | Remove - CRUD
     public int remover(int idAlerta) {
 
         // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-        //Tentando a conexão
+        // Tentando a conexão
         try {
             conn = conexao.conectar();
 
@@ -203,7 +204,7 @@ public class AlertaDAO {
             }
             return 1;
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         } catch (SQLException sqle) {
             System.out.println(sqle.getMessage());
             return -1;

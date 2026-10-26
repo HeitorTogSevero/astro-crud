@@ -1,22 +1,23 @@
 package org.astro.astro_app.dao;
 
-import org.astro.astro_app.Conexão.Conexao; //Import da classe Conexao
-import org.astro.astro_app.model.Departamento; //Import da classe Departamento
+// Biblioteca:
+import org.astro.astro_app.Conexão.Conexao;
+import org.astro.astro_app.model.Departamento;
 
-import java.sql.*; //Import da classe java.sql
-import java.util.ArrayList; //Import da classe ArrayList
+import java.sql.*;
+import java.util.ArrayList;
 
 // Classe DAO Departamento - CRUD:
 public class DepartamentoDAO {
 
-    // Metodo Create | Insert - CRUD
+    // Método Create | Insert - CRUD
     public boolean inserir(Departamento depto){
 
         // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-        //Tentando a conexão
+        // Tentando a conexão
         try{
             conn = conexao.conectar();
 
@@ -35,7 +36,7 @@ public class DepartamentoDAO {
             }
             return false;
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         }catch (SQLException sqle){
             System.out.println(sqle.getMessage());
             return false;
@@ -44,7 +45,7 @@ public class DepartamentoDAO {
         }
     }
 
-    // Metodo Read | Select - CRUD
+    // Método Read | Select - CRUD
     public ArrayList<Departamento> buscar(String sql){
 
         // Criando a conexão com o Banco de Dados
@@ -53,7 +54,7 @@ public class DepartamentoDAO {
 
         ArrayList<Departamento> vet = new ArrayList<>();
 
-        //Tentando a conexão
+        // Tentando a conexão
         try{
             conn = conexao.conectar();
 
@@ -67,7 +68,7 @@ public class DepartamentoDAO {
 
             stmt.close();
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         }catch (SQLException sqle){
             System.out.println(sqle.getMessage());
         }finally {
@@ -77,14 +78,14 @@ public class DepartamentoDAO {
         return vet;
     }
 
-    // Metodo Read | Select - CRUD, mas baseado no Id do departamento
+    // Método Read | Select - CRUD, mas baseado no Id do departamento
     public Departamento buscarPorIdDepart(int idDepart){
 
         // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-        //Tentando a conexão
+        // Tentando a conexão
         try{
             conn = conexao.conectar();
 
@@ -101,7 +102,7 @@ public class DepartamentoDAO {
             }
             return null;
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         } catch (SQLException sqle) {
             System.out.println(sqle.getMessage());
             return null;
@@ -110,7 +111,7 @@ public class DepartamentoDAO {
         }
     }
 
-    // Metodo Read | Select - CRUD, mas baseado no Id da empresa
+    // Método Read | Select - CRUD, mas baseado no Id da empresa
     public ArrayList<Departamento> buscarPorIdEmpresa(int idEmpresa){
 
         // Criando a conexão com o Banco de Dados
@@ -119,7 +120,7 @@ public class DepartamentoDAO {
 
         ArrayList<Departamento> vet = new ArrayList<>();
 
-        //Tentando a conexão
+        // Tentando a conexão
         try{
             conn = conexao.conectar();
 
@@ -134,7 +135,7 @@ public class DepartamentoDAO {
                 vet.add(new Departamento(rs.getInt("id_departamento"), rs.getInt("id_empresa"), rs.getString("grau_risco"), rs.getString("nome"), rs.getString("descricao"), rs.getString("atividade")));
             }
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         } catch (SQLException sqle) {
             System.out.println(sqle.getMessage());
         } finally {
@@ -144,7 +145,7 @@ public class DepartamentoDAO {
         return vet;
     }
 
-    //metodo de contar departamentos, que retorna o total de departamentos cadastrados no banco de dados
+    // Método de contar departamentos, que retorna o total de departamentos cadastrados no banco de dados
     public int contarDepartamentos(){
 
         int total = 0;
@@ -153,7 +154,7 @@ public class DepartamentoDAO {
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-        //Tentando a conexão
+        // Tentando a conexão
         try{
             conn = conexao.conectar();
 
@@ -165,7 +166,7 @@ public class DepartamentoDAO {
                 total = rs.getInt(1);
             }
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         }catch (SQLException e){
             System.out.println("erro ao contar os departamentos: " + e.getMessage());
         }finally {
@@ -174,14 +175,14 @@ public class DepartamentoDAO {
         return total;
     }
 
-    // Metodo Update - CRUD
+    // Método Update - CRUD
     public int alterarDepartamento(Departamento depto){
 
         // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-        //Tentando a conexão
+        // Tentando a conexão
         try{
             conn = conexao.conectar();
 
@@ -201,7 +202,7 @@ public class DepartamentoDAO {
             }
             return 0;
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         }catch (SQLException sqle){
             System.out.println(sqle.getMessage());
             return -1;
@@ -210,14 +211,14 @@ public class DepartamentoDAO {
         }
     }
 
-    // Metodo Delete | Remove - CRUD
+    // Método Delete | Remove - CRUD
     public int remover(int idDepartamento){
 
         // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-        //Tentando a conexão
+        // Tentando a conexão
         try{
             conn = conexao.conectar();
 
@@ -232,7 +233,7 @@ public class DepartamentoDAO {
             }
             return 0;
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         }catch (SQLException sqle){
             System.out.println(sqle.getMessage());
             return -1;

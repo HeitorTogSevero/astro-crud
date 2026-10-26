@@ -29,7 +29,7 @@ public class ServletUpdateAlerta extends HttpServlet {
 
         request.setCharacterEncoding("UTF-8");
 
-        // Le o identificador e os novos valores enviados pelo formulario de edicao
+        // Le o identificador e os novos valores enviados pelo formulário de edição
         String idAlertaTexto = request.getParameter("id_alerta");
 
         String codigoTexto = request.getParameter("codigo");
@@ -44,7 +44,7 @@ public class ServletUpdateAlerta extends HttpServlet {
         Date dataLimite = null;
         String mensagem = null;
 
-        // Valida campos obrigatorios e o tamanho da descricao antes da conversao
+        // Valida campos obrigatórios e o tamanho da descricao antes da conversão
         if (idAlertaTexto == null || idAlertaTexto.isBlank()) {
 
             mensagem = "id do alerta não informado";
@@ -63,7 +63,7 @@ public class ServletUpdateAlerta extends HttpServlet {
 
         else if (descricao == null || descricao.isBlank()) {
 
-            mensagem = "a descricao não pode ser vazia";
+            mensagem = "a descrição não pode ser vazia";
 
             request.setAttribute("erro", mensagem);
 
@@ -71,7 +71,7 @@ public class ServletUpdateAlerta extends HttpServlet {
 
         else if (descricao.length() > 250) {
 
-            mensagem = "O maximo de caracteres é 250";
+            mensagem = "O máximo de caracteres é 250";
 
             request.setAttribute("erro", mensagem);
 
@@ -79,7 +79,7 @@ public class ServletUpdateAlerta extends HttpServlet {
 
         else if (codigoTexto == null || codigoTexto.isBlank()) {
 
-            mensagem = "O codigo nao pode ser nulo";
+            mensagem = "O código nao pode ser nulo";
 
             request.setAttribute("erro", mensagem);
 
@@ -154,14 +154,14 @@ public class ServletUpdateAlerta extends HttpServlet {
                     // Altera caso todos os pontos tenham sido compridos
                     alertaDAO.alterarAlerta(alertaAtualizado);
 
-                    // Redireciona para a lista apos concluir a atualizacao.
+                    // Redireciona para a lista após concluir a atualização.
                     response.sendRedirect(request.getContextPath() + "/listar-alerta");
                     return;
                 }
 
             }
 
-            // Trata identificadores invalidos e datas fora do formato esperado
+            // Trata identificadores inválidos e datas fora do formato esperado
             catch (NumberFormatException e) {
                 mensagem = "Codigo ou id da empresa devem ser numeros validos";
                 request.setAttribute("erro", mensagem);
@@ -172,7 +172,7 @@ public class ServletUpdateAlerta extends HttpServlet {
             }
         }
 
-        // Em caso de erro, retorna ao formulario com a mensagem de validacao
+        // Em caso de erro, retorna ao formulário com a mensagem de validação
         request.getRequestDispatcher("/WEB-INF/AlertaJSP/alerta.jsp").forward(request, response);
 
     }

@@ -1,22 +1,23 @@
 package org.astro.astro_app.dao;
 
-import org.astro.astro_app.Conexão.Conexao; //Import da classe Conexao
-import org.astro.astro_app.model.Estrutura; //Import da classe Estrutara
+// Biblioteca:
+import org.astro.astro_app.Conexão.Conexao;
+import org.astro.astro_app.model.Estrutura;
 
-import java.sql.*; //Import da classe java.sql
-import java.util.ArrayList; //Import da classe ArrayList
+import java.sql.*;
+import java.util.ArrayList;
 
 // Classe DAO Estrutura - CRUD:
 public class EstruturaDAO {
 
-    // Metodo Create | Insert - CRUD
+    // Método Create | Insert - CRUD
     public boolean inserir(Estrutura est){
 
         // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-        //Tentando a conexão
+        // Tentando a conexão
         try{
             conn = conexao.conectar();
 
@@ -33,7 +34,7 @@ public class EstruturaDAO {
             }
             return false;
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         }catch(SQLException sqlE){
             System.out.println(sqlE.getMessage());
             return false;
@@ -42,7 +43,7 @@ public class EstruturaDAO {
         }
     }
 
-    // Metodo READ | Select - CRUD
+    // Método READ | Select - CRUD
     public ArrayList<Estrutura> buscar(String sql){
 
         // Criando a conexão com o Banco de Dados
@@ -51,7 +52,7 @@ public class EstruturaDAO {
 
         ArrayList<Estrutura> vet = new ArrayList<>();
 
-        //Tentando a conexão
+        // Tentando a conexão
         try{
             conn = conexao.conectar();
 
@@ -65,7 +66,7 @@ public class EstruturaDAO {
 
             stmt.close();
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         }catch(SQLException sqlE){
             System.out.println(sqlE.getMessage());
         }finally{
@@ -75,14 +76,14 @@ public class EstruturaDAO {
         return vet;
     }
 
-    // Metodo READ | Select - CRUD, mas baseado no Id da estrutura
+    // Método READ | Select - CRUD, mas baseado no Id da estrutura
     public Estrutura buscarPorIdEstrutura(int idEstrutura){
 
         // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-        //Tentando a conexão
+        // Tentando a conexão
         try{
             conn = conexao.conectar();
 
@@ -99,7 +100,7 @@ public class EstruturaDAO {
             }
             return null;
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         }catch(SQLException sqlE){
             System.out.println(sqlE.getMessage());
             return null;
@@ -108,7 +109,7 @@ public class EstruturaDAO {
         }
     }
 
-    // Metodo READ | Select - CRUD, mas baseado no Id da empresa
+    // Método READ | Select - CRUD, mas baseado no Id da empresa
     public ArrayList<Estrutura> buscarPorIdEmpresa(int idEmpresa){
 
         // Criando a conexão com o Banco de Dados
@@ -117,7 +118,7 @@ public class EstruturaDAO {
 
         ArrayList<Estrutura> vet = new ArrayList<>();
 
-        //Tentando a conexão
+        // Tentando a conexão
         try{
             conn = conexao.conectar();
 
@@ -132,7 +133,7 @@ public class EstruturaDAO {
                 vet.add(new Estrutura(rs.getInt("id_estrutura"), rs.getInt("id_empresa"), rs.getString("risco"), rs.getString("descricao")));
             }
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         }catch(SQLException sqlE){
             System.out.println(sqlE.getMessage());
         }finally {
@@ -142,14 +143,14 @@ public class EstruturaDAO {
         return vet;
     }
 
-    // Metodo Update - CRUD
+    // Método Update - CRUD
     public int alterarEstrutura(Estrutura est) {
 
         // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-        //Tentando a conexão
+        // Tentando a conexão
         try {
             conn = conexao.conectar();
 
@@ -167,7 +168,7 @@ public class EstruturaDAO {
             }
             return 0;
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         }catch(SQLException sqlE){
             System.out.println(sqlE.getMessage());
             return -1;
@@ -176,14 +177,14 @@ public class EstruturaDAO {
         }
     }
 
-    // Metodo DELETE - CRUD
+    // Método DELETE - CRUD
     public int remover(int idEstrutura){
 
         // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-        //Tentando a conexão
+        // Tentando a conexão
         try{
             conn = conexao.conectar();
 
@@ -198,7 +199,7 @@ public class EstruturaDAO {
             }
             return 0;
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         }catch(SQLException sqlE){
             System.out.println(sqlE.getMessage());
             return -1;

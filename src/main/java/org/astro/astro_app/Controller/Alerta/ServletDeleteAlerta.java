@@ -22,11 +22,11 @@ public class ServletDeleteAlerta extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        // Le o identificador do alerta enviado pelo formulario de exclusao
+        // Le o identificador do alerta enviado pelo formulário de exclusão
         String idAlertaTexto = request.getParameter("id_alerta");
         String mensagem = null;
 
-        // Impede a exclusao quando o identificador nao foi informado
+        // Impede a exclusão quando o identificador não foi informado
         if (idAlertaTexto == null || idAlertaTexto.isBlank()) {
 
             mensagem = "o id do alerta não informado";
@@ -58,7 +58,7 @@ public class ServletDeleteAlerta extends HttpServlet {
 
         } catch (NumberFormatException e) {
 
-            // Se o identificador nao for numerico, informa o erro no formulario
+            // Se o identificador nao for numérico, informa o erro no formulário
             mensagem = "id do alerta deve ser uma numero valido";
             request.setAttribute("erro", mensagem);
             request.getRequestDispatcher("/WEB-INF/AlertaJSP/alerta.jsp").forward(request, response);

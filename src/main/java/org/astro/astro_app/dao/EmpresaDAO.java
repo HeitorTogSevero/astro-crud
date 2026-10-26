@@ -1,22 +1,23 @@
 package org.astro.astro_app.dao;
 
-import org.astro.astro_app.Conexão.Conexao; //Import da classe Conexao
-import org.astro.astro_app.model.Empresa; //Import da classe Empresa
+// Biblioteca:
+import org.astro.astro_app.Conexão.Conexao;
+import org.astro.astro_app.model.Empresa;
 
-import java.sql.*; //Import da classe java.sql
-import java.util.ArrayList; //Import da classe ArrayList
+import java.sql.*;
+import java.util.ArrayList;
 
 // Classe DAO Empresa - CRUD:
 public class EmpresaDAO {
 
-    // Metodo Create | Insert - CRUD
+    // Método Create | Insert - CRUD
     public boolean inserir(Empresa empresa){
 
         // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-        //Tentando a conexão
+        // Tentando a conexão
         try{
             conn = conexao.conectar();
 
@@ -39,7 +40,7 @@ public class EmpresaDAO {
             }
             return false;
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         }catch(SQLException sqle){
             System.out.println(sqle.getMessage());
             return false;
@@ -48,7 +49,7 @@ public class EmpresaDAO {
         }
     }
 
-    // Metodo Read | Select - CRUD
+    // Método Read | Select - CRUD
     public ArrayList<Empresa> buscar(String sql){
 
         // Criando a conexão com o Banco de Dados
@@ -57,7 +58,7 @@ public class EmpresaDAO {
 
         ArrayList<Empresa> vet = new ArrayList<>();
 
-        //Tentando a conexão
+        // Tentando a conexão
         try{
             conn = conexao.conectar();
 
@@ -71,7 +72,7 @@ public class EmpresaDAO {
 
             stmt.close();
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         }catch (SQLException sqle){
             System.out.println(sqle.getMessage());
         }finally {
@@ -81,14 +82,14 @@ public class EmpresaDAO {
         return vet;
     }
 
-    // Metodo Read | Select - CRUD, mas baseado no Id da empresa
+    // Método Read | Select - CRUD, mas baseado no Id da empresa
     public Empresa buscarPorIdEmpresa(int idEmpresa){
 
         // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-        //Tentando a conexão
+        // Tentando a conexão
         try{
             conn = conexao.conectar();
 
@@ -105,7 +106,7 @@ public class EmpresaDAO {
             }
             return null;
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         } catch (SQLException sqle){
             System.out.println(sqle.getMessage());
             return null;
@@ -114,7 +115,7 @@ public class EmpresaDAO {
         }
     }
 
-    //Metodo pra ver ultimas 3 empresas cadastradas
+    // Método pra ver ultimas 3 empresas cadastradas
     public ArrayList<Empresa> listarUltimasTresEmpresas(){
 
         ArrayList<Empresa> empresas = new ArrayList<>();
@@ -123,7 +124,7 @@ public class EmpresaDAO {
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-        //Tentando a conexão
+        // Tentando a conexão
         try{
             conn = conexao.conectar();
 
@@ -136,7 +137,7 @@ public class EmpresaDAO {
                 empresas.add(new Empresa(rs.getInt("id_empresa"), rs.getString("cnae"), rs.getString("nome"), rs.getString("cep"), rs.getString("cnpj"), rs.getString("rua"), rs.getString("estado"), rs.getString("bairro"), rs.getString("cidade"), rs.getDate("dt_registro")
                 ));            }
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         }catch (SQLException e){
             System.out.println("erro ao listar as ultimas 3 empresas foi: " + e.getMessage());
         }finally {
@@ -145,7 +146,7 @@ public class EmpresaDAO {
         return empresas;
     }
 
-    //Metodo de contar empresas, que retorna o total de empresas cadastradas no banco de dados
+    // Método de contar empresas, que retorna o total de empresas cadastradas no banco de dados
     public int contarEmpresas(){
 
         int total = 0;
@@ -154,7 +155,7 @@ public class EmpresaDAO {
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-        //Tentando a conexão
+        // Tentando a conexão
         try{
             conn = conexao.conectar();
 
@@ -168,7 +169,7 @@ public class EmpresaDAO {
                 total = rs.getInt(1);
             }
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         }catch (SQLException e){
             System.out.println("erro ao contar empresas: " + e.getMessage());
         }finally {
@@ -177,14 +178,14 @@ public class EmpresaDAO {
         return total;
     }
 
-    // Metodo Update - CRUD
+    // Método Update - CRUD
     public int alterarEmpresa(Empresa empresa){
 
         // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-        //Tentando a conexão
+        // Tentando a conexão
         try{
             conn = conexao.conectar();
 
@@ -208,7 +209,7 @@ public class EmpresaDAO {
             }
             return 0;
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         }catch (SQLException sqle){
             System.out.println(sqle.getMessage());
             return -1;
@@ -217,14 +218,14 @@ public class EmpresaDAO {
         }
     }
 
-    // Metodo Delete | Remove - CRUD
+    // Método Delete | Remove - CRUD
     public int remover(int idEmpresa){
 
         // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-        //Tentando a conexão
+        // Tentando a conexão
         try{
             conn = conexao.conectar();
 
@@ -239,7 +240,7 @@ public class EmpresaDAO {
             }
             return 0;
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         }catch (SQLException sqle){
             System.out.println(sqle.getMessage());
             return -1;

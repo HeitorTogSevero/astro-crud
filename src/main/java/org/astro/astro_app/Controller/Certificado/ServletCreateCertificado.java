@@ -32,7 +32,7 @@ public class ServletCreateCertificado extends HttpServlet {
         // Os dados chegam em bits, aqui converte ele para linguagem normal
         request.setCharacterEncoding("UTF-8");
 
-        // Le os valores enviados no formulario de cadastro
+        // Le os valores enviados no formulário de cadastro
         String idFuncionarioTexto = request.getParameter("id_funcionario");
 
         String idNrFuncionarioTexto = request.getParameter("id_nrfuncionario");
@@ -48,7 +48,7 @@ public class ServletCreateCertificado extends HttpServlet {
         Date validade = null;
         String mensagem = "";
 
-        // Verifica campos obrigatorios e limites antes de converter os dados
+        // Verifica campos obrigatórios e limites antes de converter os dados
         if (dataEmissaoTexto == null || dataEmissaoTexto.isBlank()) {
 
             mensagem = "a data de emissao nao pode ser vazia";
@@ -65,14 +65,14 @@ public class ServletCreateCertificado extends HttpServlet {
 
         else if (idFuncionarioTexto == null || idFuncionarioTexto.isBlank()) {
 
-            mensagem = "o id do funcionario não pode ser nulo";
+            mensagem = "o id do funcionário não pode ser nulo";
             request.setAttribute("erro", mensagem);
 
         }
 
         else if (idNrFuncionarioTexto == null || idNrFuncionarioTexto.isBlank()) {
 
-            mensagem = "o id da NR do funcionario nao pode ser nulo";
+            mensagem = "o id da NR do funcionário nao pode ser nulo";
             request.setAttribute("erro", mensagem);
 
         }
@@ -86,7 +86,7 @@ public class ServletCreateCertificado extends HttpServlet {
 
         else {
 
-            // Converte os campos numericos e a data para os tipos usados pelo modelo
+            // Converte os campos numéricos e a data para os tipos usados pelo modelo
             try {
 
                 int idFuncionario = Integer.parseInt(idFuncionarioTexto);
@@ -160,7 +160,7 @@ public class ServletCreateCertificado extends HttpServlet {
                 }
 
             }
-            // Trata valores que nao podem ser convertidos para numero ou data
+            // Trata valores que não podem ser convertidos para número ou data
             catch (NumberFormatException e) {
                 mensagem = "os ids devem ser numeros validos";
                 request.setAttribute("erro", mensagem);
@@ -171,7 +171,7 @@ public class ServletCreateCertificado extends HttpServlet {
             }
         }
 
-        // Em caso de erro, retorna ao formulario com a mensagem de validacao.
+        // Em caso de erro, retorna ao formulário com a mensagem de validação.
         request.getRequestDispatcher("/WEB-INF/CertificadoJSP/Certificado.jsp").forward(request, response);
 
     }

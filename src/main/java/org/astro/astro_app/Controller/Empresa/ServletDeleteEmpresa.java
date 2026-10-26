@@ -26,11 +26,11 @@ public class ServletDeleteEmpresa extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        // Le o identificador do alerta enviado pelo formulario de exclusao
+        // Le o identificador do alerta enviado pelo formulário de exclusao
         String idEmpresaTexto = request.getParameter("id_empresa");
         String mensagem = "";
 
-        // Impede a exclusao quando o identificador nao foi informado
+        // Impede a exclusão quando o identificador não foi informado
         if (idEmpresaTexto == null || idEmpresaTexto.isBlank()) {
 
             mensagem = "id nao informado";
@@ -57,12 +57,12 @@ public class ServletDeleteEmpresa extends HttpServlet {
             // Remove o alerta do banco de dados
             empresaDAO.remover(idEmpresa);
 
-            // Redireciona para a listagem apos a exclusao
+            // Redireciona para a listagem após a exclusão
             response.sendRedirect(request.getContextPath() + "/listar-empresas");
 
         } catch (NumberFormatException e) {
 
-            // Se o identificador nao for numerico, informa o erro no formulario
+            // Se o identificador nao for numérico, informa o erro no formulário
             mensagem = "o id da empresa deve ser valido";
             request.setAttribute("erro", mensagem);
             request.getRequestDispatcher("/WEB-INF/EmpresaJSP/Empresa.jsp").forward(request, response);

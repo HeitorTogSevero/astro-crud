@@ -1,22 +1,23 @@
 package org.astro.astro_app.dao;
 
-import org.astro.astro_app.Conexão.Conexao; //Import da classe Conexao
-import org.astro.astro_app.model.Administrador; //Import da classe Adiministrador
+// Biblioteca:
+import org.astro.astro_app.Conexão.Conexao;
+import org.astro.astro_app.model.Administrador;
 
-import java.sql.*; //Import das classes java.sql
-import java.util.ArrayList; //Import da classe ArrayList
+import java.sql.*;
+import java.util.ArrayList;
 
 // Classe DAO Administrador - CRUD
 public class AdministradorDAO {
 
-    // Metodo Create | Insert - CRUD
+    // Método Create | Insert - CRUD
     public boolean inserirAdmin(Administrador admin) {
 
         // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-        //Tentando a conexão
+        // Tentando a conexão
         try {
             conn = conexao.conectar();
 
@@ -28,7 +29,7 @@ public class AdministradorDAO {
 
             return pstmt.executeUpdate() > 0;
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         } catch (SQLException sqlE) {
             System.out.println(sqlE.getMessage());
             return false;
@@ -37,7 +38,7 @@ public class AdministradorDAO {
         }
     }
 
-    // Metodo Read | Select - CRUD
+    // Método Read | Select - CRUD
     public ArrayList<Administrador> buscar(String sql) {
 
         // Criando a conexão com o Banco de Dados
@@ -46,7 +47,7 @@ public class AdministradorDAO {
 
         ArrayList<Administrador> vet = new ArrayList<>();
 
-        //Tentando a conexão
+        // Tentando a conexão
         try {
             conn = conexao.conectar();
 
@@ -59,7 +60,7 @@ public class AdministradorDAO {
             }
 
             stmt.close();
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         } catch (SQLException sqlE) {
             System.out.println(sqlE.getMessage());
         } finally {
@@ -68,14 +69,14 @@ public class AdministradorDAO {
         return vet;
     }
 
-    // Metodo Read | Select - CRUD, busca por ID
+    // Método Read | Select - CRUD, busca por ID
     public Administrador buscaPorIdAdmin(int idAdmin) {
 
         // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-        //Tentando a conexão
+        // Tentando a conexão
         try {
             conn = conexao.conectar();
 
@@ -94,7 +95,7 @@ public class AdministradorDAO {
                         rs.getString("senha"));
             }
             return null;
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         } catch (SQLException sqlE) {
             System.out.println(sqlE.getMessage());
             return null;
@@ -103,14 +104,14 @@ public class AdministradorDAO {
         }
     }
 
-    // Metodo Update - CRUD
+    // Método Update - CRUD
     public int alterarAdministrador(Administrador admin) {
 
         // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-        //Tentando a conexão
+        // Tentando a conexão
         try {
             conn = conexao.conectar();
 
@@ -127,7 +128,7 @@ public class AdministradorDAO {
             }
             return 0;
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         } catch (SQLException sqlE) {
             System.out.println(sqlE.getMessage());
             return -1;
@@ -136,14 +137,14 @@ public class AdministradorDAO {
         }
     }
 
-    // Metodo Delete | Remove - CRUD
+    // Método Delete | Remove - CRUD
     public int remover(int idAdmin) {
 
         // Criando a conexão com o Banco de Dados
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-        //Tentando a conexão
+        // Tentando a conexão
         try {
             conn = conexao.conectar();
 
@@ -158,7 +159,7 @@ public class AdministradorDAO {
             }
             return 0;
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         } catch (SQLException sqlE) {
             System.out.println(sqlE.getMessage());
             return -1;
@@ -167,13 +168,13 @@ public class AdministradorDAO {
         }
     }
 
-    // Metodo de autenticar o login: compara a senha digitada com o hash salvo
+    // Método de autenticar o login: compara a senha digitada com o hash salvo
     public Administrador autenticar(String email, String senha) {
 
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-        //Tentando a conexão
+        // Tentando a conexão
         try {
             conn = conexao.conectar();
 
@@ -191,7 +192,7 @@ public class AdministradorDAO {
             }
             return null;
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             return null;
@@ -206,7 +207,7 @@ public class AdministradorDAO {
         Conexao conexao = new Conexao();
         Connection conn = null;
 
-        //Tentando a conexão
+        // Tentando a conexão
         try {
             conn = conexao.conectar();
 
@@ -219,7 +220,7 @@ public class AdministradorDAO {
 
             return rs.next();
 
-        //Mensagem de erro da conexão
+        // Mensagem de erro da conexão
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             return true; // na dúvida, bloqueia o cadastro

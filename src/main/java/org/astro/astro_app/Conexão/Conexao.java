@@ -1,6 +1,6 @@
 package org.astro.astro_app.Conexão;
 
-//Binlioteca:
+//Biblioteca:
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -12,7 +12,7 @@ public class Conexao{
 
     Dotenv dotenv = Dotenv.load();
 
-    // Esse metodo conecta o Projeto com o BD
+    // Esse método conecta o Projeto com o BD
     public Connection conectar() {
 
         Connection conn = null;
@@ -38,7 +38,7 @@ public class Conexao{
         return conn;
 
     }
-    // Metodo para Desconetar o Banco:
+    // Método para Desconectar o Banco:
     public void desconectar(Connection conn){
 
         try{

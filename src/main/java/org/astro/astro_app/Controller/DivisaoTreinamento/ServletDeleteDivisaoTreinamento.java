@@ -15,7 +15,7 @@ public class ServletDeleteDivisaoTreinamento extends HttpServlet{
     @Override
     public void init(){
 
-        // Concede o acesso ao DAO da divisão treinamentp quando o servlet e iniciado
+        // Concede o acesso ao DAO da divisão treinamento quando o servlet e iniciado
         divisaoTreinamentoDAO = new DivisaoTreinamentoDAO();
 
     }
@@ -23,11 +23,11 @@ public class ServletDeleteDivisaoTreinamento extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
 
-        // Le o identificador do alerta enviado pelo formulario de exclusao
+        // Le o identificador do alerta enviado pelo formulário de exclusão
         String idDivisaoTreinamentoTexto = request.getParameter("id_divisao");
         String mensagem = "";
 
-        // Impede a exclusao quando o identificador nao foi informado
+        // Impede a exclusão quando o identificador não foi informado
         if(idDivisaoTreinamentoTexto == null || idDivisaoTreinamentoTexto.isBlank()){
 
             mensagem = "id nao informado";
@@ -54,13 +54,13 @@ public class ServletDeleteDivisaoTreinamento extends HttpServlet{
             // Remove o alerta do banco de dados
             divisaoTreinamentoDAO.remover(idDivisaoTreinamento);
 
-            // Redireciona para a listagem apos a exclusao
+            // Redireciona para a listagem após a exclusão
             response.sendRedirect(request.getContextPath() + "/listar-divisoes");
 
         }catch (NumberFormatException e){
 
-            // Se o identificador nao for numerico, informa o erro no formulario
-            mensagem = "o id da divisao deve ser valido";
+            // Se o identificador nao for numérico, informa o erro no formulário
+            mensagem = "o id da divisão deve ser valido";
             request.setAttribute("erro", mensagem);
             request.getRequestDispatcher("/WEB-INF/DivisaoTreinamentoJSP/DivisaoTreinamento.jsp").forward(request,response);
 

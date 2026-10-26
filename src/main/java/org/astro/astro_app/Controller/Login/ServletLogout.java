@@ -11,7 +11,7 @@ public class ServletLogout extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        // Recupera a sessão atual sem criar uma nova caso não exista
+        // Recupera a sessão atual sem criar uma, caso não exista
         HttpSession session = request.getSession(false);
 
         if (session != null) {

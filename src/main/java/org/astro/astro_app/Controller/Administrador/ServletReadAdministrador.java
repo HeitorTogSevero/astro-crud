@@ -30,7 +30,7 @@ public class ServletReadAdministrador extends HttpServlet {
     @Override
     public void init() {
 
-        // Concede o acesso ao DAO de adiministrador quando o servlet e iniciado
+        // Concede o acesso ao DAO de administrator quando o servlet e iniciado
         administradorDAO = new AdministradorDAO();
 
         // Concede o acesso ao DAO da empresa quando o servlet e iniciado

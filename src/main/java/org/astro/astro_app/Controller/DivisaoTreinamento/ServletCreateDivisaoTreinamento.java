@@ -16,7 +16,7 @@ public class ServletCreateDivisaoTreinamento extends HttpServlet{
     @Override
     public void init(){
 
-        // Concede o acesso ao DAO da divisão treinamentp quando o servlet e iniciado
+        // Concede o acesso ao DAO da divisão treinamento, quando o servlet e iniciado
         divisaoTreinamentoDAO = new DivisaoTreinamentoDAO();
 
     }
@@ -27,7 +27,7 @@ public class ServletCreateDivisaoTreinamento extends HttpServlet{
         // Os dados chegam em bits, aqui converte ele para linguagem normal
         request.setCharacterEncoding("UTF-8");
 
-        // Le os valores enviados no formulario de cadastro
+        // Le os valores enviados no formulário de cadastro
         String idCronogramaTexto = request.getParameter("id_cronograma");
 
         String codigoTexto = request.getParameter("codigo");
@@ -38,7 +38,7 @@ public class ServletCreateDivisaoTreinamento extends HttpServlet{
 
         String mensagem = "";
 
-        // Verifica campos obrigatorios e limites antes de converter os dados
+        // Verifica campos obrigatórios e limites antes de converter os dados
         if(idCronogramaTexto == null || idCronogramaTexto.isBlank()){
 
             mensagem = "o id do cronograma não pode ser vazio";
@@ -76,7 +76,7 @@ public class ServletCreateDivisaoTreinamento extends HttpServlet{
 
         else{
 
-            // Converte os campos numericos e a data para os tipos usados pelo modelo
+            // Converte os campos numéricos e a data para os tipos usados pelo modelo
             try{
 
                 int idCronograma = Integer.parseInt(idCronogramaTexto);
@@ -92,7 +92,7 @@ public class ServletCreateDivisaoTreinamento extends HttpServlet{
                 }
 
                 else if(codigo <= 0){
-                    mensagem = "o codigo deve ser > 0";
+                    mensagem = "o código deve ser > 0";
                     request.setAttribute("erro", mensagem);
                 }
 
@@ -113,20 +113,20 @@ public class ServletCreateDivisaoTreinamento extends HttpServlet{
 
                     divisaoTreinamentoDAO.inserir(divisaoTreinamento);
 
-                    // Após a insercao redireciona para a listagem atualizada
+                    // Após a inserção redireciona para a listagem atualizada
                     response.sendRedirect(request.getContextPath() + "/listar-divisoes");
                     return;
                 }
             }
 
-            // Trata valores que nao podem ser convertidos para numero ou data
+            // Trata valores que não podem ser convertidos para número ou data
             catch (NumberFormatException e ){
-                mensagem = "codigo ou idEmpresa ou idCronograma devem ser numeros válidos";
+                mensagem = "código ou idEmpresa ou idCronograma devem ser números válidos";
                 request.setAttribute("erro", mensagem);
             }
         }
 
-        // Em caso de erro, retorna ao formulario com a mensagem de validacao.
+        // Em caso de erro, retorna ao formulário com a mensagem de validação.
         request.getRequestDispatcher("/WEB-INF/DivisaoTreinamentoJSP/DivisaoTreinamento.jsp").forward(request,response);
 
     }

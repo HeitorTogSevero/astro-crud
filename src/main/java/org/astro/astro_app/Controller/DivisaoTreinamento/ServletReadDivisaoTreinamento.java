@@ -18,7 +18,7 @@ public class ServletReadDivisaoTreinamento extends HttpServlet{
     @Override
     public void init(){
 
-        // Concede o acesso ao DAO da divisão treinamentp quando o servlet e iniciado
+        // Concede o acesso ao DAO da divisão treinamento, quando o servlet e iniciado
         divisaoTreinamentoDAO = new DivisaoTreinamentoDAO();
 
     }
