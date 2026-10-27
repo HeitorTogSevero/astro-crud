@@ -51,6 +51,17 @@ html {
     background: var(--bg-app);
 }
 
+.fundo-planeta {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: min(1390px, 95vw) auto;
+    pointer-events: none;
+}
+
 body.pagina-cadastro {
     background-color: var(--bg-app);
     color: var(--text-main);
@@ -59,15 +70,11 @@ body.pagina-cadastro {
     overflow-x: hidden;
 }
 
-.fundo-planeta {
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    background-color: var(--bg-app);
-    background-image: url('imagens/planeta_login.png');
-    background-repeat: no-repeat;
-    background-position: 0px 0px;
-    background-size: 1390px auto;
+.cadastro-container {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    min-height: 100vh;
 }
 
 .botao-voltar {

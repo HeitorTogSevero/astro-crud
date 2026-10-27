@@ -19,7 +19,7 @@
 </head>
 <body class="pagina-cadastro">
 
-<div class="fundo-planeta" aria-hidden="true"></div>
+<div class="fundo-planeta" aria-hidden="true" style="background-image: url('<%=caminho%>/imagens/planeta_login.png');"></div>
 
 <a href="<%=caminho%>/landing-page.html" onclick="if (document.referrer) { history.back(); return false; }" class="botao-voltar" id="botao-voltar" aria-label="Voltar">
     <i class="fa-solid fa-arrow-left"></i>
