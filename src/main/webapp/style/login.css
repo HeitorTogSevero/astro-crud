@@ -44,14 +44,6 @@ body.fade-out {
     letter-spacing: 0.5px;
 }
 
-body.pagina-login {
-    background-color: var(--bg-app);
-    color: var(--text-main);
-    min-height: 100vh;
-    position: relative;
-    overflow-x: hidden;
-}
-
 .img-logo {
     width: 190px;
 }
@@ -77,20 +69,30 @@ body.pagina-login {
     background-color: rgba(255, 255, 255, 0.08);
 }
 
-.login-container {
-    display: flex;
-    min-height: 100vh;
+.fundo-planeta {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: min(1390px, 95vw) auto;
+    pointer-events: none;
 }
 
-.fundo-planeta {
-    position: absolute;
-    inset: 0;
-    z-index: -1;
+body.pagina-login {
     background-color: var(--bg-app);
-    background-image: url('imagens/planeta_login.png');
-    background-repeat: no-repeat;
-    background-position: 0px 0px;
-    background-size: 1390px auto;
+    color: var(--text-main);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.login-container {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    min-height: 100vh;
 }
 
 .login-lado-imagem {

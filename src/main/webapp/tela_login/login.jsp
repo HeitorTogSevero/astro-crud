@@ -15,7 +15,7 @@
 </head>
 <body class="pagina-login">
 
-<div class="fundo-planeta" aria-hidden="true"></div>
+<div class="fundo-planeta" aria-hidden="true" style="background-image: url('<%=caminho%>/imagens/planeta_login.png');"></div>
 
 <a href="<%=caminho%>/landing-page.html"
    onclick="if(document.referrer) { history.back(); return false; }"
