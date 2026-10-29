@@ -529,3 +529,9 @@ body {
 
     z-index: 9999;
 }
+
+.acoes-navegacao {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}

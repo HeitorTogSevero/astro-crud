@@ -1,0 +1,224 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.5px;
+}
+
+:root {
+    --bg-app: #000719;
+    --bg-card: #01091D;
+    --bg-input: #181D32;
+    --border-card: #0C153D;
+    --primary-color: #9300FF;
+    --input-border: #4963D7;
+    --text-main: #FFFFFF;
+    --text-muted: #C2C2C2;
+    --link-color: #31CCEE;
+}
+
+body {
+    animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+body.fade-out {
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+}
+
+body.pagina-login {
+    position: relative;
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+    background-color: var(--bg-app);
+    color: var(--text-main);
+}
+
+.fundo-planeta {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background-color: var(--bg-app);
+    background-image: url('imagens/planeta_login.png');
+    background-repeat: no-repeat;
+    background-position: left top;
+    background-size: 1390px auto;
+    pointer-events: none;
+}
+
+.botao-voltar {
+    position: fixed;
+    top: 40px;
+    left: 24px;
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-main);
+    text-decoration: none;
+    font-size: 18px;
+    border-radius: 50%;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.botao-voltar:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    transform: translateX(-2px);
+}
+
+#acess-container {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+}
+
+.img-logo {
+    display: block;
+    width: 150px;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.login-acess {
+    width: 420px;
+    max-width: 100%;
+    min-height: 280px;
+    padding: 38px 36px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    gap: 18px;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-card);
+    border-radius: 18px;
+}
+
+.login-acess h1 {
+    margin-bottom: 12px;
+    color: var(--text-main);
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.3;
+    text-align: center;
+}
+
+.botao-entrar,
+.botao-cadastro {
+    width: 100%;
+    min-height: 46px;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(100deg, #A000D5 0%, #8000A8 100%);
+    color: var(--text-main);
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.botao-entrar:hover,
+.botao-cadastro:hover {
+    background: linear-gradient(100deg, #B522F0 0%, #9300C0 100%);
+    box-shadow: 0 0 12px rgba(147, 0, 255, 0.18);
+}
+
+.botao-entrar:active,
+.botao-cadastro:active {
+    transform: scale(0.98);
+}
+
+.botao-entrar:focus-visible,
+.botao-cadastro:focus-visible,
+.botao-voltar:focus-visible {
+    outline: 2px solid #FFFFFF;
+    outline-offset: 4px;
+}
+
+@media (max-width: 600px) {
+    .fundo-planeta {
+        background-size: 1050px auto;
+        background-position: 20% top;
+    }
+
+    #acess-container {
+        padding: 24px 20px;
+    }
+
+    .botao-voltar {
+        top: 20px;
+        left: 16px;
+    }
+
+    .img-logo {
+        width: 130px;
+    }
+
+    .login-acess {
+        width: 100%;
+        max-width: 420px;
+        padding: 32px 24px;
+    }
+}
+
+@media (max-height: 450px) {
+    body.pagina-login {
+        overflow-y: auto;
+    }
+
+    #acess-container {
+        min-height: 450px;
+        padding-top: 55px;
+        padding-bottom: 25px;
+    }
+
+    .login-acess {
+        min-height: auto;
+        padding-top: 24px;
+        padding-bottom: 24px;
+        gap: 12px;
+    }
+
+    .login-logo {
+        margin-bottom: 12px;
+    }
+}
