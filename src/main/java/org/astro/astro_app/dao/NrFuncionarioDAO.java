@@ -14,12 +14,11 @@ public class NrFuncionarioDAO {
     public boolean inserir(NrFuncionario nrF){
 
         // Criando a conexão com o banco de dados
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         // Tentando a conexão
         try{
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             // Interface para realizar comandos sql
             PreparedStatement pstmt = conn.prepareStatement("INSERT INTO nr_funcionario (id_nrdescricao, numero, dt_realizacao, titulo, status) VALUES (?, ?, ?, ?, ?)");
@@ -41,7 +40,7 @@ public class NrFuncionarioDAO {
             System.out.println(sqlE.getMessage());
             return false;
         }finally {
-            conexao.desconectar(conn); // Desconectando do Banco
+            Conexao.desconectar(conn); // Desconectando do Banco
         }
     }
 
@@ -49,14 +48,13 @@ public class NrFuncionarioDAO {
     public ArrayList<NrFuncionario> buscar(String sql){
 
         // Criando a conexão com o Banco de Dados
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         ArrayList<NrFuncionario> vet = new ArrayList<>();
 
         // Tentando a conexão
         try{
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             // Interface para realizar comandos sql
             Statement stmt = conn.createStatement();
@@ -74,7 +72,7 @@ public class NrFuncionarioDAO {
         }catch(SQLException sqlE){
             System.out.println(sqlE.getMessage());
         }finally{
-            conexao.desconectar(conn); // Desconectando do Banco
+            Conexao.desconectar(conn); // Desconectando do Banco
         }
 
         return vet;
@@ -84,12 +82,11 @@ public class NrFuncionarioDAO {
     public NrFuncionario buscarPorIdNrFunc(int idNrFunc){
 
         // Criando a Conexão com o banco de dados
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         // Tentando a conexão
         try{
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             // Interface para realizar comandos sql
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM nr_funcionario WHERE id_nrfuncionario = ?");
@@ -109,7 +106,7 @@ public class NrFuncionarioDAO {
             System.out.println(sqlE.getMessage());
             return null;
         }finally {
-            conexao.desconectar(conn); // Desconectando do Banco
+            Conexao.desconectar(conn); // Desconectando do Banco
         }
     }
 
@@ -117,14 +114,13 @@ public class NrFuncionarioDAO {
     public ArrayList<NrFuncionario> buscarPorIdNrDescricao(int idNrDescricao){
 
         // Criando a Conexão com o banco de dados
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         ArrayList<NrFuncionario> vet = new ArrayList<>();
 
         // Tentando a conexão
         try{
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             // Interface para realizar comandos sql
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM nr_funcionario WHERE id_nrdescricao = ? ORDER BY id_nrfuncionario");
@@ -141,7 +137,7 @@ public class NrFuncionarioDAO {
         }catch(SQLException sqlE){
             System.out.println(sqlE.getMessage());
         }finally {
-            conexao.desconectar(conn); // Desconectando do Banco
+            Conexao.desconectar(conn); // Desconectando do Banco
         }
 
         return vet;
@@ -151,12 +147,11 @@ public class NrFuncionarioDAO {
     public int alterarNrFuncionario(NrFuncionario nrf) {
 
         // Criando a conexão com o banco de dados:
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         // Tentando a conexão
         try {
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             // Interface para realizar comandos sql
             PreparedStatement pstmt = conn.prepareStatement("UPDATE nr_funcionario SET id_nrdescricao = ?, numero = ?, dt_realizacao = ?, titulo = ?, status = ? WHERE id_nrfuncionario = ?");
@@ -179,7 +174,7 @@ public class NrFuncionarioDAO {
             System.out.println(sqlE.getMessage());
             return -1;
         }finally {
-            conexao.desconectar(conn); // Desconectando do Banco
+            Conexao.desconectar(conn); // Desconectando do Banco
         }
     }
 
@@ -187,12 +182,11 @@ public class NrFuncionarioDAO {
     public int remover(int idNrFuncionario){
 
         // Criando a conexão com o Banco de Dados
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         // Tentando a conexão
         try{
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             // Interface para realizar comandos sql
             PreparedStatement pstmt = conn.prepareStatement("DELETE FROM nr_funcionario WHERE id_nrfuncionario = ?");
@@ -210,7 +204,7 @@ public class NrFuncionarioDAO {
             System.out.println(sqlE.getMessage());
             return -1;
         }finally {
-            conexao.desconectar(conn); // Desconectando do Banco
+            Conexao.desconectar(conn); // Desconectando do Banco
         }
     }
 }

@@ -14,12 +14,11 @@ public class FuncionarioDAO {
     public boolean inserir(Funcionario f){
 
         // Criando a conexão com o Banco de Dados
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         // Tentando a conexão
         try{
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             // Interface para realizar comandos SQL's:
             PreparedStatement pstmt = conn.prepareStatement("INSERT INTO funcionario (nome, cargo, cpf, id_empresa, id_departamento, email) VALUES (?, ?, pgp_sym_encrypt(?, 'funcionariosAstro'), ?, ?, ?)");
@@ -42,7 +41,7 @@ public class FuncionarioDAO {
             System.out.println(sqlE.getMessage());
             return false;
         }finally {
-            conexao.desconectar(conn); // Desconectando do Banco
+            Conexao.desconectar(conn); // Desconectando do Banco
         }
     }
 
@@ -51,14 +50,13 @@ public class FuncionarioDAO {
     public ArrayList<Funcionario> buscar(String sql) {
 
         // Criando a conexão com o Banco de Dados
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         ArrayList<Funcionario> vet = new ArrayList<>();
 
         // Tentando a conexão
         try {
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             // Interface para realizar comandos SQL's:
             Statement stmt = conn.createStatement();
@@ -74,7 +72,7 @@ public class FuncionarioDAO {
         } catch (SQLException sqlE) {
             System.out.println(sqlE.getMessage());
         } finally {
-            conexao.desconectar(conn); // Desconectando do Banco
+            Conexao.desconectar(conn); // Desconectando do Banco
         }
 
         return vet;
@@ -85,12 +83,11 @@ public class FuncionarioDAO {
     public Funcionario buscarPorIdFunc(int idFunc) {
 
         // Criando a conexão com o Banco de Dados
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         // Tentando a conexão
         try {
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             // Interface para realizar comandos SQL's
             PreparedStatement pstmt = conn.prepareStatement("SELECT id_funcionario, nome, cargo, email, id_empresa, id_departamento, pgp_sym_decrypt(cpf, 'funcionariosAstro') as cpf FROM funcionario WHERE id_funcionario = ?");
@@ -111,7 +108,7 @@ public class FuncionarioDAO {
             System.out.println(sqlE.getMessage());
             return null;
         } finally {
-            conexao.desconectar(conn); // Desconectando do Banco
+            Conexao.desconectar(conn); // Desconectando do Banco
         }
     }
 
@@ -120,14 +117,13 @@ public class FuncionarioDAO {
     public ArrayList<Funcionario> buscarPorIdEmpresa(int idEmpresa) {
 
         // Criando a conexão com o Banco de Dados
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         ArrayList<Funcionario> vet = new ArrayList<>();
 
         // Tentando a conexão
         try {
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             // Interface para realizar comandos SQL's
             PreparedStatement pstmt = conn.prepareStatement("SELECT id_funcionario, nome, cargo, email, id_empresa, id_departamento, pgp_sym_decrypt(cpf, 'funcionariosAstro') as cpf FROM funcionario WHERE id_empresa = ? ORDER BY id_funcionario");
@@ -145,7 +141,7 @@ public class FuncionarioDAO {
             System.out.println(sqlE.getMessage());
 
         } finally {
-            conexao.desconectar(conn); // Desconectando do Banco
+            Conexao.desconectar(conn); // Desconectando do Banco
         }
 
         return vet;
@@ -156,14 +152,13 @@ public class FuncionarioDAO {
     public ArrayList<Funcionario> buscarPorIdDepart(int idDepart) {
 
         // Criando a conexão com o Banco de Dados
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         ArrayList<Funcionario> vet = new ArrayList<>();
 
         // Tentando a conexão
         try {
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             // Interface para realizar comandos SQL's
             PreparedStatement pstmt = conn.prepareStatement("SELECT id_funcionario, nome, cargo, email, id_empresa, id_departamento, pgp_sym_decrypt(cpf, 'funcionariosAstro') AS cpf FROM funcionario WHERE id_departamento = ? ORDER BY id_funcionario");
@@ -180,7 +175,7 @@ public class FuncionarioDAO {
         } catch (SQLException sqlE) {
             System.out.println(sqlE.getMessage());
         } finally {
-            conexao.desconectar(conn); // Desconectando do Banco
+            Conexao.desconectar(conn); // Desconectando do Banco
         }
 
         return vet;
@@ -193,12 +188,11 @@ public class FuncionarioDAO {
         int total = 0;
 
         // Criando a conexão com o Banco de Dados
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         // Tentando a conexão
         try{
-            conn  = conexao.conectar();
+            conn  = Conexao.conectar();
 
             // Interface para realizar comandos SQL's
             PreparedStatement pstmt = conn.prepareStatement("SELECT COUNT(id_funcionario) FROM funcionario");
@@ -214,7 +208,7 @@ public class FuncionarioDAO {
         }catch (SQLException e ){
             System.out.println("Erro ao contar funcionarios: " + e.getMessage());
         }finally {
-            conexao.desconectar(conn); // Desconectando do Banco
+            Conexao.desconectar(conn); // Desconectando do Banco
         }
         return total;
     }
@@ -224,12 +218,11 @@ public class FuncionarioDAO {
     public int alterarFuncionario(Funcionario f) {
 
         // Criando a conexão com o Banco de Dados
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         // Tentando a conexão
         try {
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             // Interface para realizar comandos SQL's
             PreparedStatement pstmt = conn.prepareStatement("UPDATE funcionario SET nome = ?, cargo = ?, cpf = pgp_sym_encrypt(?, 'funcionariosAstro'), id_empresa = ?, id_departamento = ? WHERE id_funcionario = ?");
@@ -252,7 +245,7 @@ public class FuncionarioDAO {
             System.out.println(sqlE.getMessage());
             return -1;
         }finally {
-            conexao.desconectar(conn); // Desconectando do Banco
+            Conexao.desconectar(conn); // Desconectando do Banco
         }
     }
 
@@ -261,12 +254,11 @@ public class FuncionarioDAO {
     public int remover(int idFuncionario){
 
         // Criando a conexão com o Banco de Dados
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         // Tentando a conexão
         try{
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             // Interface para realizar comandos SQL's:
             PreparedStatement pstmt = conn.prepareStatement("DELETE FROM funcionario WHERE id_funcionario = ?");
@@ -284,7 +276,7 @@ public class FuncionarioDAO {
             System.out.println(sqle.getMessage());
             return -1;
         } finally {
-            conexao.desconectar(conn); // Desconectando do Banco
+            Conexao.desconectar(conn); // Desconectando do Banco
         }
     }
 }

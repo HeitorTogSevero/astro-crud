@@ -5,50 +5,49 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
 import io.github.cdimascio.dotenv.Dotenv;
 
 // Classe para realizar o JDBC
-public class Conexao{
+public class Conexao {
 
-    Dotenv dotenv = Dotenv.load();
+    //Constante responsável por gerenciar as conexões do banco
+    private static final HikariDataSource postgresqlPool = criarPool();
 
-    // Esse método conecta o Projeto com o BD
-    public Connection conectar() {
+    private static HikariDataSource criarPool() {
+        Dotenv dotenv = Dotenv.configure().ignoreIfMissing().load();
 
-        Connection conn = null;
+        HikariConfig config = new HikariConfig();
+        config.setDriverClassName("org.postgresql.Driver");
+        config.setJdbcUrl(dotenv.get("DB_URL"));
+        config.setUsername(dotenv.get("DB_USER"));
+        config.setPassword(dotenv.get("DB_PASSWORD"));
+        config.setConnectionTimeout(15000L);
+        config.setIdleTimeout(300000L);
+        config.setMaxLifetime(600000L);
+        config.setMinimumIdle(3);
+        config.setMaximumPoolSize(4);
+        config.setPoolName("elos-pool");
 
-        // Realizando a Conexão:
-        try{
-            Class.forName("org.postgresql.Driver"); // Driver do JDBC
+        // Aumenta a velocidade do pool
+        config.addDataSourceProperty("cachePrepStmts", "true");
+        config.addDataSourceProperty("prepStmtCacheSize", "250");
+        config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
 
-            // Recebendo os valores do arquivo .env:
-            String usuario = dotenv.get("DB_USER");
-            String senha = dotenv.get("DB_PASSWORD");
-            String url = dotenv.get("DB_URL");
-
-            conn = DriverManager.getConnection(url, usuario, senha);
-
-        }
-
-        // Mensagem de Erro na Conexão:
-        catch (SQLException | ClassNotFoundException e) {
-            System.out.println(e.getMessage());
-        }
-
-        return conn;
-
+        return new HikariDataSource(config);
     }
-    // Método para Desconectar o Banco:
-    public void desconectar(Connection conn){
 
+    public static Connection conectar() throws SQLException {
+        return postgresqlPool.getConnection();
+    }
+
+    public static void desconectar(Connection connection) {
         try{
+            connection.close();
+        } catch (SQLException e) {
 
-            if (conn != null && !conn.isClosed()) {
-                conn.close(); // Fechando a Conexão
-            }
-
-        } catch (SQLException sqle) {
-            sqle.printStackTrace();
         }
     }
+
 }

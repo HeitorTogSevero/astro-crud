@@ -14,12 +14,11 @@ public class NrDescricaoDAO {
     public boolean inserir(NrDescricao nrDescricao){
 
         // Criando a conexão com o Banco de Dados
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         // Tentando a conexão
         try{
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             // Interface para realizar comandos SQL's:
             PreparedStatement pstmt = conn.prepareStatement("INSERT INTO nr_descricao (titulo, descricao, tempo_reciclagem) VALUES (?, ?, ?)");
@@ -39,7 +38,7 @@ public class NrDescricaoDAO {
             System.out.println(sqle.getMessage());
             return false;
         }finally {
-            conexao.desconectar(conn); // Desconectando do Banco
+            Conexao.desconectar(conn); // Desconectando do Banco
         }
     }
 
@@ -47,14 +46,13 @@ public class NrDescricaoDAO {
     public ArrayList<NrDescricao> buscar(String sql){
 
         // Criando a conexão com o Banco de Dados
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         ArrayList<NrDescricao> vet = new ArrayList<>();
 
         // Tentando a conexão
         try{
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             // Interface para realizar comandos SQL's:
             Statement stmt = conn.createStatement();
@@ -70,7 +68,7 @@ public class NrDescricaoDAO {
         }catch (SQLException sqle){
             System.out.println(sqle.getMessage());
         }finally {
-            conexao.desconectar(conn); // Desconectando do Banco
+            Conexao.desconectar(conn); // Desconectando do Banco
         }
 
         return vet;
@@ -80,12 +78,11 @@ public class NrDescricaoDAO {
     public NrDescricao buscarPorIdNrDescricao(int idNrDescricao){
 
         // Criando a conexão com o Banco de Dados
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         // Tentando a conexão
         try{
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             // Interface para realizar comandos SQL's
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM nr_descricao WHERE id_nrdescricao = ?");
@@ -105,7 +102,7 @@ public class NrDescricaoDAO {
             System.out.println(sqle.getMessage());
             return null;
         } finally {
-            conexao.desconectar(conn); // Desconectando do Banco
+            Conexao.desconectar(conn); // Desconectando do Banco
         }
     }
 
@@ -113,12 +110,11 @@ public class NrDescricaoDAO {
     public int alterarNrDescricao(NrDescricao nrDescricao){
 
         // Criando a conexão com o Banco de Dados
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         // Tentando a conexão
         try{
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             // Interface para realizar comandos SQL's
             PreparedStatement pstmt = conn.prepareStatement("UPDATE nr_descricao set titulo = ?, descricao = ?, tempo_reciclagem = ? WHERE id_nrdescricao = ?");
@@ -139,7 +135,7 @@ public class NrDescricaoDAO {
             System.out.println(sqle.getMessage());
             return -1;
         }finally {
-            conexao.desconectar(conn); // Desconectando do Banco
+            Conexao.desconectar(conn); // Desconectando do Banco
         }
     }
 
@@ -147,12 +143,11 @@ public class NrDescricaoDAO {
     public int remover(int idNrDescricao){
 
         // Criando a conexão com o Banco de Dados
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         // Tentando a conexão
         try{
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             // Interface para realizar comandos SQL's:
             PreparedStatement pstmt = conn.prepareStatement("DELETE FROM nr_descricao WHERE id_nrdescricao = ?");
@@ -170,7 +165,7 @@ public class NrDescricaoDAO {
             System.out.println(sqle.getMessage());
             return -1;
         }finally {
-            conexao.desconectar(conn); // Desconectando do Banco
+            Conexao.desconectar(conn); // Desconectando do Banco
         }
     }
 }
