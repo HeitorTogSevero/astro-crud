@@ -27,7 +27,7 @@ public class ServletCreateAdministrador extends HttpServlet{
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         // Os dados chegam em bits, aqui converte ele para linguagem normal
-        request.getRequestDispatcher("/tela_login/cadastro.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/LoginAdmin/cadastroAdmin.jsp").forward(request, response);
 
     }
 
@@ -126,12 +126,15 @@ public class ServletCreateAdministrador extends HttpServlet{
                     request.setAttribute("erro", mensagem);
                 }
 
+                request.getRequestDispatcher("/WEB-INF/LoginAdmin/cadastroAdmin.jsp").forward(request, response);
+
             }catch (Exception e) {
                 // Exibe uma mensagem para o usuário e mostra o erro no terminal
                 mensagem = "Erro ao cadastrar. Tente novamente.";
                 request.setAttribute("erro", mensagem);
                 System.out.println(e.getMessage());
             }
+
         }
 
         // Se houver erro, retorna ao formulário com a mensagem e os dados preservados

@@ -26,7 +26,8 @@ public class ServletLogin extends HttpServlet {
     //Abre a tela de login
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/tela_login/login.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/LoginAdmin/loginAdmin.jsp").forward(request, response);
+
     }
 
     //Processa o formulário de login
@@ -106,9 +107,11 @@ public class ServletLogin extends HttpServlet {
                 request.setAttribute("erro", mensagem);
 
             }
+
+            request.getRequestDispatcher("/WEB-INF/LoginAdmin/loginAdmin.jsp").forward(request, response);
         }
 
         // Em caso de erro, retorna ao formulário com a mensagem de validação
-        request.getRequestDispatcher("/tela_login/login.jsp").forward(request, response);
+        request.getRequestDispatcher("/LoginAdmin/loginAdmin.jsp").forward(request, response);
     }
 }
