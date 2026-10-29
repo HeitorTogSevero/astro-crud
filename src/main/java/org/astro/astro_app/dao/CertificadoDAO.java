@@ -14,12 +14,11 @@ public class CertificadoDAO {
     public boolean inserir(Certificado c){
 
         // Criando a conexão com o banco de dados
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         // Tentando a conexão
         try{
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             // Interface para realizar comandos SQL's:
             PreparedStatement pstmt = conn.prepareStatement("INSERT INTO certificado (id_funcionario, id_nrfuncionario, id_nrempresa, dt_emissao, validade) VALUES (?, ?, ?, ?, ?)");
@@ -41,7 +40,7 @@ public class CertificadoDAO {
             System.out.println(sqlE.getMessage());
             return false;
         }finally {
-            conexao.desconectar(conn); // Desconectando do Banco
+            Conexao.desconectar(conn); // Desconectando do Banco
         }
     }
 
@@ -49,14 +48,13 @@ public class CertificadoDAO {
     public ArrayList<Certificado> buscar(String sql) {
 
         // Criando a conexão com o Banco de Dados
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         ArrayList<Certificado> vet = new ArrayList<>();
 
         // Tentando a conexão
         try {
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             // Interface para realizar comandos SQL's:
             Statement stmt = conn.createStatement();
@@ -72,7 +70,7 @@ public class CertificadoDAO {
         } catch (SQLException sqlE) {
             System.out.println(sqlE.getMessage());
         } finally {
-            conexao.desconectar(conn); // Desconectando do Banco
+            Conexao.desconectar(conn); // Desconectando do Banco
         }
 
         return vet;
@@ -82,12 +80,11 @@ public class CertificadoDAO {
     public Certificado buscarPorIdCertificado(int idCertificado) {
 
         // Criando a conexão com o Banco de Dados
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         // Tentando a conexão
         try {
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             // Interface para realizar comandos SQL's
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM certificado WHERE id_certificado = ?");
@@ -107,7 +104,7 @@ public class CertificadoDAO {
             System.out.println(sqlE.getMessage());
             return null;
         } finally {
-            conexao.desconectar(conn); // Desconectando do Banco
+            Conexao.desconectar(conn); // Desconectando do Banco
         }
     }
 
@@ -115,14 +112,13 @@ public class CertificadoDAO {
     public ArrayList<Certificado> buscarPorIdFuncionario(int idFuncionario) {
 
         // Criando a conexão com o Banco de Dados
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         ArrayList<Certificado> vet = new ArrayList<>();
 
         // Tentando a conexão
         try {
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             // Interface para realizar comandos SQL's
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM certificado WHERE id_funcionario = ? ORDER BY id_certificado");
@@ -139,7 +135,7 @@ public class CertificadoDAO {
         } catch (SQLException sqlE) {
             System.out.println(sqlE.getMessage());
         } finally {
-            conexao.desconectar(conn); // Desconectando do Banco
+            Conexao.desconectar(conn); // Desconectando do Banco
         }
 
         return vet;
@@ -149,14 +145,13 @@ public class CertificadoDAO {
     public ArrayList<Certificado> buscarPorIdNrFunc(int idNrFunc) {
 
         // Criando a conexão com o Banco de Dados
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         ArrayList<Certificado> vet = new ArrayList<>();
 
         // Tentando a conexão
         try {
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             // Interface para realizar comandos SQL's
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM certificado WHERE id_nrfuncionario = ? ORDER BY id_certificado");
@@ -173,7 +168,7 @@ public class CertificadoDAO {
         } catch (SQLException sqlE) {
             System.out.println(sqlE.getMessage());
         } finally {
-            conexao.desconectar(conn); // Desconectando do Banco
+            Conexao.desconectar(conn); // Desconectando do Banco
         }
 
         return vet;
@@ -183,14 +178,13 @@ public class CertificadoDAO {
     public ArrayList<Certificado> buscarPorIdEmpresa(int idNrEmpresa) {
 
         // Criando a conexão com o Banco de Dados
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         ArrayList<Certificado> vet = new ArrayList<>();
 
         // Tentando a conexão
         try {
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             // Interface para realizar comandos SQL's
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM certificado WHERE id_nrempresa = ? ORDER BY id_certificado");
@@ -206,7 +200,7 @@ public class CertificadoDAO {
         } catch (SQLException sqlE) {
             System.out.println(sqlE.getMessage());
         } finally {
-            conexao.desconectar(conn); // Desconectando do Banco
+            Conexao.desconectar(conn); // Desconectando do Banco
         }
 
         return vet;
@@ -215,12 +209,12 @@ public class CertificadoDAO {
     // Método de contar certificados
     public int contarCertificados(){
         int total = 0;
-        Conexao conexao=new Conexao();
+        Conexao Conexao=new Conexao();
         Connection conn = null;
 
         // Tentando a conexão
         try {
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             PreparedStatement pstmt = conn.prepareStatement("SELECT COUNT(id_certificado) FROM certificado");
 
@@ -234,7 +228,7 @@ public class CertificadoDAO {
         }catch (SQLException e ){
             System.out.println("Erro ao contar certificados: " + e.getMessage());
         }finally {
-            conexao.desconectar(conn); // Desconectando do Banco
+            Conexao.desconectar(conn); // Desconectando do Banco
         }
         return total;
     }
@@ -242,12 +236,11 @@ public class CertificadoDAO {
     public int alterarCertificado(Certificado c){
 
         // Criando a conexão com o Banco de Dados
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         // Tentando a conexão
         try {
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             // Interface para realizar comandos SQL's
             PreparedStatement pstmt = conn.prepareStatement("UPDATE certificado set id_funcionario = ?, id_nrfuncionario = ?, id_nrempresa = ?, dt_emissao = ?, validade = ? WHERE id_certificado = ?");
@@ -270,7 +263,7 @@ public class CertificadoDAO {
             System.out.println(sqlE.getMessage());
             return -1;
         }finally {
-            conexao.desconectar(conn); // Desconectando do Banco
+            Conexao.desconectar(conn); // Desconectando do Banco
         }
     }
 
@@ -278,12 +271,11 @@ public class CertificadoDAO {
     public int remover(int idCertificado){
 
         // Criando a conexão com o Banco de Dados
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         //Tentando a conexão
         try{
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             // Interface para realizar comandos SQL's:
             PreparedStatement pstmt = conn.prepareStatement("DELETE FROM certificado WHERE id_certificado = ?");
@@ -301,7 +293,7 @@ public class CertificadoDAO {
             System.out.println(sqle.getMessage());
             return -1;
         } finally {
-            conexao.desconectar(conn); // Desconectando do Banco
+            Conexao.desconectar(conn); // Desconectando do Banco
         }
     }
 }

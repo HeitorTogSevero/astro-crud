@@ -13,12 +13,11 @@ public class CronogramaDAO {
     public boolean inserir(Cronograma cronograma){
 
         // Criando a conexão com o Banco de Dados
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         // Tentando a conexão
         try{
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             // Interface para realizar comandos SQL's:
             PreparedStatement pstmt = conn.prepareStatement("INSERT INTO cronograma (agendamento, id_empresa, id_funcionario) VALUES (?, ?, ?)");
@@ -38,7 +37,7 @@ public class CronogramaDAO {
             System.out.println(sqle.getMessage());
             return false;
         }finally {
-            conexao.desconectar(conn); // Desconectando do Banco
+            Conexao.desconectar(conn); // Desconectando do Banco
         }
     }
 
@@ -46,14 +45,13 @@ public class CronogramaDAO {
     public ArrayList<Cronograma> buscar(String sql){
 
         // Criando a conexão com o Banco de Dados
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         ArrayList<Cronograma> vet = new ArrayList<>();
 
         // Tentando a conexão
         try{
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             // Interface para realizar comandos SQL's:
             Statement stmt = conn.createStatement();
@@ -70,7 +68,7 @@ public class CronogramaDAO {
         }catch (SQLException sqle){
             System.out.println(sqle.getMessage());
         }finally {
-            conexao.desconectar(conn); // Desconectando do Banco
+            Conexao.desconectar(conn); // Desconectando do Banco
         }
 
         return vet;
@@ -80,12 +78,11 @@ public class CronogramaDAO {
     public Cronograma buscarPorIdCronograma(int idCronograma){
 
         // Criando a conexão com o Banco de Dados
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         // Tentando a conexão
         try{
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             // Interface para realizar comandos SQL's
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM cronograma WHERE id_cronograma = ?");
@@ -105,7 +102,7 @@ public class CronogramaDAO {
             System.out.println(sqle.getMessage());
             return null;
         } finally {
-            conexao.desconectar(conn); // Desconectando do Banco
+            Conexao.desconectar(conn); // Desconectando do Banco
         }
     }
 
@@ -113,14 +110,13 @@ public class CronogramaDAO {
     public ArrayList<Cronograma> buscarPorIdEmpresa(int idEmpresa){
 
         // Criando a conexão com o Banco de Dados
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         ArrayList<Cronograma> vet = new ArrayList<>();
 
         //Tentando a conexão
         try{
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             // Interface para realizar comandos SQL's
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM cronograma WHERE id_empresa = ? ORDER BY id_cronograma");
@@ -137,7 +133,7 @@ public class CronogramaDAO {
         } catch (SQLException sqle){
             System.out.println(sqle.getMessage());
         } finally {
-            conexao.desconectar(conn); // Desconectando do Banco
+            Conexao.desconectar(conn); // Desconectando do Banco
         }
 
         return vet;
@@ -147,14 +143,13 @@ public class CronogramaDAO {
     public ArrayList<Cronograma> buscarPorIdFuncionario(int idFuncionario){
 
         // Criando a conexão com o Banco de Dados
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         ArrayList<Cronograma> vet = new ArrayList<>();
 
         //Tentando a conexão
         try{
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             // Interface para realizar comandos SQL's
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM cronograma WHERE id_funcionario = ? ORDER BY id_cronograma");
@@ -171,7 +166,7 @@ public class CronogramaDAO {
         } catch (SQLException sqle){
             System.out.println(sqle.getMessage());
         } finally {
-            conexao.desconectar(conn); // Desconectando do Banco
+            Conexao.desconectar(conn); // Desconectando do Banco
         }
 
         return vet;
@@ -181,12 +176,11 @@ public class CronogramaDAO {
     public int alterarCronograma(Cronograma cronograma){
 
         // Criando a conexão com o Banco de Dados
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         //Tentando a conexão
         try{
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             // Interface para realizar comandos SQL's
             PreparedStatement pstmt = conn.prepareStatement("UPDATE cronograma set agendamento = ?, id_empresa = ?, id_funcionario = ? WHERE id_cronograma = ?");
@@ -207,7 +201,7 @@ public class CronogramaDAO {
             System.out.println(sqle.getMessage());
             return -1;
         }finally {
-            conexao.desconectar(conn); // Desconectando do Banco
+            Conexao.desconectar(conn); // Desconectando do Banco
         }
     }
 
@@ -215,12 +209,11 @@ public class CronogramaDAO {
     public int remover(int idCronograma){
 
         // Criando a conexão com o Banco de Dados
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         //Tentando a conexão
         try{
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             // Interface para realizar comandos SQL's:
             PreparedStatement pstmt = conn.prepareStatement("DELETE FROM cronograma WHERE id_cronograma = ?");
@@ -238,7 +231,7 @@ public class CronogramaDAO {
             System.out.println(sqle.getMessage());
             return -1;
         }finally {
-            conexao.desconectar(conn); // Desconectando do Banco
+            Conexao.desconectar(conn); // Desconectando do Banco
         }
     }
 }

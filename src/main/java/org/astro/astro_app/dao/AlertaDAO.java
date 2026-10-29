@@ -13,13 +13,12 @@ public class AlertaDAO {
     // Método Create | Insert - CRUD:
     public boolean inserir(Alerta a) {
 
-        // Criando a conexao com o banco de dados
-        Conexao conexao = new Conexao();
+        // Criando a Conexao com o banco de dados
         Connection conn = null;
 
         // Tentando a conexão
         try{
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             // Interface para realizar comandos SQL's:
             PreparedStatement pstmt = conn.prepareStatement("INSERT INTO alerta (descricao, codigo, dt_limite, id_empresa) VALUES (?, ?, ?, ?)");
@@ -40,7 +39,7 @@ public class AlertaDAO {
             System.out.println(sqlE.getMessage());
             return false;
         } finally {
-            conexao.desconectar(conn); // Desconectando do Banco
+            Conexao.desconectar(conn); // Desconectando do Banco
         }
     }
 
@@ -48,14 +47,13 @@ public class AlertaDAO {
     public ArrayList<Alerta> buscar(String sql) {
 
         // Criando a conexão com o Banco de Dados
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         ArrayList<Alerta> vet = new ArrayList<>();
 
         // Tentando a conexão
         try {
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             // Interface para realizar comandos SQL's:
             Statement stmt = conn.createStatement();
@@ -71,7 +69,7 @@ public class AlertaDAO {
         } catch (SQLException sqlE) {
             System.out.println(sqlE.getMessage());
         } finally {
-            conexao.desconectar(conn); // Desconectando do Banco
+            Conexao.desconectar(conn); // Desconectando do Banco
         }
 
         return vet;
@@ -81,12 +79,11 @@ public class AlertaDAO {
     public Alerta buscarPorIdAlerta(int idAlerta) {
 
         // Criando conexão com o Banco de Dados
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         // Tentando a conexão
         try {
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             // Interface para realizar comandos SQL's
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM alerta WHERE id_alerta = ?");
@@ -106,7 +103,7 @@ public class AlertaDAO {
             System.out.println(sqlE.getMessage());
             return null;
         } finally {
-            conexao.desconectar(conn); // Desconectando do Banco
+            Conexao.desconectar(conn); // Desconectando do Banco
         }
     }
 
@@ -114,14 +111,13 @@ public class AlertaDAO {
     public ArrayList<Alerta> buscarPorIdEmpresa(int idEmpresa) {
 
         // Criando conexão com o Banco de Dados
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         ArrayList<Alerta> vet = new ArrayList<>();
 
         // Tentando a conexão
         try {
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             // Interface para realizar comandos SQL's:
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM alerta WHERE id_empresa = ? ORDER BY id_alerta");
@@ -138,7 +134,7 @@ public class AlertaDAO {
         } catch (SQLException sqlE) {
             System.out.println(sqlE.getMessage());
         } finally {
-            conexao.desconectar(conn); // Desconectando do Banco
+            Conexao.desconectar(conn); // Desconectando do Banco
         }
 
         return vet;
@@ -148,12 +144,11 @@ public class AlertaDAO {
     public int alterarAlerta(Alerta a){
 
         // Criando a conexão com o Banco de Dados
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         // Tentando a conexão
         try {
-            conn = conexao.conectar(); // Desconectando do Banco
+            conn = Conexao.conectar(); // Desconectando do Banco
 
             // Interface para realizar comandos SQL's
             PreparedStatement pstmt = conn.prepareStatement("UPDATE alerta set codigo = ?, id_empresa = ?, descricao = ?, dt_limite = ? WHERE id_alerta = ?");
@@ -177,7 +172,7 @@ public class AlertaDAO {
             System.out.println(sqlE.getMessage());
             return -1;
         }finally {
-            conexao.desconectar(conn); // Desconectando do Banco
+            Conexao.desconectar(conn); // Desconectando do Banco
         }
 
     }
@@ -186,12 +181,11 @@ public class AlertaDAO {
     public int remover(int idAlerta) {
 
         // Criando a conexão com o Banco de Dados
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         // Tentando a conexão
         try {
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             // Interface para realizar comandos SQL's:
             PreparedStatement pstmt = conn.prepareStatement("DELETE FROM alerta WHERE id_alerta = ?");
@@ -209,7 +203,7 @@ public class AlertaDAO {
             System.out.println(sqle.getMessage());
             return -1;
         } finally {
-            conexao.desconectar(conn); // Desconectando do Banco
+            Conexao.desconectar(conn); // Desconectando do Banco
         }
     }
 }

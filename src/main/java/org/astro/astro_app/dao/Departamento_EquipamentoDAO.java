@@ -14,12 +14,11 @@ public class Departamento_EquipamentoDAO {
     public boolean inserir(Departamento_Equipamento dpE){
 
         // Criando a Conexão com o Banco de Dados:
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         // Tentando a conexão
         try{
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             // Interface para realizar comandos SQL's
             PreparedStatement pstmt = conn.prepareStatement("INSERT INTO depart_equipamento (id_departamento, id_equipamento) VALUES (?, ?)");
@@ -38,7 +37,7 @@ public class Departamento_EquipamentoDAO {
             System.out.println(sqlE.getMessage());
             return false;
         }finally {
-            conexao.desconectar(conn); // Desconectando do Banco
+            Conexao.desconectar(conn); // Desconectando do Banco
         }
     }
 
@@ -46,14 +45,13 @@ public class Departamento_EquipamentoDAO {
     public ArrayList<Departamento_Equipamento> buscar(String sql){
 
         // Criando a Conexão com o Banco de Dados:
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         ArrayList<Departamento_Equipamento> vet = new ArrayList<>();
 
         // Tentando a conexão
         try{
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             // Interface para realizar comandos SQL's
             Statement stmt = conn.createStatement();
@@ -70,7 +68,7 @@ public class Departamento_EquipamentoDAO {
         }catch (SQLException sqlE){
             System.out.println(sqlE.getMessage());
         }finally {
-            conexao.desconectar(conn); // Desconectando do Banco
+            Conexao.desconectar(conn); // Desconectando do Banco
         }
 
         return vet;
@@ -80,14 +78,13 @@ public class Departamento_EquipamentoDAO {
     public ArrayList<Departamento_Equipamento> buscarPorIdDepart(int idDepart){
 
         // Criando a Conexão com o Banco de Dados
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         ArrayList<Departamento_Equipamento> vet = new ArrayList<>();
 
         // Tentando a conexão
         try{
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             // Interface para realizar comandos SQL's
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM depart_equipamento WHERE id_departamento = ? ORDER BY id_equipamento");
@@ -104,7 +101,7 @@ public class Departamento_EquipamentoDAO {
         }catch(SQLException sqlE){
             System.out.println(sqlE.getMessage());
         }finally {
-            conexao.desconectar(conn); // Desconectando do Banco
+            Conexao.desconectar(conn); // Desconectando do Banco
         }
 
         return vet;
@@ -114,14 +111,13 @@ public class Departamento_EquipamentoDAO {
     public ArrayList<Departamento_Equipamento> buscarPorIdEquipamento(int idEquipamento){
 
         // Criando a Conexão com o Banco de Dados
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         ArrayList<Departamento_Equipamento> vet = new ArrayList<>();
 
         // Tentando a conexão
         try{
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             // Interface para realizar comandos SQL's
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM depart_equipamento WHERE id_equipamento = ? ORDER BY id_departamento");
@@ -138,7 +134,7 @@ public class Departamento_EquipamentoDAO {
         }catch(SQLException sqlE){
             System.out.println(sqlE.getMessage());
         }finally {
-            conexao.desconectar(conn); // Desconectando do Banco
+            Conexao.desconectar(conn); // Desconectando do Banco
         }
 
         return vet;
@@ -148,12 +144,11 @@ public class Departamento_EquipamentoDAO {
     public int alterarDepartamentoEquipamento(int idDepartamentoAntigo, int idEquipamentoAntigo, Departamento_Equipamento dpE) {
 
         // Criando a conexão com o Banco de Dados:
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
     // Tentando a conexão
         try {
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             // Interface para realizar comandos SQL's:
             PreparedStatement pstmt = conn.prepareStatement("UPDATE depart_equipamento SET id_departamento = ?, id_equipamento = ? WHERE id_departamento = ? AND id_equipamento = ?");
@@ -174,7 +169,7 @@ public class Departamento_EquipamentoDAO {
             System.out.println(sqlE.getMessage());
             return -1;
         }finally {
-            conexao.desconectar(conn); // Desconectando do Banco
+            Conexao.desconectar(conn); // Desconectando do Banco
         }
     }
 
@@ -182,12 +177,11 @@ public class Departamento_EquipamentoDAO {
     public int remover(int idDepartamento, int idEquipamento){
 
         // Criando a conexão com o Banco de Dados
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         // Tentando a conexão
         try{
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             // Interface para realizar comandos SQL's:
             PreparedStatement pstmt = conn.prepareStatement("DELETE FROM depart_equipamento WHERE id_departamento = ? AND id_equipamento = ?");
@@ -206,7 +200,7 @@ public class Departamento_EquipamentoDAO {
             System.out.println(sqlE.getMessage());
             return -1;
         }finally {
-            conexao.desconectar(conn); // Desconectando do Banco
+            Conexao.desconectar(conn); // Desconectando do Banco
         }
     }
 }

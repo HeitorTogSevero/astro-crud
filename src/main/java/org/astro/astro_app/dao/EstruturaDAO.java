@@ -14,12 +14,11 @@ public class EstruturaDAO {
     public boolean inserir(Estrutura est){
 
         // Criando a conexão com o Banco de Dados
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         // Tentando a conexão
         try{
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             // Interface para realizar comandos SQL's:
             PreparedStatement pstmt = conn.prepareStatement("INSERT INTO estrutura (id_empresa, risco, descricao) VALUES (?, ?, ?)");
@@ -39,7 +38,7 @@ public class EstruturaDAO {
             System.out.println(sqlE.getMessage());
             return false;
         }finally {
-            conexao.desconectar(conn); // Desconectando do Banco
+            Conexao.desconectar(conn); // Desconectando do Banco
         }
     }
 
@@ -47,14 +46,13 @@ public class EstruturaDAO {
     public ArrayList<Estrutura> buscar(String sql){
 
         // Criando a conexão com o Banco de Dados
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         ArrayList<Estrutura> vet = new ArrayList<>();
 
         // Tentando a conexão
         try{
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             // Interface para realizar comandos SQL's:
             Statement stmt = conn.createStatement();
@@ -70,7 +68,7 @@ public class EstruturaDAO {
         }catch(SQLException sqlE){
             System.out.println(sqlE.getMessage());
         }finally{
-            conexao.desconectar(conn); // Desconectando do Banco
+            Conexao.desconectar(conn); // Desconectando do Banco
         }
 
         return vet;
@@ -80,12 +78,11 @@ public class EstruturaDAO {
     public Estrutura buscarPorIdEstrutura(int idEstrutura){
 
         // Criando a conexão com o Banco de Dados
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         // Tentando a conexão
         try{
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             // Interface para realizar comandos SQL's
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM estrutura WHERE id_estrutura = ?");
@@ -105,7 +102,7 @@ public class EstruturaDAO {
             System.out.println(sqlE.getMessage());
             return null;
         }finally {
-            conexao.desconectar(conn); // Desconectando do Banco
+            Conexao.desconectar(conn); // Desconectando do Banco
         }
     }
 
@@ -113,14 +110,13 @@ public class EstruturaDAO {
     public ArrayList<Estrutura> buscarPorIdEmpresa(int idEmpresa){
 
         // Criando a conexão com o Banco de Dados
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         ArrayList<Estrutura> vet = new ArrayList<>();
 
         // Tentando a conexão
         try{
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             // Interface para realizar comandos SQL's
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM estrutura WHERE id_empresa = ? ORDER BY id_estrutura");
@@ -137,7 +133,7 @@ public class EstruturaDAO {
         }catch(SQLException sqlE){
             System.out.println(sqlE.getMessage());
         }finally {
-            conexao.desconectar(conn); // Desconectando do Banco
+            Conexao.desconectar(conn); // Desconectando do Banco
         }
 
         return vet;
@@ -147,12 +143,11 @@ public class EstruturaDAO {
     public int alterarEstrutura(Estrutura est) {
 
         // Criando a conexão com o Banco de Dados
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         // Tentando a conexão
         try {
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             // Interface para realizar comandos SQL's
             PreparedStatement pstmt = conn.prepareStatement("UPDATE estrutura SET id_empresa = ?, risco = ?, descricao = ? WHERE id_estrutura = ?");
@@ -173,7 +168,7 @@ public class EstruturaDAO {
             System.out.println(sqlE.getMessage());
             return -1;
         }finally {
-            conexao.desconectar(conn); // Desconectando do Banco
+            Conexao.desconectar(conn); // Desconectando do Banco
         }
     }
 
@@ -181,12 +176,11 @@ public class EstruturaDAO {
     public int remover(int idEstrutura){
 
         // Criando a conexão com o Banco de Dados
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         // Tentando a conexão
         try{
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             // Interface para realizar comandos SQL's:
             PreparedStatement pstmt = conn.prepareStatement("DELETE FROM estrutura WHERE id_estrutura = ?");
@@ -204,7 +198,7 @@ public class EstruturaDAO {
             System.out.println(sqlE.getMessage());
             return -1;
         }finally {
-            conexao.desconectar(conn); // Desconectando do Banco
+            Conexao.desconectar(conn); // Desconectando do Banco
         }
     }
 }

@@ -14,12 +14,11 @@ public class AdministradorDAO {
     public boolean inserirAdmin(Administrador admin) {
 
         // Criando a conexão com o Banco de Dados
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         // Tentando a conexão
         try {
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             PreparedStatement pstmt = conn.prepareStatement("INSERT INTO administrador (nome, email, senha) VALUES (?, ?, crypt(?, gen_salt('bf',12)))");
 
@@ -34,7 +33,7 @@ public class AdministradorDAO {
             System.out.println(sqlE.getMessage());
             return false;
         } finally {
-            conexao.desconectar(conn); // Desconectando do banco de dados
+            Conexao.desconectar(conn); // Desconectando do banco de dados
         }
     }
 
@@ -42,14 +41,13 @@ public class AdministradorDAO {
     public ArrayList<Administrador> buscar(String sql) {
 
         // Criando a conexão com o Banco de Dados
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         ArrayList<Administrador> vet = new ArrayList<>();
 
         // Tentando a conexão
         try {
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             // Interface para realizar comandos SQL's:
             Statement stmt = conn.createStatement();
@@ -64,7 +62,7 @@ public class AdministradorDAO {
         } catch (SQLException sqlE) {
             System.out.println(sqlE.getMessage());
         } finally {
-            conexao.desconectar(conn); // Desconectando do banco de dados
+            Conexao.desconectar(conn); // Desconectando do banco de dados
         }
         return vet;
     }
@@ -73,12 +71,11 @@ public class AdministradorDAO {
     public Administrador buscaPorIdAdmin(int idAdmin) {
 
         // Criando a conexão com o Banco de Dados
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         // Tentando a conexão
         try {
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM administrador WHERE id_admin = ?");
 
@@ -100,7 +97,7 @@ public class AdministradorDAO {
             System.out.println(sqlE.getMessage());
             return null;
         } finally {
-            conexao.desconectar(conn); // Desconectando do banco de dados
+            Conexao.desconectar(conn); // Desconectando do banco de dados
         }
     }
 
@@ -108,12 +105,11 @@ public class AdministradorDAO {
     public int alterarAdministrador(Administrador admin) {
 
         // Criando a conexão com o Banco de Dados
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         // Tentando a conexão
         try {
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             PreparedStatement pstmt = conn.prepareStatement("UPDATE administrador SET nome = ?, email = ?, senha = crypt(?, gen_salt('bf', 12)) WHERE id_admin = ?");
 
@@ -133,7 +129,7 @@ public class AdministradorDAO {
             System.out.println(sqlE.getMessage());
             return -1;
         } finally {
-            conexao.desconectar(conn); // Desconectando do banco de dados
+            Conexao.desconectar(conn); // Desconectando do banco de dados
         }
     }
 
@@ -141,12 +137,11 @@ public class AdministradorDAO {
     public int remover(int idAdmin) {
 
         // Criando a conexão com o Banco de Dados
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         // Tentando a conexão
         try {
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             // Interface para realizar comandos SQL's:
             PreparedStatement pstmt = conn.prepareStatement("DELETE FROM administrador WHERE id_admin = ?");
@@ -164,19 +159,18 @@ public class AdministradorDAO {
             System.out.println(sqlE.getMessage());
             return -1;
         } finally {
-            conexao.desconectar(conn); // Desconectando do banco de dados
+            Conexao.desconectar(conn); // Desconectando do banco de dados
         }
     }
 
     // Método de autenticar o login: compara a senha digitada com o hash salvo
     public Administrador autenticar(String email, String senha) {
 
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         // Tentando a conexão
         try {
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             PreparedStatement pstmt = conn.prepareStatement("SELECT id_admin, nome, email FROM administrador WHERE email = ? AND senha = crypt(?, senha)");
 
@@ -197,19 +191,18 @@ public class AdministradorDAO {
             System.out.println(e.getMessage());
             return null;
         } finally {
-            conexao.desconectar(conn); // Desconectando do banco de dados
+            Conexao.desconectar(conn); // Desconectando do banco de dados
         }
     }
 
     // Método para validar se o email está correto
     public boolean emailExiste(String email) {
 
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         // Tentando a conexão
         try {
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             // Interface para realizar comandos SQL's:
             PreparedStatement pstmt = conn.prepareStatement("SELECT 1 FROM administrador WHERE email = ?");
@@ -225,7 +218,7 @@ public class AdministradorDAO {
             System.out.println(e.getMessage());
             return true; // na dúvida, bloqueia o cadastro
         } finally {
-            conexao.desconectar(conn); // Desconectando do banco de dados
+            Conexao.desconectar(conn); // Desconectando do banco de dados
         }
     }
 

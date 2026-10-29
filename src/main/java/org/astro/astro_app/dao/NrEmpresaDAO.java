@@ -14,12 +14,11 @@ public class NrEmpresaDAO {
     public boolean inserir(NrEmpresa nrEmpresa){
 
         // Criando a conexão com o Banco de Dados
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         // Tentando a conexão
         try{
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             // Interface para realizar comandos SQL's:
             PreparedStatement pstmt = conn.prepareStatement("INSERT INTO nr_empresa (numero, status, titulo, dt_realizacao, id_nrdescricao) VALUES (?, ?, ?, ?, ?)");
@@ -41,7 +40,7 @@ public class NrEmpresaDAO {
             System.out.println(sqle.getMessage());
             return false;
         }finally {
-            conexao.desconectar(conn); // Desconectando do Banco
+            Conexao.desconectar(conn); // Desconectando do Banco
         }
     }
 
@@ -49,14 +48,13 @@ public class NrEmpresaDAO {
     public ArrayList<NrEmpresa> buscar(String sql){
 
         // Criando a conexão com o Banco de Dados
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         ArrayList<NrEmpresa> vet = new ArrayList<>();
 
         // Tentando a conexão
         try{
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             // Interface para realizar comandos SQL's:
             Statement stmt = conn.createStatement();
@@ -72,7 +70,7 @@ public class NrEmpresaDAO {
         }catch (SQLException sqle){
             System.out.println(sqle.getMessage());
         }finally {
-            conexao.desconectar(conn); // Desconectando do Banco
+            Conexao.desconectar(conn); // Desconectando do Banco
         }
 
         return vet;
@@ -82,12 +80,11 @@ public class NrEmpresaDAO {
     public NrEmpresa buscarPorIdNrEmpresa(int idNrEmpresa){
 
         // Criando a conexão com o Banco de Dados
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         // Tentando a conexão
         try{
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             // Interface para realizar comandos SQL's
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM nr_empresa WHERE id_nrempresa = ?");
@@ -107,7 +104,7 @@ public class NrEmpresaDAO {
             System.out.println(sqle.getMessage());
             return null;
         } finally {
-            conexao.desconectar(conn); // Desconectando do Banco
+            Conexao.desconectar(conn); // Desconectando do Banco
         }
     }
 
@@ -115,14 +112,13 @@ public class NrEmpresaDAO {
     public ArrayList<NrEmpresa> buscarPorIdNrDescricao(int idNrDescricao){
 
         // Criando a conexão com o Banco de Dados
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         ArrayList<NrEmpresa> vet = new ArrayList<>();
 
         // Tentando a conexão
         try{
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             // Interface para realizar comandos SQL's
             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM nr_empresa WHERE id_nrdescricao = ? ORDER BY id_nrempresa");
@@ -139,7 +135,7 @@ public class NrEmpresaDAO {
         } catch (SQLException sqle){
             System.out.println(sqle.getMessage());
         } finally {
-            conexao.desconectar(conn); // Desconectando do Banco
+            Conexao.desconectar(conn); // Desconectando do Banco
         }
 
         return vet;
@@ -149,12 +145,11 @@ public class NrEmpresaDAO {
     public int alterarNrEmpresa(NrEmpresa nrEmpresa){
 
         // Criando a conexão com o Banco de Dados
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         // Tentando a conexão
         try{
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             // Interface para realizar comandos SQL's
             PreparedStatement pstmt = conn.prepareStatement("UPDATE nr_empresa set numero = ?, status = ?, titulo = ?, dt_realizacao = ?, id_nrdescricao = ? WHERE id_nrempresa = ?");
@@ -177,7 +172,7 @@ public class NrEmpresaDAO {
             System.out.println(sqle.getMessage());
             return -1;
         }finally {
-            conexao.desconectar(conn); // Desconectando do Banco
+            Conexao.desconectar(conn); // Desconectando do Banco
         }
     }
 
@@ -185,12 +180,11 @@ public class NrEmpresaDAO {
     public int remover(int idNrEmpresa){
 
         // Criando a conexão com o Banco de Dados
-        Conexao conexao = new Conexao();
         Connection conn = null;
 
         // Tentando a conexão
         try{
-            conn = conexao.conectar();
+            conn = Conexao.conectar();
 
             // Interface para realizar comandos SQL's
             PreparedStatement pstmt = conn.prepareStatement("DELETE FROM nr_empresa WHERE id_nrempresa = ?");
@@ -208,7 +202,7 @@ public class NrEmpresaDAO {
             System.out.println(sqle.getMessage());
             return -1;
         }finally {
-            conexao.desconectar(conn); // Desconectando do Banco
+            Conexao.desconectar(conn); // Desconectando do Banco
         }
     }
 }

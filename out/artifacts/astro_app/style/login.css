@@ -72,7 +72,7 @@ body.fade-out {
 .fundo-planeta {
     position: fixed;
     inset: 0;
-    z-index: 0;
+    z-index: -1;
     background-color: transparent;
     background-repeat: no-repeat;
     background-position: left center;
@@ -273,6 +273,8 @@ body.pagina-login {
 }
 
 footer {
+    position: relative;
+    z-index: 2;
     padding: 80px 120px 32px;
 }
 
