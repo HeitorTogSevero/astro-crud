@@ -28,7 +28,7 @@ public class ServletReadAlerta extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         // Lê os filtros opcionais enviados pela tela de listagem
-        String codigoTexto = request.getParameter("código");
+        String codigoTexto = request.getParameter("codigo");
 
         String dtLimiteMin = request.getParameter("dt_limite_min");
 
@@ -47,7 +47,7 @@ public class ServletReadAlerta extends HttpServlet {
             // Filtro por codigo
             if (codigoTexto != null && !codigoTexto.isBlank() && !codigoTexto.equals("0")) {
 
-                sql.append(" AND código = ").append(Integer.parseInt(codigoTexto));
+                sql.append(" AND codigo = ").append(Integer.parseInt(codigoTexto));
 
             }
 

@@ -7,11 +7,12 @@
     <link rel="stylesheet" href="../style/login.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="icon" type="image/png" href="../../imagens/isotipo.png">
+    <link rel="icon" type="image/png" href="imagens/isotipo.png">
+
 </head>
 <body class="pagina-login">
 
-<div class="fundo-planeta" aria-hidden="true"></div>
+<div class="fundo-planeta" aria-hidden="true" style="background-image: url('../imagens/planeta_login.png');"></div>
 
 <a href="../landing-page.html" onclick="if(document.referrer) {history.back(); return false;}" class="botao-voltar" id="botao-voltar" aria-label="Voltar">
     <i class="fa-solid fa-arrow-left"></i>
@@ -22,7 +23,7 @@
     <section class="login-lado-imagem">
         <div class="login-lado-conteudo">
             <div class="login-logo">
-                <img src="../../imagens/imagotipo.png" alt="Logotipo" class="img-logo">
+                <img src="../imagens/imagotipo.png" alt="Logotipo" class="img-logo">
             </div>
 
             <h1 class="login-titulo1">Olá!<br></h1>
@@ -129,14 +130,16 @@
 
             <div class="coluna-links social">
                 <h4>
-                    Siga o <img id="siga" src="../imagens/logotipo.png" alt="astro">
+                    Siga o <img id="siga" src="../imagens/logotipoAstro.png" alt="astro">
                 </h4>
 
                 <div class="icones-sociais">
 
-                    <div class="icone-social">
-                        <img src="../imagens/linkedin.png" alt="LinkedIn">
-                    </div>
+                    <a href="mailto:app.4str0@gmail.com">
+                        <div class="icone-gmail">
+                            <img src="../imagens/gmail.png" alt="Gmail">
+                        </div>
+                    </a>
 
                     <a href="https://www.instagram.com/astro.4pp/" target="_blank" rel="noopener noreferrer">
                         <div class="icone-social">
@@ -144,9 +147,11 @@
                         </div>
                     </a>
 
-                    <div class="icone-social">
-                        <img src="../imagens/youtube.png" alt="YouTube">
-                    </div>
+                    <a href="https://www.youtube.com/@astro-jef" target="_blank" rel="noopener noreferrer">
+                        <div class="icone-social">
+                            <img src="../imagens/youtube.png" alt="YouTube">
+                        </div>
+                    </a>
 
                 </div>
             </div>
@@ -158,8 +163,8 @@
         <p>© 2026 astro. Todos os direitos reservados.</p>
 
         <div class="links-legais-rodape">
-            <a href="#">Privacidade</a>
-            <a href="#">Termos de uso</a>
+            <a href="../termos.html">Privacidade e Termos de Uso</a>
+            <a href="../acessoAdmin.jsp">Área Restrita</a>
         </div>
     </div>
 </footer>

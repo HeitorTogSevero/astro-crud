@@ -1,10 +1,10 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%  String caminho = request.getContextPath();
-    String erro = (String) request.getAttribute("erro");
-    String nomeDigitado = (String) request.getAttribute("nomeDigitado");
-    String emailDigitado = (String) request.getAttribute("emailDigitado");
-    if (nomeDigitado == null) nomeDigitado = "";
-    if (emailDigitado == null) emailDigitado = "";
+String erro = (String) request.getAttribute("erro");
+String nomeDigitado = (String) request.getAttribute("nomeDigitado");
+String emailDigitado = (String) request.getAttribute("emailDigitado");
+if (nomeDigitado == null) nomeDigitado = "";
+if (emailDigitado == null) emailDigitado = "";
 %>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -15,7 +15,8 @@
     <link rel="stylesheet" href="<%=caminho%>/style/cadastro.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="icon" type="image/png" href="<%=caminho%>/imagens/isotipo.png">
+    <link rel="icon" type="image/png" href="imagens/isotipo.png">
+
 </head>
 <body class="pagina-cadastro">
 
@@ -109,8 +110,8 @@
                 </section>
 
                 <p class="termos-cadastro">
-                    Ao continuar, você concorda com os <a href="#termos">Termos de uso</a><br>
-                    e a <a href="#privacidade">Política de privacidade</a>.
+                    Ao continuar, você concorda com a <a href="<%=caminho%>/termos.html#privacidade">Privacidade</a><br>
+                    <a href="<%=caminho%>/termos.html#termos">e Termos de uso</a>.
                 </p>
 
                 <% if (erro != null) { %>
@@ -168,14 +169,16 @@
 
             <div class="coluna-links social">
                 <h4>
-                    Siga o <img id="siga" src="<%=caminho%>/imagens/logotipo.png" alt="astro">
+                    Siga o <img id="siga" src="<%=caminho%>/imagens/logotipoAstro.png" alt="astro">
                 </h4>
 
                 <div class="icones-sociais">
 
-                    <div class="icone-social">
-                        <img src="<%=caminho%>/imagens/linkedin.png" alt="LinkedIn">
-                    </div>
+                    <a href="mailto:app.4str0@gmail.com">
+                        <div class="icone-gmail">
+                            <img src="<%=caminho%>/imagens/gmail.png" alt="Gmail">
+                        </div>
+                    </a>
 
                     <a href="https://www.instagram.com/astro.4pp/" target="_blank" rel="noopener noreferrer">
                         <div class="icone-social">
@@ -183,9 +186,11 @@
                         </div>
                     </a>
 
-                    <div class="icone-social">
-                        <img src="<%=caminho%>/imagens/youtube.png" alt="YouTube">
-                    </div>
+                    <a href="https://www.youtube.com/@astro-jef" target="_blank" rel="noopener noreferrer">
+                        <div class="icone-social">
+                            <img src="<%=caminho%>/imagens/youtube.png" alt="YouTube">
+                        </div>
+                    </a>
 
                 </div>
             </div>
@@ -197,8 +202,8 @@
         <p>© 2026 astro. Todos os direitos reservados.</p>
 
         <div class="links-legais-rodape">
-            <a href="#">Privacidade</a>
-            <a href="#">Termos de uso</a>
+            <a href="<%=caminho%>/termos.html">Privacidade e Termos de Uso</a>
+            <a href="<%=caminho%>/acessoAdmin.jsp">Área Restrita</a>
         </div>
     </div>
 </footer>

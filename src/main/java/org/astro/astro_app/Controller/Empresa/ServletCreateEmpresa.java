@@ -136,7 +136,7 @@ public class ServletCreateEmpresa extends HttpServlet{
 
         }
 
-        else if(estado.length() > 100){
+        else if(estado.length() > 2){
 
             mensagem = "o nome do estado pode conter até 2 caracteres";
             request.setAttribute("erro", mensagem);

@@ -10,7 +10,8 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 
 // Define que este filtro protege todas as rotas administrativas listadas abaixo
-@WebFilter(urlPatterns = {"/tela-inicial", "/listar-empresas", "/adicionar-empresa", "/editar-empresa", "/deletar-empresa", "/listar-funcionarios", "/adicionar-funcionario", "/editar-funcionario", "/deletar-funcionario", "/listar-departamentos", "/adicionar-departamento", "/alterar-departamento", "/deletar-departamento", "/listar-divisoes", "/adicionar-divisao", "/alterar-divisao", "/deletar-divisao", "/listar-alerta", "/adicionar-alerta", "/alterar-alerta", "/deletar-alerta", "/listar-certificados", "/adicionar-certificado", "/alterar-certificado", "/deletar-certificado"})
+@WebFilter(urlPatterns = {"/tela-inicial", "/listar-empresas", "/adicionar-empresa", "/editar-empresa", "/deletar-empresa", "/listar-funcionarios", "/adicionar-funcionario", "/alterar-funcionario", "/deletar-funcionario", "/listar-departamentos", "/adicionar-departamento", "/alterar-departamento", "/deletar-departamento", "/listar-divisoes", "/adicionar-divisao", "/alterar-divisao", "/deletar-divisao", "/listar-alerta", "/adicionar-alerta", "/alterar-alerta", "/deletar-alerta", "/listar-certificados", "/adicionar-certificado", "/alterar-certificado", "/deletar-certificado"})
+
 public class FiltroAutenticarAdmin implements Filter {
 
     @Override

@@ -39,6 +39,20 @@
         tela.hidden = false;
     }
 
+    function esconderCarregamento() {
+        tela.hidden = true;
+    }
+
+    // Corrige o bug da seta "voltar": página restaurada do cache com a overlay aberta
+    window.addEventListener("pageshow", (evento) => {
+        // evento.persisted = veio do bfcache (voltar/avançar)
+        esconderCarregamento();
+    });
+
+    window.addEventListener("popstate", () => {
+        esconderCarregamento();
+    });
+
     document.addEventListener("submit", evento => {
         if (evento.defaultPrevented || evento.target.target === "_blank") return;
         mostrarCarregamento();
@@ -46,7 +60,7 @@
 
     document.addEventListener("click", evento => {
         if (evento.defaultPrevented || evento.button !== 0 || evento.metaKey || evento.ctrlKey
-                || evento.shiftKey || evento.altKey) return;
+            || evento.shiftKey || evento.altKey) return;
 
         const link = evento.target.closest("a[href]");
         if (!link || link.target === "_blank" || link.hasAttribute("download")) return;
@@ -57,7 +71,7 @@
         const destino = new URL(href, window.location.href);
         if (destino.origin !== window.location.origin) return;
         if (destino.pathname === window.location.pathname && destino.search === window.location.search
-                && destino.hash) return;
+            && destino.hash) return;
 
         mostrarCarregamento();
     });

@@ -35,7 +35,7 @@ public class ServletUpdateFuncionario extends HttpServlet {
                 Pattern.compile("^(\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}|\\d{11})$");
 
         final Pattern emailRegex =
-                Pattern.compile("^[a-zA-Z0-9._%+#$!\\-]+@(gmail|hotmail|yahoo|outlook)\\.(com|com\\.br|org\\.br)$");
+                Pattern.compile("^[a-zA-Z0-9._%+#$!\\-]+@(gmail|hotmail|yahoo|outlook|institutojef)\\.(com|com\\.br|org\\.br)$");
 
 
         // Le o identificador e os novos valores enviados pelo formulário de edição
@@ -88,7 +88,7 @@ public class ServletUpdateFuncionario extends HttpServlet {
 
         }
 
-        else if (cargo.length() > 50) {
+        else if (cargo.length() > 100) {
 
             mensagem = "o cargo deve ter no max. 50 caracteres";
 

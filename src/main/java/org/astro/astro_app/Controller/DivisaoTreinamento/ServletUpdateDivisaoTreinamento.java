@@ -32,7 +32,7 @@ public class ServletUpdateDivisaoTreinamento extends HttpServlet{
 
         String idCronogramaTexto = request.getParameter("id_cronograma");
 
-        String codigoTexto = request.getParameter("código");
+        String codigoTexto = request.getParameter("codigo");
 
         String idEmpresaTexto = request.getParameter("id_empresa");
 
@@ -59,7 +59,7 @@ public class ServletUpdateDivisaoTreinamento extends HttpServlet{
 
         else if(codigoTexto == null || codigoTexto.isBlank()){
 
-            mensagem = "o código não pode ser vazio";
+            mensagem = "o codigo não pode ser vazio";
 
             request.setAttribute("erro", mensagem);
 
@@ -120,7 +120,7 @@ public class ServletUpdateDivisaoTreinamento extends HttpServlet{
 
                 else if(codigo <= 0){
 
-                    mensagem = "o código é inválido";
+                    mensagem = "o codigo é inválido";
 
                     request.setAttribute("erro", mensagem);
                 }

@@ -75,9 +75,9 @@ public class ServletCreateFuncionario extends HttpServlet {
 
         }
 
-        else if (cargo.length() > 50) {
+        else if (cargo.length() > 100) {
 
-            mensagem = "o cargo deve ter no max. 50 caracteres";
+            mensagem = "o cargo deve ter no max. 100 caracteres";
             request.setAttribute("erro", mensagem);
 
         }

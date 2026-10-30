@@ -11,30 +11,42 @@ import java.io.IOException;
 import java.util.regex.Pattern;
 
 @WebServlet(name = "ServletCreateAdministrador", value = "/tela-cadastro")
-public class ServletCreateAdministrador extends HttpServlet{
+public class ServletCreateAdministrador extends HttpServlet {
 
     private AdministradorDAO administradorDAO;
 
-
     @Override
-    public void init(){
+    public void init() {
         // Concede o acesso ao DAO de administrador quando o servlet e iniciado
         administradorDAO = new AdministradorDAO();
-
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        // Os dados chegam em bits, aqui converte ele para linguagem normal
-        request.getRequestDispatcher("/WEB-INF/LoginAdmin/cadastroAdmin.jsp").forward(request, response);
+        HttpSession session = request.getSession(false);
 
+        boolean liberado = session != null && session.getAttribute("acessoLiberado") != null;
+
+        if (!liberado) {
+            response.sendRedirect(request.getContextPath() + "/acess-admin");
+            return;
+        }
+
+        request.getRequestDispatcher("/WEB-INF/LoginAdmin/cadastroAdmin.jsp").forward(request, response);
     }
 
     @Override
-    protected void doPost( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        // Os dados chegam em bits, aqui converte ele para linguagem normal
+        HttpSession sessionCheck = request.getSession(false);
+        boolean liberado = sessionCheck != null && sessionCheck.getAttribute("acessoLiberado") != null;
+
+        if (!liberado) {
+            response.sendRedirect(request.getContextPath() + "/acess-admin");
+            return;
+        }
+
         request.setCharacterEncoding("UTF-8");
 
         // Define os formatos permitidos para email e senha
@@ -65,39 +77,46 @@ public class ServletCreateAdministrador extends HttpServlet{
             request.setAttribute("erro", mensagem);
         }
 
-        else if(senha == null || senha.isBlank()){
+        else if (email == null || email.isBlank()) {
             mensagem = "Este campo não pode ser vazio";
             request.setAttribute("erro", mensagem);
         }
 
-        else if(email == null || email.isBlank()){
+        else if (senha == null || senha.isBlank()) {
             mensagem = "Este campo não pode ser vazio";
             request.setAttribute("erro", mensagem);
         }
 
-        else if(nome.length() > 100){
+        else if (confirmarSenha == null || confirmarSenha.isBlank()) {
+            mensagem = "Este campo não pode ser vazio";
+            request.setAttribute("erro", mensagem);
+        }
+
+        else if (nome.length() > 100) {
             mensagem = "Máx. de caracteres é 100";
             request.setAttribute("erro", mensagem);
         }
 
-        else if(email.length() > 100){
+        else if (email.length() > 100) {
             mensagem = "Máx. de caracteres é 100";
             request.setAttribute("erro", mensagem);
         }
 
-        else if(!emailRegex.matcher(email).matches()){
+        else if (!emailRegex.matcher(email).matches()) {
             mensagem = "Formato Inválido";
             request.setAttribute("erro", mensagem);
         }
 
-        else if(!senhaRegex.matcher(senha).matches()){
+        else if (!senhaRegex.matcher(senha).matches()) {
             mensagem = "Formato Inválido";
             request.setAttribute("erro", mensagem);
         }
+
         else if (!senha.equals(confirmarSenha)) {
             mensagem = "As senhas não coincidem";
             request.setAttribute("erro", mensagem);
         }
+
         else if (administradorDAO.emailExiste(email.trim())) {
             mensagem = "Este e-mail já está cadastrado";
             request.setAttribute("erro", mensagem);
@@ -121,7 +140,7 @@ public class ServletCreateAdministrador extends HttpServlet{
                     // Ao concluir o cadastro, encaminha o usuário para a tela de login
                     response.sendRedirect(request.getContextPath() + "/login");
                     return;
-                }else{
+                } else {
                     mensagem = "Erro ao cadastrar, tente novamente.";
                     request.setAttribute("erro", mensagem);
                 }
@@ -137,7 +156,7 @@ public class ServletCreateAdministrador extends HttpServlet{
 
         }
 
-        // Se houver erro, retorna ao formulário com a mensagem e os dados preservados
-        request.getRequestDispatcher("/tela_login/cadastro.jsp").forward(request, response);
+        // Em caso de erro, volta ao formulário correto
+        request.getRequestDispatcher("/WEB-INF/LoginAdmin/cadastroAdmin.jsp").forward(request, response);
     }
 }
