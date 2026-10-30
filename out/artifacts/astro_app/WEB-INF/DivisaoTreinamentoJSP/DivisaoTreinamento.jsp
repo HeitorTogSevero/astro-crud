@@ -37,22 +37,22 @@ org.astro.astro_app.model.DivisaoTreinamento"
             <i class="fa-solid fa-house"></i>Início
         </a>
         <a href="<%=caminho%>/listar-empresas" class="nav-item">
-            <i class="fa-regular fa-building"></i>empresa
+            <i class="fa-regular fa-building"></i>Empresa
         </a>
         <a href="<%=caminho%>/listar-funcionarios" class="nav-item">
-            <i class="fa-solid fa-users"></i>funcionario
+            <i class="fa-solid fa-users"></i>Funcionário
         </a>
         <a href="<%=caminho%>/listar-departamentos" class="nav-item">
-            <i class="fa-solid fa-layer-group"></i>departamento
+            <i class="fa-solid fa-layer-group"></i>Departamento
         </a>
         <a href="<%=caminho%>/listar-divisoes" class="nav-item active">
-            <i class="fa-regular fa-file-lines"></i>divisao_treinamento
+            <i class="fa-regular fa-file-lines"></i>Divisão de Treinamento
         </a>
         <a href="<%=caminho%>/listar-alerta" class="nav-item">
-            <i class="fa-regular fa-calendar-check"></i>alerta
+            <i class="fa-regular fa-calendar-check"></i>Alerta
         </a>
         <a href="<%=caminho%>/listar-certificados" class="nav-item">
-            <i class="fa-solid fa-award"></i>certificado
+            <i class="fa-solid fa-award"></i>Certificado
         </a>
         <div class="sidebar-bottom">
             <a href="<%=request.getContextPath()%>/logout" class="nav-item" id="exit-bottom">
@@ -66,7 +66,7 @@ org.astro.astro_app.model.DivisaoTreinamento"
 
     <header class="header cabecalho-pagina">
         <div class="titulo-container">
-            <h1><strong>divisao_treinamento - </strong> <span id="periodo-titulo">Setembro 2026</span></h1>
+            <h1><strong>Astro - </strong>Divisão de Treinamento</h1>
         </div>
     </header>
 
@@ -87,7 +87,7 @@ org.astro.astro_app.model.DivisaoTreinamento"
                 <i class="fa-solid fa-filter"></i> Filtrar
             </button>
             <button class="btn-adicionar" id="btn-adicionar-divisao" type="button">
-                <i class="fa-solid fa-plus"></i> Adicionar Divisao Treinamento
+                <i class="fa-solid fa-plus"></i> Adicionar Divisão de Treinamento
             </button>
         </div>
     </section>
@@ -151,7 +151,7 @@ org.astro.astro_app.model.DivisaoTreinamento"
             </table>
         </div>
         <p class="rodape-tabela">
-            Mostrando <%= divisoes != null ? divisoes.size() : 0 %> divisões
+            Mostrando <%= divisoes != null ? divisoes.size() : 0 %> divisões.
         </p>
     </section>
 
@@ -161,7 +161,7 @@ org.astro.astro_app.model.DivisaoTreinamento"
 <div class="modal-fundo" id="modal-adicionar" hidden>
     <div class="modal-caixa" role="dialog" aria-modal="true">
         <div class="modal-cabecalho">
-            <h2>Adicionar em divisao_treinamento</h2>
+            <h2>Adicionar Divisão de Treinamento</h2>
             <button type="button" class="modal-fechar" id="fechar-modal">
                 <i class="fa-solid fa-xmark"></i>
             </button>
@@ -242,7 +242,7 @@ org.astro.astro_app.model.DivisaoTreinamento"
 <div class="modal-fundo" id="modal-editar" hidden>
     <div class="modal-caixa" role="dialog" aria-modal="true">
         <div class="modal-cabecalho">
-            <h2>Editar divisao_treinamento</h2>
+            <h2>Editar Divisão de Treinamento</h2>
             <button type="button" class="modal-fechar" id="fechar-modal-editar">
                 <i class="fa-solid fa-xmark"></i>
             </button>
