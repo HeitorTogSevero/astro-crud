@@ -20,7 +20,7 @@ public class ServletLogout extends HttpServlet {
 
 
         // Redireciona o usuário para a tela de login
-        response.sendRedirect(request.getContextPath() + "/login");
+        response.sendRedirect(request.getContextPath() + "/landing-page.html");
 
     }
 }

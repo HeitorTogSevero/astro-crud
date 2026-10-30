@@ -225,14 +225,15 @@ public class FuncionarioDAO {
             conn = Conexao.conectar();
 
             // Interface para realizar comandos SQL's
-            PreparedStatement pstmt = conn.prepareStatement("UPDATE funcionario SET nome = ?, cargo = ?, cpf = pgp_sym_encrypt(?, 'funcionariosAstro'), id_empresa = ?, id_departamento = ? WHERE id_funcionario = ?");
+            PreparedStatement pstmt = conn.prepareStatement("UPDATE funcionario SET nome = ?, cargo = ?, cpf = pgp_sym_encrypt(?, 'funcionariosAstro'), email = ?, id_empresa = ?, id_departamento = ? WHERE id_funcionario = ?");
 
             pstmt.setString(1, f.getNome());
             pstmt.setString(2, f.getCargo());
             pstmt.setString(3, f.getCpf());
-            pstmt.setInt(4, f.getIdEmpresa());
-            pstmt.setInt(5, f.getIdDepartamento());
-            pstmt.setInt(6, f.getIdFuncionario());
+            pstmt.setString(4, f.getEmail());
+            pstmt.setInt(5, f.getIdEmpresa());
+            pstmt.setInt(6, f.getIdDepartamento());
+            pstmt.setInt(7, f.getIdFuncionario());
 
             // Executa o comando alterar e verifica se alguma linha foi afetada
             if (pstmt.executeUpdate() > 0) {

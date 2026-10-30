@@ -1,0 +1,71 @@
+:root {
+    --bg-app: #080717;
+    --text-main: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.5px;
+}
+
+body {
+    background-color: var(--bg-app);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.conteudo-pagina {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 500px;
+    padding: 20px;
+}
+
+.error-img {
+    max-width: 250px;
+    margin-bottom: 20px;
+}
+
+.error-h1 {
+    color: var(--text-main);
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin: 0 0 15px 0;
+}
+
+.error-p {
+    color: var(--text-main);
+    font-size: 1.1rem;
+    line-height: 1.5;
+    margin: 0 0 30px 0;
+}
+
+.error-button {
+    background-color: #2b4bf2;
+    color: #ffffff;
+    border: none;
+    padding: 12px 30px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background 0.2s ease;
+}
+
+.error-button:hover {
+    background-color: #1a39d3;
+}
+
+.button-text {
+    font-weight: 500;
+}

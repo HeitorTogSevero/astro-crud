@@ -17,22 +17,41 @@ public class ServletLogin extends HttpServlet {
 
     @Override
     public void init() {
-
-        // Concede o acesso ao DAO de alertas quando o servlet e iniciado
+        // Concede o acesso ao DAO quando o servlet é iniciado
         administradorDAO = new AdministradorDAO();
 
     }
 
-    //Abre a tela de login
+    // Abre a tela de login (só se a área restrita já liberou o acesso)
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        HttpSession session = request.getSession(false);
+
+        boolean liberado = session != null && session.getAttribute("acessoLiberado") != null;
+
+        if (!liberado) {
+            // Sem passar pela senha da área restrita, ele redireciona
+            response.sendRedirect(request.getContextPath() + "/acess-admin");
+            return;
+        }
+
         request.getRequestDispatcher("/WEB-INF/LoginAdmin/loginAdmin.jsp").forward(request, response);
 
     }
 
-    //Processa o formulário de login
+    // Processa o formulário de login
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        // Também bloqueia POST direto na URL sem liberação
+        HttpSession sessionCheck = request.getSession(false);
+        boolean liberado = sessionCheck != null && sessionCheck.getAttribute("acessoLiberado") != null;
+
+        if (!liberado) {
+            response.sendRedirect(request.getContextPath() + "/acess-admin");
+            return;
+        }
 
         request.setCharacterEncoding("UTF-8");
 
@@ -45,6 +64,7 @@ public class ServletLogin extends HttpServlet {
         String senha = request.getParameter("senha");
 
         String mensagem = "";
+
 
         // Validações de preenchimento e formato
         if (email == null || email.isBlank()) {
@@ -88,30 +108,25 @@ public class ServletLogin extends HttpServlet {
         }
 
         else {
-
             // Tenta autenticar o administrador no banco de dados
             Administrador admin = administradorDAO.autenticar(email.trim(), senha);
 
             if (admin != null) {
-                // Se encontrado, cria a sessão para manter o usuário logado entre as páginas
-                HttpSession session = request.getSession(); //a sessão guarda os dados do usuário enquanto ele está logado, entre várias páginas. É importante falar também que, sem sessão, cada request esquece quem é o usuário, e teria que logar denovo em cada página
+                // Se encontrado, cria a sessão para manter o usuário logado
+                HttpSession session = request.getSession();
                 session.setAttribute("adminLogado", admin);
 
                 // Redireciona para a página inicial do painel administrativo
                 response.sendRedirect(request.getContextPath() + "/tela-inicial");
                 return;
 
-            } else {
-
+            }else {
                 mensagem = "Email ou senha inválidos";
                 request.setAttribute("erro", mensagem);
-
             }
-
-            request.getRequestDispatcher("/WEB-INF/LoginAdmin/loginAdmin.jsp").forward(request, response);
         }
 
-        // Em caso de erro, retorna ao formulário com a mensagem de validação
-        request.getRequestDispatcher("/LoginAdmin/loginAdmin.jsp").forward(request, response);
+        // Em caso de erro, volta ao formulário com a mensagem
+        request.getRequestDispatcher("/WEB-INF/LoginAdmin/loginAdmin.jsp").forward(request, response);
     }
 }

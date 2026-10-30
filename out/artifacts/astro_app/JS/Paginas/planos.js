@@ -61,9 +61,9 @@ switchPlano.addEventListener("change", function () {
 
             planos.classList.add("anual");
 
-            imagemPlutao.src = "lp/plutao-anual.png";
-            imagemTerra.src = "lp/terra-anual.png";
-            imagemJupiter.src = "lp/jupiter-anual.png";
+            imagemPlutao.src = "imagens/plutao-anual.png";
+            imagemTerra.src = "imagens/terra-anual.png";
+            imagemJupiter.src = "imagens/jupiter-anual.png";
 
             precoPlutao.textContent = "526,28";
             precoTerra.textContent = "1.222,24";
@@ -85,9 +85,9 @@ switchPlano.addEventListener("change", function () {
 
             planos.classList.remove("anual");
 
-            imagemPlutao.src = "lp/plutao.png";
-            imagemTerra.src = "lp/terra.png";
-            imagemJupiter.src = "lp/jupiter.png";
+            imagemPlutao.src = "imagens/plutao.png";
+            imagemTerra.src = "imagens/terra.png";
+            imagemJupiter.src = "imagens/jupiter.png";
 
             precoPlutao.textContent = "48,73";
             precoTerra.textContent = "113,71";
