@@ -43,22 +43,22 @@ org.astro.astro_app.model.Alerta"
             <i class="fa-solid fa-house"></i>Início
         </a>
         <a href="<%=caminho%>/listar-empresas" class="nav-item">
-            <i class="fa-regular fa-building"></i>empresa
+            <i class="fa-regular fa-building"></i>Empresa
         </a>
         <a href="<%=caminho%>/listar-funcionarios" class="nav-item">
-            <i class="fa-solid fa-users"></i>funcionario
+            <i class="fa-solid fa-users"></i>Funcionário
         </a>
         <a href="<%=caminho%>/listar-departamentos" class="nav-item">
-            <i class="fa-solid fa-layer-group"></i>departamento
+            <i class="fa-solid fa-layer-group"></i>Departamento
         </a>
         <a href="<%=caminho%>/listar-divisoes" class="nav-item">
-            <i class="fa-regular fa-file-lines"></i>divisao_treinamento
+            <i class="fa-regular fa-file-lines"></i>Divisão de Treinamento
         </a>
         <a href="<%=caminho%>/listar-alerta" class="nav-item active">
-            <i class="fa-regular fa-calendar-check"></i>alerta
+            <i class="fa-regular fa-calendar-check"></i>Alerta
         </a>
         <a href="<%=caminho%>/listar-certificados" class="nav-item">
-            <i class="fa-solid fa-award"></i>certificado
+            <i class="fa-solid fa-award"></i>Certificado
         </a>
         <div class="sidebar-bottom">
             <a href="<%=request.getContextPath()%>/logout" class="nav-item" id="exit-bottom">
@@ -72,7 +72,7 @@ org.astro.astro_app.model.Alerta"
 
     <header class="header cabecalho-pagina">
         <div class="titulo-container">
-            <h1><strong>alerta - </strong> <span id="periodo-titulo">Setembro 2026</span></h1>
+            <h1><strong>Astro - </strong>Alerta</h1>
         </div>
     </header>
 
@@ -158,7 +158,7 @@ org.astro.astro_app.model.Alerta"
             </table>
         </div>
         <p class="rodape-tabela">
-            Mostrando <%= alertas != null ? alertas.size() : 0 %> alertas
+            Mostrando <%= alertas != null ? alertas.size() : 0 %> alertas.
         </p>
     </section>
 
@@ -178,7 +178,7 @@ org.astro.astro_app.model.Alerta"
               action="<%=caminho%>/adicionar-alerta" method="post">
 
             <div class="modal-campo">
-                <label for="campo-descricao">Descricao: </label>
+                <label for="campo-descricao">Descrição: </label>
                 <input type="text" id="campo-descricao" name="descricao" placeholder="Nome" required>
                 <span id="erroDescr"></span>
             </div>
@@ -265,7 +265,7 @@ org.astro.astro_app.model.Alerta"
             <input type="hidden" id="editar-id-alerta" name="id_alerta">
 
             <div class="modal-campo">
-                <label for="editar-descricao">Descricao: </label>
+                <label for="editar-descricao">Descrição: </label>
                 <input type="text" id="editar-descricao" name="descricao" required>
                 <span id="editar-erroDescr"></span>
             </div>
@@ -307,7 +307,7 @@ org.astro.astro_app.model.Alerta"
         </div>
 
         <p class="modal-texto-confirmacao">
-            Tem certeza que deseja excluir
+            Tem certeza que deseja excluir?
             <strong id="excluir-nome"></strong>?
             Essa ação não pode ser desfeita.
         </p>
@@ -456,7 +456,6 @@ org.astro.astro_app.model.Alerta"
 
 <script src="<%=caminho%>/JS/Create/create-alerta.js"></script>
 <script src="<%=caminho%>/JS/Update/update-alerta.js"></script>
-<script src="<%=caminho%>/JS/Paginas/carregamento.js"></script>
 
 </body>
 </html>

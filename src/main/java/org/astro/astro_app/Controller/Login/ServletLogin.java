@@ -22,19 +22,9 @@ public class ServletLogin extends HttpServlet {
 
     }
 
-    // Abre a tela de login (só se a área restrita já liberou o acesso)
+    // Abre a tela de login
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        HttpSession session = request.getSession(false);
-
-        boolean liberado = session != null && session.getAttribute("acessoLiberado") != null;
-
-        if (!liberado) {
-            // Sem passar pela senha da área restrita, ele redireciona
-            response.sendRedirect(request.getContextPath() + "/acess-admin");
-            return;
-        }
 
         request.getRequestDispatcher("/WEB-INF/LoginAdmin/loginAdmin.jsp").forward(request, response);
 
@@ -43,15 +33,6 @@ public class ServletLogin extends HttpServlet {
     // Processa o formulário de login
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        // Também bloqueia POST direto na URL sem liberação
-        HttpSession sessionCheck = request.getSession(false);
-        boolean liberado = sessionCheck != null && sessionCheck.getAttribute("acessoLiberado") != null;
-
-        if (!liberado) {
-            response.sendRedirect(request.getContextPath() + "/acess-admin");
-            return;
-        }
 
         request.setCharacterEncoding("UTF-8");
 

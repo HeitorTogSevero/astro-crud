@@ -44,22 +44,22 @@ org.astro.astro_app.model.Empresa"%>
             <i class="fa-solid fa-house"></i>Início
         </a>
         <a href="<%=caminho%>/listar-empresas" class="nav-item">
-            <i class="fa-regular fa-building"></i>empresa
+            <i class="fa-regular fa-building"></i>Empresa
         </a>
         <a href="<%=caminho%>/listar-funcionarios" class="nav-item">
-            <i class="fa-solid fa-users"></i>funcionario
+            <i class="fa-solid fa-users"></i>Funcionário
         </a>
         <a href="<%=caminho%>/listar-departamentos" class="nav-item">
-            <i class="fa-solid fa-layer-group"></i>departamento
+            <i class="fa-solid fa-layer-group"></i>Departamento
         </a>
         <a href="<%=caminho%>/listar-divisoes" class="nav-item">
-            <i class="fa-regular fa-file-lines"></i>divisao_treinamento
+            <i class="fa-regular fa-file-lines"></i>Divisão Treinamento
         </a>
         <a href="<%=caminho%>/listar-alerta" class="nav-item">
-            <i class="fa-regular fa-calendar-check"></i>alerta
+            <i class="fa-regular fa-calendar-check"></i>Alerta
         </a>
         <a href="<%=caminho%>/listar-certificados" class="nav-item">
-            <i class="fa-solid fa-award"></i>certificado
+            <i class="fa-solid fa-award"></i>Certificado
         </a>
         <div class="sidebar-bottom">
             <a href="<%=request.getContextPath()%>/logout" class="nav-item" id="exit-bottom">

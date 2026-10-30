@@ -369,7 +369,6 @@ org.astro.astro_app.model.DivisaoTreinamento"
 </script>
 <script src="<%=caminho%>/JS/Create/create-divisao_treinamento.js"></script>
 <script src="<%=caminho%>/JS/Update/update-divisao_Treinamento.js"></script>
-<script src="<%=caminho%>/JS/Paginas/carregamento.js"></script>
 
 </body>
 </html>

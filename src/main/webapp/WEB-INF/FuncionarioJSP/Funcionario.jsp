@@ -366,7 +366,6 @@ org.astro.astro_app.model.Funcionario"
 </script>
 <script src="<%=caminho%>/JS/Create/create-funcionario.js"></script>
 <script src="<%=caminho%>/JS/Update/update-funcionario.js"></script>
-<script src="<%=caminho%>/JS/Paginas/carregamento.js"></script>
 
 </body>
 </html>
