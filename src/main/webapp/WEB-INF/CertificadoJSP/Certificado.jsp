@@ -442,7 +442,6 @@ org.astro.astro_app.model.Certificado"
 
 <script src="<%=caminho%>/JS/Create/create-certificado.js"></script>
 <script src="<%=caminho%>/JS/Update/update-certificado.js"></script>
-<script src="<%=caminho%>/JS/Paginas/carregamento.js"></script>
 
 </body>
 </html>

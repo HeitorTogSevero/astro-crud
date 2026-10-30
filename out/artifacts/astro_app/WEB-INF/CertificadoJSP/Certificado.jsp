@@ -37,22 +37,22 @@ org.astro.astro_app.model.Certificado"
             <i class="fa-solid fa-house"></i>Início
         </a>
         <a href="<%=caminho%>/listar-empresas" class="nav-item">
-            <i class="fa-regular fa-building"></i>empresa
+            <i class="fa-regular fa-building"></i>Empresa
         </a>
         <a href="<%=caminho%>/listar-funcionarios" class="nav-item">
-            <i class="fa-solid fa-users"></i>funcionario
+            <i class="fa-solid fa-users"></i>Funcionário
         </a>
         <a href="<%=caminho%>/listar-departamentos" class="nav-item">
-            <i class="fa-solid fa-layer-group"></i>departamento
+            <i class="fa-solid fa-layer-group"></i>Departamento
         </a>
         <a href="<%=caminho%>/listar-divisoes" class="nav-item">
-            <i class="fa-regular fa-file-lines"></i>divisao_treinamento
+            <i class="fa-regular fa-file-lines"></i>Divisão de Treinamento
         </a>
         <a href="<%=caminho%>/listar-alerta" class="nav-item">
-            <i class="fa-regular fa-calendar-check"></i>alerta
+            <i class="fa-regular fa-calendar-check"></i>Alerta
         </a>
         <a href="<%=caminho%>/listar-certificados" class="nav-item active">
-            <i class="fa-solid fa-award"></i>certificado
+            <i class="fa-solid fa-award"></i>Certificado
         </a>
         <div class="sidebar-bottom">
             <a href="<%=request.getContextPath()%>/logout" class="nav-item" id="exit-bottom">
@@ -66,7 +66,7 @@ org.astro.astro_app.model.Certificado"
 
     <header class="header cabecalho-pagina">
         <div class="titulo-container">
-            <h1><strong>certificado - </strong> <span id="periodo-titulo">Setembro 2026</span></h1>
+            <h1><strong>Astro -</strong> Certificado</h1>
         </div>
     </header>
 
@@ -152,7 +152,7 @@ org.astro.astro_app.model.Certificado"
             </table>
         </div>
         <p class="rodape-tabela">
-            Mostrando <%= certificados != null ? certificados.size() : 0 %> certificados
+            Mostrando <%= certificados != null ? certificados.size() : 0 %> certificados.
         </p>
     </section>
 
@@ -172,7 +172,7 @@ org.astro.astro_app.model.Certificado"
               action="<%=caminho%>/adicionar-certificado" method="post">
 
             <div class="modal-campo">
-                <label for="campo-dt_emissao">Data de Emissao: </label>
+                <label for="campo-dt_emissao">Data de Emissão: </label>
                 <input type="date" id="campo-dt_emissao" name="dt_emissao" required>
                 <span id="erroDataEmissao"></span>
             </div>
@@ -232,7 +232,7 @@ org.astro.astro_app.model.Certificado"
             </div>
 
             <div class="modal-campo">
-                <label for="filtro-id_funcionario">Funcionario (id): </label>
+                <label for="filtro-id_funcionario">Funcionário (id): </label>
                 <input type="number" id="filtro-id_funcionario" name="id_funcionario" min="0" placeholder="0" value="<%= fIdFuncionario %>">
             </div>
 
@@ -272,13 +272,13 @@ org.astro.astro_app.model.Certificado"
             </div>
 
             <div class="modal-campo">
-                <label for="editar-id_funcionario">Funcionario (id): </label>
+                <label for="editar-id_funcionario">Funcionário (id): </label>
                 <input type="number" id="editar-id_funcionario" name="id_funcionario" min="0" placeholder="ID" required>
                 <span id="editar-erroIdFunc"></span>
             </div>
 
             <div class="modal-campo">
-                <label for="editar-id_nrfuncionario">NR Funcionario (id): </label>
+                <label for="editar-id_nrfuncionario">NR Funcionário (id): </label>
                 <input type="number" id="editar-id_nrfuncionario" name="id_nrfuncionario" min="0" placeholder="ID" required>
                 <span id="editar-erroIdNrFunc"></span>
             </div>
@@ -442,7 +442,6 @@ org.astro.astro_app.model.Certificado"
 
 <script src="<%=caminho%>/JS/Create/create-certificado.js"></script>
 <script src="<%=caminho%>/JS/Update/update-certificado.js"></script>
-<script src="<%=caminho%>/JS/Paginas/carregamento.js"></script>
 
 </body>
 </html>

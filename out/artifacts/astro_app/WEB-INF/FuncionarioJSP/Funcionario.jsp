@@ -39,28 +39,28 @@ org.astro.astro_app.model.Funcionario"
         </a>
 
         <a href="<%=caminho%>/listar-empresas" class="nav-item">
-            <i class="fa-regular fa-building"></i>empresa
+            <i class="fa-regular fa-building"></i>Empresa
 
         </a>
 
         <a href="<%=caminho%>/listar-funcionarios" class="nav-item active">
-            <i class="fa-solid fa-users"></i>funcionario
+            <i class="fa-solid fa-users"></i>Funcionário
         </a>
 
         <a href="<%=caminho%>/listar-departamentos" class="nav-item">
-            <i class="fa-solid fa-layer-group"></i>departamento
+            <i class="fa-solid fa-layer-group"></i>Departamento
         </a>
 
         <a href="<%=caminho%>/listar-divisoes" class="nav-item">
-            <i class="fa-regular fa-file-lines"></i>divisao_treinamento
+            <i class="fa-regular fa-file-lines"></i>Divisão de Treinamento
         </a>
 
         <a href="<%=caminho%>/listar-alerta" class="nav-item">
-            <i class="fa-regular fa-calendar-check"></i>alerta
+            <i class="fa-regular fa-calendar-check"></i>Alerta
         </a>
 
         <a href="<%=caminho%>/listar-certificados" class="nav-item">
-            <i class="fa-solid fa-award"></i>certificado
+            <i class="fa-solid fa-award"></i>Certificado
         </a>
 
         <div class="sidebar-bottom">
@@ -72,7 +72,7 @@ org.astro.astro_app.model.Funcionario"
 <main class="main-content">
     <header class="header cabecalho-pagina">
         <div class="titulo-container">
-            <h1><strong>funcionario - </strong> <span id="periodo-titulo">Setembro 2026</span></h1>
+            <h1><strong>Astro -</strong> Funcionário</h1>
         </div>
     </header>
 
@@ -151,7 +151,7 @@ org.astro.astro_app.model.Funcionario"
             </table>
         </div>
         <p class="rodape-tabela">
-            Mostrando <%= funcionarios != null ? funcionarios.size() : 0 %> funcionários
+            Mostrando <%= funcionarios != null ? funcionarios.size() : 0 %> funcionários.
         </p>
     </section>
 </main>
@@ -160,7 +160,7 @@ org.astro.astro_app.model.Funcionario"
 <div class="modal-fundo" id="modal-adicionar" hidden>
     <div class="modal-caixa" role="dialog" aria-modal="true">
         <div class="modal-cabecalho">
-            <h2>Adicionar em funcionario</h2>
+            <h2>Adicionar em funcionário</h2>
             <button type="button" class="modal-fechar" id="fechar-modal"><i class="fa-solid fa-xmark"></i></button>
         </div>
         <form  id="formulario-adicionar-funcionario" class="modal-formulario" action="<%=caminho%>/adicionar-funcionario" method="post">
@@ -366,7 +366,6 @@ org.astro.astro_app.model.Funcionario"
 </script>
 <script src="<%=caminho%>/JS/Create/create-funcionario.js"></script>
 <script src="<%=caminho%>/JS/Update/update-funcionario.js"></script>
-<script src="<%=caminho%>/JS/Paginas/carregamento.js"></script>
 
 </body>
 </html>
