@@ -384,7 +384,6 @@ org.astro.astro_app.model.Departamento"%>
 </script>
 <script src="<%=caminho%>/JS/Create/create-Departamento.js"></script>
 <script src="<%=caminho%>/JS/Update/update-departamento.js"></script>
-<script src="<%=caminho%>/JS/Paginas/carregamento.js"></script>
 
 </body>
 </html>

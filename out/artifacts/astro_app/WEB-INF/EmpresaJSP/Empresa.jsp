@@ -430,7 +430,6 @@ org.astro.astro_app.model.Empresa"
 </script>
 <script src="<%=caminho%>/JS/Create/create-empresa.js"></script>
 <script src="<%=caminho%>/JS/Update/update-empresa.js"></script>
-<script src="<%=caminho%>/JS/Paginas/carregamento.js"></script>
 
 </body>
 </html>

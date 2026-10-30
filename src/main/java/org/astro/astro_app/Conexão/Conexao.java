@@ -10,7 +10,7 @@ import com.zaxxer.hikari.HikariDataSource;
 import io.github.cdimascio.dotenv.Dotenv;
 
 // Classe para realizar o JDBC
-public class Conexao {
+public class  Conexao {
 
     //Constante responsável por gerenciar as conexões do banco
     private static final HikariDataSource postgresqlPool = criarPool();

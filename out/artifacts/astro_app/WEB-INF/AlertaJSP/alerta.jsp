@@ -456,7 +456,6 @@ org.astro.astro_app.model.Alerta"
 
 <script src="<%=caminho%>/JS/Create/create-alerta.js"></script>
 <script src="<%=caminho%>/JS/Update/update-alerta.js"></script>
-<script src="<%=caminho%>/JS/Paginas/carregamento.js"></script>
 
 </body>
 </html>

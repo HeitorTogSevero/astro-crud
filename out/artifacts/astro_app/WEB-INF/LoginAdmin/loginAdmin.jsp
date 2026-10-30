@@ -11,7 +11,7 @@ String erro = (String) request.getAttribute("erro");
     <link rel="stylesheet" href="<%=caminho%>/style/login.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="icon" type="image/png" href="imagens/isotipo.png">
+    <link rel="icon" type="image/png" href="<%=caminho%>/imagens/isotipo.png">
 
 </head>
 <body class="pagina-login">
@@ -162,7 +162,7 @@ String erro = (String) request.getAttribute("erro");
         <p>© 2026 astro. Todos os direitos reservados.</p>
         <div class="links-legais-rodape">
             <a href="<%=caminho%>/termos.html">Privacidade e Termos de Uso</a>
-            <a href="<%=caminho%>/acessoAdmin.jsp">Área Restrita</a>
+            <a href="<%=caminho%>/opcaoEntrada.html">Área Restrita</a>
         </div>
     </div>
 </footer>
