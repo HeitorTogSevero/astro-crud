@@ -1,21 +1,43 @@
-document.addEventListener("click", (e) => {
-    const link = e.target.closest("a");
-    if (!link) return;
+(() => {
+    // Ao voltar pelo navegador (bfcache), remove o fade para a página não ficar em branco
+    window.addEventListener("pageshow", function () {
+        document.body.classList.remove("fade-out");
+    });
 
-    const href = link.getAttribute("href");
+    document.addEventListener("click", (e) => {
+        const link = e.target.closest("a");
+        if (!link) return;
 
-    // Ignora links vazios, âncoras (#) e links externos
-    if (!href || href === "#" || href.startsWith("#") || href.startsWith("http") || link.target === "_blank") {
-        return;
-    }
+        // Não interfere em nova aba / download
+        if (link.target === "_blank" || link.hasAttribute("download")) return;
 
-    e.preventDefault();
+        const href = link.getAttribute("href");
+        if (!href || href === "#") return;
 
-    // Aplica a dissolução de saída
-    document.body.classList.add("fade-out");
+        // Âncora só na mesma página (#secao)
+        if (href.startsWith("#")) return;
 
-    // Espera a animação rodar antes de mudar a URL
-    setTimeout(() => {
-        window.location.href = href;
-    }, 400); // 400ms bate com o tempo do CSS
-});
+        // Links externos e especiais
+        const lower = href.toLowerCase();
+        if (
+            lower.startsWith("http://") ||
+            lower.startsWith("https://") ||
+            lower.startsWith("mailto:") ||
+            lower.startsWith("tel:") ||
+            lower.startsWith("javascript:")
+        ) {
+            return;
+        }
+
+        // URL com âncora (ex.: sobre.html#equipe) — navega normal para o salto funcionar
+        if (href.includes("#")) return;
+
+        e.preventDefault();
+
+        document.body.classList.add("fade-out");
+
+        setTimeout(() => {
+            window.location.href = href;
+        }, 400);
+    });
+})();

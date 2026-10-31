@@ -1,33 +1,44 @@
-const form = document.getElementById("formulario-login")
-const email = document.getElementById("email-login")
+(() => {
+    const form = document.getElementById("formulario-login");
 
-const erroEmail = document.getElementById("erroEmail")
+    if (!form) return;
 
-const regexEmail = /^[a-zA-Z0-9._%+#$!\-]+@(gmail|hotmail|yahoo|outlook|institutojef)\.(com|com\.br|org\.br)$/;
+    const email = document.getElementById("email-login");
 
+    const erroEmail = document.getElementById("erroEmail");
 
-form.addEventListener("input", function (){
+    const regexEmail = /^[a-zA-Z0-9._%+#$!\-]+@(gmail|hotmail|yahoo|outlook|institutojef)\.(com|com\.br|org\.br)$/;
 
-    if (email.value.trim() === "") {
+    function setErro(el, texto, ok) {
 
-        erroEmail.textContent = "";
-        erroEmail.classList.remove("invalido", "valido");
+        if (!el) return;
+
+        el.textContent = texto;
+
+        el.classList.remove("invalido", "valido");
+
+        if (texto) el.classList.add(ok ? "valido" : "invalido");
     }
 
-    else if (!regexEmail.test(email.value)){
+    form.addEventListener("input", function () {
+        if (!email) return;
 
-        erroEmail.textContent = "Formato Inválido! exemplo@gmail.com"
+        if (email.value.trim() === "") {
+            setErro(erroEmail, "", false);
+        }
+        else if (!regexEmail.test(email.value)) {
+            setErro(erroEmail, "Formato inválido! exemplo@gmail.com", false);
+        }
+        else {
+            setErro(erroEmail, "Opção válida", true);
+        }
+    });
 
-        erroEmail.classList.add("invalido")
-        erroEmail.classList.remove("valido")
+    form.addEventListener("submit", function (event) {
+        if (!email) return;
 
-    }
-
-    else{
-
-        erroEmail.textContent = "Opção válida"
-
-        erroEmail.classList.add("valido")
-        erroEmail.classList.remove("invalido")
-    }
-})
+        if (email.value.trim() === "" || !regexEmail.test(email.value)) {
+            event.preventDefault();
+        }
+    });
+})();

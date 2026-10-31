@@ -3,28 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="erro.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Erro – Astro</title>
+    <link rel="stylesheet" href="style/erro.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" type="image/png" href="imagens/isotipo.png">
-    <title>ERROR - ASTRO</title>
 </head>
 <body class="pagina-erro">
+
+<a href="landing-page.html" class="botao-voltar" id="botao-voltar" aria-label="Voltar para a página inicial">
+    <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+</a>
+
 <div class="conteudo-pagina">
-    <img src="imagens/planeta-erro.png" alt="Erro" class="error-img">
+    <img src="imagens/planeta_quebrado.svg" alt="Erro" class="error-img">
     <h1 class="error-h1">Ops... algo deu errado!</h1>
     <p class="error-p">
         Não foi possível carregar a página. Tente novamente em alguns instantes.
     </p>
-    <button class="error-button" id="btn-recarregar">
-        <span class="fa-solid fa-arrows-rotate"></span><p class="button-text">Tentar novamente</p>
+    <button type="button" class="error-button" id="btn-recarregar">
+        <span class="fa-solid fa-arrows-rotate" aria-hidden="true"></span>
+        <span class="button-text">Tentar novamente</span>
     </button>
 </div>
-</body>
-</html>
 
 <script>
-    document.getElementById('btn-recarregar').addEventListener('click', () => {
+    document.getElementById("btn-recarregar").addEventListener("click", function () {
         window.location.reload();
     });
 </script>
+</body>
+</html>

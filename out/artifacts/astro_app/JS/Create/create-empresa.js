@@ -2,351 +2,355 @@
 // FORMULÁRIO PARA INSERIR//
 
 
-// Declarando as Variáveis //
-const form = document.getElementById("formulario-adicionar-empresa")
+    // Declarando as Variáveis //
+    const form = document.getElementById("formulario-adicionar-empresa");
 
-const nome = document.getElementById("campo-nome")
+    const nome = document.getElementById("campo-nome");
 
-const cnae = document.getElementById("campo-cnae")
+    const cnae = document.getElementById("campo-cnae");
 
-const cnpj = document.getElementById("campo-cnpj")
+    const cnpj = document.getElementById("campo-cnpj");
 
-const cep = document.getElementById("campo-cep")
+    const cep = document.getElementById("campo-cep");
 
-const rua = document.getElementById("campo-rua")
+    const rua = document.getElementById("campo-rua");
 
-const bairro = document.getElementById("campo-bairro")
+    const bairro = document.getElementById("campo-bairro");
 
-const cidade = document.getElementById("campo-cidade")
+    const cidade = document.getElementById("campo-cidade");
 
-const estado = document.getElementById("campo-estado")
+    const estado = document.getElementById("campo-estado");
 
-const dataRegistro = document.getElementById("campo-dt_registro")
+    const dataRegistro = document.getElementById("campo-dt_registro");
 
-// Variáveis de Erro //
-const erroNome = document.getElementById("erroNome")
+    // Variáveis de Erro //
+    const erroNome = document.getElementById("erroNome");
 
-const erroCnae = document.getElementById("erroCnae")
+    const erroCnae = document.getElementById("erroCnae");
 
-const erroCnpj = document.getElementById("erroCnpj")
+    const erroCnpj = document.getElementById("erroCnpj");
 
-const erroCep = document.getElementById("erroCep")
+    const erroCep = document.getElementById("erroCep");
 
-const erroRua = document.getElementById("erroRua")
+    const erroRua = document.getElementById("erroRua");
 
-const erroBairro = document.getElementById("erroBairro")
+    const erroBairro = document.getElementById("erroBairro");
 
-const erroCidade = document.getElementById("erroCidade")
+    const erroCidade = document.getElementById("erroCidade");
 
-const erroEstado = document.getElementById("erroEstado")
+    const erroEstado = document.getElementById("erroEstado");
 
-const erroDataRegistro= document.getElementById("erroDataRegistro")
+    const erroDataRegistro= document.getElementById("erroDataRegistro");
 
-// REGEX //
+    // REGEX //
 
-const regexCnpj = /^(\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}|\d{14})$/;
+    const regexCnpj = /^(\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}|\d{14})$/;
 
-const regexCep = /^(\d{5}-\d{3}|\d{8})$/;
+    const regexCep = /^(\d{5}-\d{3}|\d{8})$/;
 
-const regexCnae = /^(\d{4}-\d\/\d{2}|\d{7})$/;
+    const regexCnae = /^(\d{4}-\d\/\d{2}|\d{7})$/;
 
-const regexData = /^\d{4}-(0[1-9]|1[0-2])-\d{2}$/;
+    const regexData = /^\d{4}-(0[1-9]|1[0-2])-\d{2}$/;
 
-const data = new Date();
-const ano = data.getFullYear();
-const mes = String(data.getMonth() + 1).padStart(2, "0");
-const dia = String(data.getDate()).padStart(2, "0");
+    const data = new Date();
 
-const dataAtual = `${ano}-${mes}-${dia}`;
+    const ano = data.getFullYear();
 
-// Validações dos Dados - Nome //
-form.addEventListener("input", function (){
+    const mes = String(data.getMonth() + 1).padStart(2, "0");
 
-    if (nome.value.trim() === "") {
+    const dia = String(data.getDate()).padStart(2, "0");
 
-        erroNome.textContent = "";
-        erroNome.classList.remove("invalido", "valido");
-    }
 
-    else if (nome.value.length > 100){
+    const dataAtual = `${ano}-${mes}-${dia}`;
 
-        erroNome.textContent = "máximo 100 caracteres"
+    // Validações dos Dados - Nome //
+    form.addEventListener("input", function (){
 
-        erroNome.classList.add("invalido")
-        erroNome.classList.remove("valido")
+        if (nome.value.trim() === "") {
 
-    }
+            erroNome.textContent = "";
+            erroNome.classList.remove("invalido", "valido");
+        }
 
-    else{
+        else if (nome.value.length > 100){
 
-        erroNome.textContent = "Opção válida"
+            erroNome.textContent = "máximo 100 caracteres"
 
-        erroNome.classList.add("valido")
-        erroNome.classList.remove("invalido")
-    }
-})
+            erroNome.classList.add("invalido")
+            erroNome.classList.remove("valido")
 
-// Validações dos Dados - cnae
-form.addEventListener("input", function (){
+        }
 
-    if (cnae.value.trim() === "") {
+        else{
 
-        erroCnae.textContent = "";
-        erroCnae.classList.remove("invalido", "valido");
-    }
+            erroNome.textContent = "Opção válida"
 
-    else if(!regexCnae.test(cnae.value.trim())){
+            erroNome.classList.add("valido")
+            erroNome.classList.remove("invalido")
+        }
+    })
 
-        erroCnae.textContent = "Formato Inválido, o correto é 0000-0/00"
+    // Validações dos Dados - cnae
+    form.addEventListener("input", function (){
 
-        erroCnae.classList.remove("valido")
-        erroCnae.classList.add("invalido")
-    }
+        if (cnae.value.trim() === "") {
 
-    else{
+            erroCnae.textContent = "";
+            erroCnae.classList.remove("invalido", "valido");
+        }
 
-        erroCnae.textContent = "Opção Válida";
+        else if(!regexCnae.test(cnae.value.trim())){
 
-        erroCnae.classList.add("valido")
-        erroCnae.classList.remove("invalido")
-    }
-})
+            erroCnae.textContent = "Formato Inválido, o correto é 0000-0/00"
 
-// Validações dos Dados - cep
-form.addEventListener("input", function (){
+            erroCnae.classList.remove("valido")
+            erroCnae.classList.add("invalido")
+        }
 
-    if (cep.value.trim() === "") {
+        else{
 
-        erroCep.textContent = "";
-        erroCep.classList.remove("invalido", "valido");
-    }
+            erroCnae.textContent = "Opção Válida";
 
-    else if(!regexCep.test(cep.value.trim())){
+            erroCnae.classList.add("valido")
+            erroCnae.classList.remove("invalido")
+        }
+    })
 
-        erroCep.textContent = "Formato Inválido, o correto é 00000-000"
+    // Validações dos Dados - cep
+    form.addEventListener("input", function (){
 
-        erroCep.classList.remove("valido")
-        erroCep.classList.add("invalido")
-    }
+        if (cep.value.trim() === "") {
 
-    else{
+            erroCep.textContent = "";
+            erroCep.classList.remove("invalido", "valido");
+        }
 
-        erroCep.textContent = "Opção Válida";
+        else if(!regexCep.test(cep.value.trim())){
 
-        erroCep.classList.add("valido")
-        erroCep.classList.remove("invalido")
-    }
-})
+            erroCep.textContent = "Formato Inválido, o correto é 00000-000"
 
-// Validações dos Dados - cnpj
-form.addEventListener("input", function (){
+            erroCep.classList.remove("valido")
+            erroCep.classList.add("invalido")
+        }
 
-    if (cnpj.value.trim() === "") {
+        else{
 
-        erroCnpj.textContent = "";
-        erroCnpj.classList.remove("invalido", "valido");
-    }
+            erroCep.textContent = "Opção Válida";
 
-    else if(!regexCnpj.test(cnpj.value.trim())){
+            erroCep.classList.add("valido")
+            erroCep.classList.remove("invalido")
+        }
+    })
 
-        erroCnpj.textContent = "Formato Inválido, o correto é 00.000.000/0000-00"
+    // Validações dos Dados - cnpj
+    form.addEventListener("input", function (){
 
-        erroCnpj.classList.remove("valido")
-        erroCnpj.classList.add("invalido")
-    }
+        if (cnpj.value.trim() === "") {
 
-    else{
+            erroCnpj.textContent = "";
+            erroCnpj.classList.remove("invalido", "valido");
+        }
 
-        erroCnpj.textContent = "Opção Válida";
+        else if(!regexCnpj.test(cnpj.value.trim())){
 
-        erroCnpj.classList.add("valido")
-        erroCnpj.classList.remove("invalido")
-    }
-})
+            erroCnpj.textContent = "Formato Inválido, o correto é 00.000.000/0000-00"
 
-// Validações dos Dados - Rua //
-form.addEventListener("input", function (){
+            erroCnpj.classList.remove("valido")
+            erroCnpj.classList.add("invalido")
+        }
 
-    if (rua.value.trim() === "") {
+        else{
 
-        erroRua.textContent = "";
-        erroRua.classList.remove("invalido", "valido");
-    }
+            erroCnpj.textContent = "Opção Válida";
 
-    else if (rua.value.length > 100){
+            erroCnpj.classList.add("valido")
+            erroCnpj.classList.remove("invalido")
+        }
+    })
 
-        erroRua.textContent = "máximo 100 caracteres"
+    // Validações dos Dados - Rua //
+    form.addEventListener("input", function (){
 
-        erroRua.classList.add("invalido")
-        erroRua.classList.remove("valido")
+        if (rua.value.trim() === "") {
 
-    }
+            erroRua.textContent = "";
+            erroRua.classList.remove("invalido", "valido");
+        }
 
-    else{
+        else if (rua.value.length > 100){
 
-        erroRua.textContent = "Opção válida"
+            erroRua.textContent = "máximo 100 caracteres"
 
-        erroRua.classList.add("valido")
-        erroRua.classList.remove("invalido")
-    }
-})
+            erroRua.classList.add("invalido")
+            erroRua.classList.remove("valido")
 
-// Validações dos Dados - Bairro //
-form.addEventListener("input", function (){
+        }
 
-    if (bairro.value.trim() === "") {
+        else{
 
-        erroBairro.textContent = "";
-        erroBairro.classList.remove("invalido", "valido");
-    }
+            erroRua.textContent = "Opção válida"
 
-    else if (bairro.value.length > 100){
+            erroRua.classList.add("valido")
+            erroRua.classList.remove("invalido")
+        }
+    })
 
-        erroBairro.textContent = "máximo 100 caracteres"
+    // Validações dos Dados - Bairro //
+    form.addEventListener("input", function (){
 
-        erroBairro.classList.add("invalido")
-        erroBairro.classList.remove("valido")
+        if (bairro.value.trim() === "") {
 
-    }
+            erroBairro.textContent = "";
+            erroBairro.classList.remove("invalido", "valido");
+        }
 
-    else{
+        else if (bairro.value.length > 100){
 
-        erroBairro.textContent = "Opção válida"
+            erroBairro.textContent = "máximo 100 caracteres"
 
-        erroBairro.classList.add("valido")
-        erroBairro.classList.remove("invalido")
-    }
-})
+            erroBairro.classList.add("invalido")
+            erroBairro.classList.remove("valido")
 
-// Validações dos Dados - Cidade //
-form.addEventListener("input", function (){
+        }
 
-    if (cidade.value.trim() === "") {
+        else{
 
-        erroCidade.textContent = "";
-        erroCidade.classList.remove("invalido", "valido");
-    }
+            erroBairro.textContent = "Opção válida"
 
-    else if (cidade.value.length > 100){
+            erroBairro.classList.add("valido")
+            erroBairro.classList.remove("invalido")
+        }
+    })
 
-        erroCidade.textContent = "máximo 100 caracteres"
+    // Validações dos Dados - Cidade //
+    form.addEventListener("input", function (){
 
-        erroCidade.classList.add("invalido")
-        erroCidade.classList.remove("valido")
+        if (cidade.value.trim() === "") {
 
-    }
+            erroCidade.textContent = "";
+            erroCidade.classList.remove("invalido", "valido");
+        }
 
-    else{
+        else if (cidade.value.length > 100){
 
-        erroCidade.textContent = "Opção válida"
+            erroCidade.textContent = "máximo 100 caracteres"
 
-        erroCidade.classList.add("valido")
-        erroCidade.classList.remove("invalido")
-    }
-})
+            erroCidade.classList.add("invalido")
+            erroCidade.classList.remove("valido")
 
-// Validações dos Dados - Estado //
-form.addEventListener("input", function (){
+        }
 
-    if (estado.value.trim() === "") {
+        else{
 
-        erroEstado.textContent = "";
-        erroEstado.classList.remove("invalido", "valido");
-    }
+            erroCidade.textContent = "Opção válida"
 
-    else if (estado.value.trim().length > 2){
+            erroCidade.classList.add("valido")
+            erroCidade.classList.remove("invalido")
+        }
+    })
 
-        erroEstado.textContent = "máximo 2 caracteres"
+    // Validações dos Dados - Estado //
+    form.addEventListener("input", function (){
 
-        erroEstado.classList.add("invalido")
-        erroEstado.classList.remove("valido")
+        if (estado.value.trim() === "") {
 
-    }
+            erroEstado.textContent = "";
+            erroEstado.classList.remove("invalido", "valido");
+        }
 
-    else{
+        else if (estado.value.trim().length > 2){
 
-        erroEstado.textContent = "Opção válida"
+            erroEstado.textContent = "máximo 2 caracteres"
 
-        erroEstado.classList.add("valido")
-        erroEstado.classList.remove("invalido")
-    }
-})
+            erroEstado.classList.add("invalido")
+            erroEstado.classList.remove("valido")
 
-// Validações de Dados - Data Registro//
-form.addEventListener("input", function (){
+        }
 
-    if (dataRegistro.value.trim() === "") {
+        else{
 
-        erroDataRegistro.textContent = "";
-        erroDataRegistro.classList.remove("invalido", "valido");
-    }
+            erroEstado.textContent = "Opção válida"
 
-    else if (!regexData.test(dataRegistro.value)){
+            erroEstado.classList.add("valido")
+            erroEstado.classList.remove("invalido")
+        }
+    })
 
-        erroDataRegistro.textContent = "Formato Inválido, o correto é: AAAA-MM-DD";
+    // Validações de Dados - Data Registro//
+    form.addEventListener("input", function (){
 
-        erroDataRegistro.classList.add("invalido");
-        erroDataRegistro.classList.remove("valido")
-    }
+        if (dataRegistro.value.trim() === "") {
 
-    else if (dataRegistro.value > dataAtual){
+            erroDataRegistro.textContent = "";
+            erroDataRegistro.classList.remove("invalido", "valido");
+        }
 
-        erroDataRegistro.textContent = "A data deve ser <= a data atual";
+        else if (!regexData.test(dataRegistro.value)){
 
-        erroDataRegistro.classList.add("invalido");
-        erroDataRegistro.classList.remove("valido")
-    }
+            erroDataRegistro.textContent = "Formato Inválido, o correto é: AAAA-MM-DD";
 
-    else{
+            erroDataRegistro.classList.add("invalido");
+            erroDataRegistro.classList.remove("valido")
+        }
 
-        erroDataRegistro.textContent = "Opção válida";
+        else if (dataRegistro.value > dataAtual){
 
-        erroDataRegistro.classList.add("valido");
-        erroDataRegistro.classList.remove("invalido")
-    }
-});
+            erroDataRegistro.textContent = "A data deve ser <= a data atual";
 
-// SUBMETER FORMULÁRIO //
-form.addEventListener("submit", function (event){
+            erroDataRegistro.classList.add("invalido");
+            erroDataRegistro.classList.remove("valido")
+        }
 
-    if (nome.value.trim() === "" || nome.value.length > 100){
-        event.preventDefault();
-    }
+        else{
 
-    else if (rua.value.trim() === "" || rua.value.length > 100){
-        event.preventDefault();
-    }
+            erroDataRegistro.textContent = "Opção válida";
 
-    else if (bairro.value.trim() === "" || bairro.value.length > 100){
-        event.preventDefault();
-    }
+            erroDataRegistro.classList.add("valido");
+            erroDataRegistro.classList.remove("invalido")
+        }
+    });
 
-    else if (cidade.value.trim() === "" || cidade.value.length > 100){
-        event.preventDefault();
-    }
+    // SUBMETER FORMULÁRIO //
+    form.addEventListener("submit", function (event){
 
-    else if (estado.value.trim() === "" || estado.value.trim().length > 2){
-        event.preventDefault();
-    }
+        if (nome.value.trim() === "" || nome.value.length > 100){
+            event.preventDefault();
+        }
 
-    else if(!regexCep.test(cep.value.trim())){
-        event.preventDefault()
-    }
+        else if (rua.value.trim() === "" || rua.value.length > 100){
+            event.preventDefault();
+        }
 
-    else if(!regexCnae.test(cnae.value.trim())){
-        event.preventDefault()
-    }
+        else if (bairro.value.trim() === "" || bairro.value.length > 100){
+            event.preventDefault();
+        }
 
-    else if(!regexCnpj.test(cnpj.value.trim())){
-        event.preventDefault()
-    }
+        else if (cidade.value.trim() === "" || cidade.value.length > 100){
+            event.preventDefault();
+        }
 
-    else if (!regexData.test(dataRegistro.value)){
-        event.preventDefault()
-    }
+        else if (estado.value.trim() === "" || estado.value.trim().length > 2){
+            event.preventDefault();
+        }
 
-    else if (dataRegistro.value > dataAtual){
-        event.preventDefault()
-    }
-})
+        else if(!regexCep.test(cep.value.trim())){
+            event.preventDefault()
+        }
+
+        else if(!regexCnae.test(cnae.value.trim())){
+            event.preventDefault()
+        }
+
+        else if(!regexCnpj.test(cnpj.value.trim())){
+            event.preventDefault()
+        }
+
+        else if (!regexData.test(dataRegistro.value)){
+            event.preventDefault()
+        }
+
+        else if (dataRegistro.value > dataAtual){
+            event.preventDefault()
+        }
+    })
 })();
