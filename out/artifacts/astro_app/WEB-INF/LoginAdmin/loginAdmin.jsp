@@ -168,6 +168,7 @@ String erro = (String) request.getAttribute("erro");
 </footer>
 
 <script src="<%=caminho%>/JS/Paginas/carregamento.js"></script>
+<script src="<%=caminho%>/JS/Paginas/login.js"></script>
 
 </body>
 </html>

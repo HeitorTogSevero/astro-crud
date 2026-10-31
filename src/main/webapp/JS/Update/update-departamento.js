@@ -2,189 +2,189 @@
 // FORMULÁRIO PARA EDITAR//
 
 
-// Declarando as Variáveis //
-const form = document.getElementById("formulario-editar")
+    // Declarando as Variáveis //
+    const form = document.getElementById("formulario-editar");
 
-const nome = document.getElementById("editar-nome")
+    const nome = document.getElementById("editar-nome");
 
-const descricao = document.getElementById("editar-descricao")
+    const descricao = document.getElementById("editar-descricao");
 
-const grauRisco = document.getElementById("editar-grau_risco")
+    const grauRisco = document.getElementById("editar-grau_risco");
 
-const atividade = document.getElementById("editar-atividade")
+    const atividade = document.getElementById("editar-atividade");
 
-const idEmpresa = document.getElementById("editar-id_empresa")
+    const idEmpresa = document.getElementById("editar-id_empresa");
 
 
-// Variaveis de Erro
-const erroNome = document.getElementById("editar-erroNome");
+    // Variaveis de Erro
+    const erroNome = document.getElementById("editar-erroNome");
 
-const erroDescr = document.getElementById("editar-erroDescr");
+    const erroDescr = document.getElementById("editar-erroDescr");
 
-const erroRisco = document.getElementById("editar-erroRisco")
+    const erroRisco = document.getElementById("editar-erroRisco");
 
-const erroIdEmpresa = document.getElementById("editar-erroIdEmpresa")
+    const erroIdEmpresa = document.getElementById("editar-erroIdEmpresa");
 
-const erroAtv = document.getElementById("editar-erroAtv")
+    const erroAtv = document.getElementById("editar-erroAtv");
 
 
 // Validações dos Dados - Nome //
-form.addEventListener("input", function (){
+    form.addEventListener("input", function (){
 
-    if (nome.value.trim() === "") {
+        if (nome.value.trim() === "") {
 
-        erroNome.textContent = "";
-        erroNome.classList.remove("invalido", "valido");
-    }
+            erroNome.textContent = "";
+            erroNome.classList.remove("invalido", "valido");
+        }
 
-    else if (nome.value.length > 100){
+        else if (nome.value.length > 100){
 
-        erroNome.textContent = "máximo 100 caracteres"
+            erroNome.textContent = "máximo 100 caracteres"
 
-        erroNome.classList.add("invalido")
-        erroNome.classList.remove("valido")
+            erroNome.classList.add("invalido")
+            erroNome.classList.remove("valido")
 
-    }
+        }
 
-    else{
+        else{
 
-        erroNome.textContent = "Opção válida"
+            erroNome.textContent = "Opção válida"
 
-        erroNome.classList.add("valido")
-        erroNome.classList.remove("invalido")
-    }
-})
+            erroNome.classList.add("valido")
+            erroNome.classList.remove("invalido")
+        }
+    })
 
-// Validações dos Dados - descricao //
-form.addEventListener("input", function (){
+    // Validações dos Dados - descricao //
+    form.addEventListener("input", function (){
 
-    if (descricao.value.length > 250){
+        if (descricao.value.length > 250){
 
-        erroDescr.textContent = "máximo 250 caracteres"
+            erroDescr.textContent = "máximo 250 caracteres"
 
-        erroDescr.classList.add("invalido")
-        erroDescr.classList.remove("valido")
+            erroDescr.classList.add("invalido")
+            erroDescr.classList.remove("valido")
 
-    }
+        }
 
-    else if (descricao.value.trim() === ""){
+        else if (descricao.value.trim() === ""){
 
-        erroDescr.textContent = "Este campo deve ser preenchido!!";
+            erroDescr.textContent = "Este campo deve ser preenchido!!";
 
-        erroDescr.classList.add("invalido")
-        erroDescr.classList.remove("valido")
-    }
+            erroDescr.classList.add("invalido")
+            erroDescr.classList.remove("valido")
+        }
 
-    else {
+        else {
 
-        erroDescr.textContent = "Opção válida!";
+            erroDescr.textContent = "Opção válida";
 
-        erroDescr.classList.add("valido")
-        erroDescr.classList.remove("invalido")
-    }
+            erroDescr.classList.add("valido")
+            erroDescr.classList.remove("invalido")
+        }
 
-})
+    })
 
-// Validações dos Dados - atividade //
-form.addEventListener("input", function () {
+    // Validações dos Dados - atividade //
+    form.addEventListener("input", function () {
 
-    if (atividade.value.length > 15) {
+        if (atividade.value.length > 15) {
 
-        erroAtv.textContent = "máximo 15 caracteres"
+            erroAtv.textContent = "máximo 15 caracteres"
 
-        erroAtv.classList.add("invalido")
-        erroAtv.classList.remove("valido")
+            erroAtv.classList.add("invalido")
+            erroAtv.classList.remove("valido")
 
-    } else if (atividade.value.trim() === "") {
+        } else if (atividade.value.trim() === "") {
 
-        erroAtv.textContent = "Este campo deve ser preenchido!!";
+            erroAtv.textContent = "Este campo deve ser preenchido!!";
 
-        erroAtv.classList.add("invalido")
-        erroAtv.classList.remove("valido")
-    } else {
+            erroAtv.classList.add("invalido")
+            erroAtv.classList.remove("valido")
+        } else {
 
-        erroAtv.textContent = "Opção válida!";
+            erroAtv.textContent = "Opção válida";
 
-        erroAtv.classList.add("valido")
-        erroAtv.classList.remove("invalido")
-    }
-});
+            erroAtv.classList.add("valido")
+            erroAtv.classList.remove("invalido")
+        }
+    });
 
-// Validações dos Dados - Grau de Risco //
-form.addEventListener("input", function (){
+    // Validações dos Dados - Grau de Risco //
+    form.addEventListener("input", function (){
 
-    if (grauRisco.value.trim() === "") {
+        if (grauRisco.value.trim() === "") {
 
-        erroRisco.textContent = "";
-        erroRisco.classList.remove("invalido", "valido");
-    }
+            erroRisco.textContent = "";
+            erroRisco.classList.remove("invalido", "valido");
+        }
 
-    else if (grauRisco.value != 1 && grauRisco.value != 2 && grauRisco.value != 3 && grauRisco.value != 4){
+        else if (!["1","2","3","4"].includes(grauRisco.value.trim())){
 
-        erroRisco.textContent = "O grau de Risco deve ser de 1 a 4";
+            erroRisco.textContent = "O grau de Risco deve ser de 1 a 4";
 
-        erroRisco.classList.add("invalido")
-        erroRisco.classList.remove("valido")
-    }
+            erroRisco.classList.add("invalido")
+            erroRisco.classList.remove("valido")
+        }
 
-    else{
+        else{
 
-        erroRisco.textContent = "Opção valida"
+            erroRisco.textContent = "Opção valida"
 
-        erroRisco.classList.add("valido")
-        erroRisco.classList.remove("invalido")
-    }
+            erroRisco.classList.add("valido")
+            erroRisco.classList.remove("invalido")
+        }
 
-});
+    });
 
-// Validações dos Dados - Id Empresa//
-form.addEventListener("input", function (){
+    // Validações dos Dados - Id Empresa//
+    form.addEventListener("input", function (){
 
-    if (idEmpresa.value.trim() === "") {
+        if (idEmpresa.value.trim() === "") {
 
-        erroIdEmpresa.textContent = "";
-        erroIdEmpresa.classList.remove("invalido", "valido");
-    }
+            erroIdEmpresa.textContent = "";
+            erroIdEmpresa.classList.remove("invalido", "valido");
+        }
 
-    else if (Number(idEmpresa.value) <= 0) {
+        else if (!Number.isInteger(Number(idEmpresa.value)) || Number(idEmpresa.value) <= 0) {
 
-        erroIdEmpresa.textContent = "O id deve ser maior que 0";
+            erroIdEmpresa.textContent = "O id deve ser um inteiro maior que 0";
 
-        erroIdEmpresa.classList.add("invalido");
-        erroIdEmpresa.classList.remove("valido");
-    }
+            erroIdEmpresa.classList.add("invalido");
+            erroIdEmpresa.classList.remove("valido");
+        }
 
-    else {
+        else {
 
-        erroIdEmpresa.textContent = "Opção válida!";
+            erroIdEmpresa.textContent = "Opção válida";
 
-        erroIdEmpresa.classList.add("valido");
-        erroIdEmpresa.classList.remove("invalido");
-    }
-})
+            erroIdEmpresa.classList.add("valido");
+            erroIdEmpresa.classList.remove("invalido");
+        }
+    })
 
-//Validações de Dados - Id Departamento//
-form.addEventListener("submit", function (event){
+    // SUBMETER FORMULÁRIO //
+    form.addEventListener("submit", function (event){
 
-    if (Number(idEmpresa.value) <= 0 ) {
-        event.preventDefault();
-    }
+        if (!Number.isInteger(Number(idEmpresa.value)) || Number(idEmpresa.value) <= 0 ) {
+            event.preventDefault();
+        }
 
-    else if (descricao.value.length > 250){
-        event.preventDefault();
-    }
+        else if (descricao.value.trim() === "" || descricao.value.length > 250){
+            event.preventDefault();
+        }
 
-    else if (nome.value.length > 100){
-        event.preventDefault();
-    }
+        else if (nome.value.trim() === "" || nome.value.length > 100){
+            event.preventDefault();
+        }
 
-    else if (atividade.value.length > 15){
-        event.preventDefault();
-    }
+        else if (atividade.value.trim() === "" || atividade.value.length > 15){
+            event.preventDefault();
+        }
 
-    else if (grauRisco.value != 1 && grauRisco.value != 2 && grauRisco.value != 3 && grauRisco.value != 4){
-        event.preventDefault();
-    }
+        else if (!["1","2","3","4"].includes(grauRisco.value.trim())){
+            event.preventDefault();
+        }
 
-})
+    })
 })();

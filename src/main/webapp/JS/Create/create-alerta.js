@@ -2,58 +2,70 @@
 // FORMULÁRIO PARA INSERIR//
 
 
-// Declarando as Variáveis //
-const form = document.getElementById("formulario-adicionar-alerta");
-const codigo = document.getElementById("campo-codigo");
-const idEmpresa = document.getElementById("campo-id_empresa");
-const descricao = document.getElementById("campo-descricao");
-const dtLimite = document.getElementById("campo-dt_limite");
+    // Declarando as Variáveis //
+    const form = document.getElementById("formulario-adicionar-alerta");
 
-// Variaveis de Erro
-const erroCod = document.getElementById("erroCod");
-const erroDescr = document.getElementById("erroDescr");
-const erroData = document.getElementById("erroData")
-const erroId = document.getElementById("erroIdEmpresa")
+    const codigo = document.getElementById("campo-codigo");
 
-// Regex DATA:
-const regexData = /^\d{4}-(0[1-9]|1[0-2])-\d{2}$/;
-const data = new Date();
-const ano = data.getFullYear();
-const mes = String(data.getMonth() + 1).padStart(2, "0");
-const dia = String(data.getDate()).padStart(2, "0");
+    const idEmpresa = document.getElementById("campo-id_empresa");
 
-const dataAtual = `${ano}-${mes}-${dia}`;
+    const descricao = document.getElementById("campo-descricao");
+
+    const dtLimite = document.getElementById("campo-dt_limite");
 
 
-// Validações dos Dados - codigo //
-form.addEventListener("input", function(){
+    // Variaveis de Erro
+    const erroCod = document.getElementById("erroCod");
 
-    if (codigo.value.trim() === "") {
+    const erroDescr = document.getElementById("erroDescr");
 
-        erroCod.textContent = "";
-        erroCod.classList.remove("invalido", "valido");
-    }
+    const erroData = document.getElementById("erroData");
 
-    else if (Number(codigo.value) <= 0) {
+    const erroId = document.getElementById("erroIdEmpresa");
 
-        erroCod.textContent = "O código deve ser maior que 0";
+    // Regex DATA:
+    const regexData = /^\d{4}-(0[1-9]|1[0-2])-\d{2}$/;
 
-        erroCod.classList.add("invalido");
-        erroCod.classList.remove("valido");
-    }
+    const data = new Date();
 
-    else {
+    const ano = data.getFullYear();
 
-        erroCod.textContent = "Opção válida!";
+    const mes = String(data.getMonth() + 1).padStart(2, "0");
 
-        erroCod.classList.add("valido");
-        erroCod.classList.remove("invalido");
-    }
+    const dia = String(data.getDate()).padStart(2, "0");
 
-});
 
-// Validações dos Dados - descricao //
+    const dataAtual = `${ano}-${mes}-${dia}`;
 
+
+    // Validações dos Dados - codigo //
+    form.addEventListener("input", function(){
+
+        if (codigo.value.trim() === "") {
+
+            erroCod.textContent = "";
+            erroCod.classList.remove("invalido", "valido");
+        }
+
+        else if (Number(codigo.value) <= 0) {
+
+            erroCod.textContent = "O código deve ser maior que 0";
+
+            erroCod.classList.add("invalido");
+            erroCod.classList.remove("valido");
+        }
+
+        else {
+
+            erroCod.textContent = "Opção válida";
+
+            erroCod.classList.add("valido");
+            erroCod.classList.remove("invalido");
+        }
+
+    });
+
+    // Validações dos Dados - descricao //
     form.addEventListener("input", function (){
 
         if (descricao.value.length > 250){
@@ -65,7 +77,7 @@ form.addEventListener("input", function(){
 
         }
 
-         else if (descricao.value.trim() === ""){
+        else if (descricao.value.trim() === ""){
 
             erroDescr.textContent = "Este campo deve ser preenchido!!";
 
@@ -73,101 +85,101 @@ form.addEventListener("input", function(){
             erroDescr.classList.remove("valido")
         }
 
-         else {
+        else {
 
-             erroDescr.textContent = "Opção válida!";
+            erroDescr.textContent = "Opção válida";
 
-             erroDescr.classList.add("valido")
-             erroDescr.classList.remove("invalido")
-         }
+            erroDescr.classList.add("valido")
+            erroDescr.classList.remove("invalido")
+        }
     });
 
-// Validações dos Dados - Data Limite //
+    // Validações dos Dados - Data Limite //
 
-form.addEventListener("input", function (){
+    form.addEventListener("input", function (){
 
-    if (dtLimite.value.trim() === "") {
+        if (dtLimite.value.trim() === "") {
 
-        erroData .textContent = "";
-        erroData.classList.remove("invalido", "valido");
-    }
+            erroData .textContent = "";
+            erroData.classList.remove("invalido", "valido");
+        }
 
-    else if (!regexData.test(dtLimite.value)){
+        else if (!regexData.test(dtLimite.value)){
 
-        erroData.textContent = "Formato Inválido, o correto é: AAAA/MM/DD";
+            erroData.textContent = "Formato inválido, o correto é: AAAA-MM-DD";
 
-        erroData.classList.add("invalido");
-        erroData.classList.remove("valido")
-    }
+            erroData.classList.add("invalido");
+            erroData.classList.remove("valido")
+        }
 
-    else if (dtLimite.value <= dataAtual){
+        else if (dtLimite.value < dataAtual){
 
-        erroData.textContent = "A data deve ser >= a data atual";
+            erroData.textContent = "A data deve ser >= a data atual";
 
-        erroData.classList.add("invalido");
-        erroData.classList.remove("valido")
-    }
-
-
-    else{
-
-        erroData.textContent = "Opção válida";
-
-        erroData.classList.add("valido");
-        erroData.classList.remove("invalido")
-    }
-});
-
-// Validações dos Dados - Id Empresa //
-form.addEventListener("input", function(){
-
-    if (idEmpresa.value.trim() === "") {
-
-        erroId.textContent = "";
-        erroId.classList.remove("invalido", "valido");
-    }
-
-    else if (Number(idEmpresa.value) <= 0) {
-
-        erroId.textContent = "O id deve ser maior que 0";
-
-        erroId.classList.add("invalido");
-        erroId.classList.remove("valido");
-    }
-
-    else {
-
-        erroId.textContent = "Opção válida!";
-
-        erroId.classList.add("valido");
-        erroId.classList.remove("invalido");
-    }
-
-});
+            erroData.classList.add("invalido");
+            erroData.classList.remove("valido")
+        }
 
 
-// SUBMETER O FORMULÁRIO //
-form.addEventListener("submit", function(event) {
+        else{
 
-    if (Number(codigo.value) <= 0 ) {
-        event.preventDefault();
-    }
+            erroData.textContent = "Opção válida";
 
-    else if (descricao.value.length > 250){
-        event.preventDefault();
-    }
+            erroData.classList.add("valido");
+            erroData.classList.remove("invalido")
+        }
+    });
 
-    else if (Number(idEmpresa.value) <= 0){
-        event.preventDefault();
-    }
+    // Validações dos Dados - Id Empresa //
+    form.addEventListener("input", function(){
 
-    else if (!regexData.test(dtLimite.value)){
-        event.preventDefault()
-    }
+        if (idEmpresa.value.trim() === "") {
 
-    else if (dtLimite.value <= dataAtual){
-        event.preventDefault()
-    }
+            erroId.textContent = "";
+            erroId.classList.remove("invalido", "valido");
+        }
 
-});
+        else if (Number(idEmpresa.value) <= 0) {
+
+            erroId.textContent = "O id deve ser maior que 0";
+
+            erroId.classList.add("invalido");
+            erroId.classList.remove("valido");
+        }
+
+        else {
+
+            erroId.textContent = "Opção válida";
+
+            erroId.classList.add("valido");
+            erroId.classList.remove("invalido");
+        }
+
+    });
+
+
+    // SUBMETER O FORMULÁRIO //
+    form.addEventListener("submit", function(event) {
+
+        if (Number(codigo.value) <= 0 ) {
+            event.preventDefault();
+        }
+
+        else if (descricao.value.length > 250){
+            event.preventDefault();
+        }
+
+        else if (Number(idEmpresa.value) <= 0){
+            event.preventDefault();
+        }
+
+        else if (!regexData.test(dtLimite.value)){
+            event.preventDefault()
+        }
+
+        else if (dtLimite.value < dataAtual){
+            event.preventDefault()
+        }
+
+    });
 })();

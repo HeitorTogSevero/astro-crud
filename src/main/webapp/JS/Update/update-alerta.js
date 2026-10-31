@@ -1,180 +1,181 @@
 (() => {
- // FORMULÁRIO PARA EDITAR//
+    // FORMULÁRIO PARA EDITAR//
 
 // Declarando as Variáveis //
-const form = document.getElementById("formulario-editar");
+    const form = document.getElementById("formulario-editar");
 
-const codigo = document.getElementById("editar-codigo");
+    const codigo = document.getElementById("editar-codigo");
 
-const idEmpresa = document.getElementById("editar-id-empresa");
+    const idEmpresa = document.getElementById("editar-id-empresa");
 
-const descricao = document.getElementById("editar-descricao");
+    const descricao = document.getElementById("editar-descricao");
 
-const dtLimite = document.getElementById("editar-dt_limite");
+    const dtLimite = document.getElementById("editar-dt_limite");
 
-// Variaveis de Erro
-const erroCod = document.getElementById("editar-erroCod");
+    // Variaveis de Erro
+    const erroCod = document.getElementById("editar-erroCod");
 
-const erroDescr = document.getElementById("editar-erroDescr");
+    const erroDescr = document.getElementById("editar-erroDescr");
 
-const erroData = document.getElementById("editar-erroData")
+    const erroData = document.getElementById("editar-erroData");
 
-const erroId = document.getElementById("editar-erroId")
+    const erroId = document.getElementById("editar-erroId");
 
-// Regex DATA:
-const regexData = /^\d{4}-(0[1-9]|1[0-2])-\d{2}$/;
+    // Regex DATA:
+    const regexData = /^\d{4}-(0[1-9]|1[0-2])-\d{2}$/;
 
-const data = new Date();
-const ano = data.getFullYear();
-const mes = String(data.getMonth() + 1).padStart(2, "0");
-const dia = String(data.getDate()).padStart(2, "0");
+    const data = new Date();
 
-const dataAtual = `${ano}-${mes}-${dia}`;
+    const ano = data.getFullYear();
 
-// Validações dos Dados - codigo //
-form.addEventListener("input", function(){
+    const mes = String(data.getMonth() + 1).padStart(2, "0");
 
-    if (codigo.value.trim() === "") {
+    const dia = String(data.getDate()).padStart(2, "0");
 
-        erroCod.textContent = "";
-        erroCod.classList.remove("invalido", "valido");
-    }
 
-    else if (Number(codigo.value) <= 0) {
+    const dataAtual = `${ano}-${mes}-${dia}`;
 
-        erroCod.textContent = "O código deve ser maior que 0";
+    // Validações dos Dados - codigo //
+    form.addEventListener("input", function(){
 
-        erroCod.classList.add("invalido");
-        erroCod.classList.remove("valido");
-    }
+        if (codigo.value.trim() === "") {
 
-    else {
+            erroCod.textContent = "";
+            erroCod.classList.remove("invalido", "valido");
+        }
 
-        erroCod.textContent = "Opção válida!";
+        else if (Number(codigo.value) <= 0) {
 
-        erroCod.classList.add("valido");
-        erroCod.classList.remove("invalido");
-    }
+            erroCod.textContent = "O código deve ser maior que 0";
 
-});
+            erroCod.classList.add("invalido");
+            erroCod.classList.remove("valido");
+        }
 
-// Validações dos Dados - descricao //
+        else {
 
-form.addEventListener("input", function (){
+            erroCod.textContent = "Opção válida";
 
-    if (descricao.value.length > 250){
+            erroCod.classList.add("valido");
+            erroCod.classList.remove("invalido");
+        }
 
-        erroDescr.textContent = "máximo 250 caracteres"
+    });
 
-        erroDescr.classList.add("invalido")
-        erroDescr.classList.remove("valido")
+    // Validações dos Dados - descricao //
 
-    }
+    form.addEventListener("input", function (){
 
-    else if (descricao.value.trim() === ""){
+        if (descricao.value.length > 250){
 
-        erroDescr.textContent = "Este campo deve ser preenchido!!";
+            erroDescr.textContent = "máximo 250 caracteres"
 
-        erroDescr.classList.add("invalido")
-        erroDescr.classList.remove("valido")
-    }
+            erroDescr.classList.add("invalido")
+            erroDescr.classList.remove("valido")
 
-    else {
+        }
 
-        erroDescr.textContent = "Opção válida!";
+        else if (descricao.value.trim() === ""){
 
-        erroDescr.classList.add("valido")
-        erroDescr.classList.remove("invalido")
-    }
-});
+            erroDescr.textContent = "Este campo deve ser preenchido!!";
 
-// Validações dos Dados - Data Limite //
+            erroDescr.classList.add("invalido")
+            erroDescr.classList.remove("valido")
+        }
 
-form.addEventListener("input", function (){
+        else {
 
-    if (dtLimite.value.trim() === "") {
+            erroDescr.textContent = "Opção válida";
 
-        erroData .textContent = "";
-        erroData.classList.remove("invalido", "valido");
-    }
+            erroDescr.classList.add("valido")
+            erroDescr.classList.remove("invalido")
+        }
+    });
 
-    else if (!regexData.test(dtLimite.value)){
+    // Validações dos Dados - Data Limite //
 
-        erroData.textContent = "Formato Inválido, o correto é: AAAA/MM/DD";
+    form.addEventListener("input", function (){
 
-        erroData.classList.add("invalido");
-        erroData.classList.remove("valido")
-    }
+        if (dtLimite.value.trim() === "") {
 
-    else if (dtLimite.value <= dataAtual){
+            erroData .textContent = "";
+            erroData.classList.remove("invalido", "valido");
+        }
 
-        erroData.textContent = "A data deve ser >= a data atual";
+        else if (!regexData.test(dtLimite.value)){
 
-        erroData.classList.add("invalido");
-        erroData.classList.remove("valido")
-    }
+            erroData.textContent = "Formato inválido, o correto é: AAAA-MM-DD";
 
+            erroData.classList.add("invalido");
+            erroData.classList.remove("valido")
+        }
 
-    else{
+        else if (dtLimite.value < dataAtual){
 
-        erroData.textContent = "Opção válida";
+            erroData.textContent = "A data deve ser >= a data atual";
 
-        erroData.classList.add("valido");
-        erroData.classList.remove("invalido")
-    }
-});
+            erroData.classList.add("invalido");
+            erroData.classList.remove("valido")
+        }
 
-// Validações dos Dados - Id Empresa //
-form.addEventListener("input", function(){
 
-    if (idEmpresa.value.trim() === "") {
+        else{
 
-        erroId.textContent = "";
-        erroId.classList.remove("invalido", "valido");
-    }
+            erroData.textContent = "Opção válida";
 
-    else if (Number(idEmpresa.value) <= 0) {
+            erroData.classList.add("valido");
+            erroData.classList.remove("invalido")
+        }
+    });
 
-        erroId.textContent = "O id deve ser maior que 0";
+    // Validações dos Dados - Id Empresa //
+    form.addEventListener("input", function(){
 
-        erroId.classList.add("invalido");
-        erroId.classList.remove("valido");
-    }
+        if (idEmpresa.value.trim() === "") {
 
-    else {
+            erroId.textContent = "";
+            erroId.classList.remove("invalido", "valido");
+        }
 
-        erroId.textContent = "Opção válida!";
+        else if (Number(idEmpresa.value) <= 0) {
 
-        erroId.classList.add("valido");
-        erroId.classList.remove("invalido");
-    }
+            erroId.textContent = "O id deve ser maior que 0";
 
-});
+            erroId.classList.add("invalido");
+            erroId.classList.remove("valido");
+        }
 
+        else {
 
+            erroId.textContent = "Opção válida!";
 
+            erroId.classList.add("valido");
+            erroId.classList.remove("invalido");
+        }
 
-form.addEventListener("submit", function(event) {
+    });
 
-    if (codigo.value <= 0 ) {
-        event.preventDefault();
-    }
+    form.addEventListener("submit", function(event) {
 
-    else if (descricao.value.length > 250){
-        event.preventDefault();
-    }
+        if (codigo.value <= 0 ) {
+            event.preventDefault();
+        }
 
-    else if (Number(idEmpresa.value) <= 0){
-        event.preventDefault();
-    }
+        else if (descricao.value.length > 250){
+            event.preventDefault();
+        }
 
-    else if (!regexData.test(dtLimite.value)){
-        event.preventDefault()
-    }
+        else if (Number(idEmpresa.value) <= 0){
+            event.preventDefault();
+        }
 
-    else if (dtLimite.value <= dataAtual){
-        event.preventDefault()
-    }
+        else if (!regexData.test(dtLimite.value)){
+            event.preventDefault()
+        }
 
-});
+        else if (dtLimite.value < dataAtual){
+            event.preventDefault()
+        }
+
+    });
 })();

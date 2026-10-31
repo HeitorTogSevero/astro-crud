@@ -3,224 +3,224 @@
 
 
 // Declarando as Variáveis //
-const form = document.getElementById("formulario-editar")
+    const form = document.getElementById("formulario-editar");
 
-const nome = document.getElementById("editar-nome")
+    const nome = document.getElementById("editar-nome");
 
-const cargo = document.getElementById("editar-cargo")
+    const cargo = document.getElementById("editar-cargo");
 
-const cpf = document.getElementById("editar-cpf")
+    const cpf = document.getElementById("editar-cpf");
 
-const email = document.getElementById("editar-email")
+    const email = document.getElementById("editar-email");
 
-const idEmpresa = document.getElementById("editar-id_empresa")
+    const idEmpresa = document.getElementById("editar-id_empresa");
 
-const idDepart = document.getElementById("editar-id_departamento")
+    const idDepart = document.getElementById("editar-id_departamento");
 
 // Variáveis de Erro //
-const erroNome = document.getElementById("editar-erroNome")
+    const erroNome = document.getElementById("editar-erroNome");
 
-const erroCargo = document.getElementById("editar-erroCargo")
+    const erroCargo = document.getElementById("editar-erroCargo");
 
-const erroCpf = document.getElementById("editar-erroCpf")
+    const erroCpf = document.getElementById("editar-erroCpf");
 
-const erroEmail = document.getElementById("editar-erroEmail")
+    const erroEmail = document.getElementById("editar-erroEmail");
 
-const erroIdEmpresa = document.getElementById("editar-erroIdEmpresa")
+    const erroIdEmpresa = document.getElementById("editar-erroIdEmpresa");
 
-const erroIdDepart = document.getElementById("editar-erroIdDepart")
+    const erroIdDepart = document.getElementById("editar-erroIdDepart");
 
-// REGEX //
-const regexCpf = /^(\d{3}\.\d{3}\.\d{3}-\d{2}|\d{11})$/
+    // REGEX //
+    const regexCpf = /^(\d{3}\.\d{3}\.\d{3}-\d{2}|\d{11})$/
 
-const regexEmail = /^[a-zA-Z0-9._%+#$!\-]+@(gmail|hotmail|yahoo|outlook)\.(com|com\.br|org\.br)$/
+    const regexEmail = /^[a-zA-Z0-9._%+#$!\-]+@(gmail|hotmail|yahoo|outlook)\.(com|com\.br|org\.br)$/
 
-// Validações dos Dados - Nome //
-form.addEventListener("input", function (){
+    // Validações dos Dados - Nome //
+    form.addEventListener("input", function (){
 
-    if (nome.value.trim() === "") {
+        if (nome.value.trim() === "") {
 
-        erroNome.textContent = "";
-        erroNome.classList.remove("invalido", "valido");
-    }
+            erroNome.textContent = "";
+            erroNome.classList.remove("invalido", "valido");
+        }
 
-    else if (nome.value.length > 100){
+        else if (nome.value.length > 100){
 
-        erroNome.textContent = "máximo 100 caracteres"
+            erroNome.textContent = "máximo 100 caracteres"
 
-        erroNome.classList.add("invalido")
-        erroNome.classList.remove("valido")
+            erroNome.classList.add("invalido")
+            erroNome.classList.remove("valido")
 
-    }
+        }
 
-    else{
+        else{
 
-        erroNome.textContent = "Opção válida"
+            erroNome.textContent = "Opção válida"
 
-        erroNome.classList.add("valido")
-        erroNome.classList.remove("invalido")
-    }
-})
+            erroNome.classList.add("valido")
+            erroNome.classList.remove("invalido")
+        }
+    })
 
-// Validações dos Dados - Cargo //
-form.addEventListener("input", function (){
+    // Validações dos Dados - Cargo //
+    form.addEventListener("input", function (){
 
-    if (cargo.value.trim() === "") {
+        if (cargo.value.trim() === "") {
 
-        erroCargo.textContent = "";
-        erroCargo.classList.remove("invalido", "valido");
-    }
+            erroCargo.textContent = "";
+            erroCargo.classList.remove("invalido", "valido");
+        }
 
-    else if (cargo.value.length > 100){
+        else if (cargo.value.length > 100){
 
-        erroCargo.textContent = "máximo 100 caracteres"
+            erroCargo.textContent = "máximo 100 caracteres"
 
-        erroCargo.classList.add("invalido")
-        erroCargo.classList.remove("valido")
+            erroCargo.classList.add("invalido")
+            erroCargo.classList.remove("valido")
 
-    }
+        }
 
-    else{
+        else{
 
-        erroCargo.textContent = "Opção válida"
+            erroCargo.textContent = "Opção válida"
 
-        erroCargo.classList.add("valido")
-        erroCargo.classList.remove("invalido")
-    }
-})
+            erroCargo.classList.add("valido")
+            erroCargo.classList.remove("invalido")
+        }
+    })
 
-// Validações dos Dados - CPF //
-form.addEventListener("input", function (){
+    // Validações dos Dados - CPF //
+    form.addEventListener("input", function (){
 
-    if (cpf.value.trim() === "") {
+        if (cpf.value.trim() === "") {
 
-        erroCpf.textContent = "";
-        erroCpf.classList.remove("invalido", "valido");
-    }
+            erroCpf.textContent = "";
+            erroCpf.classList.remove("invalido", "valido");
+        }
 
-    else if (!regexCpf.test(cpf.value)){
+        else if (!regexCpf.test(cpf.value)){
 
-        erroCpf.textContent = "Formato Inválido: 000.000.000-00, máx. 11 caracteres"
+            erroCpf.textContent = "Formato inválido: 000.000.000-00 (11 dígitos)"
 
-        erroCpf.classList.add("invalido")
-        erroCpf.classList.remove("valido")
+            erroCpf.classList.add("invalido")
+            erroCpf.classList.remove("valido")
 
-    }
+        }
 
-    else{
+        else{
 
-        erroCpf.textContent = "Opção válida"
+            erroCpf.textContent = "Opção válida"
 
-        erroCpf.classList.add("valido")
-        erroCpf.classList.remove("invalido")
-    }
-})
+            erroCpf.classList.add("valido")
+            erroCpf.classList.remove("invalido")
+        }
+    })
 
-// Validações dos Dados - Email //
-form.addEventListener("input", function (){
+    // Validações dos Dados - Email //
+    form.addEventListener("input", function (){
 
-    if (email.value.trim() === "") {
+        if (email.value.trim() === "") {
 
-        erroEmail.textContent = "";
-        erroEmail.classList.remove("invalido", "valido");
-    }
+            erroEmail.textContent = "";
+            erroEmail.classList.remove("invalido", "valido");
+        }
 
-    else if (!regexEmail.test(email.value)){
+        else if (!regexEmail.test(email.value)){
 
-        erroEmail.textContent = "Formato Inválido! exemplo@gmail.com"
+            erroEmail.textContent = "Formato Inválido! exemplo@gmail.com"
 
-        erroEmail.classList.add("invalido")
-        erroEmail.classList.remove("valido")
+            erroEmail.classList.add("invalido")
+            erroEmail.classList.remove("valido")
 
-    }
+        }
 
-    else{
+        else{
 
-        erroEmail.textContent = "Opção válida"
+            erroEmail.textContent = "Opção válida"
 
-        erroEmail.classList.add("valido")
-        erroEmail.classList.remove("invalido")
-    }
-})
+            erroEmail.classList.add("valido")
+            erroEmail.classList.remove("invalido")
+        }
+    })
 
-// Validações dos Dados - Id Empresa//
-form.addEventListener("input", function (){
+    // Validações dos Dados - Id Empresa//
+    form.addEventListener("input", function (){
 
-    if (idEmpresa.value.trim() === "") {
+        if (idEmpresa.value.trim() === "") {
 
-        erroIdEmpresa.textContent = "";
-        erroIdEmpresa.classList.remove("invalido", "valido");
-    }
+            erroIdEmpresa.textContent = "";
+            erroIdEmpresa.classList.remove("invalido", "valido");
+        }
 
-    else if (Number(idEmpresa.value) <= 0) {
+        else if (Number(idEmpresa.value) <= 0) {
 
-        erroIdEmpresa.textContent = "O id deve ser maior que 0";
+            erroIdEmpresa.textContent = "O id deve ser maior que 0";
 
-        erroIdEmpresa.classList.add("invalido");
-        erroIdEmpresa.classList.remove("valido");
-    }
+            erroIdEmpresa.classList.add("invalido");
+            erroIdEmpresa.classList.remove("valido");
+        }
 
-    else {
+        else {
 
-        erroIdEmpresa.textContent = "Opção válida!";
+            erroIdEmpresa.textContent = "Opção válida";
 
-        erroIdEmpresa.classList.add("valido");
-        erroIdEmpresa.classList.remove("invalido");
-    }
-})
+            erroIdEmpresa.classList.add("valido");
+            erroIdEmpresa.classList.remove("invalido");
+        }
+    })
 
-//Validações de Dados - Id Departamento//
-form.addEventListener("input", function (){
+    //Validações de Dados - Id Departamento//
+    form.addEventListener("input", function (){
 
-    if (idDepart.value.trim() === "") {
+        if (idDepart.value.trim() === "") {
 
-        erroIdDepart.textContent = "";
-        erroIdDepart.classList.remove("invalido", "valido");
-    }
+            erroIdDepart.textContent = "";
+            erroIdDepart.classList.remove("invalido", "valido");
+        }
 
-    else if (Number(idDepart.value) <= 0) {
+        else if (Number(idDepart.value) <= 0) {
 
-        erroIdDepart.textContent = "O id deve ser maior que 0";
+            erroIdDepart.textContent = "O id deve ser maior que 0";
 
-        erroIdDepart.classList.add("invalido");
-        erroIdDepart.classList.remove("valido");
-    }
+            erroIdDepart.classList.add("invalido");
+            erroIdDepart.classList.remove("valido");
+        }
 
-    else {
+        else {
 
-        erroIdDepart.textContent = "Opção válida!";
+            erroIdDepart.textContent = "Opção válida";
 
-        erroIdDepart.classList.add("valido");
-        erroIdDepart.classList.remove("invalido");
-    }
-})
+            erroIdDepart.classList.add("valido");
+            erroIdDepart.classList.remove("invalido");
+        }
+    })
 
-// SUBMETER FORMULÀRIO //
-form.addEventListener("submit", function (event){
+    // SUBMETER FORMULÀRIO //
+    form.addEventListener("submit", function (event){
 
-    if (Number(idEmpresa.value) <= 0 ) {
-        event.preventDefault();
-    }
+        if (Number(idEmpresa.value) <= 0 ) {
+            event.preventDefault();
+        }
 
-    else if (Number(idDepart.value) <= 0){
-        event.preventDefault();
-    }
+        else if (Number(idDepart.value) <= 0){
+            event.preventDefault();
+        }
 
-    else if (cargo.value.length > 100){
-        event.preventDefault();
-    }
+        else if (cargo.value.length > 100){
+            event.preventDefault();
+        }
 
-    else if (nome.value.length > 100){
-        event.preventDefault();
-    }
+        else if (nome.value.length > 100){
+            event.preventDefault();
+        }
 
-    else if (!regexCpf.test(cpf.value)){
-        event.preventDefault();
-    }
+        else if (!regexCpf.test(cpf.value)){
+            event.preventDefault();
+        }
 
-    else if (!regexEmail.test(email.value)){
-        event.preventDefault();
-    }
+        else if (!regexEmail.test(email.value)){
+            event.preventDefault();
+        }
 
-})
+    })
 })();

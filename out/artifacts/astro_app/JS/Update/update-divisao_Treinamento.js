@@ -2,149 +2,149 @@
 // FORMULÁRIO PARA EDITAR//
 
 
-// Declarando as Variáveis //
-const form = document.getElementById("formulario-editar")
+    // Declarando as Variáveis //
+    const form = document.getElementById("formulario-editar");
 
-const idCronograma = document.getElementById("editar-id_cronograma")
+    const idCronograma = document.getElementById("editar-id_cronograma");
 
-const codigo = document.getElementById("editar-codigo")
+    const codigo = document.getElementById("editar-codigo");
 
-const idEmpresa = document.getElementById("editar-id_empresa")
+    const idEmpresa = document.getElementById("editar-id_empresa");
 
-const nome = document.getElementById("editar-nome")
+    const nome = document.getElementById("editar-nome");
 
-// Variáveis de Erro //
-const erroIdCrono = document.getElementById("editar-erroIdCrono")
+    // Variáveis de Erro //
+    const erroIdCrono = document.getElementById("editar-erroIdCrono");
 
-const erroIdEmpresa = document.getElementById("editar-erroIdEmpresa")
+    const erroIdEmpresa = document.getElementById("editar-erroIdEmpresa");
 
-const erroCod = document.getElementById("editar-erroCod")
+    const erroCod = document.getElementById("editar-erroCod");
 
-const erroNome = document.getElementById("editar-erroNome")
+    const erroNome = document.getElementById("editar-erroNome");
 
-// Validações de Dados - Nome //
-form.addEventListener("input", function (){
+    // Validações de Dados - Nome //
+    form.addEventListener("input", function (){
 
-    if (nome.value.trim() === "") {
+        if (nome.value.trim() === "") {
 
-        erroNome.textContent = "";
-        erroNome.classList.remove("invalido", "valido");
-    }
+            erroNome.textContent = "";
+            erroNome.classList.remove("invalido", "valido");
+        }
 
-    else if (nome.value.length > 50){
+        else if (nome.value.length > 50){
 
-        erroNome.textContent = "máximo 50 caracteres"
+            erroNome.textContent = "máximo 50 caracteres"
 
-        erroNome.classList.add("invalido")
-        erroNome.classList.remove("valido")
+            erroNome.classList.add("invalido")
+            erroNome.classList.remove("valido")
 
-    }
+        }
 
-    else{
+        else{
 
-        erroNome.textContent = "Opção válida"
+            erroNome.textContent = "Opção válida"
 
-        erroNome.classList.add("valido")
-        erroNome.classList.remove("invalido")
-    }
-})
+            erroNome.classList.add("valido")
+            erroNome.classList.remove("invalido")
+        }
+    })
 
-// Validações dos Dados - codigo //
-form.addEventListener("input", function(){
+    // Validações dos Dados - codigo //
+    form.addEventListener("input", function(){
 
-    if (codigo.value.trim() === "") {
+        if (codigo.value.trim() === "") {
 
-        erroCod.textContent = "";
-        erroCod.classList.remove("invalido", "valido");
-    }
+            erroCod.textContent = "";
+            erroCod.classList.remove("invalido", "valido");
+        }
 
-    else if (Number(codigo.value) <= 0) {
+        else if (!Number.isInteger(Number(codigo.value)) || Number(codigo.value) <= 0) {
 
-        erroCod.textContent = "O código deve ser maior que 0";
+            erroCod.textContent = "O código deve ser um inteiro maior que 0";
 
-        erroCod.classList.add("invalido");
-        erroCod.classList.remove("valido");
-    }
+            erroCod.classList.add("invalido");
+            erroCod.classList.remove("valido");
+        }
 
-    else {
+        else {
 
-        erroCod.textContent = "Opção válida!";
+            erroCod.textContent = "Opção válida";
 
-        erroCod.classList.add("valido");
-        erroCod.classList.remove("invalido");
-    }
+            erroCod.classList.add("valido");
+            erroCod.classList.remove("invalido");
+        }
 
-});
+    });
 
-// Validações dos Dados - Id Cronograma//
-form.addEventListener("input", function (){
+    // Validações dos Dados - Id Cronograma//
+    form.addEventListener("input", function (){
 
-    if (idCronograma.value.trim() === "") {
+        if (idCronograma.value.trim() === "") {
 
-        erroIdCrono.textContent = "";
-        erroIdCrono.classList.remove("invalido", "valido");
-    }
+            erroIdCrono.textContent = "";
+            erroIdCrono.classList.remove("invalido", "valido");
+        }
 
-    else if (Number(idCronograma.value) <= 0) {
+        else if (!Number.isInteger(Number(idCronograma.value)) || Number(idCronograma.value) <= 0) {
 
-        erroIdCrono.textContent = "O id deve ser maior que 0";
+            erroIdCrono.textContent = "O id deve ser um inteiro maior que 0";
 
-        erroIdCrono.classList.add("invalido");
-        erroIdCrono.classList.remove("valido");
-    }
+            erroIdCrono.classList.add("invalido");
+            erroIdCrono.classList.remove("valido");
+        }
 
-    else {
+        else {
 
-        erroIdCrono.textContent = "Opção válida!";
+            erroIdCrono.textContent = "Opção válida";
 
-        erroIdCrono.classList.add("valido");
-        erroIdCrono.classList.remove("invalido");
-    }
-})
+            erroIdCrono.classList.add("valido");
+            erroIdCrono.classList.remove("invalido");
+        }
+    })
 
-// Validações dos Dados - Id Empresa//
-form.addEventListener("input", function (){
+    // Validações dos Dados - Id Empresa//
+    form.addEventListener("input", function (){
 
-    if (idEmpresa.value.trim() === "") {
+        if (idEmpresa.value.trim() === "") {
 
-        erroIdEmpresa.textContent = "";
-        erroIdEmpresa.classList.remove("invalido", "valido");
-    }
+            erroIdEmpresa.textContent = "";
+            erroIdEmpresa.classList.remove("invalido", "valido");
+        }
 
-    else if (Number(idEmpresa.value) <= 0) {
+        else if (!Number.isInteger(Number(idEmpresa.value)) || Number(idEmpresa.value) <= 0) {
 
-        erroIdEmpresa.textContent = "O id deve ser maior que 0";
+            erroIdEmpresa.textContent = "O id deve ser um inteiro maior que 0";
 
-        erroIdEmpresa.classList.add("invalido");
-        erroIdEmpresa.classList.remove("valido");
-    }
+            erroIdEmpresa.classList.add("invalido");
+            erroIdEmpresa.classList.remove("valido");
+        }
 
-    else {
+        else {
 
-        erroIdEmpresa.textContent = "Opção válida!";
+            erroIdEmpresa.textContent = "Opção válida";
 
-        erroIdEmpresa.classList.add("valido");
-        erroIdEmpresa.classList.remove("invalido");
-    }
-})
+            erroIdEmpresa.classList.add("valido");
+            erroIdEmpresa.classList.remove("invalido");
+        }
+    })
 
-// SUBMETER FORMULÁRIO //
-form.addEventListener("submit", function (event){
+    // SUBMETER FORMULÁRIO //
+    form.addEventListener("submit", function (event){
 
-    if (Number(codigo.value) <= 0 ) {
-        event.preventDefault();
-    }
+        if (!Number.isInteger(Number(codigo.value)) || Number(codigo.value) <= 0 ) {
+            event.preventDefault();
+        }
 
-    else if (nome.value.length > 50){
-        event.preventDefault();
-    }
+        else if (nome.value.trim() === "" || nome.value.length > 50){
+            event.preventDefault();
+        }
 
-    else if (Number(idEmpresa.value) <= 0){
-        event.preventDefault();
-    }
+        else if (!Number.isInteger(Number(idEmpresa.value)) || Number(idEmpresa.value) <= 0){
+            event.preventDefault();
+        }
 
-    else if (Number(idCronograma.value) <= 0){
-        event.preventDefault();
-    }
-})
+        else if (!Number.isInteger(Number(idCronograma.value)) || Number(idCronograma.value) <= 0){
+            event.preventDefault();
+        }
+    })
 })();
