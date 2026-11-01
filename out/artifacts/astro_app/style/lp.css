@@ -817,20 +817,19 @@ footer { padding: 80px 120px 32px; }
 .coluna-links a:hover { color: var(--texto-claro); }
 
 #siga {
-    width: 50px;
-    height: auto;
+    height: 1.05em;
+    width: auto;
     display: inline-block;
     vertical-align: middle;
-    margin-left: 4px;
-    position: relative;
-    top: -1px;
+    margin: 0 0 0 2px;
+    position: static;
 }
 
 .coluna-links.social h4 {
     display: flex;
     align-items: center;
-    gap: 6px;
-    flex-wrap: wrap;
+    gap: 4px;
+    letter-spacing: normal;
 }
 
 .icones-sociais {
@@ -1329,4 +1328,121 @@ footer { padding: 80px 120px 32px; }
     .estatisticas {
         margin-top: 50px;
     }
+}
+
+
+/* RESPONSIVIDADE COMPLEMENTAR — TABLETS E TVs */
+
+@media (min-width: 561px) and (max-width: 1200px) {
+    .imagem-interface, .secao-cta { display: none; }
+
+    .principal {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .conteudo-principal {
+        flex: 1;
+        max-width: 850px;
+        margin: 0 auto;
+    }
+
+    .principal h1 {
+        font-size: clamp(42px, 5.5vw, 64px);
+    }
+
+    .botoes-principal,
+    .recursos-principal { justify-content: center; }
+
+    .recursos {
+        display: block;
+    }
+
+    .conteudo-recursos {
+        width: 100%;
+        max-width: 850px;
+        margin: 0 auto;
+    }
+
+    .como-funciona { margin-bottom: 0; }
+
+    .conteudo-rodape {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 40px 24px;
+    }
+
+    .marca-rodape {
+        grid-column: 1 / -1;
+    }
+
+    .links-rodape {
+        display: contents;
+    }
+
+    .conteudo-rodape > .social {
+        grid-column: 5;
+    }
+    .links-rodape .coluna-links {
+        min-width: 0;
+    }
+}
+
+@media (min-width: 700px) and (max-width: 1200px) {
+    .lista-recursos {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 36px 24px;
+    }
+}
+
+@media (min-width: 561px) and (max-width: 800px) {
+    .links-rodape {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 32px 20px;
+    }
+
+    .links-rodape .social {
+        grid-column: auto;
+    }
+}
+
+@media (min-width: 801px) and (max-width: 1200px) {
+    .grafico-principal { display: none; }
+
+    .links-navegacao {
+        flex: 1;
+        margin: 0 clamp(8px, 2vw, 30px);
+        justify-content: space-evenly;
+        gap: 8px;
+    }
+}
+
+@media (min-width: 801px) and (max-width: 900px) {
+    .espaco-empresas {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 24px;
+        margin: 32px 0;
+        padding: 32px;
+    }
+
+    .espaco-empresas img {
+        max-width: 100%;
+        margin: auto;
+    }
+
+    .estatisticas {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 36px 24px;
+    }
+}
+
+@media (min-width: 2560px) {
+    main, footer { zoom: 1.25; }
+}
+
+@media (min-width: 3200px) {
+    main, footer { zoom: 1.75; }
 }

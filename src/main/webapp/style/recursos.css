@@ -957,20 +957,19 @@ footer {
 }
 
 #siga {
-    width: 50px;
-    height: auto;
+    height: 1.05em;
+    width: auto;
     display: inline-block;
     vertical-align: middle;
-    margin-left: 4px;
-    position: relative;
-    top: -1px;
+    margin: 0 0 0 2px;
+    position: static;
 }
 
 .coluna-links.social h4 {
     display: flex;
     align-items: center;
-    gap: 6px;
-    flex-wrap: wrap;
+    gap: 4px;
+    letter-spacing: normal;
 }
 
 .icones-sociais {
@@ -1563,5 +1562,226 @@ footer {
 
     .links-legais-rodape a {
         margin-left: 0;
+    }
+}
+
+
+/* RESPONSIVIDADE COMPLEMENTAR — TABLETS E TVs */
+
+@media (min-width: 561px) and (max-width: 1200px) {
+    .imagem-principal, .secao-cta { display: none; }
+
+    /* PRINCIPAL */
+    .principal {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 40px 20px;
+        justify-items: center;
+        text-align: center;
+    }
+
+    .principal .conteudo-principal {
+        grid-column: 1 / -1;
+        width: 100%;
+    }
+
+    .conteudo-principal {
+        max-width: 850px;
+        margin: 0 auto;
+    }
+
+    .principal h1 {
+        font-size: clamp(42px, 5.5vw, 64px);
+    }
+
+    .principal .topicos {
+        flex: 1 1 200px;
+        max-width: 330px;
+        width: auto;
+        margin: 0;
+        flex-direction: column;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .principal .topicos img {
+        width: 76px;
+        height: 76px;
+        margin: 0;
+    }
+
+    .principal .topicos h4,
+    .principal .topicos p { margin: 0; }
+
+    .principal .topicos p {
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+    .principal + .linha { margin: 0 auto 10px; }
+
+    /* MATERIAIS */
+    .materiais {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 24px;
+    }
+
+    .conteudo-materiais {
+        grid-column: 1 / -1;
+        margin-top: 0;
+    }
+
+    #topicos2 {
+        width: 100%;
+        height: 440px;
+        margin: 0;
+    }
+
+    #topicos2 h4 { max-width: 100%; }
+
+    /* BLOG */
+    .conteudo-blog { margin-top: 0; }
+
+    .todos-topicos3 {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 20px;
+    }
+
+    .topicos3 {
+        width: 100%;
+        height: auto;
+        min-height: 400px;
+    }
+
+    .topicos3 span:first-child,
+    .topicos3 img { width: 100%; }
+
+    /* GLOSSÁRIO */
+    .glossario {
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+    }
+
+    .conteudo-glossario {
+        max-width: 850px;
+        margin-top: 0;
+        align-items: center;
+        text-align: center;
+    }
+
+    .glossario .dicionario { margin: 0 auto; }
+
+    .glossario .dicionario .glossario-dicionario__item {
+        height: auto;
+        min-height: 78px;
+    }
+
+    .glossario-dicionario__termo {
+        overflow-wrap: anywhere;
+    }
+
+    /* FOOTER */
+    .conteudo-rodape {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .links-rodape {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 20px;
+    }
+}
+
+/* SUGERIR TERMO */
+@media (min-width: 601px) and (max-width: 1200px) {
+    .sugerir {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .sugerir img { display: none; }
+
+    .sugerir .botao-sugerir {
+        position: static;
+        transform: none;
+    }
+
+    .sugerir .botao-sugerir:hover {
+        transform: scale(1.03);
+    }
+}
+
+/* ALFABETO DO GLOSSÁRIO */
+@media (min-width: 801px) and (max-width: 1200px) {
+    .glossario .dicionario .glossario-dicionario__alfabeto {
+        display: flex;
+        gap: 6px;
+        overflow-x: auto;
+        scrollbar-width: thin;
+        scrollbar-color: #614BF5 #070F25;
+    }
+
+    .glossario .dicionario .glossario-dicionario__letra {
+        flex: 0 0 32px;
+        width: 32px;
+    }
+}
+
+/* TABLETS MENORES */
+@media (min-width: 561px) and (max-width: 900px) {
+    .todos-topicos3 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 561px) and (max-width: 800px) {
+    .links-rodape {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 32px 20px;
+    }
+
+    .links-rodape .social { grid-column: auto; }
+}
+
+@media (min-width: 561px) and (max-width: 700px) {
+    .todos-topicos3 { grid-template-columns: 1fr; }
+
+    .todos-topicos3 > a {
+        width: 100%;
+        max-width: 520px;
+        justify-self: center;
+    }
+}
+
+@media (min-width: 561px) and (max-width: 680px) {
+    .materiais { grid-template-columns: 1fr; }
+
+    #topicos2 {
+        max-width: 520px;
+        justify-self: center;
+    }
+}
+
+/* TVs */
+@media (min-width: 2560px) {
+    main, footer { zoom: 1.25; }
+}
+
+@media (min-width: 3200px) {
+    main, footer { zoom: 1.75; }
+}
+
+@media (min-width: 801px) and (max-width: 1200px) {
+    .links-navegacao {
+        flex: 1;
+        margin: 0 clamp(8px, 2vw, 30px);
+        justify-content: space-evenly;
+        gap: 8px;
     }
 }
