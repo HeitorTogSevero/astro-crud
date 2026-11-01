@@ -26,9 +26,9 @@ public class  Conexao {
         config.setConnectionTimeout(15000L);
         config.setIdleTimeout(300000L);
         config.setMaxLifetime(600000L);
-        config.setMinimumIdle(3);
-        config.setMaximumPoolSize(4);
-        config.setPoolName("elos-pool");
+        config.setMinimumIdle(1);
+        config.setMaximumPoolSize(3);
+        config.setPoolName("astro-pool");
 
         // Aumenta a velocidade do pool
         config.addDataSourceProperty("cachePrepStmts", "true");
