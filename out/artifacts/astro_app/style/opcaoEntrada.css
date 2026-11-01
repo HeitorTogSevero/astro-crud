@@ -50,15 +50,13 @@ body.pagina-login {
 }
 
 .fundo-planeta {
-    position: fixed;
+    position: absolute;
     inset: 0;
-    z-index: 0;
+    z-index: -1;
     background-color: var(--bg-app);
-    background-image: url('../imagens/planeta_login.png');
     background-repeat: no-repeat;
-    background-position: left top;
+    background-position: 0px 0px;
     background-size: 1390px auto;
-    pointer-events: none;
 }
 
 .botao-voltar {
