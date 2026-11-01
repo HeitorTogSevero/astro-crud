@@ -12,7 +12,6 @@
 }
 
 body.pagina-erro {
-    font-family: 'Onest', sans-serif;
     background-color: var(--bg-app);
     display: flex;
     justify-content: center;

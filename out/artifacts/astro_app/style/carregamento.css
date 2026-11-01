@@ -7,7 +7,6 @@
 }
 
 .tela-carregamento {
-    font-family: 'Onest', sans-serif;
     position: fixed;
     inset: 0;
     z-index: 9999;
