@@ -33,7 +33,7 @@
     // REGEX //
     const regexCpf = /^(\d{3}\.\d{3}\.\d{3}-\d{2}|\d{11})$/
 
-    const regexEmail = /^[a-zA-Z0-9._%+#$!\-]+@(gmail|hotmail|yahoo|outlook)\.(com|com\.br|org\.br)$/
+    const regexEmail = /^[a-zA-Z0-9._%+#$!\-]+@(gmail|hotmail|yahoo|outlook|institutojef)\.(com|com\.br|org\.br)$/
 
     // Validações dos Dados - Nome //
     form.addEventListener("input", function (){
