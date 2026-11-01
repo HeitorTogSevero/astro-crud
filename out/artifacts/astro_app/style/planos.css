@@ -950,20 +950,19 @@ footer {
 }
 
 #siga {
-    width: 50px;
-    height: auto;
+    height: 1.05em;
+    width: auto;
     display: inline-block;
     vertical-align: middle;
-    margin-left: 4px;
-    position: relative;
-    top: -1px;
+    margin: 0 0 0 2px;
+    position: static;
 }
 
 .coluna-links.social h4 {
     display: flex;
     align-items: center;
-    gap: 6px;
-    flex-wrap: wrap;
+    gap: 4px;
+    letter-spacing: normal;
 }
 
 .icones-sociais {
@@ -1541,4 +1540,175 @@ footer {
         display: none;
     }
 
+}
+
+
+/* RESPONSIVIDADE COMPLEMENTAR — TABLETS E TVs */
+
+@media (min-width: 561px) and (max-width: 1200px) {
+    .secao-cta { display: none; }
+
+    .principal h1 {
+        font-size: clamp(42px, 5.5vw, 64px);
+    }
+
+    /* PLANOS */
+    .os-planos {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 24px;
+        align-items: stretch;
+    }
+
+    .o-plano, .o-plano2 {
+        width: 100%;
+        height: auto;
+        min-height: 720px;
+        padding: 28px;
+        margin: 0 !important;
+    }
+
+    .o-plano2 {
+        padding-top: 0;
+    }
+
+    .mais-escolhido {
+        margin-top: 0;
+    }
+
+    .plano-titulo, .plano-titulo2 {
+        margin: 20px 0 24px;
+    }
+
+    .o-plano h2, .o-plano2 h2, .fraco {
+        margin-left: 0;
+        font-size: 18px;
+        line-height: 1.5;
+    }
+
+    .o-plano h3, .o-plano2 h3 {
+        margin: 30px 0 0;
+        font-size: 26px;
+    }
+
+    .grande,
+    .os-planos.anual #preco-terra,
+    .os-planos.anual #preco-jupiter {
+        font-size: clamp(34px, 4vw, 48px);
+    }
+
+    .o-plano h4, .o-plano2 h4 {
+        margin: 12px 0 0;
+        font-size: 16px;
+    }
+
+    .botao-plano, .botao-plano2 {
+        width: 100%;
+        margin: 24px 0 0;
+        padding: 15px 10px;
+        font-size: 17px;
+    }
+
+    .topicos { margin: 32px 0 0; }
+    .topico { margin-bottom: 24px; }
+    .topico p {
+        margin: 0 0 0 12px;
+        font-size: 16px;
+    }
+
+    .os-planos.anual .o-plano2 h3,
+    .os-planos.anual .o-plano:nth-child(3) h3 {
+        transform: none;
+    }
+
+    /* BENEFÍCIOS */
+    .beneficios-planos {
+        height: auto;
+        padding: 28px;
+    }
+
+    .lista-beneficios {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        gap: 16px 26px;
+    }
+
+    .separador-beneficio { display: none; }
+    .beneficio { font-size: 15px; }
+
+    /* COMPARAÇÃO */
+    .visao-geral { margin: 64px 48px; }
+
+    .tabela-container { overflow-x: auto; }
+
+    .tabela-recursos th,
+    .tabela-recursos td { font-size: 16px; }
+
+    .tabela-recursos th:first-child,
+    .tabela-recursos td:first-child { padding-left: 20px; }
+
+    /* FOOTER */
+    .conteudo-rodape {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .links-rodape {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 24px;
+    }
+}
+
+/* TABLETS MENORES */
+@media (min-width: 561px) and (max-width: 800px) {
+    .os-planos {
+        grid-template-columns: 1fr;
+        max-width: 520px;
+    }
+
+    .o-plano, .o-plano2 {
+        min-height: 0;
+    }
+
+    .visao-geral { display: none; }
+
+    .links-rodape {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 32px 20px;
+    }
+
+    .links-rodape .social { grid-column: auto; }
+
+    .economize {
+        display: grid;
+        place-items: center;
+        margin: 15px 18px 0 0;
+    }
+
+    .economize p {
+        margin: 0;
+        line-height: 1;
+        font-size: 10px;
+    }
+
+}
+
+/* TVs */
+@media (min-width: 2560px) {
+    main, footer { zoom: 1.25; }
+}
+
+@media (min-width: 3200px) {
+    main, footer { zoom: 1.75; }
+}
+
+@media (min-width: 801px) and (max-width: 1200px) {
+    .links-navegacao {
+        flex: 1;
+        margin: 0 clamp(8px, 2vw, 30px);
+        justify-content: space-evenly;
+        gap: 8px;
+    }
 }

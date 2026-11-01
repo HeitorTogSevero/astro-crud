@@ -644,20 +644,19 @@ footer {
 }
 
 #siga {
-    width: 50px;
-    height: auto;
+    height: 1.05em;
+    width: auto;
     display: inline-block;
     vertical-align: middle;
-    margin-left: 4px;
-    position: relative;
-    top: -1px;
+    margin: 0 0 0 2px;
+    position: static;
 }
 
 .coluna-links.social h4 {
     display: flex;
     align-items: center;
-    gap: 6px;
-    flex-wrap: wrap;
+    gap: 4px;
+    letter-spacing: normal;
 }
 
 .icones-sociais {
@@ -1441,4 +1440,55 @@ footer {
 
     }
 
+}
+
+
+@media (min-width: 601px) and (max-width: 1200px) {
+    .secao-cta, .imagem-principal { display: none; }
+
+    .principal {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .conteudo-principal {
+        width: 100%;
+        max-width: 850px;
+        margin: 0 auto;
+    }
+
+    .principal h1 {
+        font-size: clamp(42px, 5.5vw, 64px);
+    }
+
+    .principal p br { display: none; }
+
+    .missao, .contato {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 32px;
+    }
+
+    .valores, .canais { width: 100%; }
+
+    .conteudo-rodape {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .links-rodape {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 24px;
+    }
+}
+
+@media (min-width: 801px) and (max-width: 1200px) {
+    .links-navegacao {
+        flex: 1;
+        margin: 0 clamp(8px, 2vw, 30px);
+        justify-content: space-evenly;
+        gap: 8px;
+    }
 }
