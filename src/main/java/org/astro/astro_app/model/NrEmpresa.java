@@ -27,7 +27,7 @@ public class NrEmpresa {
         this.dtRealização = dtRealização;
     }
 
-    // Construtor vaziu (para recuperar dados já existentes do banco de dados)
+    // Construtor vazio (para recuperar dados já existentes do banco de dados)
     public NrEmpresa(){}
 
     // Construtor sem o ID

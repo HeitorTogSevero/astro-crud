@@ -19,7 +19,7 @@ public class Administrador {
         this.senha = senha;
     }
 
-    // Construtor vaziu (para recuperar dados já existentes do banco de dados)
+    // Construtor vazio (para recuperar dados já existentes do banco de dados)
     public Administrador() {}
 
     // Construtor sem o ID

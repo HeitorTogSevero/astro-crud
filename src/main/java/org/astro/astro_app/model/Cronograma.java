@@ -23,7 +23,7 @@ public class Cronograma {
         this.agendamento = agendamento;
     }
 
-    // Construtor vaziu (para recuperar dados já existentes do banco de dados)
+    // Construtor vazio (para recuperar dados já existentes do banco de dados)
     public Cronograma(){}
 
     // Construtor sem o ID

@@ -12,7 +12,7 @@ public class Departamento_Equipamento {
         this.idEquipamento = idEquipamento;
     }
 
-    // Construtor vaziu (para recuperar dados já existentes do banco de dados)
+    // Construtor vazio (para recuperar dados já existentes do banco de dados)
     public Departamento_Equipamento(){}
 
     // Getter
