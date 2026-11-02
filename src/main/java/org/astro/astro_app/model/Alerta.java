@@ -39,7 +39,7 @@ public class Alerta {
         this.dtLimite = dtLimite;
     }
 
-    // Getter
+    // Getters
     public int getIdAlerta() {
         return idAlerta;
     }

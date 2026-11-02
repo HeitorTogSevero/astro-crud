@@ -108,7 +108,7 @@ public class ServletReadFuncionario extends HttpServlet {
         // Disponibiliza resultados e filtros para manter a tela preenchida
         request.setAttribute("funcionarios", funcionarios);
 
-        // Mantém os valores no filtro(opicional)
+        // Mantém os valores no filtro (opcional)
         request.setAttribute("filtroNome", nome);
 
         request.setAttribute("filtroCargo", cargo);

@@ -41,7 +41,7 @@ public class NrFuncionario {
         this.status = status;
     }
 
-    // Getter
+    // Getters
 
     public int getIdNrFunc() {
         return idNrFunc;

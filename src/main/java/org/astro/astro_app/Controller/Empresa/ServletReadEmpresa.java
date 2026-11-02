@@ -108,7 +108,7 @@ public class ServletReadEmpresa extends HttpServlet {
         // Disponibiliza resultados e filtros para manter a tela preenchida
         request.setAttribute("empresas", empresas);
 
-        // Mantém os valores no filtro(opicional)
+        // Mantém os valores no filtro (opcional)
         request.setAttribute("filtroEstado", estado);
 
         request.setAttribute("filtroCidade", cidade);

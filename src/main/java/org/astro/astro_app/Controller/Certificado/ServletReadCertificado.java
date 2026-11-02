@@ -126,7 +126,7 @@ public class ServletReadCertificado extends HttpServlet {
         // Disponibiliza resultados e filtros para manter a tela preenchida
         request.setAttribute("certificados", certificados);
 
-        // Mantém os valores no filtro(opicional)
+        // Mantém os valores no filtro (opcional)
         request.setAttribute("filtroDtEmissaoMin", dataEmissaoMinimaTexto);
 
         request.setAttribute("filtroDtEmissaoMax", dataEmissaoMaximaTexto);

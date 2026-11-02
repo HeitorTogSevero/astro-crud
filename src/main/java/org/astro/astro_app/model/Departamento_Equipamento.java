@@ -15,7 +15,7 @@ public class Departamento_Equipamento {
     // Construtor vazio (para recuperar dados já existentes do banco de dados)
     public Departamento_Equipamento(){}
 
-    // Getter
+    // Getters
     public int getIdDepartamento() {
         return idDepartamento;
     }

@@ -35,7 +35,7 @@ public class Departamento {
         this.atividade = atividade;
     }
 
-    // Getter
+    // Getters
 
     public int getIdDepartamento() {
         return idDepartamento;
