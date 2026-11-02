@@ -75,14 +75,6 @@ O logotipo do Astro, localizado no topo da página, pode ser usado para voltar �
 
 <hr>
 
-<h3>Como executar</h3>
-
-<p>
-  
-</p>
-
-<hr>
-
 <h3>Licença</h3>
 
 <p>Este projeto está sob a licença MIT LICENSE.</p>
