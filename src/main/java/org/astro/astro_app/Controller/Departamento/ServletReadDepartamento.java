@@ -120,7 +120,7 @@ public class ServletReadDepartamento extends HttpServlet {
         // Disponibiliza resultados e filtros para manter a tela preenchida
         request.setAttribute("departamentos", departamentos);
 
-        // Mantém os valores no filtro(opicional)
+        // Mantém os valores no filtro (opcional)
         request.setAttribute("filtroGrauRisco", grauRiscoTexto);
 
         request.setAttribute("filtroAtividade", atividade);

@@ -76,7 +76,7 @@ public class ServletReadDivisaoTreinamento extends HttpServlet{
         // Disponibiliza resultados e filtros para manter a tela preenchida
         request.setAttribute("divisoes", divisaoTreinamentos);
 
-        // Mantém os valores no filtro(opicional)
+        // Mantém os valores no filtro (opcional)
         request.setAttribute("filtroCodigo", codigoTexto);
 
         request.setAttribute("filtroIdEmpresa", idEmpresaTexto);

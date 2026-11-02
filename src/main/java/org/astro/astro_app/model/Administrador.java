@@ -1,9 +1,9 @@
 package org.astro.astro_app.model;
 
-// Classe da Model Aministrador
+// Classe da Model Administrador
 public class Administrador {
 
-    // Atributos inteiros
+    // Atributo inteiro
     private int idAdmin;
 
     // Atributos String
@@ -29,7 +29,7 @@ public class Administrador {
         this.senha = senha;
     }
 
-    // Getters
+    // Getters e Setters
     public int getIdAdmin() {
         return idAdmin;
     }
@@ -46,7 +46,6 @@ public class Administrador {
         return senha;
     }
 
-    // Setters
     public void setIdAdmin(int idAdmin) {
         this.idAdmin = idAdmin;
     }

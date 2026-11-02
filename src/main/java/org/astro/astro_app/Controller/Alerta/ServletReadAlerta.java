@@ -76,7 +76,7 @@ public class ServletReadAlerta extends HttpServlet {
 
             }
 
-            // Pesquisar nome
+            // Pesquisar pelo nome
             if (descricao != null && !descricao.isBlank()) {
 
                 sql.append(" AND descricao ILIKE '%").append(descricao.trim().replace("'", "''")).append("%'");
@@ -101,7 +101,7 @@ public class ServletReadAlerta extends HttpServlet {
         // Disponibiliza resultados e filtros para manter a tela preenchida
         request.setAttribute("alertas", alertas);
 
-        // Mantém os valores no filtro(opicional)
+        // Mantém os valores no filtro (opcional)
         request.setAttribute("filtroCodigo", codigoTexto);
 
         request.setAttribute("filtroDtMin", dtLimiteMin);
