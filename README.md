@@ -40,11 +40,11 @@ sustentásseis ao realizar o comprimento das Normas Regulamentadoras.
 
 <p>
   <lu>
-<li>Início: apresenta o Astro, seus benefícios e como a plataforma funciona.</li>
-<li>Produto: explica as funcionalidades, como gestão de normas, alertas, relatórios, treinamentos e segurança.</li>
-<li>Recursos: reúne materiais em PDF, artigos do blog e um glossário de termos e siglas.</li>
-<li>Planos: apresenta os planos disponíveis e permite comparar seus recursos.</li>
-<li>Sobre: apresenta a equipe, a missão, os valores e as formas de contato.</li>
+  <li>Início: apresenta o Astro, seus benefícios e como a plataforma funciona.</li>
+  <li>Produto: explica as funcionalidades, como gestão de normas, alertas, relatórios, treinamentos e segurança.</li>
+  <li>Recursos: reúne materiais em PDF, artigos do blog e um glossário de termos e siglas.</li>
+  <li>Planos: apresenta os planos disponíveis e permite comparar seus recursos.</li>
+  <li>Sobre: apresenta a equipe, a missão, os valores e as formas de contato.</li>
 </lu>
 
 <p></p>
