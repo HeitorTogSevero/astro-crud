@@ -18,7 +18,7 @@ String erro = (String) request.getAttribute("erro");
 
 <div class="fundo-planeta" aria-hidden="true" style="background-image: url('<%=caminho%>/imagens/planeta_login.png');"></div>
 
-<a href="<%=caminho%>/landing-page.html"
+<a href="<%=caminho%>/index.html"
    onclick="if(document.referrer) { history.back(); return false; }"
    class="botao-voltar"
    id="botao-voltar"

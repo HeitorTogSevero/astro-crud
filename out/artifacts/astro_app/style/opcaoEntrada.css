@@ -50,13 +50,15 @@ body.pagina-login {
 }
 
 .fundo-planeta {
-    position: absolute;
+    position: fixed;
     inset: 0;
-    z-index: -1;
+    z-index: 0;
     background-color: var(--bg-app);
+    background-image: url('../imagens/planeta_login.png');
     background-repeat: no-repeat;
-    background-position: 0px 0px;
+    background-position: left top;
     background-size: 1390px auto;
+    pointer-events: none;
 }
 
 .botao-voltar {
@@ -218,15 +220,4 @@ body.pagina-login {
     .login-logo {
         margin-bottom: 12px;
     }
-}
-
-.fundo-planeta {
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    background-color: transparent;
-    background-repeat: no-repeat;
-    background-position: left center;
-    background-size: min(1390px, 95vw) auto;
-    pointer-events: none;
 }
