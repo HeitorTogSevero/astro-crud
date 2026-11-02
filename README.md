@@ -39,13 +39,13 @@ sustentásseis ao realizar o comprimento das Normas Regulamentadoras.
 <h3>Funcionalidade</h3>
 
 <p>
-  <lu>
+  <ul>
   <li>Início: apresenta o Astro, seus benefícios e como a plataforma funciona.</li>
   <li>Produto: explica as funcionalidades, como gestão de normas, alertas, relatórios, treinamentos e segurança.</li>
   <li>Recursos: reúne materiais em PDF, artigos do blog e um glossário de termos e siglas.</li>
   <li>Planos: apresenta os planos disponíveis e permite comparar seus recursos.</li>
   <li>Sobre: apresenta a equipe, a missão, os valores e as formas de contato.</li>
-</lu>
+</ul>
 
 <p></p>
 O logotipo do Astro, localizado no topo da página, pode ser usado para voltar à página inicial. O menu principal e os links do rodapé ajudam a acessar as outras páginas.
