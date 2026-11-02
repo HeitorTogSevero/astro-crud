@@ -29,7 +29,7 @@ public class NrDescricao {
         this.titulo = titulo;
     }
 
-    // Getter
+    // Getters
     public int getIdNrDescricao() {
         return idNrDescricao;
     }

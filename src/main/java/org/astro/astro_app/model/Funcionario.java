@@ -41,7 +41,7 @@ public class Funcionario {
         this.idDepartamento = idDepartamento;
     }
 
-    // Getter
+    // Getters
 
     public String getNome() {
         return nome;

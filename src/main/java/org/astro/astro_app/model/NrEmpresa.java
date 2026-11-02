@@ -39,7 +39,7 @@ public class NrEmpresa {
         this.dtRealização = dtRealização;
     }
 
-    // Getter
+    // Getters
 
     public int getIdNremp() {
         return idNrEmpresa;

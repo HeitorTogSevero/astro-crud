@@ -38,7 +38,7 @@ public class Certificado {
     // Construtor vazio (para recuperar dados já existentes do banco de dados)
     public Certificado(){}
 
-    // Getter
+    // Getters
 
     public int getIdCertificado() {
         return idCertificado;

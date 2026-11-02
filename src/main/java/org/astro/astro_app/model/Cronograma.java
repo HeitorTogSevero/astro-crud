@@ -33,7 +33,7 @@ public class Cronograma {
         this.agendamento = agendamento;
     }
 
-    // Getter
+    // Getters
     public int getIdFuncionario() {
         return idFuncionario;
     }

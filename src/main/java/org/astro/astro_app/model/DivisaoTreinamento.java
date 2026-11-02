@@ -33,7 +33,7 @@ public class DivisaoTreinamento {
         this.nome = nome;
     }
 
-    // Getter
+    // Getters
 
     public int getIdDivisao() {
         return idDivisao;

@@ -29,7 +29,7 @@ public class Administrador {
         this.senha = senha;
     }
 
-    // Getter
+    // Getters
     public int getIdAdmin() {
         return idAdmin;
     }
@@ -46,7 +46,7 @@ public class Administrador {
         return senha;
     }
 
-    // Setter
+    // Setters
     public void setIdAdmin(int idAdmin) {
         this.idAdmin = idAdmin;
     }
