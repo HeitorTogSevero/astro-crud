@@ -19,7 +19,7 @@ public class NrDescricao {
         this.titulo = titulo;
     }
 
-    // Construtor vaziu (para recuperar dados já existentes do banco de dados)
+    // Construtor vazio (para recuperar dados já existentes do banco de dados)
     public NrDescricao(){}
 
     // Construtor sem o ID

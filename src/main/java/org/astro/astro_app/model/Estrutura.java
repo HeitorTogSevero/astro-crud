@@ -19,7 +19,7 @@ public class Estrutura {
         this.descricao = descricao;
     }
 
-    // Construtor vaziu (para recuperar dados já existentes do banco de dados)
+    // Construtor vazio (para recuperar dados já existentes do banco de dados)
     public Estrutura(){}
 
     // Construtor sem o ID

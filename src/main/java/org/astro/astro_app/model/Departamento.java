@@ -23,7 +23,7 @@ public class Departamento {
         this.atividade = atividade;
     }
 
-    // Construtor vaziu (para recuperar dados já existentes do banco de dados)
+    // Construtor vazio (para recuperar dados já existentes do banco de dados)
     public Departamento(){}
 
     // Construtor sem o ID

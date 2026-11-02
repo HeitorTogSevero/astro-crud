@@ -23,7 +23,7 @@ public class Equipamento {
         this.clasificacaoGov = clasificacaoGov;
     }
 
-    // Construtor vaziu (para recuperar dados já existentes do banco de dados)
+    // Construtor vazio (para recuperar dados já existentes do banco de dados)
     public Equipamento(){}
 
     // Construtor sem o ID

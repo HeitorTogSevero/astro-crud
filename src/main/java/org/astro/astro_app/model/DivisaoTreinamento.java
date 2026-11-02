@@ -22,7 +22,7 @@ public class DivisaoTreinamento {
         this.nome = nome;
     }
 
-    // Construtor vaziu (para recuperar dados já existentes do banco de dados)
+    // Construtor vazio (para recuperar dados já existentes do banco de dados)
     public DivisaoTreinamento(){}
 
     // Construtor sem o ID

@@ -26,7 +26,7 @@ public class Alerta {
         this.dtLimite = dtLimite;
     }
 
-    // Construtor vaziu (para recuperar dados já existentes do banco de dados)
+    // Construtor vazio (para recuperar dados já existentes do banco de dados)
     public Alerta(){
 
     }

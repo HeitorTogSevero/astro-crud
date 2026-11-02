@@ -29,7 +29,7 @@ public class NrFuncionario {
         this.status = status;
     }
 
-    // Construtor vaziu (para recuperar dados já existentes do banco de dados)
+    // Construtor vazio (para recuperar dados já existentes do banco de dados)
     public NrFuncionario(){}
 
     // Construtor sem o ID
