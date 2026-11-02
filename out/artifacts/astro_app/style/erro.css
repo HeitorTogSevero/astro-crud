@@ -1,23 +1,25 @@
-:root {
-    --bg-app: #080717;
-    --text-main: #ffffff;
-}
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Onest', sans-serif;
-    letter-spacing: 0.5px;
+}
+
+:root {
+    --bg-app: #080717;
+    --text-main: #ffffff;
+    --btn: #2b4bf2;
+    --btn-hover: #1a39d3;
 }
 
 body.pagina-erro {
-    background-color: var(--bg-app);
-    display: flex;
-    justify-content: center;
-    align-items: center;
     min-height: 100vh;
-    position: relative;
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-app);
+    color: var(--text-main);
+    font-family: "Onest", "Inter", sans-serif;
 }
 
 .botao-voltar {
@@ -33,7 +35,6 @@ body.pagina-erro {
     color: var(--text-main);
     text-decoration: none;
     font-size: 18px;
-    z-index: 10;
     transition: background-color 0.2s ease;
 }
 
@@ -58,14 +59,12 @@ body.pagina-erro {
 }
 
 .error-h1 {
-    color: var(--text-main);
     font-size: 2.2rem;
-    font-weight: bold;
+    font-weight: 700;
     margin: 0 0 15px 0;
 }
 
 .error-p {
-    color: var(--text-main);
     font-size: 1.1rem;
     line-height: 1.5;
     margin: 0 0 30px 0;
@@ -73,40 +72,21 @@ body.pagina-erro {
 }
 
 .error-button {
-    background-color: #2b4bf2;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--btn);
     color: #ffffff;
     border: none;
     padding: 12px 30px;
     font-size: 1rem;
-    font-weight: bold;
+    font-weight: 600;
     border-radius: 25px;
     cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    transition: background 0.2s ease;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
 }
 
 .error-button:hover {
-    background-color: #1a39d3;
-}
-
-.button-text {
-    font-weight: 500;
-    margin: 0;
-}
-
-@media (max-width: 480px) {
-    .botao-voltar {
-        top: 20px;
-        left: 16px;
-    }
-
-    .error-h1 {
-        font-size: 1.75rem;
-    }
-
-    .error-p {
-        font-size: 1rem;
-    }
+    background-color: var(--btn-hover);
 }
